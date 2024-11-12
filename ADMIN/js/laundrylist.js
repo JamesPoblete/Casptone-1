@@ -78,30 +78,50 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePagination(); // Update pagination after table update
     }
 
-    // Function to update pagination controls
-    function updatePagination() {
-        document.getElementById('pageNumber').textContent = currentPage;
+   // Update pagination controls
+function updatePagination() {
+    document.getElementById('pageNumber').textContent = currentPage;
 
-        // Enable/disable pagination buttons based on the current page and data length
-        document.getElementById('prevPage').disabled = currentPage === 1;
-        document.getElementById('nextPage').disabled = currentPage * rowsPerPage >= totalRows;
+    // Enable/disable pagination buttons based on the current page and data length
+    document.getElementById('prevPage').disabled = currentPage === 1;
+    document.getElementById('firstPage').disabled = currentPage === 1;
+    document.getElementById('nextPage').disabled = currentPage * rowsPerPage >= totalRows;
+    document.getElementById('lastPage').disabled = currentPage * rowsPerPage >= totalRows;
+}
+
+// Previous page button event
+document.getElementById('prevPage').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        updateTable(); // Use the filteredData for pagination
     }
+});
 
-    // Previous page button event
-    document.getElementById('prevPage').addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            updateTable(); // Use the filteredData for pagination
-        }
-    });
+// Next page button event
+document.getElementById('nextPage').addEventListener('click', () => {
+    if (currentPage * rowsPerPage < totalRows) {
+        currentPage++;
+        updateTable(); // Use the filteredData for pagination
+    }
+});
 
-    // Next page button event
-    document.getElementById('nextPage').addEventListener('click', () => {
-        if (currentPage * rowsPerPage < totalRows) {
-            currentPage++;
-            updateTable(); // Use the filteredData for pagination
-        }
-    });
+// First page button event
+document.getElementById('firstPage').addEventListener('click', () => {
+    if (currentPage !== 1) {
+        currentPage = 1;
+        updateTable();
+    }
+});
+
+// Last page button event
+document.getElementById('lastPage').addEventListener('click', () => {
+    const lastPage = Math.ceil(totalRows / rowsPerPage);
+    if (currentPage !== lastPage && lastPage > 0) {
+        currentPage = lastPage;
+        updateTable();
+    }
+});
+
 
     // Filter functionality
     const filterSelect = document.querySelector('.status-filter');

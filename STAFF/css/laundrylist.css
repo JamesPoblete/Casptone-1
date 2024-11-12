@@ -211,6 +211,17 @@ body {
   margin-top: 20px;
 }
 
+.buttons-container {
+  display: flex;
+  gap: 8px; /* Adds some spacing between buttons */
+}
+
+.delete-btn,.print-btn,  .add-laundry-btn {
+  margin-left: 1px; /* Adjust spacing as needed */
+  /* Add any other styling to match the look and feel */
+}
+
+
 .print-btn {
   background-color: #f4f4f4;
   display: flex;
@@ -224,7 +235,7 @@ body {
   background-color:#1A1A40 ;
 }
 
-.print-btn,
+.delete-btn,.print-btn,
 .add-laundry-btn {
   padding: 10px 15px;
   background-color: #1A1A40;
@@ -251,6 +262,35 @@ body {
 }
 
 .print-btn:hover {
+  background-color:#1A1A40 ;
+  color: #f4f4f4;
+}
+
+/* Delete Button Styles */
+.delete-btn {
+  background-color: #f4f4f4;
+  display: flex;
+  margin-left: auto;
+  border: 1px solid #1A1A40;
+  color: #1A1A40;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
+  background-color:#1A1A40 ;
+}
+
+
+.delete-btn {
+  background-color: #f4f4f4;
+  display: flex;
+  margin-left: auto;
+  border: 1px solid #1A1A40;
+  color: #1A1A40;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
   background-color:#1A1A40 ;
   color: #f4f4f4;
 }
@@ -724,33 +764,70 @@ input[type="checkbox"] {
     color: #856404 !important; /* Dark yellow text */
 }
 
-/* Receipt Modal Styles */
 .receipt-content {
-  width: 600px;
-  margin: auto;
-  padding: 20px;
-  background-color: #fff;
-  position: relative;
-  border: 2px solid #333;
+  max-width: 450px; /* Increased the width for more space */
+  padding: 25px;
   border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.6; /* Increased line height for better readability */
 }
 
-.receipt-content h2 {
+.receipt-logo {
+  display: block;
+  margin: 0 auto 15px auto; /* Center the logo and add some margin at the bottom */
+  width: 300px; /* Adjust logo size for better visibility */
+}
+
+.receipt-header {
   text-align: center;
   margin-bottom: 20px;
-  font-family: 'Poppins', sans-serif;
+  border-bottom: 1px dashed #000;
+  padding-bottom: 10px;
 }
 
-.receipt-content p, .receipt-content ul {
-  font-size: 16px;
+.receipt-header h2 {
   margin: 5px 0;
-  font-family: 'Poppins', sans-serif;
 }
 
-.receipt-content ul {
-  list-style-type: disc;
-  padding-left: 20px;
+.receipt-details, .receipt-additional {
+  margin: 20px 0; /* Add margin between sections for better spacing */
 }
+
+.receipt-details p, .receipt-additional p {
+  font-size: 15px;
+  margin: 8px 0; /* Add some vertical space between lines */
+}
+
+.receipt-articles {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.receipt-articles li {
+  margin-bottom: 5px;
+}
+
+.receipt-total {
+  margin-top: 20px;
+  text-align: right;
+  border-top: 1px solid #000;
+  padding-top: 15px;
+}
+
+.receipt-total h3, .receipt-total p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.receipt-barcode {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
 
 .close-receipt {
   position: absolute;
@@ -793,4 +870,6 @@ input[type="checkbox"] {
   }
 }
 
+/* laundrylist.css */
 
+/* Existing styles ... */

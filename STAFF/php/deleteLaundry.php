@@ -1,41 +1,56 @@
 <?php
-include 'dbconnection.php'; // Include your database connection file
+// deleteLaundry.php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        // Establish the database connection
-        $conn = connectDB();
+header('Content-Type: application/json');
+include 'dbconnection.php'; // Ensure correct path
 
-        // Check if 'orderIDs' is provided in the POST request
-        if (isset($_POST['orderIDs']) && is_array($_POST['orderIDs'])) {
-            $orderIDs = $_POST['orderIDs'];
+// Disable displaying errors in output and enable error logging
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+error_reporting(E_ALL);
 
-            // Debugging: Output the received order IDs
-            var_dump($orderIDs); // This will print the array of order IDs to check if it's correct
-
-            // Create a placeholder for the SQL IN clause
-            $placeholders = implode(',', array_fill(0, count($orderIDs), '?'));
-
-            // SQL query to delete selected orders
-            $sql = "DELETE FROM laundry WHERE OrderID IN ($placeholders)";
-            $stmt = $conn->prepare($sql);
-
-            // Execute the query with the provided OrderIDs
-            $stmt->execute($orderIDs);
-
-            // Return a success response
-            echo json_encode(["success" => true, "message" => "Orders deleted successfully."]);
-        } else {
-            // Return an error response if no orderIDs are provided
-            echo json_encode(["success" => false, "message" => "No orders selected for deletion."]);
-        }
-
-    } catch (PDOException $e) {
-        // Handle any errors
-        echo json_encode(["success" => false, "message" => $e->getMessage()]);
-    }
-
-    // Close the database connection
-    $conn = null;
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
+    exit;
 }
+
+if (!isset($_POST['orderIDs']) || !is_array($_POST['orderIDs'])) {
+    echo json_encode(['success' => false, 'message' => 'No Order IDs provided.']);
+    exit;
+}
+
+$orderIDs = $_POST['orderIDs'];
+
+if (empty($orderIDs)) {
+    echo json_encode(['success' => false, 'message' => 'Order IDs array is empty.']);
+    exit;
+}
+
+try {
+    // Establish the database connection
+    $conn = connectDB();
+
+    // Prepare the DELETE statement with placeholders
+    // Use positional placeholders for security
+    $placeholders = rtrim(str_repeat('?,', count($orderIDs)), ',');
+    $sql = "DELETE FROM laundry WHERE OrderID IN ($placeholders)";
+    $stmt = $conn->prepare($sql);
+
+    // Execute the statement with the OrderIDs
+    $stmt->execute($orderIDs);
+
+    // Check how many rows were deleted
+    $deletedRows = $stmt->rowCount();
+
+    echo json_encode(['success' => true, 'deletedRows' => $deletedRows]);
+
+} catch (PDOException $e) {
+    // Log the error
+    error_log("Error deleting laundry entries: " . $e->getMessage());
+
+    echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+}
+
+// Close the connection
+$conn = null;
 ?>

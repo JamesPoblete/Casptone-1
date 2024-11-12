@@ -1,6 +1,118 @@
 // laundrylist.js
 
 document.addEventListener('DOMContentLoaded', function() {
+  // ----- Delete Selected Entries Handling -----
+  const deleteSelectedEntriesBtn = document.getElementById('deleteSelectedEntries');
+
+  // Function to handle deletion of selected entries
+  deleteSelectedEntriesBtn.addEventListener('click', function() {
+      // Get all checked checkboxes
+      const checkedBoxes = document.querySelectorAll('.select:checked');
+      if (checkedBoxes.length === 0) {
+          toastr.warning('Please select at least one laundry entry to delete.');
+          return;
+      }
+
+      // Collect OrderIDs of selected entries
+      const selectedOrderIDs = Array.from(checkedBoxes).map(cb => cb.closest('tr').children[1].textContent.trim());
+
+      // Confirmation dialog
+      const confirmDelete = confirm(`Are you sure you want to delete ${selectedOrderIDs.length} selected entr${selectedOrderIDs.length > 1 ? 'ies' : 'y'}? This action cannot be undone.`);
+      if (!confirmDelete) {
+          return;
+      }
+
+      // Show loader
+      const loader = document.getElementById('loader');
+      if (loader) {
+          loader.style.display = 'block';
+      }
+
+      // Prepare data to send
+      const formData = new FormData();
+      selectedOrderIDs.forEach(id => formData.append('orderIDs[]', id));
+
+      // Send AJAX request to deleteLaundry.php
+      fetch('../php/deleteLaundry.php', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => response.json())
+      .then(responseData => {
+          // Hide loader
+          if (loader) {
+              loader.style.display = 'none';
+          }
+
+          if (responseData.success) {
+              toastr.success(`<i class="fas fa-check-circle"></i> Successfully deleted ${selectedOrderIDs.length} entr${selectedOrderIDs.length > 1 ? 'ies' : 'y'}.`);
+              fetchDataAndApplyFilters(); // Refresh the table
+          } else {
+              toastr.error(`<i class="fas fa-exclamation-triangle"></i> Failed to delete entries: ${responseData.message}`);
+          }
+      })
+      .catch(error => {
+          // Hide loader
+          if (loader) {
+              loader.style.display = 'none';
+          }
+
+          console.error('Error deleting entries:', error);
+          toastr.error('<i class="fas fa-exclamation-triangle"></i> An error occurred while deleting the entries.');
+      });
+  });
+    
+     // Ensure that the attachStatusListeners is called after the table is updated
+     function updateTable() {
+        const tableBody = document.getElementById('laundryListTable');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        const paginatedData = filteredData.slice(startIndex, endIndex); // Paginate filteredData
+
+        if (paginatedData.length === 0) {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td colspan="6">No data found</td>`;
+            tableBody.appendChild(row);
+        } else {
+            paginatedData.forEach(item => {
+                const row = document.createElement('tr');
+
+                // Determine status class and icon based on status
+                let statusClass = '';
+                let statusIcon = '';
+                if (item.STATUS === 'Completed') {
+                    statusClass = 'completed';
+                    statusIcon = '<i class="fas fa-check-circle"></i>';
+                } else if (item.STATUS === 'Pending') {
+                    statusClass = 'pending';
+                    statusIcon = '<i class="fas fa-exclamation-triangle"></i>';
+                } else {
+                    statusClass = 'other';
+                    statusIcon = '<i class="fas fa-info-circle"></i>';
+                }
+
+                row.innerHTML = `
+                    <td><input type="checkbox" class="select"></td>
+                    <td>${item.OrderID}</td>
+                    <td>${new Date(item.DATE).toLocaleDateString()}</td>
+                    <td>${item.NAME}</td>
+                    <td>${item.PICKUP_TIME || 'No time set'}</td>
+                    <td>
+                        <select class="status-dropdown ${item.STATUS.toLowerCase()}" data-order-id="${item.OrderID}" data-original-status="${item.STATUS}">
+                            <option value="Pending" ${item.STATUS === 'Pending' ? 'selected' : ''}>🔴 Pending</option>
+                            <option value="Completed" ${item.STATUS === 'Completed' ? 'selected' : ''}>✔ Completed</option>
+                        </select>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        updatePagination(); // Update pagination after table update
+        attachStatusListeners(); // Re-attach listeners after updating the table
+    }
+    
     // ----- jQuery Code for Sidebar Active Link -----
     $(document).ready(function() {
         // Get the current path from the URL
@@ -63,80 +175,85 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to update the table with the filtered data
-    function updateTable() {
-        const tableBody = document.getElementById('laundryListTable');
-        tableBody.innerHTML = ''; // Clear existing rows
+    // Update the table with filtered data
+function updateTable() {
+    const tableBody = document.getElementById('laundryListTable');
+    tableBody.innerHTML = ''; // Clear existing rows
 
-        const startIndex = (currentPage - 1) * rowsPerPage;
-        const endIndex = startIndex + rowsPerPage;
-        const paginatedData = filteredData.slice(startIndex, endIndex); // Paginate filteredData
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    const paginatedData = filteredData.slice(startIndex, endIndex); // Paginate filteredData
 
-        if (paginatedData.length === 0) {
+    if (paginatedData.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td colspan="6">No data found</td>`;
+        tableBody.appendChild(row);
+    } else {
+        paginatedData.forEach(item => {
             const row = document.createElement('tr');
-            row.innerHTML = `<td colspan="6">No data found</td>`;
+            row.innerHTML = `
+                <td><input type="checkbox" class="select"></td>
+                <td>${item.OrderID}</td>
+                <td>${new Date(item.DATE).toLocaleDateString()}</td>
+                <td>${item.NAME}</td>
+                <td>${item.PICKUP_TIME || 'No time set'}</td>
+                <td>
+                    <select class="status-dropdown ${item.STATUS.toLowerCase()}" data-order-id="${item.OrderID}" data-original-status="${item.STATUS}">
+                        <option value="Pending" ${item.STATUS === 'Pending' ? 'selected' : ''}>🔴 Pending</option>
+                        <option value="Completed" ${item.STATUS === 'Completed' ? 'selected' : ''}>✔ Completed</option>
+                    </select>
+                </td>
+            `;
             tableBody.appendChild(row);
-        } else {
-            paginatedData.forEach(item => {
-                const row = document.createElement('tr');
-
-                // Determine status class and icon based on status
-                let statusClass = '';
-                let statusIcon = '';
-                if (item.STATUS === 'Completed') {
-                    statusClass = 'completed';
-                    statusIcon = '<i class="fas fa-check-circle"></i>';
-                } else if (item.STATUS === 'Pending') {
-                    statusClass = 'pending';
-                    statusIcon = '<i class="fas fa-exclamation-triangle"></i>';
-                } else {
-                    statusClass = 'other';
-                    statusIcon = '<i class="fas fa-info-circle"></i>';
-                }
-
-                row.innerHTML = `
-                    <td><input type="checkbox" class="select"></td>
-                    <td>${item.OrderID}</td>
-                    <td>${new Date(item.DATE).toLocaleDateString()}</td>
-                    <td>${item.NAME}</td>
-                    <td>${item.PICKUP_TIME || 'No time set'}</td>
-                    <td>
-                        <select class="status-dropdown ${item.STATUS.toLowerCase()}" data-order-id="${item.OrderID}" data-original-status="${item.STATUS}">
-                            <option value="Pending" ${item.STATUS === 'Pending' ? 'selected' : ''}>🔴 Pending</option>
-                            <option value="Completed" ${item.STATUS === 'Completed' ? 'selected' : ''}>✔ Completed</option>
-                        </select>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-        updatePagination(); // Update pagination after table update
-        // No need to attach individual listeners due to event delegation
+        });
     }
+    updatePagination(); // Update pagination after table update
+}
 
-    // Function to update pagination controls
-    function updatePagination() {
-        document.getElementById('pageNumber').textContent = currentPage;
+// Update pagination controls
+function updatePagination() {
+    document.getElementById('pageNumber').textContent = currentPage;
 
-        // Enable/disable pagination buttons based on the current page and data length
-        document.getElementById('prevPage').disabled = currentPage === 1;
-        document.getElementById('nextPage').disabled = currentPage * rowsPerPage >= totalRows;
+    // Enable/disable pagination buttons based on the current page and data length
+    document.getElementById('prevPage').disabled = currentPage === 1;
+    document.getElementById('firstPage').disabled = currentPage === 1;
+    document.getElementById('nextPage').disabled = currentPage * rowsPerPage >= totalRows;
+    document.getElementById('lastPage').disabled = currentPage * rowsPerPage >= totalRows;
+}
+
+// Previous page button event
+document.getElementById('prevPage').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        updateTable(); // Use the filteredData for pagination
     }
+});
 
-    // Previous page button event
-    document.getElementById('prevPage').addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            updateTable(); // Use the filteredData for pagination
-        }
-    });
+// Next page button event
+document.getElementById('nextPage').addEventListener('click', () => {
+    if (currentPage * rowsPerPage < totalRows) {
+        currentPage++;
+        updateTable(); // Use the filteredData for pagination
+    }
+});
 
-    // Next page button event
-    document.getElementById('nextPage').addEventListener('click', () => {
-        if (currentPage * rowsPerPage < totalRows) {
-            currentPage++;
-            updateTable(); // Use the filteredData for pagination
-        }
-    });
+// First page button event
+document.getElementById('firstPage').addEventListener('click', () => {
+    if (currentPage !== 1) {
+        currentPage = 1;
+        updateTable();
+    }
+});
+
+// Last page button event
+document.getElementById('lastPage').addEventListener('click', () => {
+    const lastPage = Math.ceil(totalRows / rowsPerPage);
+    if (currentPage !== lastPage) {
+        currentPage = lastPage;
+        updateTable();
+    }
+});
+
 
     // Filter functionality
     const filterSelect = document.querySelector('.status-filter');
@@ -592,7 +709,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create the receipt content similar to existing structure
             const receiptHTML = `
-                <h2>AN'E Laundry Receipt</h2>
+                <div class="receipt-header">
+                    <img src="../img/ane-laundry-logo.png" alt="AN'E Laundry Logo" class="receipt-logo">
+                    <h2>AN'E Laundry Receipt</h2>
+                    <p class="receipt-address">Address: Banay-Banay, Lipa City</p>
+                    <p class="receipt-phone">Phone: +123 456 7890</p>
+                </div>
                 <p><strong>Order ID:</strong> <span>${data.OrderID}</span></p>
                 <p><strong>Name:</strong> <span>${data.NAME}</span></p>
                 <p><strong>Date:</strong> <span>${new Date(data.DATE).toLocaleDateString()}</span></p>
@@ -820,3 +942,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Call the function to attach listeners after the table is updated
     attachStatusListeners();
 });
+
+

@@ -39,52 +39,14 @@
         <!-- Laundry List Section -->
         <div class="laundry-list-header">
             <h2>Laundries</h2>
-            <button class="delete-btn" id="deleteSelected" style="margin-left: 10px;">
-                <i class="fas fa-trash"></i>&nbsp;Delete Selected
-            </button>
             
-            <button class="print-btn" id="printSelectedReceipts"><i class="fas fa-print"></i>&nbsp;Print Receipt</button>
-            <button class="add-laundry-btn"><i class="fas fa-plus"></i>&nbsp;Add Laundry</button>
+            <div class="buttons-container">
+                <button class="delete-btn" id="deleteSelectedEntries"><i class="fas fa-trash-alt"></i>&nbsp;Delete</button>
+                <button class="print-btn" id="printSelectedReceipts"><i class="fas fa-print"></i>&nbsp;Print Receipt</button>
+                <button class="add-laundry-btn"><i class="fas fa-plus"></i>&nbsp;Add Laundry</button>
+            </div>
         </div>
-        <script>
-           // Handle Delete Selected button
-document.getElementById('deleteSelected').addEventListener('click', function() {
-    const selectedOrders = [];
-    
-    // Loop through all checkboxes and collect the checked ones
-    document.querySelectorAll('.select-laundry:checked').forEach(function(checkbox) {
-        const orderId = checkbox.getAttribute('data-order-id');
-        console.log("Selected Order ID:", orderId); // Debugging line
-        selectedOrders.push(orderId);
-    });
-
-    // Log the selected orders to check if the data is correct
-    console.log("Selected Orders:", selectedOrders);
-
-    // Check if any orders are selected
-    if (selectedOrders.length > 0) {
-        // Confirm before deleting
-        if (confirm('Are you sure you want to delete the selected orders?')) {
-            $.ajax({
-                url: '../php/deleteLaundry.php', // PHP file to handle the deletion
-                type: 'POST',
-                data: { orderIDs: selectedOrders }, // Send the selected order IDs
-                success: function(response) {
-                    toastr.success('Selected orders deleted successfully');
-                    loadLaundryList(); // Reload the laundry list after deletion
-                },
-                error: function() {
-                    toastr.error('Error deleting selected records');
-                }
-            });
-        }
-    } else {
-        toastr.warning('Please select orders to delete');
-    }
-});
-
-
-        </script>
+       
         <!-- Search Bar and Filter -->
         <div class="search-filter-container">
             <input type="text" id="search" placeholder="Search by Order ID, Name, or Date">
@@ -215,28 +177,26 @@ document.getElementById('deleteSelected').addEventListener('click', function() {
         </div>
 
         <!-- Receipt Modal -->
-<div id="receiptModal" class="modal">
-    <div class="modal-content receipt-content">
-        <span class="close-receipt">&times;</span>
-        <div id="receipt">
-            <h2>AN'E Laundry Receipt</h2>
-            <p><strong>Order ID:</strong> <span id="receiptOrderID"></span></p>
-            <p><strong>Name:</strong> <span id="receiptName"></span></p>
-            <p><strong>Date:</strong> <span id="receiptDate"></span></p>
-            <p><strong>Service:</strong> <span id="receiptService"></span></p>
-            <p><strong>Load:</strong> <span id="receiptLoad"></span></p>
-            <h3>Articles</h3>
-            <ul id="receiptArticles">
-                <!-- Articles will be listed here -->
-            </ul>
-            <p><strong>Total:</strong> ₱ <span id="receiptTotal"></span></p>
-            <p><strong>Pick Up Time:</strong> <span id="receiptPickupTime"></span></p>
+        <div id="receiptModal" class="modal">
+            <div class="modal-content receipt-content">
+                <span class="close-receipt">&times;</span>
+                <div id="receipt">
+                    <h2>AN'E Laundry Receipt</h2>
+                    <p><strong>Order ID:</strong> <span id="receiptOrderID"></span></p>
+                    <p><strong>Name:</strong> <span id="receiptName"></span></p>
+                    <p><strong>Date:</strong> <span id="receiptDate"></span></p>
+                    <p><strong>Service:</strong> <span id="receiptService"></span></p>
+                    <p><strong>Load:</strong> <span id="receiptLoad"></span></p>
+                    <h3>Articles</h3>
+                    <ul id="receiptArticles">
+                        <!-- Articles will be listed here -->
+                    </ul>
+                    <p><strong>Total:</strong> ₱ <span id="receiptTotal"></span></p>
+                    <p><strong>Pick Up Time:</strong> <span id="receiptPickupTime"></span></p>
+                </div>
+                <button id="printReceiptBtn" class="print-btn"><i class="fas fa-print"></i>&nbsp;Print Receipt</button>
+            </div>
         </div>
-        <button id="printReceiptBtn" class="print-btn"><i class="fas fa-print"></i>&nbsp;Print Receipt</button>
-    </div>
-</div>
-
-
 
         <!-- Laundry List Table -->
         <table>
@@ -257,45 +217,48 @@ document.getElementById('deleteSelected').addEventListener('click', function() {
 
         <!-- Pagination Controls -->
         <div class="pagination">
+            <button id="firstPage" disabled><i class="fas fa-angle-double-left"></i></button>
             <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
             <span id="pageNumber">1</span>
             <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
+            <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
         </div>
     </div>
 
-    <!-- JavaScript Files -->
-
-    <script src="../js/laundrylist.js"></script>
+    <!-- Load jQuery first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Then load Toastr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    
-    
-    
+
+    <!-- Then load your custom script (laundrylist.js) -->
+    <script src="../js/laundrylist.js"></script>
+        
     <script>
       $(document).ready(function() {
         // Get the current page's full path
         var currentPath = window.location.pathname.toLowerCase();
         console.log("Current Path:", currentPath); // Debugging line
-    
+
         // Extract the filename from the path
         var currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1);
         console.log("Current Page:", currentPage); // Debugging line
-    
+
         // Handle default page if necessary (e.g., index.html)
         if (currentPage === "") {
           currentPage = "dashboard.html"; // Adjust to your default page
           console.log("Defaulting to:", currentPage);
         }
-    
+
         // Iterate through each sidebar link
         $('.sidebar ul li a').each(function() {
           var linkHref = $(this).attr('href').toLowerCase();
           console.log("Checking Link:", linkHref); // Debugging line
-    
+
           // Extract the filename from the link's href
           var linkPage = linkHref.substring(linkHref.lastIndexOf('/') + 1);
           console.log("Link Page:", linkPage); // Debugging line
-    
+
           // Compare the current page with the link's page
           if (linkPage === currentPage) {
             $(this).addClass("active");
@@ -327,7 +290,6 @@ document.getElementById('deleteSelected').addEventListener('click', function() {
             };
         });
     </script>
-
-
+     
 </body>
 </html>

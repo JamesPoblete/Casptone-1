@@ -550,3 +550,30 @@ button:hover {
         width: 100%;
     }
 }
+/* Styling the dropdown to look like a regular input box */
+#inventoryID {
+    width: 100%;
+    max-width: 400px; /* Limit the width to fit within the container */
+    padding: 10px; /* Padding to make it look like a text input */
+    font-size: 16px; /* Match the font size with input fields */
+    font-family: 'Poppins', sans-serif; /* Use the same font for consistency */
+    border-radius: 5px; /* Smooth rounded corners like an input box */
+    border: 1px solid #ccc; /* Light gray border to match input box */
+    background-color: #ffffff; /* White background like an input box */
+    color: #333; /* Dark text color for contrast */
+    outline: none; /* Remove default outline */
+    appearance: none; /* Remove the default arrow icon */
+    box-shadow: none; /* No shadow, similar to input box */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition on hover and focus */
+}
+
+/* Focused state for the dropdown to match input box style */
+#inventoryID:focus {
+    border-color: #007bff; /* Add a blue border when the element is focused */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow to match focus effect */
+}
+
+/* Style to match the placeholder color */
+#inventoryID option[disabled] {
+    color: #888; /* Gray color for placeholder text to match input placeholder */
+}
