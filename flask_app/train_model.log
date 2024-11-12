@@ -306,3 +306,31 @@
 2024-11-11 21:25:39,706 INFO Plotting feature importances.
 2024-11-11 21:25:40,219 INFO Feature importances plotted and saved as 'feature_importances.png'.
 2024-11-11 21:25:40,220 INFO Model training and evaluation completed.
+2024-11-12 21:58:52,684 INFO Fetching sales data from the database.
+2024-11-12 21:58:52,749 INFO Fetched 2323 records from the database.
+2024-11-12 21:58:52,750 INFO Starting data preprocessing.
+2024-11-12 21:58:52,752 INFO Performing feature engineering.
+2024-11-12 21:58:52,760 INFO Adding lag features.
+2024-11-12 21:58:52,779 INFO Detected 271 outliers. Removing them.
+2024-11-12 21:58:52,782 INFO Data preprocessing completed.
+2024-11-12 21:58:52,783 INFO Starting model training and evaluation.
+2024-11-12 21:58:52,786 INFO Training and evaluating model: LinearRegression
+2024-11-12 21:58:52,918 INFO LinearRegression - MAE: 6.27, MSE: 282.14, R²: 0.98
+2024-11-12 21:58:52,918 INFO Training and evaluating model: Ridge
+2024-11-12 21:58:52,961 INFO Ridge - MAE: 9.17, MSE: 284.63, R²: 0.98
+2024-11-12 21:58:52,961 INFO Training and evaluating model: Lasso
+2024-11-12 21:58:53,109 INFO Lasso - MAE: 18.35, MSE: 1119.10, R²: 0.93
+2024-11-12 21:58:53,109 INFO Training and evaluating model: RandomForest
+2024-11-12 21:58:53,110 INFO Performing Grid Search for RandomForest
+2024-11-12 22:00:04,514 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 100}
+2024-11-12 22:00:04,527 INFO RandomForest - MAE: 3.44, MSE: 106.11, R²: 0.99
+2024-11-12 22:00:04,528 INFO Training and evaluating model: GradientBoosting
+2024-11-12 22:00:04,528 INFO Performing Grid Search for GradientBoosting
+2024-11-12 22:00:38,596 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 1, 'model__min_samples_split': 5, 'model__n_estimators': 200}
+2024-11-12 22:00:38,610 INFO GradientBoosting - MAE: 4.07, MSE: 81.12, R²: 0.99
+2024-11-12 22:00:38,611 INFO Best model: RandomForest with MAE: 3.44, MSE: 106.11, R²: 0.99
+2024-11-12 22:00:38,638 INFO Best model saved as 'best_model.joblib'.
+2024-11-12 22:00:38,639 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-12 22:00:38,644 INFO Plotting feature importances.
+2024-11-12 22:00:39,615 INFO Feature importances plotted and saved as 'feature_importances.png'.
+2024-11-12 22:00:39,615 INFO Model training and evaluation completed.
