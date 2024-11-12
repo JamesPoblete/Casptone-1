@@ -2146,3 +2146,26 @@ AttributeError: 'Engine' object has no attribute 'execute'
 2024-11-12 21:19:51,034 INFO Prepared data for regression. Next period to predict: October 2024
 2024-11-12 21:19:51,040 INFO Linear regression model trained successfully.
 2024-11-12 21:19:51,711 INFO 127.0.0.1 - - [12/Nov/2024 21:19:51] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 21:56:25,547 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 21:57:07,931 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 21:57:07,933 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-12 21:57:07,975 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.71:5000
+2024-11-12 21:57:07,978 INFO [33mPress CTRL+C to quit[0m
+2024-11-12 21:57:07,980 INFO  * Restarting with stat
+2024-11-12 21:57:10,283 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 21:57:10,284 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-12 21:57:10,294 WARNING  * Debugger is active!
+2024-11-12 21:57:10,328 INFO  * Debugger PIN: 912-909-024
+2024-11-12 21:57:14,685 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 21:57:14,685 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 21:57:14,771 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 21:57:14,774 INFO Linear regression model trained successfully.
+2024-11-12 21:57:15,601 INFO 127.0.0.1 - - [12/Nov/2024 21:57:15] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 21:57:38,420 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 21:57:38,440 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 21:57:38,511 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 21:57:38,515 INFO Linear regression model trained successfully.
+2024-11-12 21:57:39,087 INFO 127.0.0.1 - - [12/Nov/2024 21:57:39] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
