@@ -1,0 +1,2171 @@
+2024-11-08 17:42:26,212 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.71:5000
+2024-11-08 17:42:26,213 INFO [33mPress CTRL+C to quit[0m
+2024-11-08 17:42:37,218 INFO 192.168.0.71 - - [08/Nov/2024 17:42:37] "[33mGET / HTTP/1.1[0m" 404 -
+2024-11-08 17:42:37,372 INFO 192.168.0.71 - - [08/Nov/2024 17:42:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-08 17:42:43,596 WARNING Unauthorized access attempt.
+2024-11-08 17:42:43,597 INFO 127.0.0.1 - - [08/Nov/2024 17:42:43] "[31m[1mGET /predict?year=2024 HTTP/1.1[0m" 401 -
+2024-11-08 17:42:44,965 WARNING Unauthorized access attempt.
+2024-11-08 17:42:44,998 INFO 127.0.0.1 - - [08/Nov/2024 17:42:44] "[31m[1mGET /predict?year=2024 HTTP/1.1[0m" 401 -
+2024-11-08 17:43:51,206 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 17:43:51,206 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 17:43:51,403 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-08 17:43:51,416 INFO Linear regression model trained successfully.
+2024-11-08 17:43:52,117 INFO 127.0.0.1 - - [08/Nov/2024 17:43:52] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:43:52,330 INFO 127.0.0.1 - - [08/Nov/2024 17:43:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-08 17:44:03,472 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 17:44:03,472 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 17:44:03,508 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-08 17:44:03,511 INFO Linear regression model trained successfully.
+2024-11-08 17:44:04,012 INFO 127.0.0.1 - - [08/Nov/2024 17:44:04] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:55:10,792 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 17:55:10,793 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 17:55:10,869 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-08 17:55:10,872 INFO Linear regression model trained successfully.
+2024-11-08 17:55:11,431 INFO 127.0.0.1 - - [08/Nov/2024 17:55:11] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:55:12,976 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 17:55:12,977 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 17:55:13,012 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-08 17:55:13,014 INFO Linear regression model trained successfully.
+2024-11-08 17:55:13,527 INFO 127.0.0.1 - - [08/Nov/2024 17:55:13] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:55:20,651 INFO Received prediction request with year=2023, month=None, day=None
+2024-11-08 17:55:20,652 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2023}
+2024-11-08 17:55:20,692 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-08 17:55:20,727 INFO Linear regression model trained successfully.
+2024-11-08 17:55:21,184 INFO 127.0.0.1 - - [08/Nov/2024 17:55:21] "GET /predict?year=2023&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:55:25,299 INFO Received prediction request with year=2023, month=2, day=None
+2024-11-08 17:55:25,300 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 2}
+2024-11-08 17:55:25,325 INFO Prepared data for regression. Next period to predict: March 2023
+2024-11-08 17:55:25,327 INFO Linear regression model trained successfully.
+2024-11-08 17:55:25,947 INFO 127.0.0.1 - - [08/Nov/2024 17:55:25] "GET /predict?year=2023&month=2&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:55:31,285 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 17:55:31,286 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 17:55:31,323 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-08 17:55:31,325 INFO Linear regression model trained successfully.
+2024-11-08 17:55:31,825 INFO 127.0.0.1 - - [08/Nov/2024 17:55:31] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:56:07,568 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 17:56:07,569 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 17:56:07,615 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-08 17:56:07,618 INFO Linear regression model trained successfully.
+2024-11-08 17:56:08,194 INFO 127.0.0.1 - - [08/Nov/2024 17:56:08] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:56:19,029 INFO Received prediction request with year=2023, month=None, day=None
+2024-11-08 17:56:19,030 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2023}
+2024-11-08 17:56:19,070 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-08 17:56:19,072 INFO Linear regression model trained successfully.
+2024-11-08 17:56:19,556 INFO 127.0.0.1 - - [08/Nov/2024 17:56:19] "GET /predict?year=2023&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 17:56:23,848 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 17:56:23,848 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 17:56:23,887 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-08 17:56:23,889 INFO Linear regression model trained successfully.
+2024-11-08 17:56:24,477 INFO 127.0.0.1 - - [08/Nov/2024 17:56:24] "GET /predict?year=2024&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 18:40:56,846 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-08 18:40:56,905 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.71:5000
+2024-11-08 18:40:56,907 INFO [33mPress CTRL+C to quit[0m
+2024-11-08 18:41:03,929 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 18:41:03,931 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 18:41:04,058 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-08 18:41:04,061 INFO Linear regression model trained successfully.
+2024-11-08 18:41:04,846 INFO 127.0.0.1 - - [08/Nov/2024 18:41:04] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-08 18:41:04,994 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-08 18:41:04,995 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-08 18:41:05,033 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-08 18:41:05,035 INFO Linear regression model trained successfully.
+2024-11-08 18:41:05,576 INFO 127.0.0.1 - - [08/Nov/2024 18:41:05] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 16:58:15,548 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 16:58:15,567 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.28:5000
+2024-11-11 16:58:15,569 INFO [33mPress CTRL+C to quit[0m
+2024-11-11 16:58:31,041 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 16:58:31,041 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 16:58:31,096 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 16:58:31,107 INFO Linear regression model trained successfully.
+2024-11-11 16:58:31,407 INFO 127.0.0.1 - - [11/Nov/2024 16:58:31] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:04:23,268 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:04:23,268 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:04:23,293 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:04:23,293 INFO Linear regression model trained successfully.
+2024-11-11 17:04:23,564 INFO 127.0.0.1 - - [11/Nov/2024 17:04:23] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:05:19,393 INFO 127.0.0.1 - - [11/Nov/2024 17:05:19] "[33mGET /update_accuracy?api_key=testkey123 HTTP/1.1[0m" 404 -
+2024-11-11 17:05:19,486 INFO 127.0.0.1 - - [11/Nov/2024 17:05:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-11 17:05:33,451 INFO 127.0.0.1 - - [11/Nov/2024 17:05:33] "[33mGET /metrics?api_key=testkey123 HTTP/1.1[0m" 404 -
+2024-11-11 17:07:18,807 INFO Received prediction request with year=2024, month=11, day=None
+2024-11-11 17:07:18,808 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 11}
+2024-11-11 17:07:18,822 WARNING No data available for the given filters.
+2024-11-11 17:07:18,823 ERROR Insufficient data for prediction.
+2024-11-11 17:07:18,824 INFO 127.0.0.1 - - [11/Nov/2024 17:07:18] "[31m[1mGET /predict?api_key=testkey123&year=2024&month=11 HTTP/1.1[0m" 400 -
+2024-11-11 17:07:30,969 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:07:30,969 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:07:30,994 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:07:30,996 INFO Linear regression model trained successfully.
+2024-11-11 17:07:31,303 INFO 127.0.0.1 - - [11/Nov/2024 17:07:31] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:07:32,746 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:07:32,747 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:07:32,774 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:07:32,776 INFO Linear regression model trained successfully.
+2024-11-11 17:07:33,116 INFO 127.0.0.1 - - [11/Nov/2024 17:07:33] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:08:31,706 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:08:31,707 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:08:31,727 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:08:31,728 INFO Linear regression model trained successfully.
+2024-11-11 17:08:32,041 INFO 127.0.0.1 - - [11/Nov/2024 17:08:32] "GET /predict?api_key=testkey123&year=2024&month=11http://localhost:5000/predict?api_key=testkey123&year=2024&month=11 HTTP/1.1" 200 -
+2024-11-11 17:08:36,051 INFO Received prediction request with year=2024, month=11, day=None
+2024-11-11 17:08:36,051 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 11}
+2024-11-11 17:08:36,063 WARNING No data available for the given filters.
+2024-11-11 17:08:36,063 ERROR Insufficient data for prediction.
+2024-11-11 17:08:36,063 INFO 127.0.0.1 - - [11/Nov/2024 17:08:36] "[31m[1mGET /predict?api_key=testkey123&year=2024&month=11 HTTP/1.1[0m" 400 -
+2024-11-11 17:10:57,216 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:10:57,216 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:10:57,235 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:10:57,235 INFO Linear regression model trained successfully.
+2024-11-11 17:10:57,432 INFO 127.0.0.1 - - [11/Nov/2024 17:10:57] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:15:06,320 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:15:06,320 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:15:06,339 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:15:06,340 INFO Linear regression model trained successfully.
+2024-11-11 17:15:06,647 INFO 127.0.0.1 - - [11/Nov/2024 17:15:06] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:15:42,144 INFO Received prediction request with year=2024, month=4, day=None
+2024-11-11 17:15:42,144 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 4}
+2024-11-11 17:15:42,164 INFO Prepared data for regression. Next period to predict: May 2024
+2024-11-11 17:15:42,165 INFO Linear regression model trained successfully.
+2024-11-11 17:15:42,428 INFO 127.0.0.1 - - [11/Nov/2024 17:15:42] "GET /predict?year=2024&month=4&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:16:46,912 INFO Received prediction request with year=2024, month=7, day=None
+2024-11-11 17:16:46,913 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 7}
+2024-11-11 17:16:46,935 INFO Prepared data for regression. Next period to predict: August 2024
+2024-11-11 17:16:46,936 INFO Linear regression model trained successfully.
+2024-11-11 17:16:47,222 INFO 127.0.0.1 - - [11/Nov/2024 17:16:47] "GET /predict?year=2024&month=7&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:17:14,057 INFO Received prediction request with year=2023, month=7, day=None
+2024-11-11 17:17:14,057 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 7}
+2024-11-11 17:17:14,075 INFO Prepared data for regression. Next period to predict: August 2023
+2024-11-11 17:17:14,076 INFO Linear regression model trained successfully.
+2024-11-11 17:17:14,324 INFO 127.0.0.1 - - [11/Nov/2024 17:17:14] "GET /predict?year=2023&month=7&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:17:28,550 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:17:28,551 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:17:28,576 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:17:28,578 INFO Linear regression model trained successfully.
+2024-11-11 17:17:28,924 INFO 127.0.0.1 - - [11/Nov/2024 17:17:28] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:17:36,630 INFO Received prediction request with year=2023, month=None, day=None
+2024-11-11 17:17:36,631 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2023}
+2024-11-11 17:17:36,656 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-11 17:17:36,658 INFO Linear regression model trained successfully.
+2024-11-11 17:17:36,953 INFO 127.0.0.1 - - [11/Nov/2024 17:17:36] "GET /predict?year=2023&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:17:53,584 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:17:53,584 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:17:53,605 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:17:53,606 INFO Linear regression model trained successfully.
+2024-11-11 17:17:53,979 INFO 127.0.0.1 - - [11/Nov/2024 17:17:53] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:20:18,392 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 17:20:18,422 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.28:5000
+2024-11-11 17:20:18,423 INFO [33mPress CTRL+C to quit[0m
+2024-11-11 17:20:18,424 INFO  * Restarting with stat
+2024-11-11 17:20:20,844 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 17:20:20,851 WARNING  * Debugger is active!
+2024-11-11 17:20:20,855 INFO  * Debugger PIN: 912-909-024
+2024-11-11 17:21:40,140 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:21:40,141 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:21:40,211 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:21:40,214 INFO Linear regression model trained successfully.
+2024-11-11 17:21:40,219 INFO Model Evaluation Metrics - MAE: 10182.73, MSE: 135307195.52, R²: 0.01
+2024-11-11 17:21:40,535 INFO 127.0.0.1 - - [11/Nov/2024 17:21:40] "GET /predict?api_key=testkey123&year=2024 HTTP/1.1" 200 -
+2024-11-11 17:24:25,168 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:24:25,168 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:24:25,187 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:24:25,188 INFO Linear regression model trained successfully.
+2024-11-11 17:24:25,190 INFO Model Evaluation Metrics - MAE: 10182.73, MSE: 135307195.52, R²: 0.01
+2024-11-11 17:24:25,596 INFO 127.0.0.1 - - [11/Nov/2024 17:24:25] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:36:06,771 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:36:06,799 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:36:06,907 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:36:06,938 INFO Linear regression model trained successfully.
+2024-11-11 17:36:06,953 INFO Model Evaluation Metrics - MAE: 10182.73, MSE: 135307195.52, R²: 0.01
+2024-11-11 17:36:07,840 INFO 127.0.0.1 - - [11/Nov/2024 17:36:07] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 17:39:42,620 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 17:39:43,002 INFO  * Restarting with stat
+2024-11-11 17:39:45,492 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 17:39:45,506 WARNING  * Debugger is active!
+2024-11-11 17:39:45,508 INFO  * Debugger PIN: 912-909-024
+2024-11-11 17:43:38,719 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:43:38,719 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:43:38,792 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 17:43:38,803 INFO Linear regression model trained successfully.
+2024-11-11 17:43:38,808 INFO Model Evaluation Metrics - MAE: 10182.73, MSE: 135307195.52, R²: 0.01
+2024-11-11 17:43:39,163 INFO 127.0.0.1 - - [11/Nov/2024 17:43:39] "GET /predict?api_key=testkey123&year=2024 HTTP/1.1" 200 -
+2024-11-11 17:51:48,964 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 17:51:49,358 INFO  * Restarting with stat
+2024-11-11 17:51:51,826 INFO Trained model loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 17:51:51,827 INFO Loaded model type: <class 'sklearn.pipeline.Pipeline'>
+2024-11-11 17:51:51,827 ERROR Error loading the preprocessing pipeline: [Errno 2] No such file or directory: 'C:\\wamp64\\www\\Capstone-1\\flask_app\\preprocessor.joblib'
+2024-11-11 17:51:51,828 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 17:51:51,840 WARNING  * Debugger is active!
+2024-11-11 17:51:51,842 INFO  * Debugger PIN: 912-909-024
+2024-11-11 17:51:52,531 ERROR Model or preprocessor is not loaded. Prediction cannot be performed.
+2024-11-11 17:51:52,532 INFO 127.0.0.1 - - [11/Nov/2024 17:51:52] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 17:51:54,890 ERROR Model or preprocessor is not loaded. Prediction cannot be performed.
+2024-11-11 17:51:54,891 INFO 127.0.0.1 - - [11/Nov/2024 17:51:54] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 17:52:56,015 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 17:52:56,401 INFO  * Restarting with stat
+2024-11-11 17:52:58,587 INFO Trained model loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 17:52:58,587 INFO Loaded model type: <class 'sklearn.pipeline.Pipeline'>
+2024-11-11 17:52:58,587 ERROR Error loading the preprocessing pipeline: [Errno 2] No such file or directory: 'C:\\wamp64\\www\\Capstone-1\\flask_app\\preprocessor.joblib'
+2024-11-11 17:52:58,589 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 17:52:58,597 WARNING  * Debugger is active!
+2024-11-11 17:52:58,598 INFO  * Debugger PIN: 912-909-024
+2024-11-11 17:53:05,649 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 17:53:06,054 INFO  * Restarting with stat
+2024-11-11 17:53:07,946 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 17:53:07,950 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['COST_PER_LOADS_CLOTHES', 'OrderID',
+                                  'IsWeekend', 'Total_Lag1', 'Total_Lag2',
+                                  'Total_Lag3', 'Total_Lag4', 'Total_Lag5']),
+                                ('cat',
+                                 Pipeline(steps=[('onehot',
+                                                  OneHotEncoder(handle_unknown='ignore'))]),
+                                 ['NAME', 'CLOTHES_WEIGHT_KG',
+                                  'BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'COMFORTER_SINGLE', 'COMFORT_DOUBLE',
+                                  'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT',
+                                  'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE',
+                                  'COST_PER_COMFORTER_DOUBLE',
+                                  'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'ADDITIONAL_COST', 'REMARKS', 'STATUS',
+                                  'DETERGENT_ADDITIONAL',
+                                  'FABRIC_DETERGENT_ADDITIONAL',
+                                  'PICKUP_TIME'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 17:53:07,952 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 17:53:07,960 WARNING  * Debugger is active!
+2024-11-11 17:53:07,961 INFO  * Debugger PIN: 912-909-024
+2024-11-11 17:53:21,417 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:53:21,417 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:53:21,442 INFO Performing feature engineering on input data.
+2024-11-11 17:53:21,449 INFO Adding lag features to input data.
+2024-11-11 17:53:21,455 INFO Applying preprocessing pipeline.
+2024-11-11 17:53:21,456 ERROR Error during preprocessing: columns are missing: {'NAME', 'FABRIC_DETERGENT_ADDITIONAL', 'DETERGENT_ADDITIONAL', 'ADDITIONAL_COST', 'FABRIC_DETERGENT', 'CLOTHES_WEIGHT_KG', 'OrderID', 'DETERGENT', 'COMFORT_DOUBLE', 'COST_PER_COMFORTER_DOUBLE', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'REMARKS', 'PICKUP_TIME', 'COMFORTER_SINGLE', 'STATUS', 'SERVICE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'COST_PER_LOADS_CLOTHES', 'COST_PER_COMFORTER_SINGLE', 'LAUNDRY_LOAD'}
+2024-11-11 17:53:21,456 ERROR Insufficient data for prediction.
+2024-11-11 17:53:21,457 INFO 127.0.0.1 - - [11/Nov/2024 17:53:21] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 17:54:57,090 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 17:54:57,094 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['COST_PER_LOADS_CLOTHES', 'OrderID',
+                                  'IsWeekend', 'Total_Lag1', 'Total_Lag2',
+                                  'Total_Lag3', 'Total_Lag4', 'Total_Lag5']),
+                                ('cat',
+                                 Pipeline(steps=[('onehot',
+                                                  OneHotEncoder(handle_unknown='ignore'))]),
+                                 ['NAME', 'CLOTHES_WEIGHT_KG',
+                                  'BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'COMFORTER_SINGLE', 'COMFORT_DOUBLE',
+                                  'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT',
+                                  'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE',
+                                  'COST_PER_COMFORTER_DOUBLE',
+                                  'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'ADDITIONAL_COST', 'REMARKS', 'STATUS',
+                                  'DETERGENT_ADDITIONAL',
+                                  'FABRIC_DETERGENT_ADDITIONAL',
+                                  'PICKUP_TIME'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 17:54:57,095 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 17:54:57,153 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.28:5000
+2024-11-11 17:54:57,154 INFO [33mPress CTRL+C to quit[0m
+2024-11-11 17:54:57,155 INFO  * Restarting with stat
+2024-11-11 17:54:58,668 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 17:54:58,672 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['COST_PER_LOADS_CLOTHES', 'OrderID',
+                                  'IsWeekend', 'Total_Lag1', 'Total_Lag2',
+                                  'Total_Lag3', 'Total_Lag4', 'Total_Lag5']),
+                                ('cat',
+                                 Pipeline(steps=[('onehot',
+                                                  OneHotEncoder(handle_unknown='ignore'))]),
+                                 ['NAME', 'CLOTHES_WEIGHT_KG',
+                                  'BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'COMFORTER_SINGLE', 'COMFORT_DOUBLE',
+                                  'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT',
+                                  'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE',
+                                  'COST_PER_COMFORTER_DOUBLE',
+                                  'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'ADDITIONAL_COST', 'REMARKS', 'STATUS',
+                                  'DETERGENT_ADDITIONAL',
+                                  'FABRIC_DETERGENT_ADDITIONAL',
+                                  'PICKUP_TIME'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 17:54:58,673 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 17:54:58,680 WARNING  * Debugger is active!
+2024-11-11 17:54:58,682 INFO  * Debugger PIN: 912-909-024
+2024-11-11 17:55:04,330 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 17:55:04,330 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 17:55:04,351 INFO Performing feature engineering on input data.
+2024-11-11 17:55:04,357 INFO Adding lag features to input data.
+2024-11-11 17:55:04,362 INFO Applying preprocessing pipeline.
+2024-11-11 17:55:04,362 ERROR Error during preprocessing: columns are missing: {'SERVICE', 'NAME', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_COMFORTER_SINGLE', 'STATUS', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'PICKUP_TIME', 'DETERGENT', 'CLOTHES_WEIGHT_KG', 'ADDITIONAL_COST', 'FABRIC_DETERGENT_ADDITIONAL', 'FABRIC_DETERGENT', 'REMARKS', 'COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'DETERGENT_ADDITIONAL', 'OrderID', 'LAUNDRY_LOAD', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'COST_PER_LOADS_CLOTHES'}
+2024-11-11 17:55:04,362 ERROR Insufficient data for prediction.
+2024-11-11 17:55:04,363 INFO 127.0.0.1 - - [11/Nov/2024 17:55:04] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 18:11:20,255 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 18:11:20,609 INFO  * Restarting with stat
+2024-11-11 18:11:22,910 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 18:11:22,914 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['COST_PER_LOADS_CLOTHES', 'OrderID',
+                                  'IsWeekend', 'Total_Lag1', 'Total_Lag2',
+                                  'Total_Lag3', 'Total_Lag4', 'Total_Lag5']),
+                                ('cat',
+                                 Pipeline(steps=[('onehot',
+                                                  OneHotEncoder(handle_unknown='ignore'))]),
+                                 ['NAME', 'CLOTHES_WEIGHT_KG',
+                                  'BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'COMFORTER_SINGLE', 'COMFORT_DOUBLE',
+                                  'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT',
+                                  'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE',
+                                  'COST_PER_COMFORTER_DOUBLE',
+                                  'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'ADDITIONAL_COST', 'REMARKS', 'STATUS',
+                                  'DETERGENT_ADDITIONAL',
+                                  'FABRIC_DETERGENT_ADDITIONAL',
+                                  'PICKUP_TIME'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 18:11:22,916 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 18:11:22,931 WARNING  * Debugger is active!
+2024-11-11 18:11:22,934 INFO  * Debugger PIN: 912-909-024
+2024-11-11 18:11:48,228 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 18:11:48,522 INFO  * Restarting with stat
+2024-11-11 18:11:50,136 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 18:11:50,140 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['COST_PER_LOADS_CLOTHES', 'OrderID',
+                                  'IsWeekend', 'Total_Lag1', 'Total_Lag2',
+                                  'Total_Lag3', 'Total_Lag4', 'Total_Lag5']),
+                                ('cat',
+                                 Pipeline(steps=[('onehot',
+                                                  OneHotEncoder(handle_unknown='ignore'))]),
+                                 ['NAME', 'CLOTHES_WEIGHT_KG',
+                                  'BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'COMFORTER_SINGLE', 'COMFORT_DOUBLE',
+                                  'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT',
+                                  'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE',
+                                  'COST_PER_COMFORTER_DOUBLE',
+                                  'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS',
+                                  'ADDITIONAL_COST', 'REMARKS', 'STATUS',
+                                  'DETERGENT_ADDITIONAL',
+                                  'FABRIC_DETERGENT_ADDITIONAL',
+                                  'PICKUP_TIME'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 18:11:50,141 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 18:11:50,153 WARNING  * Debugger is active!
+2024-11-11 18:11:50,155 INFO  * Debugger PIN: 912-909-024
+2024-11-11 18:11:50,292 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 18:11:50,293 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE DESC LIMIT :limit with params: {'year': 2024, 'limit': 100}
+2024-11-11 18:11:50,314 INFO Fetched 100 records for prediction.
+2024-11-11 18:11:50,314 INFO Performing feature engineering on input data.
+2024-11-11 18:11:50,319 INFO Adding lag features to input data.
+2024-11-11 18:11:50,322 INFO Data after adding lag features has 95 records.
+2024-11-11 18:11:50,322 INFO Applying preprocessing pipeline.
+2024-11-11 18:11:50,322 ERROR Error during preprocessing: columns are missing: {'NAME', 'FABRIC_DETERGENT_ADDITIONAL', 'SERVICE', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'PICKUP_TIME', 'COST_PER_LOADS_CLOTHES', 'DETERGENT', 'CLOTHES_WEIGHT_KG', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'STATUS', 'OrderID', 'DETERGENT_ADDITIONAL', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'REMARKS', 'COMFORTER_SINGLE', 'ADDITIONAL_COST'}
+2024-11-11 18:11:50,323 ERROR Insufficient data for prediction.
+2024-11-11 18:11:50,323 INFO 127.0.0.1 - - [11/Nov/2024 18:11:50] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 18:14:25,743 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 18:14:25,743 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE DESC LIMIT :limit with params: {'year': 2024, 'limit': 100}
+2024-11-11 18:14:25,756 INFO Fetched 100 records for prediction.
+2024-11-11 18:14:25,756 INFO Performing feature engineering on input data.
+2024-11-11 18:14:25,763 INFO Adding lag features to input data.
+2024-11-11 18:14:25,771 INFO Data after adding lag features has 95 records.
+2024-11-11 18:14:25,772 INFO Applying preprocessing pipeline.
+2024-11-11 18:14:25,773 ERROR Error during preprocessing: columns are missing: {'NAME', 'FABRIC_DETERGENT_ADDITIONAL', 'SERVICE', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'PICKUP_TIME', 'COST_PER_LOADS_CLOTHES', 'DETERGENT', 'CLOTHES_WEIGHT_KG', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'STATUS', 'OrderID', 'DETERGENT_ADDITIONAL', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'REMARKS', 'COMFORTER_SINGLE', 'ADDITIONAL_COST'}
+2024-11-11 18:14:25,774 ERROR Insufficient data for prediction.
+2024-11-11 18:14:25,775 INFO 127.0.0.1 - - [11/Nov/2024 18:14:25] "[31m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 400 -
+2024-11-11 18:15:44,457 INFO Received prediction request with year=2024, month=1, day=None
+2024-11-11 18:15:44,457 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month ORDER BY DATE DESC LIMIT :limit with params: {'year': 2024, 'month': 1, 'limit': 100}
+2024-11-11 18:15:44,466 INFO Fetched 98 records for prediction.
+2024-11-11 18:15:44,467 INFO Performing feature engineering on input data.
+2024-11-11 18:15:44,471 INFO Adding lag features to input data.
+2024-11-11 18:15:44,477 INFO Data after adding lag features has 93 records.
+2024-11-11 18:15:44,478 INFO Applying preprocessing pipeline.
+2024-11-11 18:15:44,478 ERROR Error during preprocessing: columns are missing: {'NAME', 'FABRIC_DETERGENT_ADDITIONAL', 'SERVICE', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'PICKUP_TIME', 'COST_PER_LOADS_CLOTHES', 'DETERGENT', 'CLOTHES_WEIGHT_KG', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'STATUS', 'OrderID', 'DETERGENT_ADDITIONAL', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'REMARKS', 'COMFORTER_SINGLE', 'ADDITIONAL_COST'}
+2024-11-11 18:15:44,479 ERROR Insufficient data for prediction.
+2024-11-11 18:15:44,479 INFO 127.0.0.1 - - [11/Nov/2024 18:15:44] "[31m[1mGET /predict?year=2024&month=1&day=&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 18:15:48,497 INFO Received prediction request with year=2024, month=5, day=None
+2024-11-11 18:15:48,497 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month ORDER BY DATE DESC LIMIT :limit with params: {'year': 2024, 'month': 5, 'limit': 100}
+2024-11-11 18:15:48,506 INFO Fetched 65 records for prediction.
+2024-11-11 18:15:48,507 INFO Performing feature engineering on input data.
+2024-11-11 18:15:48,511 INFO Adding lag features to input data.
+2024-11-11 18:15:48,513 INFO Data after adding lag features has 60 records.
+2024-11-11 18:15:48,515 INFO Applying preprocessing pipeline.
+2024-11-11 18:15:48,515 ERROR Error during preprocessing: columns are missing: {'NAME', 'FABRIC_DETERGENT_ADDITIONAL', 'SERVICE', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'PICKUP_TIME', 'COST_PER_LOADS_CLOTHES', 'DETERGENT', 'CLOTHES_WEIGHT_KG', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'STATUS', 'OrderID', 'DETERGENT_ADDITIONAL', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'REMARKS', 'COMFORTER_SINGLE', 'ADDITIONAL_COST'}
+2024-11-11 18:15:48,515 ERROR Insufficient data for prediction.
+2024-11-11 18:15:48,516 INFO 127.0.0.1 - - [11/Nov/2024 18:15:48] "[31m[1mGET /predict?year=2024&month=5&day=&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 18:15:50,028 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 18:15:50,028 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE DESC LIMIT :limit with params: {'year': 2024, 'limit': 100}
+2024-11-11 18:15:50,037 INFO Fetched 100 records for prediction.
+2024-11-11 18:15:50,038 INFO Performing feature engineering on input data.
+2024-11-11 18:15:50,042 INFO Adding lag features to input data.
+2024-11-11 18:15:50,045 INFO Data after adding lag features has 95 records.
+2024-11-11 18:15:50,046 INFO Applying preprocessing pipeline.
+2024-11-11 18:15:50,046 ERROR Error during preprocessing: columns are missing: {'NAME', 'FABRIC_DETERGENT_ADDITIONAL', 'SERVICE', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'PICKUP_TIME', 'COST_PER_LOADS_CLOTHES', 'DETERGENT', 'CLOTHES_WEIGHT_KG', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'STATUS', 'OrderID', 'DETERGENT_ADDITIONAL', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'REMARKS', 'COMFORTER_SINGLE', 'ADDITIONAL_COST'}
+2024-11-11 18:15:50,046 ERROR Insufficient data for prediction.
+2024-11-11 18:15:50,046 INFO 127.0.0.1 - - [11/Nov/2024 18:15:50] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 18:16:25,596 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 18:16:25,596 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE DESC LIMIT :limit with params: {'year': 2024, 'limit': 100}
+2024-11-11 18:16:25,608 INFO Fetched 100 records for prediction.
+2024-11-11 18:16:25,608 INFO Performing feature engineering on input data.
+2024-11-11 18:16:25,612 INFO Adding lag features to input data.
+2024-11-11 18:16:25,615 INFO Data after adding lag features has 95 records.
+2024-11-11 18:16:25,616 INFO Applying preprocessing pipeline.
+2024-11-11 18:16:25,616 ERROR Error during preprocessing: columns are missing: {'NAME', 'FABRIC_DETERGENT_ADDITIONAL', 'SERVICE', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'PICKUP_TIME', 'COST_PER_LOADS_CLOTHES', 'DETERGENT', 'CLOTHES_WEIGHT_KG', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'STATUS', 'OrderID', 'DETERGENT_ADDITIONAL', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'REMARKS', 'COMFORTER_SINGLE', 'ADDITIONAL_COST'}
+2024-11-11 18:16:25,617 ERROR Insufficient data for prediction.
+2024-11-11 18:16:25,617 INFO 127.0.0.1 - - [11/Nov/2024 18:16:25] "[31m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 400 -
+2024-11-11 18:16:54,687 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 18:16:55,010 INFO  * Restarting with stat
+2024-11-11 18:16:56,893 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 18:16:56,895 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 18:16:56,896 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 18:16:56,904 WARNING  * Debugger is active!
+2024-11-11 18:16:56,905 INFO  * Debugger PIN: 912-909-024
+2024-11-11 18:17:08,271 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 18:17:08,271 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE DESC LIMIT :limit with params: {'year': 2024, 'limit': 100}
+2024-11-11 18:17:08,290 INFO Fetched 100 records for prediction.
+2024-11-11 18:17:08,291 INFO Performing feature engineering on input data.
+2024-11-11 18:17:08,299 INFO Adding lag features to input data.
+2024-11-11 18:17:08,302 INFO Data after adding lag features has 95 records.
+2024-11-11 18:17:08,303 INFO Applying preprocessing pipeline.
+2024-11-11 18:17:08,305 INFO Preprocessed features shape: (95, 11)
+2024-11-11 18:17:08,305 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 236, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 18:17:08,311 INFO 127.0.0.1 - - [11/Nov/2024 18:17:08] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 18:17:41,857 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 18:17:41,858 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE DESC LIMIT :limit with params: {'year': 2024, 'limit': 100}
+2024-11-11 18:17:41,877 INFO Fetched 100 records for prediction.
+2024-11-11 18:17:41,877 INFO Performing feature engineering on input data.
+2024-11-11 18:17:41,883 INFO Adding lag features to input data.
+2024-11-11 18:17:41,887 INFO Data after adding lag features has 95 records.
+2024-11-11 18:17:41,888 INFO Applying preprocessing pipeline.
+2024-11-11 18:17:41,890 INFO Preprocessed features shape: (95, 11)
+2024-11-11 18:17:41,891 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 236, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 18:17:41,894 INFO 127.0.0.1 - - [11/Nov/2024 18:17:41] "[35m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 500 -
+2024-11-11 18:55:08,231 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 18:55:08,549 INFO  * Restarting with stat
+2024-11-11 18:55:10,759 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 18:55:10,762 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 18:55:10,763 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 18:55:10,774 WARNING  * Debugger is active!
+2024-11-11 18:55:10,776 INFO  * Debugger PIN: 912-909-024
+2024-11-11 18:55:21,217 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 18:55:21,524 INFO  * Restarting with stat
+2024-11-11 18:55:23,133 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 18:55:23,136 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 18:55:23,138 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 18:55:23,146 WARNING  * Debugger is active!
+2024-11-11 18:55:23,148 INFO  * Debugger PIN: 912-909-024
+2024-11-11 18:57:02,344 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 18:57:02,344 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 18:57:02,366 INFO Fetched 200 records for prediction.
+2024-11-11 18:57:02,366 INFO Performing feature engineering on input data.
+2024-11-11 18:57:02,372 INFO Adding lag features to input data.
+2024-11-11 18:57:02,373 INFO Created 'Total_Lag1' by shifting 'TOTAL' by 1 periods.
+2024-11-11 18:57:02,373 INFO Created 'Total_Lag2' by shifting 'TOTAL' by 2 periods.
+2024-11-11 18:57:02,374 INFO Created 'Total_Lag3' by shifting 'TOTAL' by 3 periods.
+2024-11-11 18:57:02,374 INFO Created 'Total_Lag4' by shifting 'TOTAL' by 4 periods.
+2024-11-11 18:57:02,374 INFO Created 'Total_Lag5' by shifting 'TOTAL' by 5 periods.
+2024-11-11 18:57:02,375 INFO Dropped 5 records due to NaN values from lag features.
+2024-11-11 18:57:02,375 INFO Data after adding lag features has 195 records.
+2024-11-11 18:57:02,376 INFO Applying preprocessing pipeline.
+2024-11-11 18:57:02,378 INFO Preprocessed features shape: (195, 11)
+2024-11-11 18:57:02,378 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 253, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 18:57:02,384 INFO 127.0.0.1 - - [11/Nov/2024 18:57:02] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 18:57:03,794 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 18:57:03,795 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 18:57:03,806 INFO Fetched 200 records for prediction.
+2024-11-11 18:57:03,806 INFO Performing feature engineering on input data.
+2024-11-11 18:57:03,811 INFO Adding lag features to input data.
+2024-11-11 18:57:03,812 INFO Created 'Total_Lag1' by shifting 'TOTAL' by 1 periods.
+2024-11-11 18:57:03,813 INFO Created 'Total_Lag2' by shifting 'TOTAL' by 2 periods.
+2024-11-11 18:57:03,813 INFO Created 'Total_Lag3' by shifting 'TOTAL' by 3 periods.
+2024-11-11 18:57:03,814 INFO Created 'Total_Lag4' by shifting 'TOTAL' by 4 periods.
+2024-11-11 18:57:03,814 INFO Created 'Total_Lag5' by shifting 'TOTAL' by 5 periods.
+2024-11-11 18:57:03,815 INFO Dropped 5 records due to NaN values from lag features.
+2024-11-11 18:57:03,815 INFO Data after adding lag features has 195 records.
+2024-11-11 18:57:03,816 INFO Applying preprocessing pipeline.
+2024-11-11 18:57:03,817 INFO Preprocessed features shape: (195, 11)
+2024-11-11 18:57:03,818 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 253, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 18:57:03,819 INFO 127.0.0.1 - - [11/Nov/2024 18:57:03] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 18:59:42,012 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 18:59:42,325 INFO  * Restarting with stat
+2024-11-11 18:59:44,068 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 18:59:44,070 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 18:59:44,071 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 18:59:44,080 WARNING  * Debugger is active!
+2024-11-11 18:59:44,082 INFO  * Debugger PIN: 912-909-024
+2024-11-11 18:59:51,104 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 18:59:51,383 INFO  * Restarting with stat
+2024-11-11 18:59:53,029 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 18:59:53,032 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 18:59:53,033 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 18:59:53,042 WARNING  * Debugger is active!
+2024-11-11 18:59:53,044 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:00:12,666 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:00:12,666 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:00:12,699 INFO Fetched 200 records for prediction.
+2024-11-11 19:00:12,699 INFO Performing feature engineering on input data.
+2024-11-11 19:00:12,711 INFO Adding lag features to input data.
+2024-11-11 19:00:12,713 INFO Created lag feature: Total_Lag1
+2024-11-11 19:00:12,714 INFO Created lag feature: Total_Lag2
+2024-11-11 19:00:12,715 INFO Created lag feature: Total_Lag3
+2024-11-11 19:00:12,716 INFO Created lag feature: Total_Lag4
+2024-11-11 19:00:12,717 INFO Created lag feature: Total_Lag5
+2024-11-11 19:00:12,718 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:00:12,718 INFO Data after adding lag features has 195 records.
+2024-11-11 19:00:12,719 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:00:12,720 INFO Applying preprocessing pipeline.
+2024-11-11 19:00:12,722 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:00:12,722 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 259, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:00:12,732 INFO 127.0.0.1 - - [11/Nov/2024 19:00:12] "[35m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 500 -
+2024-11-11 19:00:13,714 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:00:13,714 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:00:13,727 INFO Fetched 200 records for prediction.
+2024-11-11 19:00:13,727 INFO Performing feature engineering on input data.
+2024-11-11 19:00:13,732 INFO Adding lag features to input data.
+2024-11-11 19:00:13,733 INFO Created lag feature: Total_Lag1
+2024-11-11 19:00:13,733 INFO Created lag feature: Total_Lag2
+2024-11-11 19:00:13,733 INFO Created lag feature: Total_Lag3
+2024-11-11 19:00:13,734 INFO Created lag feature: Total_Lag4
+2024-11-11 19:00:13,734 INFO Created lag feature: Total_Lag5
+2024-11-11 19:00:13,735 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:00:13,735 INFO Data after adding lag features has 195 records.
+2024-11-11 19:00:13,735 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:00:13,735 INFO Applying preprocessing pipeline.
+2024-11-11 19:00:13,737 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:00:13,737 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 259, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:00:13,739 INFO 127.0.0.1 - - [11/Nov/2024 19:00:13] "[35m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 500 -
+2024-11-11 19:00:30,569 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:00:30,569 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:00:30,581 INFO Fetched 200 records for prediction.
+2024-11-11 19:00:30,581 INFO Performing feature engineering on input data.
+2024-11-11 19:00:30,585 INFO Adding lag features to input data.
+2024-11-11 19:00:30,587 INFO Created lag feature: Total_Lag1
+2024-11-11 19:00:30,587 INFO Created lag feature: Total_Lag2
+2024-11-11 19:00:30,587 INFO Created lag feature: Total_Lag3
+2024-11-11 19:00:30,588 INFO Created lag feature: Total_Lag4
+2024-11-11 19:00:30,588 INFO Created lag feature: Total_Lag5
+2024-11-11 19:00:30,589 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:00:30,589 INFO Data after adding lag features has 195 records.
+2024-11-11 19:00:30,589 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:00:30,589 INFO Applying preprocessing pipeline.
+2024-11-11 19:00:30,591 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:00:30,591 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 259, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:00:30,593 INFO 127.0.0.1 - - [11/Nov/2024 19:00:30] "[35m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 500 -
+2024-11-11 19:03:41,323 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 19:03:41,661 INFO  * Restarting with stat
+2024-11-11 19:03:43,628 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:03:43,631 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:03:43,632 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:03:43,644 WARNING  * Debugger is active!
+2024-11-11 19:03:43,646 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:03:52,580 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:03:52,580 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:03:52,601 INFO Fetched 200 records from the database.
+2024-11-11 19:03:52,601 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:03:52,601 INFO Fetched 200 records for prediction.
+2024-11-11 19:03:52,601 INFO Performing feature engineering on input data.
+2024-11-11 19:03:52,606 INFO Adding lag features to input data.
+2024-11-11 19:03:52,607 INFO Created lag feature: Total_Lag1
+2024-11-11 19:03:52,608 INFO Created lag feature: Total_Lag2
+2024-11-11 19:03:52,608 INFO Created lag feature: Total_Lag3
+2024-11-11 19:03:52,609 INFO Created lag feature: Total_Lag4
+2024-11-11 19:03:52,609 INFO Created lag feature: Total_Lag5
+2024-11-11 19:03:52,610 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:03:52,611 INFO Data after adding lag features has 195 records.
+2024-11-11 19:03:52,611 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:03:52,612 INFO Applying preprocessing pipeline.
+2024-11-11 19:03:52,614 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:03:52,614 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 269, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:03:52,620 INFO 127.0.0.1 - - [11/Nov/2024 19:03:52] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 19:03:53,825 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:03:53,825 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:03:53,837 INFO Fetched 200 records from the database.
+2024-11-11 19:03:53,837 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:03:53,838 INFO Fetched 200 records for prediction.
+2024-11-11 19:03:53,838 INFO Performing feature engineering on input data.
+2024-11-11 19:03:53,841 INFO Adding lag features to input data.
+2024-11-11 19:03:53,842 INFO Created lag feature: Total_Lag1
+2024-11-11 19:03:53,842 INFO Created lag feature: Total_Lag2
+2024-11-11 19:03:53,843 INFO Created lag feature: Total_Lag3
+2024-11-11 19:03:53,843 INFO Created lag feature: Total_Lag4
+2024-11-11 19:03:53,844 INFO Created lag feature: Total_Lag5
+2024-11-11 19:03:53,845 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:03:53,845 INFO Data after adding lag features has 195 records.
+2024-11-11 19:03:53,846 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:03:53,847 INFO Applying preprocessing pipeline.
+2024-11-11 19:03:53,849 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:03:53,850 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 269, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:03:53,851 INFO 127.0.0.1 - - [11/Nov/2024 19:03:53] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 19:03:54,748 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:03:54,748 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:03:54,758 INFO Fetched 200 records from the database.
+2024-11-11 19:03:54,759 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:03:54,759 INFO Fetched 200 records for prediction.
+2024-11-11 19:03:54,759 INFO Performing feature engineering on input data.
+2024-11-11 19:03:54,765 INFO Adding lag features to input data.
+2024-11-11 19:03:54,766 INFO Created lag feature: Total_Lag1
+2024-11-11 19:03:54,767 INFO Created lag feature: Total_Lag2
+2024-11-11 19:03:54,767 INFO Created lag feature: Total_Lag3
+2024-11-11 19:03:54,768 INFO Created lag feature: Total_Lag4
+2024-11-11 19:03:54,768 INFO Created lag feature: Total_Lag5
+2024-11-11 19:03:54,769 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:03:54,769 INFO Data after adding lag features has 195 records.
+2024-11-11 19:03:54,769 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:03:54,770 INFO Applying preprocessing pipeline.
+2024-11-11 19:03:54,771 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:03:54,772 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 269, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:03:54,773 INFO 127.0.0.1 - - [11/Nov/2024 19:03:54] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 19:03:54,917 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:03:54,917 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:03:54,930 INFO Fetched 200 records from the database.
+2024-11-11 19:03:54,930 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:03:54,930 INFO Fetched 200 records for prediction.
+2024-11-11 19:03:54,931 INFO Performing feature engineering on input data.
+2024-11-11 19:03:54,935 INFO Adding lag features to input data.
+2024-11-11 19:03:54,937 INFO Created lag feature: Total_Lag1
+2024-11-11 19:03:54,938 INFO Created lag feature: Total_Lag2
+2024-11-11 19:03:54,938 INFO Created lag feature: Total_Lag3
+2024-11-11 19:03:54,939 INFO Created lag feature: Total_Lag4
+2024-11-11 19:03:54,939 INFO Created lag feature: Total_Lag5
+2024-11-11 19:03:54,940 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:03:54,940 INFO Data after adding lag features has 195 records.
+2024-11-11 19:03:54,941 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:03:54,941 INFO Applying preprocessing pipeline.
+2024-11-11 19:03:54,945 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:03:54,946 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 269, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:03:54,948 INFO 127.0.0.1 - - [11/Nov/2024 19:03:54] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 19:03:55,115 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:03:55,115 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:03:55,127 INFO Fetched 200 records from the database.
+2024-11-11 19:03:55,127 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:03:55,127 INFO Fetched 200 records for prediction.
+2024-11-11 19:03:55,127 INFO Performing feature engineering on input data.
+2024-11-11 19:03:55,132 INFO Adding lag features to input data.
+2024-11-11 19:03:55,134 INFO Created lag feature: Total_Lag1
+2024-11-11 19:03:55,134 INFO Created lag feature: Total_Lag2
+2024-11-11 19:03:55,135 INFO Created lag feature: Total_Lag3
+2024-11-11 19:03:55,135 INFO Created lag feature: Total_Lag4
+2024-11-11 19:03:55,136 INFO Created lag feature: Total_Lag5
+2024-11-11 19:03:55,137 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:03:55,137 INFO Data after adding lag features has 195 records.
+2024-11-11 19:03:55,137 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:03:55,138 INFO Applying preprocessing pipeline.
+2024-11-11 19:03:55,140 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:03:55,141 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 269, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:03:55,143 INFO 127.0.0.1 - - [11/Nov/2024 19:03:55] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 19:03:55,267 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:03:55,268 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:03:55,280 INFO Fetched 200 records from the database.
+2024-11-11 19:03:55,280 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:03:55,281 INFO Fetched 200 records for prediction.
+2024-11-11 19:03:55,281 INFO Performing feature engineering on input data.
+2024-11-11 19:03:55,284 INFO Adding lag features to input data.
+2024-11-11 19:03:55,286 INFO Created lag feature: Total_Lag1
+2024-11-11 19:03:55,287 INFO Created lag feature: Total_Lag2
+2024-11-11 19:03:55,289 INFO Created lag feature: Total_Lag3
+2024-11-11 19:03:55,290 INFO Created lag feature: Total_Lag4
+2024-11-11 19:03:55,291 INFO Created lag feature: Total_Lag5
+2024-11-11 19:03:55,293 INFO Dropped 5 rows due to NaN values from lag features.
+2024-11-11 19:03:55,293 INFO Data after adding lag features has 195 records.
+2024-11-11 19:03:55,294 INFO Columns after adding lag features: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-11 19:03:55,295 INFO Applying preprocessing pipeline.
+2024-11-11 19:03:55,298 INFO Preprocessed features shape: (195, 11)
+2024-11-11 19:03:55,299 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 269, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5'] not in index"
+2024-11-11 19:03:55,301 INFO 127.0.0.1 - - [11/Nov/2024 19:03:55] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 19:13:44,369 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:13:44,703 INFO  * Restarting with stat
+2024-11-11 19:13:46,718 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:13:46,720 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:13:46,722 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:13:46,733 WARNING  * Debugger is active!
+2024-11-11 19:13:46,734 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:16:23,363 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 19:16:23,691 INFO  * Restarting with stat
+2024-11-11 19:16:25,538 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:16:25,540 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:16:25,541 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:16:25,553 WARNING  * Debugger is active!
+2024-11-11 19:16:25,555 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:16:38,495 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:16:38,495 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:16:38,517 INFO Fetched 200 records from the database.
+2024-11-11 19:16:38,517 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:16:38,517 INFO Fetched 200 records for prediction.
+2024-11-11 19:16:38,517 INFO Performing feature engineering on input data.
+2024-11-11 19:16:38,524 INFO Dropped 0 rows due to NaN in 'TOTAL'.
+2024-11-11 19:16:38,524 INFO Adding lag feature: Total_Lag1.
+2024-11-11 19:16:38,525 INFO Created lag feature: Total_Lag1.
+2024-11-11 19:16:38,525 INFO Dropped 1 rows due to NaN values from lag feature.
+2024-11-11 19:16:38,526 INFO Data after adding lag feature has 199 records.
+2024-11-11 19:16:38,526 INFO Columns after adding lag feature: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1']
+2024-11-11 19:16:38,526 INFO Applying preprocessing pipeline.
+2024-11-11 19:16:38,528 INFO Preprocessed features shape: (199, 7)
+2024-11-11 19:16:38,528 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 277, in predict_sales
+    latest_record = df.iloc[-1:][feature_columns]
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['Total_Lag1'] not in index"
+2024-11-11 19:16:38,535 INFO 127.0.0.1 - - [11/Nov/2024 19:16:38] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 19:16:58,948 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:16:59,255 INFO  * Restarting with stat
+2024-11-11 19:17:00,956 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:17:00,959 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:17:00,961 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:17:00,968 WARNING  * Debugger is active!
+2024-11-11 19:17:00,969 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:17:26,468 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:17:26,740 INFO  * Restarting with stat
+2024-11-11 19:17:28,252 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:17:28,254 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:17:28,256 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:17:28,265 WARNING  * Debugger is active!
+2024-11-11 19:17:28,267 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:19:20,588 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:19:20,588 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:19:20,611 INFO Fetched 200 records from the database.
+2024-11-11 19:19:20,612 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:19:20,612 INFO Fetched 200 records for prediction.
+2024-11-11 19:19:20,612 INFO Performing feature engineering on input data.
+2024-11-11 19:19:20,618 INFO Dropped 0 rows due to NaN in 'TOTAL'.
+2024-11-11 19:19:20,619 INFO Adding lag feature: Total_Lag1.
+2024-11-11 19:19:20,619 INFO Created lag feature: Total_Lag1.
+2024-11-11 19:19:20,620 INFO Dropped 1 rows due to NaN values from lag feature.
+2024-11-11 19:19:20,620 INFO Data after adding lag feature has 199 records.
+2024-11-11 19:19:20,620 INFO Columns after adding lag feature: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1']
+2024-11-11 19:19:20,621 INFO Applying preprocessing pipeline.
+2024-11-11 19:19:20,621 ERROR Error during preprocessing: columns are missing: {'Total_Lag5', 'Total_Lag4', 'Total_Lag3', 'Total_Lag2'}
+2024-11-11 19:19:20,621 ERROR Insufficient data for prediction or missing columns.
+2024-11-11 19:19:20,622 INFO 127.0.0.1 - - [11/Nov/2024 19:19:20] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 19:20:39,923 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:20:39,924 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:20:39,939 INFO Fetched 200 records from the database.
+2024-11-11 19:20:39,940 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:20:39,940 INFO Fetched 200 records for prediction.
+2024-11-11 19:20:39,941 INFO Performing feature engineering on input data.
+2024-11-11 19:20:39,948 INFO Dropped 0 rows due to NaN in 'TOTAL'.
+2024-11-11 19:20:39,949 INFO Adding lag feature: Total_Lag1.
+2024-11-11 19:20:39,949 INFO Created lag feature: Total_Lag1.
+2024-11-11 19:20:39,950 INFO Dropped 1 rows due to NaN values from lag feature.
+2024-11-11 19:20:39,950 INFO Data after adding lag feature has 199 records.
+2024-11-11 19:20:39,950 INFO Columns after adding lag feature: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1']
+2024-11-11 19:20:39,951 INFO Applying preprocessing pipeline.
+2024-11-11 19:20:39,951 ERROR Error during preprocessing: columns are missing: {'Total_Lag5', 'Total_Lag4', 'Total_Lag3', 'Total_Lag2'}
+2024-11-11 19:20:39,951 ERROR Insufficient data for prediction or missing columns.
+2024-11-11 19:20:39,951 INFO 127.0.0.1 - - [11/Nov/2024 19:20:39] "[31m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 400 -
+2024-11-11 19:21:34,959 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:21:35,251 INFO  * Restarting with stat
+2024-11-11 19:21:37,088 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:21:37,090 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:21:37,091 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:21:37,102 WARNING  * Debugger is active!
+2024-11-11 19:21:37,103 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:21:37,668 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:21:37,669 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:21:37,687 INFO Fetched 200 records from the database.
+2024-11-11 19:21:37,687 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:21:37,688 INFO Fetched 200 records for prediction.
+2024-11-11 19:21:37,688 INFO Performing feature engineering on input data.
+2024-11-11 19:21:37,693 INFO Dropped 0 rows due to NaN in 'TOTAL'.
+2024-11-11 19:21:37,693 INFO Adding lag feature: Total_Lag1.
+2024-11-11 19:21:37,694 INFO Created lag feature: Total_Lag1.
+2024-11-11 19:21:37,694 INFO Dropped 1 rows due to NaN values from lag feature.
+2024-11-11 19:21:37,694 INFO Data after adding lag feature has 199 records.
+2024-11-11 19:21:37,694 INFO Columns after adding lag feature: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1']
+2024-11-11 19:21:37,695 INFO Applying preprocessing pipeline.
+2024-11-11 19:21:37,695 ERROR Error during preprocessing: columns are missing: {'Total_Lag2', 'Total_Lag5', 'Total_Lag3', 'Total_Lag4'}
+2024-11-11 19:21:37,695 ERROR Insufficient data for prediction or missing columns.
+2024-11-11 19:21:37,695 INFO 127.0.0.1 - - [11/Nov/2024 19:21:37] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 19:28:02,017 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:28:02,320 INFO  * Restarting with stat
+2024-11-11 19:28:04,157 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:28:04,159 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['Year', 'Month', 'Day', 'Quarter',
+                                  'DayOfWeek', 'IsWeekend', 'Total_Lag1',
+                                  'Total_Lag2', 'Total_Lag3', 'Total_Lag4',
+                                  'Total_Lag5'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:28:04,161 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:28:04,172 WARNING  * Debugger is active!
+2024-11-11 19:28:04,173 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:29:10,071 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:29:10,072 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:29:10,091 INFO Fetched 200 records from the database.
+2024-11-11 19:29:10,091 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:29:10,091 INFO Fetched 200 records for prediction.
+2024-11-11 19:29:10,091 INFO Performing feature engineering on input data.
+2024-11-11 19:29:10,100 INFO Dropped 0 rows due to NaN in 'TOTAL'.
+2024-11-11 19:29:10,100 INFO Adding lag feature: Total_Lag1.
+2024-11-11 19:29:10,101 INFO Created lag feature: Total_Lag1.
+2024-11-11 19:29:10,102 INFO Dropped 1 rows due to NaN values from lag feature.
+2024-11-11 19:29:10,102 INFO Data after adding lag feature has 199 records.
+2024-11-11 19:29:10,103 INFO Columns after adding lag feature: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1']
+2024-11-11 19:29:10,103 INFO Applying preprocessing pipeline.
+2024-11-11 19:29:10,104 ERROR Error during preprocessing: columns are missing: {'Total_Lag4', 'Total_Lag2', 'Total_Lag3', 'Total_Lag5'}
+2024-11-11 19:29:10,104 ERROR Insufficient data for prediction or missing columns.
+2024-11-11 19:29:10,104 INFO 127.0.0.1 - - [11/Nov/2024 19:29:10] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 19:30:27,461 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:30:27,806 INFO  * Restarting with stat
+2024-11-11 19:30:29,555 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:30:29,557 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['YEAR', 'MONTH', 'DAY', 'QUARTER',
+                                  'DAYOFWEEK', 'ISWEEKEND', 'TOTAL_LAG1',
+                                  'TOTAL_LAG2', 'TOTAL_LAG3'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:30:29,558 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:30:29,566 WARNING  * Debugger is active!
+2024-11-11 19:30:29,567 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:32:44,744 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:32:45,004 INFO  * Restarting with stat
+2024-11-11 19:32:46,888 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:32:46,890 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['YEAR', 'MONTH', 'DAY', 'QUARTER',
+                                  'DAYOFWEEK', 'ISWEEKEND', 'TOTAL_LAG1',
+                                  'TOTAL_LAG2', 'TOTAL_LAG3'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:32:46,892 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:32:46,903 WARNING  * Debugger is active!
+2024-11-11 19:32:46,904 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:33:27,054 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:33:27,355 INFO  * Restarting with stat
+2024-11-11 19:33:29,134 INFO Trained pipeline loaded successfully from C:\wamp64\www\Capstone-1\flask_app\best_model.joblib.
+2024-11-11 19:33:29,136 INFO Loaded pipeline steps: {'preprocessor': ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('scaler', StandardScaler())]),
+                                 ['YEAR', 'MONTH', 'DAY', 'QUARTER',
+                                  'DAYOFWEEK', 'ISWEEKEND', 'TOTAL_LAG1',
+                                  'TOTAL_LAG2', 'TOTAL_LAG3'])]), 'model': RandomForestRegressor(n_estimators=200, random_state=42)}
+2024-11-11 19:33:29,138 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:33:29,146 WARNING  * Debugger is active!
+2024-11-11 19:33:29,147 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:33:59,674 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:33:59,742 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:33:59,922 INFO Fetched 200 records from the database.
+2024-11-11 19:33:59,938 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:33:59,939 INFO Fetched 200 records for prediction.
+2024-11-11 19:33:59,939 INFO Performing feature engineering on input data.
+2024-11-11 19:33:59,963 INFO Dropped 0 rows due to NaN in 'TOTAL'.
+2024-11-11 19:33:59,984 INFO Adding lag feature: Total_Lag1.
+2024-11-11 19:33:59,985 INFO Created lag feature: Total_Lag1.
+2024-11-11 19:33:59,987 INFO Dropped 1 rows due to NaN values from lag feature.
+2024-11-11 19:34:00,009 INFO Data after adding lag feature has 199 records.
+2024-11-11 19:34:00,057 INFO Columns after adding lag feature: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1']
+2024-11-11 19:34:00,110 INFO Applying preprocessing pipeline.
+2024-11-11 19:34:00,126 ERROR Error during preprocessing: columns are missing: {'DAYOFWEEK', 'TOTAL_LAG3', 'ISWEEKEND', 'QUARTER', 'TOTAL_LAG1', 'YEAR', 'DAY', 'TOTAL_LAG2', 'MONTH'}
+2024-11-11 19:34:00,126 ERROR Insufficient data for prediction or missing columns.
+2024-11-11 19:34:00,127 INFO 127.0.0.1 - - [11/Nov/2024 19:34:00] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 19:34:10,955 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:34:10,975 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year ORDER BY DATE ASC LIMIT :limit with params: {'year': 2024, 'limit': 200}
+2024-11-11 19:34:11,009 INFO Fetched 200 records from the database.
+2024-11-11 19:34:11,032 INFO Columns in fetched data: ['DATE', 'TOTAL']
+2024-11-11 19:34:11,032 INFO Fetched 200 records for prediction.
+2024-11-11 19:34:11,032 INFO Performing feature engineering on input data.
+2024-11-11 19:34:11,062 INFO Dropped 0 rows due to NaN in 'TOTAL'.
+2024-11-11 19:34:11,083 INFO Adding lag feature: Total_Lag1.
+2024-11-11 19:34:11,084 INFO Created lag feature: Total_Lag1.
+2024-11-11 19:34:11,098 INFO Dropped 1 rows due to NaN values from lag feature.
+2024-11-11 19:34:11,125 INFO Data after adding lag feature has 199 records.
+2024-11-11 19:34:11,133 INFO Columns after adding lag feature: ['DATE', 'TOTAL', 'Year', 'Month', 'Day', 'Quarter', 'DayOfWeek', 'IsWeekend', 'Total_Lag1']
+2024-11-11 19:34:11,182 INFO Applying preprocessing pipeline.
+2024-11-11 19:34:11,203 ERROR Error during preprocessing: columns are missing: {'DAYOFWEEK', 'TOTAL_LAG3', 'ISWEEKEND', 'QUARTER', 'TOTAL_LAG1', 'YEAR', 'DAY', 'TOTAL_LAG2', 'MONTH'}
+2024-11-11 19:34:11,235 ERROR Insufficient data for prediction or missing columns.
+2024-11-11 19:34:11,246 INFO 127.0.0.1 - - [11/Nov/2024 19:34:11] "[31m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 400 -
+2024-11-11 19:35:10,814 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 19:35:11,257 INFO  * Restarting with stat
+2024-11-11 19:35:29,120 INFO  * Restarting with stat
+2024-11-11 19:36:41,466 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:36:41,489 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.28:5000
+2024-11-11 19:36:41,490 INFO [33mPress CTRL+C to quit[0m
+2024-11-11 19:36:41,490 INFO  * Restarting with stat
+2024-11-11 19:36:43,134 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:36:43,142 WARNING  * Debugger is active!
+2024-11-11 19:36:43,144 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:36:46,939 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:36:46,939 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 19:36:46,967 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 19:36:46,968 INFO Linear regression model trained successfully.
+2024-11-11 19:36:46,969 INFO Model Evaluation Metrics - MAE: 10182.73, MSE: 135307195.52, R²: 0.01
+2024-11-11 19:36:47,154 INFO 127.0.0.1 - - [11/Nov/2024 19:36:47] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 19:37:09,458 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:37:09,459 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 19:37:09,479 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 19:37:09,480 INFO Linear regression model trained successfully.
+2024-11-11 19:37:09,481 INFO Model Evaluation Metrics - MAE: 10182.73, MSE: 135307195.52, R²: 0.01
+2024-11-11 19:37:09,670 INFO 127.0.0.1 - - [11/Nov/2024 19:37:09] "GET /predict?api_key=testkey123&year=2024 HTTP/1.1" 200 -
+2024-11-11 19:42:59,371 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 19:42:59,788 INFO  * Restarting with stat
+2024-11-11 19:43:01,539 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:43:01,547 WARNING  * Debugger is active!
+2024-11-11 19:43:01,548 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:43:11,787 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:43:11,787 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 19:43:11,815 INFO Prepared data for regression. Next period to predict: November 2024
+2024-11-11 19:43:11,816 INFO Linear regression model trained successfully.
+2024-11-11 19:43:11,817 INFO Model Evaluation Metrics - MAE: 10182.73, MSE: 135307195.52, R²: 0.01
+2024-11-11 19:43:11,995 INFO 127.0.0.1 - - [11/Nov/2024 19:43:11] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 19:43:28,768 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 19:43:29,202 INFO  * Restarting with stat
+2024-11-11 19:43:31,087 INFO Pre-trained model loaded successfully.
+2024-11-11 19:43:31,088 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:43:31,096 WARNING  * Debugger is active!
+2024-11-11 19:43:31,097 INFO  * Debugger PIN: 912-909-024
+2024-11-11 19:43:43,085 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 19:43:43,085 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 19:43:43,114 INFO Prepared data for prediction. Next period to predict: November 2024
+2024-11-11 19:43:43,114 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 226, in predict_sales
+    y_pred = model.predict(X)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\pipeline.py", line 600, in predict
+    Xt = transform.transform(Xt)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\compose\_column_transformer.py", line 1069, in transform
+    self._check_n_features(X, reset=False)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\base.py", line 443, in _check_n_features
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: X has 2 features, but ColumnTransformer is expecting 31 features as input.
+2024-11-11 19:43:43,120 INFO 127.0.0.1 - - [11/Nov/2024 19:43:43] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:03:29,689 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 20:03:29,690 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 20:03:29,714 INFO Prepared data for prediction. Next period to predict: November 2024
+2024-11-11 20:03:29,715 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 226, in predict_sales
+    y_pred = model.predict(X)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\pipeline.py", line 600, in predict
+    Xt = transform.transform(Xt)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\compose\_column_transformer.py", line 1069, in transform
+    self._check_n_features(X, reset=False)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\base.py", line 443, in _check_n_features
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: X has 2 features, but ColumnTransformer is expecting 31 features as input.
+2024-11-11 20:03:29,716 INFO 127.0.0.1 - - [11/Nov/2024 20:03:29] "[35m[1mGET /predict?api_key=testkey123&year=2024 HTTP/1.1[0m" 500 -
+2024-11-11 20:05:43,837 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:05:44,188 INFO  * Restarting with stat
+2024-11-11 20:05:46,676 INFO Pre-trained model loaded successfully.
+2024-11-11 20:05:46,678 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:05:46,687 WARNING  * Debugger is active!
+2024-11-11 20:05:46,688 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:05:58,871 INFO Received prediction request.
+2024-11-11 20:05:58,871 INFO Fetching sales data from the database.
+2024-11-11 20:05:58,930 INFO Fetched 2326 records from the database.
+2024-11-11 20:05:58,943 INFO Performing feature engineering.
+2024-11-11 20:05:58,948 INFO Adding lag features.
+2024-11-11 20:05:58,953 INFO Preparing features for the next month's prediction.
+2024-11-11 20:05:58,956 INFO Prepared features for November 2024.
+2024-11-11 20:05:58,957 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 235, in predict_sales
+    predicted_sales = model.predict(X_next_month)[0]
+                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\pipeline.py", line 600, in predict
+    Xt = transform.transform(Xt)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\compose\_column_transformer.py", line 1069, in transform
+    self._check_n_features(X, reset=False)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\base.py", line 443, in _check_n_features
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: X has 11 features, but ColumnTransformer is expecting 31 features as input.
+2024-11-11 20:05:58,962 INFO 127.0.0.1 - - [11/Nov/2024 20:05:58] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:06:02,170 INFO Received prediction request.
+2024-11-11 20:06:02,171 INFO Fetching sales data from the database.
+2024-11-11 20:06:02,218 INFO Fetched 2326 records from the database.
+2024-11-11 20:06:02,226 INFO Performing feature engineering.
+2024-11-11 20:06:02,228 INFO Adding lag features.
+2024-11-11 20:06:02,229 INFO Preparing features for the next month's prediction.
+2024-11-11 20:06:02,231 INFO Prepared features for November 2024.
+2024-11-11 20:06:02,232 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 235, in predict_sales
+    predicted_sales = model.predict(X_next_month)[0]
+                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\pipeline.py", line 600, in predict
+    Xt = transform.transform(Xt)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\compose\_column_transformer.py", line 1069, in transform
+    self._check_n_features(X, reset=False)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\base.py", line 443, in _check_n_features
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: X has 11 features, but ColumnTransformer is expecting 31 features as input.
+2024-11-11 20:06:02,234 INFO 127.0.0.1 - - [11/Nov/2024 20:06:02] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:08:47,980 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:08:48,388 INFO  * Restarting with stat
+2024-11-11 20:08:53,882 INFO Pre-trained model loaded successfully.
+2024-11-11 20:08:53,884 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:08:53,893 WARNING  * Debugger is active!
+2024-11-11 20:08:53,895 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:08:54,008 INFO Received prediction request.
+2024-11-11 20:08:54,009 INFO Executing query: SELECT * FROM laundry with params: {}
+2024-11-11 20:08:54,064 INFO Performing feature engineering.
+2024-11-11 20:08:54,065 INFO Adding lag features.
+2024-11-11 20:08:54,067 INFO Preparing features for the next month's prediction.
+2024-11-11 20:08:54,073 INFO Prepared features for November 2024: [{'Year': 2024, 'Month': 11, 'Day': 30, 'Quarter': 4, 'DayOfWeek': 5, 'IsWeekend': 1, 'Total_Lag1': 175, 'Total_Lag2': 36390, 'Total_Lag3': 36220, 'Total_Lag4': 33570, 'Total_Lag5': 11330}]
+2024-11-11 20:08:54,073 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 272, in predict_sales
+    predicted_sales = model.predict(X_next_month)[0]
+                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\pipeline.py", line 600, in predict
+    Xt = transform.transform(Xt)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\compose\_column_transformer.py", line 1065, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'COMFORTER_SINGLE', 'OrderID', 'FABRIC_DETERGENT_ADDITIONAL', 'COST_PER_COMFORTER_SINGLE', 'ADDITIONAL_COST', 'COST_PER_LOADS_CLOTHES', 'CLOTHES_WEIGHT_KG', 'COST_PER_COMFORTER_DOUBLE', 'COMFORT_DOUBLE', 'STATUS', 'DETERGENT_ADDITIONAL', 'PICKUP_TIME', 'NAME', 'REMARKS', 'LAUNDRY_LOAD', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT'}
+2024-11-11 20:08:54,077 INFO 127.0.0.1 - - [11/Nov/2024 20:08:54] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:16:22,187 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 20:16:22,584 INFO  * Restarting with stat
+2024-11-11 20:16:25,488 INFO Pre-trained model loaded successfully.
+2024-11-11 20:16:25,489 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:16:25,499 WARNING  * Debugger is active!
+2024-11-11 20:16:25,501 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:22:36,906 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 20:22:37,277 INFO  * Restarting with stat
+2024-11-11 20:22:39,666 INFO Pre-trained model loaded successfully.
+2024-11-11 20:22:39,667 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:22:39,678 WARNING  * Debugger is active!
+2024-11-11 20:22:39,680 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:23:10,302 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:23:10,994 INFO  * Restarting with stat
+2024-11-11 20:23:16,856 INFO Pre-trained model loaded successfully.
+2024-11-11 20:23:16,884 ERROR Failed to load model metrics: [Errno 2] No such file or directory: 'model_metrics.json'
+2024-11-11 20:23:16,909 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:23:16,943 WARNING  * Debugger is active!
+2024-11-11 20:23:16,956 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:24:19,616 INFO Pre-trained model loaded successfully.
+2024-11-11 20:24:19,630 ERROR Failed to load model metrics: [Errno 2] No such file or directory: 'model_metrics.json'
+2024-11-11 20:24:19,653 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:24:19,957 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.28:5000
+2024-11-11 20:24:19,963 INFO [33mPress CTRL+C to quit[0m
+2024-11-11 20:24:19,999 INFO  * Restarting with stat
+2024-11-11 20:24:26,033 INFO Pre-trained model loaded successfully.
+2024-11-11 20:24:26,060 ERROR Failed to load model metrics: [Errno 2] No such file or directory: 'model_metrics.json'
+2024-11-11 20:24:26,083 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:24:26,122 WARNING  * Debugger is active!
+2024-11-11 20:24:26,156 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:24:26,545 INFO Received prediction request.
+2024-11-11 20:24:26,579 INFO Fetching sales data from the database.
+2024-11-11 20:24:26,775 INFO Fetched 2326 records from the database.
+2024-11-11 20:24:26,802 INFO Performing feature engineering.
+2024-11-11 20:24:26,833 INFO Adding lag features.
+2024-11-11 20:24:26,897 INFO Preparing features for the next month's prediction.
+2024-11-11 20:24:26,922 INFO Prepared features for October 2024: [{'NAME': 'Ryan', 'CLOTHES_WEIGHT_KG': '6', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '', 'COMFORTER_SINGLE': '', 'COMFORT_DOUBLE': '', 'SERVICE': 'Wash - Dry - Fold', 'DETERGENT': 'Ariel', 'FABRIC_DETERGENT': 'Downy JF', 'LAUNDRY_LOAD': '1', 'COST_PER_LOADS_CLOTHES': 175.0, 'COST_PER_COMFORTER_SINGLE': '0', 'COST_PER_COMFORTER_DOUBLE': '0', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '0', 'ADDITIONAL_COST': '0', 'REMARKS': '', 'OrderID': 2325, 'STATUS': 'Completed', 'DETERGENT_ADDITIONAL': '0', 'FABRIC_DETERGENT_ADDITIONAL': '0', 'PICKUP_TIME': '12:00:00', 'Year': 2024, 'Month': 10, 'Day': 28, 'Quarter': 4, 'DayOfWeek': 0, 'IsWeekend': 0, 'Total_Lag1': 175, 'Total_Lag2': 175, 'Total_Lag3': 170, 'Total_Lag4': 350, 'Total_Lag5': 175}]
+2024-11-11 20:24:28,274 INFO 127.0.0.1 - - [11/Nov/2024 20:24:28] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:25:12,826 INFO Received prediction request.
+2024-11-11 20:25:12,826 INFO Fetching sales data from the database.
+2024-11-11 20:25:12,875 INFO Fetched 2326 records from the database.
+2024-11-11 20:25:12,878 INFO Performing feature engineering.
+2024-11-11 20:25:12,880 INFO Adding lag features.
+2024-11-11 20:25:12,885 INFO Preparing features for the next month's prediction.
+2024-11-11 20:25:12,887 INFO Prepared features for October 2024: [{'NAME': 'Ryan', 'CLOTHES_WEIGHT_KG': '6', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '', 'COMFORTER_SINGLE': '', 'COMFORT_DOUBLE': '', 'SERVICE': 'Wash - Dry - Fold', 'DETERGENT': 'Ariel', 'FABRIC_DETERGENT': 'Downy JF', 'LAUNDRY_LOAD': '1', 'COST_PER_LOADS_CLOTHES': 175.0, 'COST_PER_COMFORTER_SINGLE': '0', 'COST_PER_COMFORTER_DOUBLE': '0', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '0', 'ADDITIONAL_COST': '0', 'REMARKS': '', 'OrderID': 2325, 'STATUS': 'Completed', 'DETERGENT_ADDITIONAL': '0', 'FABRIC_DETERGENT_ADDITIONAL': '0', 'PICKUP_TIME': '12:00:00', 'Year': 2024, 'Month': 10, 'Day': 28, 'Quarter': 4, 'DayOfWeek': 0, 'IsWeekend': 0, 'Total_Lag1': 175, 'Total_Lag2': 175, 'Total_Lag3': 170, 'Total_Lag4': 350, 'Total_Lag5': 175}]
+2024-11-11 20:25:13,223 INFO 127.0.0.1 - - [11/Nov/2024 20:25:13] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:26:35,346 INFO Received prediction request.
+2024-11-11 20:26:35,346 INFO Fetching sales data from the database.
+2024-11-11 20:26:35,406 INFO Fetched 2326 records from the database.
+2024-11-11 20:26:35,410 INFO Performing feature engineering.
+2024-11-11 20:26:35,415 INFO Adding lag features.
+2024-11-11 20:26:35,423 INFO Preparing features for the next month's prediction.
+2024-11-11 20:26:35,428 INFO Prepared features for October 2024: [{'NAME': 'Ryan', 'CLOTHES_WEIGHT_KG': '6', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '', 'COMFORTER_SINGLE': '', 'COMFORT_DOUBLE': '', 'SERVICE': 'Wash - Dry - Fold', 'DETERGENT': 'Ariel', 'FABRIC_DETERGENT': 'Downy JF', 'LAUNDRY_LOAD': '1', 'COST_PER_LOADS_CLOTHES': 175.0, 'COST_PER_COMFORTER_SINGLE': '0', 'COST_PER_COMFORTER_DOUBLE': '0', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '0', 'ADDITIONAL_COST': '0', 'REMARKS': '', 'OrderID': 2325, 'STATUS': 'Completed', 'DETERGENT_ADDITIONAL': '0', 'FABRIC_DETERGENT_ADDITIONAL': '0', 'PICKUP_TIME': '12:00:00', 'Year': 2024, 'Month': 10, 'Day': 28, 'Quarter': 4, 'DayOfWeek': 0, 'IsWeekend': 0, 'Total_Lag1': 175, 'Total_Lag2': 175, 'Total_Lag3': 170, 'Total_Lag4': 350, 'Total_Lag5': 175}]
+2024-11-11 20:26:35,698 INFO 127.0.0.1 - - [11/Nov/2024 20:26:35] "GET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:27:32,240 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:27:32,662 INFO  * Restarting with stat
+2024-11-11 20:27:35,035 INFO Pre-trained model loaded successfully.
+2024-11-11 20:27:35,037 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:27:35,045 WARNING  * Debugger is active!
+2024-11-11 20:27:35,046 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:27:35,162 INFO Received prediction request.
+2024-11-11 20:27:35,162 INFO Executing query: SELECT * FROM laundry with params: {}
+2024-11-11 20:27:35,211 INFO Performing feature engineering.
+2024-11-11 20:27:35,213 INFO Adding lag features.
+2024-11-11 20:27:35,215 INFO Preparing features for the next month's prediction.
+2024-11-11 20:27:35,217 INFO Prepared features for November 2024: [{'Year': 2024, 'Month': 11, 'Day': 30, 'Quarter': 4, 'DayOfWeek': 5, 'IsWeekend': 1, 'Total_Lag1': 175, 'Total_Lag2': 36390, 'Total_Lag3': 36220, 'Total_Lag4': 33570, 'Total_Lag5': 11330}]
+2024-11-11 20:27:35,217 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 272, in predict_sales
+    predicted_sales = model.predict(X_next_month)[0]
+                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\pipeline.py", line 600, in predict
+    Xt = transform.transform(Xt)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\compose\_column_transformer.py", line 1065, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'PICKUP_TIME', 'COST_PER_COMFORTER_SINGLE', 'OrderID', 'COMFORTER_SINGLE', 'STATUS', 'COST_PER_COMFORTER_DOUBLE', 'NAME', 'COST_PER_LOADS_CLOTHES', 'SERVICE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'DETERGENT_ADDITIONAL', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'LAUNDRY_LOAD', 'FABRIC_DETERGENT_ADDITIONAL', 'DETERGENT', 'REMARKS', 'FABRIC_DETERGENT', 'CLOTHES_WEIGHT_KG', 'ADDITIONAL_COST', 'COMFORT_DOUBLE'}
+2024-11-11 20:27:35,221 INFO 127.0.0.1 - - [11/Nov/2024 20:27:35] "[35m[1mGET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:28:55,137 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 20:28:55,481 INFO  * Restarting with stat
+2024-11-11 20:28:57,535 INFO Pre-trained model loaded successfully.
+2024-11-11 20:28:57,538 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:28:57,549 WARNING  * Debugger is active!
+2024-11-11 20:28:57,551 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:29:45,600 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 20:29:45,991 INFO  * Restarting with stat
+2024-11-11 20:29:48,061 INFO Pre-trained model loaded successfully.
+2024-11-11 20:29:48,063 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:29:48,072 WARNING  * Debugger is active!
+2024-11-11 20:29:48,073 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:30:23,167 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:30:23,769 INFO  * Restarting with stat
+2024-11-11 20:30:28,224 INFO Pre-trained model loaded successfully.
+2024-11-11 20:30:28,248 INFO Model metrics loaded successfully.
+2024-11-11 20:30:28,282 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:30:28,326 WARNING  * Debugger is active!
+2024-11-11 20:30:28,349 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:30:37,518 INFO Received prediction request.
+2024-11-11 20:30:37,529 INFO Fetching sales data from the database.
+2024-11-11 20:30:37,704 INFO Fetched 2326 records from the database.
+2024-11-11 20:30:37,737 INFO Performing feature engineering.
+2024-11-11 20:30:37,767 INFO Adding lag features.
+2024-11-11 20:30:37,787 INFO Preparing features for the next month's prediction.
+2024-11-11 20:30:37,818 INFO Prepared features for October 2024: [{'NAME': 'Ryan', 'CLOTHES_WEIGHT_KG': '6', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '', 'COMFORTER_SINGLE': '', 'COMFORT_DOUBLE': '', 'SERVICE': 'Wash - Dry - Fold', 'DETERGENT': 'Ariel', 'FABRIC_DETERGENT': 'Downy JF', 'LAUNDRY_LOAD': '1', 'COST_PER_LOADS_CLOTHES': 175.0, 'COST_PER_COMFORTER_SINGLE': '0', 'COST_PER_COMFORTER_DOUBLE': '0', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '0', 'ADDITIONAL_COST': '0', 'REMARKS': '', 'OrderID': 2325, 'STATUS': 'Completed', 'DETERGENT_ADDITIONAL': '0', 'FABRIC_DETERGENT_ADDITIONAL': '0', 'PICKUP_TIME': '12:00:00', 'Year': 2024, 'Month': 10, 'Day': 28, 'Quarter': 4, 'DayOfWeek': 0, 'IsWeekend': 0, 'Total_Lag1': 175, 'Total_Lag2': 175, 'Total_Lag3': 170, 'Total_Lag4': 350, 'Total_Lag5': 175}]
+2024-11-11 20:30:38,897 INFO 127.0.0.1 - - [11/Nov/2024 20:30:38] "GET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:31:19,830 INFO Received prediction request.
+2024-11-11 20:31:19,878 INFO Fetching sales data from the database.
+2024-11-11 20:31:20,041 INFO Fetched 2325 records from the database.
+2024-11-11 20:31:20,064 INFO Performing feature engineering.
+2024-11-11 20:31:20,080 INFO Adding lag features.
+2024-11-11 20:31:20,104 INFO Preparing features for the next month's prediction.
+2024-11-11 20:31:20,109 INFO Prepared features for October 2024: [{'NAME': 'Ryan', 'CLOTHES_WEIGHT_KG': '6', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '', 'COMFORTER_SINGLE': '', 'COMFORT_DOUBLE': '', 'SERVICE': 'Wash - Dry - Fold', 'DETERGENT': 'Ariel', 'FABRIC_DETERGENT': 'Downy JF', 'LAUNDRY_LOAD': '1', 'COST_PER_LOADS_CLOTHES': 175, 'COST_PER_COMFORTER_SINGLE': '0', 'COST_PER_COMFORTER_DOUBLE': '0', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS': '0', 'ADDITIONAL_COST': '0', 'REMARKS': '', 'OrderID': 2325, 'STATUS': 'Completed', 'DETERGENT_ADDITIONAL': '0', 'FABRIC_DETERGENT_ADDITIONAL': '0', 'PICKUP_TIME': '12:00:00', 'Year': 2024, 'Month': 10, 'Day': 28, 'Quarter': 4, 'DayOfWeek': 0, 'IsWeekend': 0, 'Total_Lag1': 175, 'Total_Lag2': 175, 'Total_Lag3': 170, 'Total_Lag4': 350, 'Total_Lag5': 175}]
+2024-11-11 20:31:21,605 INFO 127.0.0.1 - - [11/Nov/2024 20:31:21] "GET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:38:51,698 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:38:52,085 INFO  * Restarting with stat
+2024-11-11 20:38:54,239 INFO Pre-trained model loaded successfully.
+2024-11-11 20:38:54,240 INFO Model metrics loaded successfully.
+2024-11-11 20:38:54,241 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:38:54,249 WARNING  * Debugger is active!
+2024-11-11 20:38:54,251 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:39:09,166 INFO Received prediction request.
+2024-11-11 20:39:09,167 INFO Fetching sales data from the database.
+2024-11-11 20:39:09,217 INFO Fetched 2325 records from the database.
+2024-11-11 20:39:09,226 INFO Performing feature engineering.
+2024-11-11 20:39:09,231 INFO Adding lag features.
+2024-11-11 20:39:09,239 INFO Preparing features for the next month's prediction.
+2024-11-11 20:39:09,692 INFO 127.0.0.1 - - [11/Nov/2024 20:39:09] "GET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:39:11,685 INFO Received prediction request.
+2024-11-11 20:39:11,685 INFO Fetching sales data from the database.
+2024-11-11 20:39:11,747 INFO Fetched 2325 records from the database.
+2024-11-11 20:39:11,749 INFO Performing feature engineering.
+2024-11-11 20:39:11,752 INFO Adding lag features.
+2024-11-11 20:39:11,762 INFO Preparing features for the next month's prediction.
+2024-11-11 20:39:12,112 INFO 127.0.0.1 - - [11/Nov/2024 20:39:12] "GET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:39:14,267 INFO Received prediction request.
+2024-11-11 20:39:14,267 INFO Fetching sales data from the database.
+2024-11-11 20:39:14,306 INFO Fetched 2325 records from the database.
+2024-11-11 20:39:14,310 INFO Performing feature engineering.
+2024-11-11 20:39:14,313 INFO Adding lag features.
+2024-11-11 20:39:14,320 INFO Preparing features for the next month's prediction.
+2024-11-11 20:39:14,620 INFO 127.0.0.1 - - [11/Nov/2024 20:39:14] "GET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:39:17,732 INFO Received prediction request.
+2024-11-11 20:39:17,733 INFO Fetching sales data from the database.
+2024-11-11 20:39:17,781 INFO Fetched 2325 records from the database.
+2024-11-11 20:39:17,785 INFO Performing feature engineering.
+2024-11-11 20:39:17,790 INFO Adding lag features.
+2024-11-11 20:39:17,795 INFO Preparing features for the next month's prediction.
+2024-11-11 20:39:18,057 INFO 127.0.0.1 - - [11/Nov/2024 20:39:18] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:42:17,089 INFO Received prediction request.
+2024-11-11 20:42:17,089 INFO Fetching sales data from the database.
+2024-11-11 20:42:17,143 INFO Fetched 2326 records from the database.
+2024-11-11 20:42:17,146 INFO Performing feature engineering.
+2024-11-11 20:42:17,149 INFO Adding lag features.
+2024-11-11 20:42:17,157 INFO Preparing features for the next month's prediction.
+2024-11-11 20:42:17,468 INFO 127.0.0.1 - - [11/Nov/2024 20:42:17] "GET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:42:30,704 INFO Received prediction request.
+2024-11-11 20:42:30,704 INFO Fetching sales data from the database.
+2024-11-11 20:42:30,745 INFO Fetched 2326 records from the database.
+2024-11-11 20:42:30,749 INFO Performing feature engineering.
+2024-11-11 20:42:30,751 INFO Adding lag features.
+2024-11-11 20:42:30,756 INFO Preparing features for the next month's prediction.
+2024-11-11 20:42:31,006 INFO 127.0.0.1 - - [11/Nov/2024 20:42:31] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:42:31,106 INFO Received prediction request.
+2024-11-11 20:42:31,106 INFO Fetching sales data from the database.
+2024-11-11 20:42:31,170 INFO Fetched 2326 records from the database.
+2024-11-11 20:42:31,175 INFO Performing feature engineering.
+2024-11-11 20:42:31,179 INFO Adding lag features.
+2024-11-11 20:42:31,184 INFO Preparing features for the next month's prediction.
+2024-11-11 20:42:31,467 INFO 127.0.0.1 - - [11/Nov/2024 20:42:31] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 20:46:27,932 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 20:46:28,326 INFO  * Restarting with stat
+2024-11-11 20:46:30,705 INFO Pre-trained model loaded successfully.
+2024-11-11 20:46:30,705 INFO Model metrics loaded successfully.
+2024-11-11 20:46:30,707 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:46:30,716 WARNING  * Debugger is active!
+2024-11-11 20:46:30,718 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:47:11,384 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:47:11,756 INFO  * Restarting with stat
+2024-11-11 20:47:13,750 INFO Pre-trained model loaded successfully.
+2024-11-11 20:47:13,751 INFO Model metrics loaded successfully.
+2024-11-11 20:47:13,752 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:47:13,762 WARNING  * Debugger is active!
+2024-11-11 20:47:13,764 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:47:23,634 INFO Received prediction request.
+2024-11-11 20:47:23,635 INFO Fetching sales data from the database.
+2024-11-11 20:47:23,687 INFO Fetched 2326 records from the database.
+2024-11-11 20:47:23,692 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:47:23,692 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:47:23,692 INFO Next period label: December 2024
+2024-11-11 20:47:23,693 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 194, in predict_sales
+    X_next_month, next_period_label = prepare_features_for_next_month(df)
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 141, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:47:23,699 INFO 127.0.0.1 - - [11/Nov/2024 20:47:23] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:50:27,936 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:50:28,395 INFO  * Restarting with stat
+2024-11-11 20:50:30,494 INFO Pre-trained model loaded successfully.
+2024-11-11 20:50:30,495 INFO Model metrics loaded successfully.
+2024-11-11 20:50:30,496 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:50:30,506 WARNING  * Debugger is active!
+2024-11-11 20:50:30,508 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:51:38,824 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 20:51:39,199 INFO  * Restarting with stat
+2024-11-11 20:51:41,342 INFO Pre-trained model loaded successfully.
+2024-11-11 20:51:41,342 INFO Model metrics loaded successfully.
+2024-11-11 20:51:41,344 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:51:41,352 WARNING  * Debugger is active!
+2024-11-11 20:51:41,354 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:51:45,221 INFO Received prediction request.
+2024-11-11 20:51:45,222 INFO Fetching sales data from the database.
+2024-11-11 20:51:45,295 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:45,301 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:45,301 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:45,301 INFO Next period label: December 2024
+2024-11-11 20:51:45,302 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:45,320 INFO 127.0.0.1 - - [11/Nov/2024 20:51:45] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:46,518 INFO Received prediction request.
+2024-11-11 20:51:46,518 INFO Fetching sales data from the database.
+2024-11-11 20:51:46,566 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:46,570 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:46,570 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:46,571 INFO Next period label: December 2024
+2024-11-11 20:51:46,571 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:46,576 INFO 127.0.0.1 - - [11/Nov/2024 20:51:46] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:47,242 INFO Received prediction request.
+2024-11-11 20:51:47,242 INFO Fetching sales data from the database.
+2024-11-11 20:51:47,293 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:47,296 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:47,296 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:47,297 INFO Next period label: December 2024
+2024-11-11 20:51:47,297 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:47,301 INFO 127.0.0.1 - - [11/Nov/2024 20:51:47] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:47,398 INFO Received prediction request.
+2024-11-11 20:51:47,398 INFO Fetching sales data from the database.
+2024-11-11 20:51:47,467 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:47,470 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:47,470 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:47,471 INFO Next period label: December 2024
+2024-11-11 20:51:47,471 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:47,477 INFO 127.0.0.1 - - [11/Nov/2024 20:51:47] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:47,575 INFO Received prediction request.
+2024-11-11 20:51:47,575 INFO Fetching sales data from the database.
+2024-11-11 20:51:47,620 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:47,624 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:47,624 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:47,624 INFO Next period label: December 2024
+2024-11-11 20:51:47,625 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:47,629 INFO 127.0.0.1 - - [11/Nov/2024 20:51:47] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:47,727 INFO Received prediction request.
+2024-11-11 20:51:47,727 INFO Fetching sales data from the database.
+2024-11-11 20:51:47,788 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:47,791 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:47,792 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:47,792 INFO Next period label: December 2024
+2024-11-11 20:51:47,792 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:47,797 INFO 127.0.0.1 - - [11/Nov/2024 20:51:47] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:47,884 INFO Received prediction request.
+2024-11-11 20:51:47,884 INFO Fetching sales data from the database.
+2024-11-11 20:51:47,949 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:47,952 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:47,952 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:47,952 INFO Next period label: December 2024
+2024-11-11 20:51:47,953 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:47,958 INFO 127.0.0.1 - - [11/Nov/2024 20:51:47] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:48,065 INFO Received prediction request.
+2024-11-11 20:51:48,066 INFO Fetching sales data from the database.
+2024-11-11 20:51:48,131 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:48,135 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:48,136 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:48,136 INFO Next period label: December 2024
+2024-11-11 20:51:48,136 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:48,139 INFO 127.0.0.1 - - [11/Nov/2024 20:51:48] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:48,247 INFO Received prediction request.
+2024-11-11 20:51:48,247 INFO Fetching sales data from the database.
+2024-11-11 20:51:48,288 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:48,293 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:48,294 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:48,294 INFO Next period label: December 2024
+2024-11-11 20:51:48,294 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:48,299 INFO 127.0.0.1 - - [11/Nov/2024 20:51:48] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:48,440 INFO Received prediction request.
+2024-11-11 20:51:48,441 INFO Fetching sales data from the database.
+2024-11-11 20:51:48,489 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:48,492 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:48,492 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:48,492 INFO Next period label: December 2024
+2024-11-11 20:51:48,492 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:48,496 INFO 127.0.0.1 - - [11/Nov/2024 20:51:48] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:48,580 INFO Received prediction request.
+2024-11-11 20:51:48,580 INFO Fetching sales data from the database.
+2024-11-11 20:51:48,632 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:48,635 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:48,636 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:48,636 INFO Next period label: December 2024
+2024-11-11 20:51:48,637 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:48,645 INFO 127.0.0.1 - - [11/Nov/2024 20:51:48] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:51:57,262 INFO Received prediction request.
+2024-11-11 20:51:57,262 INFO Fetching sales data from the database.
+2024-11-11 20:51:57,349 INFO Fetched 2326 records from the database.
+2024-11-11 20:51:57,353 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:51:57,353 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:51:57,353 INFO Next period label: December 2024
+2024-11-11 20:51:57,354 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:51:57,359 INFO 127.0.0.1 - - [11/Nov/2024 20:51:57] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:53:21,435 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\train_model.py', reloading
+2024-11-11 20:53:21,840 INFO  * Restarting with stat
+2024-11-11 20:53:23,981 INFO Pre-trained model loaded successfully.
+2024-11-11 20:53:23,982 INFO Model metrics loaded successfully.
+2024-11-11 20:53:23,983 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:53:23,994 WARNING  * Debugger is active!
+2024-11-11 20:53:23,997 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:53:35,678 INFO Received prediction request.
+2024-11-11 20:53:35,679 INFO Fetching sales data from the database.
+2024-11-11 20:53:35,752 INFO Fetched 2326 records from the database.
+2024-11-11 20:53:35,760 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:53:35,765 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:53:35,769 INFO Next period label: December 2024
+2024-11-11 20:53:35,770 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:53:35,782 INFO 127.0.0.1 - - [11/Nov/2024 20:53:35] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:54:32,165 INFO Received prediction request.
+2024-11-11 20:54:32,200 INFO Fetching sales data from the database.
+2024-11-11 20:54:32,377 INFO Fetched 2326 records from the database.
+2024-11-11 20:54:32,416 INFO Last date in data: 2024-11-11 00:00:00
+2024-11-11 20:54:32,457 INFO Next date for prediction: 2024-12-11 00:00:00
+2024-11-11 20:54:32,457 INFO Next period label: December 2024
+2024-11-11 20:54:32,458 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 192, in predict_sales
+    X_next_month, next_period_label, next_date = prepare_features_for_next_month(df)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 139, in prepare_features_for_next_month
+    df = df.append(new_data, ignore_index=False)
+         ^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+2024-11-11 20:54:32,465 INFO 127.0.0.1 - - [11/Nov/2024 20:54:32] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 20:55:14,636 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 20:55:15,239 INFO  * Restarting with stat
+2024-11-11 20:55:21,250 INFO Pre-trained model loaded successfully.
+2024-11-11 20:55:21,287 INFO Model metrics loaded successfully.
+2024-11-11 20:55:21,321 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 20:55:21,374 WARNING  * Debugger is active!
+2024-11-11 20:55:21,390 INFO  * Debugger PIN: 912-909-024
+2024-11-11 20:55:21,767 INFO Received prediction request.
+2024-11-11 20:55:21,814 INFO Fetching sales data from the database.
+2024-11-11 20:55:22,039 INFO Fetched 2326 records from the database.
+2024-11-11 20:55:22,063 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 148, in predict_sales
+    predicted_sales = model.predict(X_next_month)[0]
+                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\pipeline.py", line 600, in predict
+    Xt = transform.transform(Xt)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\sklearn\compose\_column_transformer.py", line 1065, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'REMARKS', 'STATUS', 'DETERGENT', 'SERVICE', 'DETERGENT_ADDITIONAL', 'PICKUP_TIME', 'CLOTHES_WEIGHT_KG', 'OrderID', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'ADDITIONAL_COST', 'COST_PER_COMFORTER_SINGLE', 'FABRIC_DETERGENT_ADDITIONAL', 'COMFORT_DOUBLE', 'COST_PER_COMFORTER_DOUBLE', 'FABRIC_DETERGENT', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'LAUNDRY_LOAD', 'COMFORTER_SINGLE', 'COST_PER_LOADS_CLOTHES', 'NAME'}
+2024-11-11 20:55:22,072 INFO 127.0.0.1 - - [11/Nov/2024 20:55:22] "[35m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 21:23:58,689 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 21:23:59,168 INFO  * Restarting with stat
+2024-11-11 21:24:01,212 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 21:24:01,224 WARNING  * Debugger is active!
+2024-11-11 21:24:01,225 INFO  * Debugger PIN: 912-909-024
+2024-11-11 21:24:13,567 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:24:13,590 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:24:13,722 INFO Prepared data for regression. Next period to predict: December 2024
+2024-11-11 21:24:13,742 INFO Linear regression model trained successfully.
+2024-11-11 21:24:13,749 INFO Model Evaluation Metrics - MAE: 10794.7, MSE: 149528231.8, R²: 0.1
+2024-11-11 21:24:14,130 INFO 127.0.0.1 - - [11/Nov/2024 21:24:14] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:24:57,698 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:24:57,733 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:24:57,818 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:24:57,845 INFO Linear regression model trained successfully.
+2024-11-11 21:24:57,848 INFO Model Evaluation Metrics - MAE: 8130.0, MSE: 76580588.15, R²: 0.14
+2024-11-11 21:24:58,977 INFO 127.0.0.1 - - [11/Nov/2024 21:24:58] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:25:09,634 INFO Received prediction request with year=2024, month=4, day=None
+2024-11-11 21:25:09,634 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 4}
+2024-11-11 21:25:09,649 INFO Prepared data for regression. Next period to predict: May 2024
+2024-11-11 21:25:09,650 INFO Linear regression model trained successfully.
+2024-11-11 21:25:09,653 INFO Model Evaluation Metrics - MAE: 0.0, MSE: 0.0, R²: nan
+2024-11-11 21:25:09,862 INFO 127.0.0.1 - - [11/Nov/2024 21:25:09] "GET /predict?year=2024&month=4&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:25:12,926 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:25:12,947 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:25:13,009 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:25:13,025 INFO Linear regression model trained successfully.
+2024-11-11 21:25:13,058 INFO Model Evaluation Metrics - MAE: 8130.0, MSE: 76580588.15, R²: 0.14
+2024-11-11 21:25:13,918 INFO 127.0.0.1 - - [11/Nov/2024 21:25:13] "GET /predict?year=2024&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:25:14,998 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:25:15,018 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:25:15,143 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:25:15,187 INFO Linear regression model trained successfully.
+2024-11-11 21:25:15,223 INFO Model Evaluation Metrics - MAE: 8130.0, MSE: 76580588.15, R²: 0.14
+2024-11-11 21:25:16,329 INFO 127.0.0.1 - - [11/Nov/2024 21:25:16] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:25:58,176 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:25:58,176 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:25:58,210 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:25:58,212 INFO Linear regression model trained successfully.
+2024-11-11 21:25:58,213 INFO Model Evaluation Metrics - MAE: 8130.0, MSE: 76580588.15, R²: 0.14
+2024-11-11 21:25:58,463 INFO 127.0.0.1 - - [11/Nov/2024 21:25:58] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:27:42,174 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 21:27:42,596 INFO  * Restarting with stat
+2024-11-11 21:27:44,743 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 21:27:44,757 WARNING  * Debugger is active!
+2024-11-11 21:27:44,759 INFO  * Debugger PIN: 912-909-024
+2024-11-11 21:33:13,508 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 21:33:13,913 INFO  * Restarting with stat
+2024-11-11 21:33:15,687 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-11 21:33:15,688 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 21:33:15,695 WARNING  * Debugger is active!
+2024-11-11 21:33:15,697 INFO  * Debugger PIN: 912-909-024
+2024-11-11 21:33:16,575 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:33:16,576 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:33:16,603 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:33:16,604 INFO Linear regression model trained successfully.
+2024-11-11 21:33:16,763 INFO 127.0.0.1 - - [11/Nov/2024 21:33:16] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:33:21,184 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:33:21,184 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:33:21,207 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:33:21,208 INFO Linear regression model trained successfully.
+2024-11-11 21:33:21,415 INFO 127.0.0.1 - - [11/Nov/2024 21:33:21] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:33:41,150 INFO Received prediction request with year=2023, month=None, day=None
+2024-11-11 21:33:41,150 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2023}
+2024-11-11 21:33:41,169 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-11 21:33:41,170 INFO Linear regression model trained successfully.
+2024-11-11 21:33:41,377 INFO 127.0.0.1 - - [11/Nov/2024 21:33:41] "GET /predict?year=2023&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:33:45,408 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:33:45,408 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:33:45,426 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:33:45,427 INFO Linear regression model trained successfully.
+2024-11-11 21:33:45,735 INFO 127.0.0.1 - - [11/Nov/2024 21:33:45] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:34:39,523 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:34:39,524 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:34:39,552 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:34:39,554 INFO Linear regression model trained successfully.
+2024-11-11 21:34:39,766 INFO 127.0.0.1 - - [11/Nov/2024 21:34:39] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:46:14,938 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 21:46:15,336 INFO  * Restarting with stat
+2024-11-11 21:46:17,367 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-11 21:46:17,368 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 21:46:17,379 WARNING  * Debugger is active!
+2024-11-11 21:46:17,380 INFO  * Debugger PIN: 912-909-024
+2024-11-11 21:46:20,624 INFO Received prediction request with year=2023, month=None, day=None
+2024-11-11 21:46:20,624 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2023}
+2024-11-11 21:46:20,653 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-11 21:46:20,654 INFO Linear regression model trained successfully.
+2024-11-11 21:46:20,664 ERROR An error occurred during prediction.
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 258, in predict_sales
+    save_prediction_to_db(next_date.strftime('%Y-%m-%d'), predicted_sales)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\predict_sales.py", line 183, in save_prediction_to_db
+    engine.execute(query, {'prediction_date': prediction_date, 'predicted_sales': predicted_sales})
+    ^^^^^^^^^^^^^^
+AttributeError: 'Engine' object has no attribute 'execute'
+2024-11-11 21:46:20,666 INFO 127.0.0.1 - - [11/Nov/2024 21:46:20] "[35m[1mGET /predict?year=2023&month=&day=&api_key=testkey123 HTTP/1.1[0m" 500 -
+2024-11-11 21:49:16,915 INFO  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
+2024-11-11 21:49:17,307 INFO  * Restarting with stat
+2024-11-11 21:49:19,350 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-11 21:49:19,351 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-11 21:49:19,361 WARNING  * Debugger is active!
+2024-11-11 21:49:19,363 INFO  * Debugger PIN: 912-909-024
+2024-11-11 21:49:23,775 INFO Received prediction request with year=2023, month=None, day=None
+2024-11-11 21:49:23,775 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2023}
+2024-11-11 21:49:23,809 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-11 21:49:23,811 INFO Linear regression model trained successfully.
+2024-11-11 21:49:24,122 INFO 127.0.0.1 - - [11/Nov/2024 21:49:24] "GET /predict?year=2023&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:49:32,924 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:49:32,925 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:49:32,949 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:49:32,950 INFO Linear regression model trained successfully.
+2024-11-11 21:49:33,179 INFO 127.0.0.1 - - [11/Nov/2024 21:49:33] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:49:56,174 INFO Received prediction request with year=2023, month=1, day=None
+2024-11-11 21:49:56,175 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 1}
+2024-11-11 21:49:56,190 INFO Prepared data for regression. Next period to predict: February 2023
+2024-11-11 21:49:56,191 INFO Linear regression model trained successfully.
+2024-11-11 21:49:56,439 INFO 127.0.0.1 - - [11/Nov/2024 21:49:56] "GET /predict?year=2023&month=1&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:11,357 INFO Received prediction request with year=2023, month=2, day=None
+2024-11-11 21:50:11,357 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 2}
+2024-11-11 21:50:11,374 INFO Prepared data for regression. Next period to predict: March 2023
+2024-11-11 21:50:11,375 INFO Linear regression model trained successfully.
+2024-11-11 21:50:11,667 INFO 127.0.0.1 - - [11/Nov/2024 21:50:11] "GET /predict?year=2023&month=2&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:14,612 INFO Received prediction request with year=2023, month=3, day=None
+2024-11-11 21:50:14,613 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 3}
+2024-11-11 21:50:14,627 INFO Prepared data for regression. Next period to predict: April 2023
+2024-11-11 21:50:14,628 INFO Linear regression model trained successfully.
+2024-11-11 21:50:14,827 INFO 127.0.0.1 - - [11/Nov/2024 21:50:14] "GET /predict?year=2023&month=3&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:17,791 INFO Received prediction request with year=2023, month=4, day=None
+2024-11-11 21:50:17,791 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 4}
+2024-11-11 21:50:17,807 INFO Prepared data for regression. Next period to predict: May 2023
+2024-11-11 21:50:17,808 INFO Linear regression model trained successfully.
+2024-11-11 21:50:18,007 INFO 127.0.0.1 - - [11/Nov/2024 21:50:18] "GET /predict?year=2023&month=4&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:20,961 INFO Received prediction request with year=2023, month=5, day=None
+2024-11-11 21:50:20,962 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 5}
+2024-11-11 21:50:20,978 INFO Prepared data for regression. Next period to predict: June 2023
+2024-11-11 21:50:20,979 INFO Linear regression model trained successfully.
+2024-11-11 21:50:21,187 INFO 127.0.0.1 - - [11/Nov/2024 21:50:21] "GET /predict?year=2023&month=5&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:24,212 INFO Received prediction request with year=2023, month=6, day=None
+2024-11-11 21:50:24,213 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 6}
+2024-11-11 21:50:24,229 INFO Prepared data for regression. Next period to predict: July 2023
+2024-11-11 21:50:24,229 INFO Linear regression model trained successfully.
+2024-11-11 21:50:24,447 INFO 127.0.0.1 - - [11/Nov/2024 21:50:24] "GET /predict?year=2023&month=6&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:26,855 INFO Received prediction request with year=2023, month=7, day=None
+2024-11-11 21:50:26,855 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 7}
+2024-11-11 21:50:26,871 INFO Prepared data for regression. Next period to predict: August 2023
+2024-11-11 21:50:26,872 INFO Linear regression model trained successfully.
+2024-11-11 21:50:27,077 INFO 127.0.0.1 - - [11/Nov/2024 21:50:27] "GET /predict?year=2023&month=7&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:29,233 INFO Received prediction request with year=2023, month=8, day=None
+2024-11-11 21:50:29,233 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 8}
+2024-11-11 21:50:29,248 INFO Prepared data for regression. Next period to predict: September 2023
+2024-11-11 21:50:29,249 INFO Linear regression model trained successfully.
+2024-11-11 21:50:29,445 INFO 127.0.0.1 - - [11/Nov/2024 21:50:29] "GET /predict?year=2023&month=8&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:31,547 INFO Received prediction request with year=2023, month=9, day=None
+2024-11-11 21:50:31,548 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 9}
+2024-11-11 21:50:31,565 INFO Prepared data for regression. Next period to predict: October 2023
+2024-11-11 21:50:31,566 INFO Linear regression model trained successfully.
+2024-11-11 21:50:31,757 INFO 127.0.0.1 - - [11/Nov/2024 21:50:31] "GET /predict?year=2023&month=9&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:33,793 INFO Received prediction request with year=2023, month=10, day=None
+2024-11-11 21:50:33,793 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 10}
+2024-11-11 21:50:33,808 INFO Prepared data for regression. Next period to predict: November 2023
+2024-11-11 21:50:33,809 INFO Linear regression model trained successfully.
+2024-11-11 21:50:34,006 INFO 127.0.0.1 - - [11/Nov/2024 21:50:34] "GET /predict?year=2023&month=10&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:36,173 INFO Received prediction request with year=2023, month=11, day=None
+2024-11-11 21:50:36,173 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 11}
+2024-11-11 21:50:36,187 INFO Prepared data for regression. Next period to predict: December 2023
+2024-11-11 21:50:36,187 INFO Linear regression model trained successfully.
+2024-11-11 21:50:36,402 INFO 127.0.0.1 - - [11/Nov/2024 21:50:36] "GET /predict?year=2023&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:40,887 INFO Received prediction request with year=2023, month=12, day=None
+2024-11-11 21:50:40,888 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 12}
+2024-11-11 21:50:40,902 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-11 21:50:40,902 INFO Linear regression model trained successfully.
+2024-11-11 21:50:41,170 INFO 127.0.0.1 - - [11/Nov/2024 21:50:41] "GET /predict?year=2023&month=12&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:50:50,671 INFO Received prediction request with year=2024, month=12, day=None
+2024-11-11 21:50:50,672 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 12}
+2024-11-11 21:50:50,682 WARNING No data available for the given filters.
+2024-11-11 21:50:50,682 ERROR Insufficient data for prediction.
+2024-11-11 21:50:50,683 INFO 127.0.0.1 - - [11/Nov/2024 21:50:50] "[31m[1mGET /predict?year=2024&month=12&day=&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 21:51:13,529 INFO Received prediction request with year=2024, month=1, day=None
+2024-11-11 21:51:13,530 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 1}
+2024-11-11 21:51:13,546 INFO Prepared data for regression. Next period to predict: February 2024
+2024-11-11 21:51:13,547 INFO Linear regression model trained successfully.
+2024-11-11 21:51:13,766 INFO 127.0.0.1 - - [11/Nov/2024 21:51:13] "GET /predict?year=2024&month=1&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:18,274 INFO Received prediction request with year=2024, month=2, day=None
+2024-11-11 21:51:18,274 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 2}
+2024-11-11 21:51:18,288 INFO Prepared data for regression. Next period to predict: March 2024
+2024-11-11 21:51:18,290 INFO Linear regression model trained successfully.
+2024-11-11 21:51:18,491 INFO 127.0.0.1 - - [11/Nov/2024 21:51:18] "GET /predict?year=2024&month=2&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:18,575 INFO Received prediction request with year=2024, month=2, day=None
+2024-11-11 21:51:18,575 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 2}
+2024-11-11 21:51:18,589 INFO Prepared data for regression. Next period to predict: March 2024
+2024-11-11 21:51:18,590 INFO Linear regression model trained successfully.
+2024-11-11 21:51:18,798 INFO 127.0.0.1 - - [11/Nov/2024 21:51:18] "GET /predict?year=2024&month=2&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:21,247 INFO Received prediction request with year=2024, month=3, day=None
+2024-11-11 21:51:21,247 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 3}
+2024-11-11 21:51:21,262 INFO Prepared data for regression. Next period to predict: April 2024
+2024-11-11 21:51:21,262 INFO Linear regression model trained successfully.
+2024-11-11 21:51:21,454 INFO 127.0.0.1 - - [11/Nov/2024 21:51:21] "GET /predict?year=2024&month=3&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:23,510 INFO Received prediction request with year=2024, month=4, day=None
+2024-11-11 21:51:23,510 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 4}
+2024-11-11 21:51:23,523 INFO Prepared data for regression. Next period to predict: May 2024
+2024-11-11 21:51:23,523 INFO Linear regression model trained successfully.
+2024-11-11 21:51:23,745 INFO 127.0.0.1 - - [11/Nov/2024 21:51:23] "GET /predict?year=2024&month=4&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:28,643 INFO Received prediction request with year=2024, month=5, day=None
+2024-11-11 21:51:28,643 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 5}
+2024-11-11 21:51:28,661 INFO Prepared data for regression. Next period to predict: June 2024
+2024-11-11 21:51:28,662 INFO Linear regression model trained successfully.
+2024-11-11 21:51:28,871 INFO 127.0.0.1 - - [11/Nov/2024 21:51:28] "GET /predict?year=2024&month=5&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:30,848 INFO Received prediction request with year=2024, month=6, day=None
+2024-11-11 21:51:30,848 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 6}
+2024-11-11 21:51:30,862 INFO Prepared data for regression. Next period to predict: July 2024
+2024-11-11 21:51:30,863 INFO Linear regression model trained successfully.
+2024-11-11 21:51:31,075 INFO 127.0.0.1 - - [11/Nov/2024 21:51:31] "GET /predict?year=2024&month=6&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:33,271 INFO Received prediction request with year=2024, month=7, day=None
+2024-11-11 21:51:33,271 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 7}
+2024-11-11 21:51:33,286 INFO Prepared data for regression. Next period to predict: August 2024
+2024-11-11 21:51:33,287 INFO Linear regression model trained successfully.
+2024-11-11 21:51:33,542 INFO 127.0.0.1 - - [11/Nov/2024 21:51:33] "GET /predict?year=2024&month=7&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:36,319 INFO Received prediction request with year=2024, month=8, day=None
+2024-11-11 21:51:36,320 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 8}
+2024-11-11 21:51:36,336 INFO Prepared data for regression. Next period to predict: September 2024
+2024-11-11 21:51:36,337 INFO Linear regression model trained successfully.
+2024-11-11 21:51:36,550 INFO 127.0.0.1 - - [11/Nov/2024 21:51:36] "GET /predict?year=2024&month=8&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:39,053 INFO Received prediction request with year=2024, month=9, day=None
+2024-11-11 21:51:39,053 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 9}
+2024-11-11 21:51:39,070 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:51:39,071 INFO Linear regression model trained successfully.
+2024-11-11 21:51:39,275 INFO 127.0.0.1 - - [11/Nov/2024 21:51:39] "GET /predict?year=2024&month=9&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:51:43,550 INFO Received prediction request with year=2024, month=10, day=None
+2024-11-11 21:51:43,550 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 10}
+2024-11-11 21:51:43,560 WARNING No data available for the given filters.
+2024-11-11 21:51:43,560 ERROR Insufficient data for prediction.
+2024-11-11 21:51:43,561 INFO 127.0.0.1 - - [11/Nov/2024 21:51:43] "[31m[1mGET /predict?year=2024&month=10&day=&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 21:51:51,845 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:51:51,846 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:51:51,869 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:51:51,870 INFO Linear regression model trained successfully.
+2024-11-11 21:51:52,094 INFO 127.0.0.1 - - [11/Nov/2024 21:51:52] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 21:52:36,026 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 21:52:36,027 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 21:52:36,048 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 21:52:36,049 INFO Linear regression model trained successfully.
+2024-11-11 21:52:36,252 INFO 127.0.0.1 - - [11/Nov/2024 21:52:36] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:02:56,065 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 22:02:56,065 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 22:02:56,086 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 22:02:56,087 INFO Linear regression model trained successfully.
+2024-11-11 22:02:56,308 INFO 127.0.0.1 - - [11/Nov/2024 22:02:56] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:04:07,335 INFO Received prediction request with year=2023, month=3, day=None
+2024-11-11 22:04:07,335 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2023, 'month': 3}
+2024-11-11 22:04:07,353 INFO Prepared data for regression. Next period to predict: April 2023
+2024-11-11 22:04:07,354 INFO Linear regression model trained successfully.
+2024-11-11 22:04:07,559 INFO 127.0.0.1 - - [11/Nov/2024 22:04:07] "GET /predict?year=2023&month=3&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:05:31,333 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 22:05:31,334 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 22:05:31,356 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 22:05:31,357 INFO Linear regression model trained successfully.
+2024-11-11 22:05:31,566 INFO 127.0.0.1 - - [11/Nov/2024 22:05:31] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:12:09,173 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 22:12:09,173 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 22:12:09,193 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 22:12:09,194 INFO Linear regression model trained successfully.
+2024-11-11 22:12:09,453 INFO 127.0.0.1 - - [11/Nov/2024 22:12:09] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:12:43,521 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 22:12:43,521 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 22:12:43,542 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 22:12:43,543 INFO Linear regression model trained successfully.
+2024-11-11 22:12:43,761 INFO 127.0.0.1 - - [11/Nov/2024 22:12:43] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:13:01,627 INFO Received prediction request with year=2023, month=None, day=None
+2024-11-11 22:13:01,627 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2023}
+2024-11-11 22:13:01,648 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-11 22:13:01,649 INFO Linear regression model trained successfully.
+2024-11-11 22:13:01,919 INFO 127.0.0.1 - - [11/Nov/2024 22:13:01] "GET /predict?year=2023&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:13:38,331 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 22:13:38,331 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 22:13:38,354 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 22:13:38,354 INFO Linear regression model trained successfully.
+2024-11-11 22:13:38,567 INFO 127.0.0.1 - - [11/Nov/2024 22:13:38] "GET /predict?year=2024&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:15:35,275 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 22:15:35,276 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 22:15:35,314 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 22:15:35,315 INFO Linear regression model trained successfully.
+2024-11-11 22:15:35,543 INFO 127.0.0.1 - - [11/Nov/2024 22:15:35] "GET /predict?year=2024&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:17:19,562 INFO Received prediction request with year=2024, month=1, day=None
+2024-11-11 22:17:19,562 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 1}
+2024-11-11 22:17:19,577 INFO Prepared data for regression. Next period to predict: February 2024
+2024-11-11 22:17:19,577 INFO Linear regression model trained successfully.
+2024-11-11 22:17:19,792 INFO 127.0.0.1 - - [11/Nov/2024 22:17:19] "GET /predict?year=2024&month=1&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-11 22:18:09,612 INFO Received prediction request with year=2024, month=10, day=None
+2024-11-11 22:18:09,612 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year AND MONTH(DATE) = :month with params: {'year': 2024, 'month': 10}
+2024-11-11 22:18:09,621 WARNING No data available for the given filters.
+2024-11-11 22:18:09,621 ERROR Insufficient data for prediction.
+2024-11-11 22:18:09,622 INFO 127.0.0.1 - - [11/Nov/2024 22:18:09] "[31m[1mGET /predict?year=2024&month=10&day=&api_key=testkey123 HTTP/1.1[0m" 400 -
+2024-11-11 22:18:38,944 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-11 22:18:38,944 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-11 22:18:38,961 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-11 22:18:38,962 INFO Linear regression model trained successfully.
+2024-11-11 22:18:39,158 INFO 127.0.0.1 - - [11/Nov/2024 22:18:39] "GET /predict?year=2024&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 02:14:40,613 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 02:14:40,615 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 02:14:40,725 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 02:14:40,741 INFO Linear regression model trained successfully.
+2024-11-12 02:14:41,083 INFO 127.0.0.1 - - [12/Nov/2024 02:14:41] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 02:14:43,825 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 02:14:43,825 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 02:14:43,852 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 02:14:43,853 INFO Linear regression model trained successfully.
+2024-11-12 02:14:44,069 INFO 127.0.0.1 - - [12/Nov/2024 02:14:44] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 02:23:56,361 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 02:23:56,361 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 02:23:56,383 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 02:23:56,384 INFO Linear regression model trained successfully.
+2024-11-12 02:23:56,590 INFO 127.0.0.1 - - [12/Nov/2024 02:23:56] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 20:58:26,470 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 20:58:26,472 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-12 20:58:26,514 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.71:5000
+2024-11-12 20:58:26,514 INFO [33mPress CTRL+C to quit[0m
+2024-11-12 20:58:26,516 INFO  * Restarting with stat
+2024-11-12 20:58:28,692 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 20:58:28,694 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-12 20:58:28,702 WARNING  * Debugger is active!
+2024-11-12 20:58:28,704 INFO  * Debugger PIN: 912-909-024
+2024-11-12 20:58:31,025 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 20:58:31,025 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 20:58:31,101 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 20:58:31,103 INFO Linear regression model trained successfully.
+2024-11-12 20:58:31,458 INFO 127.0.0.1 - - [12/Nov/2024 20:58:31] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 21:00:02,942 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 21:00:02,942 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 21:00:02,994 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 21:00:02,997 INFO Linear regression model trained successfully.
+2024-11-12 21:00:03,495 INFO 127.0.0.1 - - [12/Nov/2024 21:00:03] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 21:11:13,995 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 21:11:13,997 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-12 21:11:14,037 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.71:5000
+2024-11-12 21:11:14,039 INFO [33mPress CTRL+C to quit[0m
+2024-11-12 21:11:14,043 INFO  * Restarting with stat
+2024-11-12 21:11:16,675 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 21:11:16,676 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-12 21:11:16,690 WARNING  * Debugger is active!
+2024-11-12 21:11:16,724 INFO  * Debugger PIN: 912-909-024
+2024-11-12 21:11:17,324 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 21:11:17,324 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 21:11:17,394 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 21:11:17,405 INFO Linear regression model trained successfully.
+2024-11-12 21:11:17,632 INFO 127.0.0.1 - - [12/Nov/2024 21:11:17] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 21:11:37,407 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 21:11:37,408 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 21:11:37,458 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 21:11:37,461 INFO Linear regression model trained successfully.
+2024-11-12 21:11:38,040 INFO 127.0.0.1 - - [12/Nov/2024 21:11:38] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 21:11:38,264 INFO 127.0.0.1 - - [12/Nov/2024 21:11:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-12 21:19:50,989 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 21:19:50,990 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 21:19:51,034 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 21:19:51,040 INFO Linear regression model trained successfully.
+2024-11-12 21:19:51,711 INFO 127.0.0.1 - - [12/Nov/2024 21:19:51] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 21:56:25,547 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 21:57:07,931 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 21:57:07,933 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-12 21:57:07,975 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.71:5000
+2024-11-12 21:57:07,978 INFO [33mPress CTRL+C to quit[0m
+2024-11-12 21:57:07,980 INFO  * Restarting with stat
+2024-11-12 21:57:10,283 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-12 21:57:10,284 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-12 21:57:10,294 WARNING  * Debugger is active!
+2024-11-12 21:57:10,328 INFO  * Debugger PIN: 912-909-024
+2024-11-12 21:57:14,685 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 21:57:14,685 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 21:57:14,771 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 21:57:14,774 INFO Linear regression model trained successfully.
+2024-11-12 21:57:15,601 INFO 127.0.0.1 - - [12/Nov/2024 21:57:15] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-12 21:57:38,420 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-12 21:57:38,440 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-12 21:57:38,511 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-12 21:57:38,515 INFO Linear regression model trained successfully.
+2024-11-12 21:57:39,087 INFO 127.0.0.1 - - [12/Nov/2024 21:57:39] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -

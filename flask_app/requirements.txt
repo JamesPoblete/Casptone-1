@@ -1,0 +1,10 @@
+flask
+flask-cors
+pandas
+numpy
+scikit-learn
+sqlalchemy
+pymysql
+waitress
+statsmodels
+python-dotenv
