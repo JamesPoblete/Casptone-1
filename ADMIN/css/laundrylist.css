@@ -1,0 +1,295 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #eef2f7; /* Updated background color */
+}
+
+.sidebar {
+  background-color: #1A1A40;
+  color: white;
+  height: 100vh;
+  width: 220px;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Sidebar Links Style */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  position: relative;
+}
+
+.sidebar ul li {
+  position: relative;
+}
+
+.sidebar-logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Sidebar Links */
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 15px 20px;
+  display: block;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+/* Active Link Style with Sliding and Bounce Effect */
+.sidebar ul li a.active {
+  color: #1A1A40; /* Darker color for active item */
+  font-weight: 700; /* Bold for active item */
+  background-color: #eef2f7; /* Highlight the active link */
+  padding-left: 30px; /* Emphasize active link */
+  border-radius: 50px 0 0 50px; /* Curved left edge to match desired style */
+  position: relative;
+  animation: slideBounce 0.6s ease-out; /* Apply bounce animation to active link */
+}
+
+/* Sliding and Bounce Animation Keyframes */
+@keyframes slideBounce {
+  0% {
+    transform: translateY(-10px);
+  }
+  40% {
+    transform: translateY(5px);
+  }
+  70% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Pseudo-element to create connection effect */
+.sidebar ul li a.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 10px;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 50px 0 0 50px;
+  z-index: -1;
+  transition: all 0.4s ease; /* Smooth transition */
+}
+
+/* Main Content */
+.main-content {
+  width: calc(100% - 220px);
+  padding: 20px;
+  margin-left: 220px;
+  .main-content {
+    background-color: #f4f7fa; /* Soft background */
+    padding: 40px;
+    border-radius: 20px;
+    margin: 20px;
+  }
+  
+}
+
+/* 3D Effect for Main Content */
+.main-content {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Laundry List Header */
+.laundry-list-header h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* Search Bar */
+#search {
+  flex: 1;
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Status Filter Styles */
+.status-filter {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #1A1A40;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-left: 200px;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* 3D Effect */
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+
+th {
+  background-color: #1A1A40;
+  color: white;
+  text-align: center;
+}
+
+table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+table tbody tr:hover {
+  background-color: #f1f4ff; /* Light blue hover effect */
+}
+
+/* Status Styles */
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.status.completed {
+  background-color: #28a745;
+  color: white;
+}
+
+.status.pending {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #1A1A40;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.pagination button:hover {
+  background-color: #0077b6;
+}
+
+.pagination span {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* Updated Header Design */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow to separate header from content */
+}
+
+.date-selection {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.header-left .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #23253A;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-right i.fa-bell {
+  font-size: 1.2em;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-profile i.fa-user-circle {
+  font-size: 1.5em;
+  margin-right: 8px;
+}
+
+.user-profile span {
+  margin-right: 5px;
+}
+
+.user-profile i.fa-caret-down {
+  font-size: 0.9em;
+}

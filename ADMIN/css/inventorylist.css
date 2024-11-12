@@ -1,0 +1,552 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #eef2f7; /* Updated background color */
+}
+
+.sidebar {
+    background-color: #1A1A40;
+    color: white;
+    height: 100vh;
+    width: 220px;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Sidebar Links Style */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    position: relative;
+}
+
+.sidebar ul li {
+    position: relative;
+}
+
+.sidebar-logo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Sidebar Links */
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px 20px;
+    display: block;
+    transition: color 0.3s ease, padding-left 0.3s ease; /* Smooth color and padding transition */
+}
+
+/* Active Link Style with Sliding and Bounce Effect */
+.sidebar ul li a.active {
+    color: #1A1A40; /* Darker color for active item */
+    font-weight: 700; /* Bold for active item */
+    background-color: #eef2f7; /* Highlight the active link */
+    padding-left: 30px; /* Emphasize active link */
+    border-radius: 50px 0 0 50px; /* Curved left edge to match desired style */
+    position: relative;
+    animation: slideBounce 0.6s ease-out; /* Apply bounce animation to active link */
+}
+
+/* Sliding and Bounce Animation Keyframes */
+@keyframes slideBounce {
+    0% {
+        transform: translateY(-10px);
+    }
+    40% {
+        transform: translateY(5px);
+    }
+    70% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Pseudo-element to create connection effect */
+.sidebar ul li a.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 10px;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 50px 0 0 50px;
+    z-index: -1;
+    transition: all 0.4s ease; /* Smooth transition */
+}
+
+/* Main Content */
+.main-content {
+    width: calc(100% - 220px);
+    padding: 20px;
+    margin-left: 220px;
+    .main-content {
+      background-color: #f4f7fa; /* Soft background */
+      padding: 40px;
+      border-radius: 20px;
+      margin: 20px;
+    }
+    
+  }
+
+
+/* Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow to separate header from content */
+  }
+
+.header-left .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #23253A;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Search Bar */
+#search {
+    flex: 1; /* Allow the search bar to grow */
+    padding: 10px;
+    margin-right: 10px; /* Space between search and filter */
+    border: 1px solid #ccc;
+    border-radius: 50px !important; /* Increase the border-radius for a rounder effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-filter-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 25px !important;
+  }
+  
+  /* Status Filter Styles */
+  .status-filter {
+    padding: 15px;
+    border-radius: 25px !important;
+    border: 1px solid #ddd;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #1A1A40;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-left: 200px;
+  }
+  
+
+.search-bar input {
+    width: 100%;
+    padding: 8px 12px;
+    padding-left: 30px; /* Space for icon */
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 1em;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 10px;
+    color: #888;
+    border-radius: 25px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right i.fa-bell {
+    font-size: 1.2em;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-profile i.fa-user-circle {
+    font-size: 1.5em;
+    margin-right: 8px;
+}
+
+.user-profile span {
+    margin-right: 5px;
+}
+
+.user-profile i.fa-caret-down {
+    font-size: 0.9em;
+}
+
+/* Inventory List Header */
+.inventory-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.print-btn, .add-inventory-btn {
+    padding: 10px 15px;
+    background-color: #1A1A40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.print-btn {
+    background-color: #f4f4f4;
+    display: flex;
+    margin-left: auto;
+    border: 1px solid #1A1A40;
+    color: #1A1A40;
+    font-weight: bold;
+}
+
+.print-btn:hover {
+    background-color:#1A1A40 ;
+    color: #f4f4f4;
+}
+
+.add-inventory-btn:hover {
+    background-color: #f4f4f4;
+    color: #1A1A40;
+    border-color: #1A1A40;
+}
+
+/* Search Bar */
+.search-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Space below the search and filter */
+}
+
+#search {
+    flex: 1; /* Allow the search bar to grow */
+    padding: 10px;
+    margin-right: 10px; /* Space between search and filter */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* 3D Effect */
+  }
+  
+  th, td {
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+  }
+  
+  th {
+    background-color: #1A1A40;
+    color: white;
+    text-align: center;
+  }
+  
+  table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f1f4ff; /* Light blue hover effect */
+  }
+
+/* Status Styles */
+.status {
+    padding: 5px 10px;
+    border-radius: 20px !important;
+}
+
+.status.high {
+    background-color: #28a745;
+    color: white;
+}
+
+.status.medium {
+    background-color: #ffc107;
+    color: white;
+}
+
+.status.low {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Modal Background */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); /* Background with blur */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px; /* Adjust as needed */
+    text-align: center;
+    position: relative;
+
+    /* Initial state: scaled down and transparent */
+    transform: scale(0.5);
+    opacity: 0;
+
+    /* Transition properties */
+    transition: transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6), opacity 0.5s ease-out;
+}
+
+/* When the modal is shown, apply this class to trigger the transition */
+.modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Close Button */
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Modal Title */
+.modal-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-filter {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #1A1A40;
+    cursor: pointer;
+}
+
+.submit-btn{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn {
+    background-color: #1A1A40; /* Green */
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #FF6F61;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+    }
+}
+
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-active {
+    overflow: hidden; /* Prevent scrolling when modal is open */
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #1A1A40;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1A1A40;
+    color: #fff;
+}
+
+.edit-btn {
+    font-size: 18px;
+}
+
+/* Success Message Styles */
+.success-message {
+    position: fixed;
+    top: 10%; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 5px;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeInOut 3s forwards;
+    text-align: center;
+}
+
+.success-message .close-success {
+    display: none;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    10%, 90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+/* Existing styles for status classes */
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.status.high {
+    background-color: #28a745; /* Green */
+}
+
+.status.medium {
+    background-color: #ffc107; /* Yellow */
+}
+
+.status.low {
+    background-color: #dc3545; /* Red */
+}
+
+/* New style for 'Out of Stock' */
+.status.out-of-stock {
+    background-color: #6c757d; /* Gray */
+    color: #fff;
+    text-transform: none; /* To keep the text as "Out of Stock" without capitalizing each word */
+}
+
+/* Inline CSS for Print Media */
+@media print {
+    /* Hide elements not needed in print */
+    .sidebar, .main-header, .inventory-list-header, .search-filter-container, .edit-btn {
+        display: none;
+    }
+    table {
+        width: 100%;
+    }
+}

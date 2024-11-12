@@ -1,0 +1,306 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  background-color: #1A1A40;
+  color: white;
+  height: 100vh;
+  width: 220px;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Sidebar Links Style */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  position: relative;
+}
+
+.sidebar ul li {
+  position: relative;
+}
+
+.sidebar-logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Sidebar Links */
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 15px 20px;
+  display: block;
+  transition: color 0.3s ease, padding-left 0.3s ease; /* Smooth color and padding transition */
+}
+
+/* Active Link Style with Sliding and Bounce Effect */
+.sidebar ul li a.active {
+  color: #1A1A40; /* Darker color for active item */
+  font-weight: 700; /* Bold for active item */
+  background-color: #ffffff; /* Highlight the active link */
+  padding-left: 30px; /* Emphasize active link */
+  border-radius: 50px 0 0 50px; /* Curved left edge to match desired style */
+  position: relative;
+  animation: slideBounce 0.6s ease-out; /* Apply bounce animation to active link */
+}
+
+/* Sliding and Bounce Animation Keyframes */
+@keyframes slideBounce {
+  0% {
+      transform: translateY(-10px);
+  }
+  40% {
+      transform: translateY(5px);
+  }
+  70% {
+      transform: translateY(-3px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+/* Pseudo-element to create connection effect */
+.sidebar ul li a.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 10px;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 50px 0 0 50px;
+  z-index: -1;
+  transition: all 0.4s ease; /* Smooth transition */
+}
+
+/* Main Content */
+.main-content {
+  width: calc(100% - 220px);
+  padding: 20px;
+  margin-left: 220px;
+  background-color: #fff;
+}
+
+
+/* User Profile Section */
+.user-profile {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Avatar Image */
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Username and Dropdown Arrow */
+.user-name {
+  font-size: 14px;
+  color: #000000;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.header-left .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #23253A;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-right i.fa-bell {
+  font-size: 1.2em;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-profile i.fa-user-circle {
+  font-size: 1.5em;
+  margin-right: 8px;
+}
+
+.user-profile span {
+  margin-right: 5px;
+}
+
+.user-profile i.fa-caret-down {
+  font-size: 0.9em;
+}
+
+.sales-prediction h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Margin for time selection input and label */
+.time-selection label,
+input {
+  margin: 10px 0; /* Space above and below the label */
+}
+
+.time-selection select,
+.time-selection input {
+  margin: 10px 0; /* Space above and below the input */
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sales-prediction select,
+.sales-prediction input,
+.sales-prediction button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
+}
+
+.predict-btn {
+  background-color: #1A1A40;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.predict-btn:hover {
+  background-color: #FF6F61;
+}
+
+.prediction-results {
+  background-color: #f4f4f4; 
+  border-radius: 10px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+  width: 200px; /* Make this wider for comparison */
+}
+
+.prediction-results h3 {
+  font-size: 18px; 
+  margin-bottom: 10px; 
+}
+
+.prediction-results p {
+  margin: 5px 0; 
+  font-size: 16px; 
+}
+
+/* Style for prediction results and other cards */
+.prediction-results {
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Original shadow */
+  padding: 20px;
+  border: 1px solid #888; /* Darker border color for better visibility */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Make specific labels bold */
+.sales-prediction label {
+  font-weight: bold; /* Make all labels bold */
+  margin: 10px 0; /* Ensure there's some margin for spacing */
+}
+
+/* Style for select elements */
+.sales-prediction select,
+.sales-prediction input {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 5px; 
+  border: 1px solid #ccc; /* Original border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
+}
+
+.sales-prediction select:focus,
+.sales-prediction input:focus {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+  outline: none; 
+}
+
+.time-selection h4 {
+  margin-bottom: 8px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #1A1A40;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3c3c5a;
+}

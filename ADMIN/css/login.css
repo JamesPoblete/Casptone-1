@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.label, .input {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Waves CSS */
+.wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%; /* Increased height for better coverage */
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(to top, #0070f8, #ffffff); /* Base gradient for smoothness */
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%; /* Ensure complete horizontal coverage */
+    height: 100%;
+    background-size: cover;
+    animation: waveAnimation 20s linear infinite;
+    opacity: 0.7; /* Adds transparency for a more natural effect */
+}
+
+.wave2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-size: cover;
+    animation: waveAnimation 25s linear infinite reverse;
+    opacity: 0.5; /* Lighter transparency to give depth */
+}
+
+@keyframes waveAnimation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Moves half the width to ensure overlapping coverage */
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.login-logo-container {
+    position: relative;
+    width: 1000px;
+    padding: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+}
+
+.login-form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.login-form input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-right: 50px;
+}
+
+.login-form .btn {
+    width: 80%;
+    padding: 10px;
+    background-color: #002366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Scale button on hover */
+.login-form .btn:hover {
+    background-color: #ff6f6f;
+    color: #002366;
+    transform: scale(1.05);
+}
+
+.create-account {
+    margin-top: 15px;
+    color: #002366;
+    cursor: pointer;
+    text-align: center;
+}
+
+.logo-section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 500px;
+    height: auto;
+}
+
+.tagline {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #002366;
+    border-radius: 10px;
+    font-weight: 500;
+    color: #002366;
+    display: inline-block;
+    text-align: center;
+}
