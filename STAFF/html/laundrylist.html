@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laundry List</title>
+    <link rel="stylesheet" href="../css/laundrylist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="../img/ane-laundry-logo.png" alt="AN'E Laundry Logo" class="sidebar-logo"> 
+        <ul>
+            <li><a href="../php/maindashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="../php/inventorylist.php"><i class="fas fa-box"></i> Inventory</a></li>
+            <li><a href="../html/laundrylist.html" class="active"><i class="fas fa-list-alt"></i> Laundries List</a></li>
+            <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content area -->
+    <div class="main-content">
+        <header class="main-header">
+            <div class="header-left">
+                <h1 class="logo"></h1>
+            </div>
+            <div class="header-right">
+                <i class="fa fa-bell"></i>
+                <div class="user-profile">
+                    <i class="fa fa-user-circle"></i>
+                    <span>Staff</span>
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Laundry List Section -->
+        <div class="laundry-list-header">
+            <h2>Laundries</h2>
+            <button class="delete-btn" id="deleteSelected" style="margin-left: 10px;">
+                <i class="fas fa-trash"></i>&nbsp;Delete Selected
+            </button>
+            
+            <button class="print-btn" id="printSelectedReceipts"><i class="fas fa-print"></i>&nbsp;Print Receipt</button>
+            <button class="add-laundry-btn"><i class="fas fa-plus"></i>&nbsp;Add Laundry</button>
+        </div>
+        <script>
+           // Handle Delete Selected button
+document.getElementById('deleteSelected').addEventListener('click', function() {
+    const selectedOrders = [];
+    
+    // Loop through all checkboxes and collect the checked ones
+    document.querySelectorAll('.select-laundry:checked').forEach(function(checkbox) {
+        const orderId = checkbox.getAttribute('data-order-id');
+        console.log("Selected Order ID:", orderId); // Debugging line
+        selectedOrders.push(orderId);
+    });
+
+    // Log the selected orders to check if the data is correct
+    console.log("Selected Orders:", selectedOrders);
+
+    // Check if any orders are selected
+    if (selectedOrders.length > 0) {
+        // Confirm before deleting
+        if (confirm('Are you sure you want to delete the selected orders?')) {
+            $.ajax({
+                url: '../php/deleteLaundry.php', // PHP file to handle the deletion
+                type: 'POST',
+                data: { orderIDs: selectedOrders }, // Send the selected order IDs
+                success: function(response) {
+                    toastr.success('Selected orders deleted successfully');
+                    loadLaundryList(); // Reload the laundry list after deletion
+                },
+                error: function() {
+                    toastr.error('Error deleting selected records');
+                }
+            });
+        }
+    } else {
+        toastr.warning('Please select orders to delete');
+    }
+});
+
+
+        </script>
+        <!-- Search Bar and Filter -->
+        <div class="search-filter-container">
+            <input type="text" id="search" placeholder="Search by Order ID, Name, or Date">
+            <select class="status-filter">
+                <option value="All" selected>All</option> 
+                <option value="Completed">Completed</option>
+                <option value="Pending">Pending</option>
+            </select>
+        </div>
+
+        <div id="loader" class="loader" style="display: none;"></div>
+
+        <!-- Modal for Adding Laundry -->
+        <div id="laundryModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form id="laundryForm">
+
+                    <div class="form-container">
+
+                        <!-- Customer Information -->
+                        <div class="card">
+                            <h3>Customer Information</h3>
+
+                            <label for="orderID">Order ID</label>
+                            <input type="text" id="orderID" name="ORDER_ID" placeholder="Order ID" required readonly>
+
+
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="NAME" placeholder="Enter your name" required>
+
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="DATE" required>
+
+                            <label for="load">Load</label>
+                            <input type="text" id="load" name="LOAD" placeholder="Load" readonly>
+
+                            <!-- Category of Service -->
+                            <h4>Category of Service</h4>
+                            <label><input type="radio" name="SERVICE" value="Wash-Dry-Fold" required> Wash-Dry-Fold</label><br>
+                            <label><input type="radio" name="SERVICE" value="Wash Only"> Wash Only</label><br>
+                            <label><input type="radio" name="SERVICE" value="Dry Only"> Dry Only</label>
+                        </div>
+
+                        <!-- Article Section -->
+                        <div class="card">
+                            <h3>Article</h3>
+                            
+                            <!-- Clothes (kg) -->
+                            <label>
+                                <input type="checkbox" name="article[]" value="Clothes" class="article-checkbox" data-input-id="clothesWeight">
+                                Clothes (kg)
+                            </label>
+                            <input type="number" id="clothesWeight" name="CLOTHES_WEIGHT_KG" placeholder="kg" disabled min="0" step="0.1"><br>
+                            
+                            <!-- Comforter Single (pieces) -->
+                            <label>
+                                <input type="checkbox" name="article[]" value="Comforter Single" class="article-checkbox" data-input-id="comforterSinglePieces">
+                                Comforter Single (pieces)
+                            </label>
+                            <input type="number" id="comforterSinglePieces" name="COMFORTER_SINGLE" placeholder="pieces" disabled min="0" step="1"><br>
+                            
+                            <!-- Comforter Double (pieces) -->
+                            <label>
+                                <input type="checkbox" name="article[]" value="Comforter Double" class="article-checkbox" data-input-id="comforterDoublePieces">
+                                Comforter Double (pieces)
+                            </label>
+                            <input type="number" id="comforterDoublePieces" name="COMFORT_DOUBLE" placeholder="pieces" disabled min="0" step="1"><br>
+                            
+                            <!-- Bedsheet/Curtains/Towel (pieces) -->
+                            <label>
+                                <input type="checkbox" name="article[]" value="Bedsheet" class="article-checkbox" data-input-id="bedsheetsWeight">
+                                Bedsheet/Curtains/Towel (pieces)
+                            </label>
+                            <input type="number" id="bedsheetsWeight" name="BEDSHEETS_CURTAINS_TOWEL_BLANKETS" placeholder="pieces" disabled min="0" step="1"><br>
+                            
+                            <!-- Others -->
+                            <label>
+                                <input type="checkbox" name="article[]" value="Others" class="article-checkbox" data-input-id="othersInput">
+                                Others
+                            </label>
+                            <input type="text" id="othersInput" name="OTHERS" placeholder="(others)" disabled><br>
+                        </div>
+
+                        <!-- Detergent Section -->
+                        <div class="card">
+                            <h3>Detergent</h3>
+                            <label>
+                                <input type="radio" name="DETERGENT_TYPE" value="Tide" class="detergent-radio" data-input-id="detergentAdditional">
+                                Tide
+                            </label>
+
+                            <label>
+                                <input type="radio" name="DETERGENT_TYPE" value="Ariel" class="detergent-radio" data-input-id="detergentAdditional">
+                                Ariel
+                            </label>
+                            <input type="number" name="DETERGENT_ADDITIONAL" id="detergentAdditional" class="detergent-additional" placeholder="Additional" disabled min="0" step="1"><br>
+
+                            <h3>Fabric Detergent</h3>
+                            <label>
+                                <input type="radio" name="FABRIC_DETERGENT_TYPE" value="Downy JF" class="fabric-detergent-radio" data-input-id="fabricDetergentAdditional">
+                                Downy JF
+                            </label>
+
+                            <label>
+                                <input type="radio" name="FABRIC_DETERGENT_TYPE" value="Downy SF" class="fabric-detergent-radio" data-input-id="fabricDetergentAdditional">
+                                Downy SF
+                            </label>
+                            <label>
+                                <input type="radio" name="FABRIC_DETERGENT_TYPE" value="Downy GB" class="fabric-detergent-radio" data-input-id="fabricDetergentAdditional">
+                                Downy GB
+                            </label>
+                            <input type="number" name="FABRIC_DETERGENT_ADDITIONAL" id="fabricDetergentAdditional" class="fabric-detergent-additional" placeholder="Additional" disabled min="0" step="1"><br>
+
+                            <!-- PickUp Time Field -->
+                            <label for="pickupTime">PickUp Time</label>
+                            <input type="time" id="pickupTime" name="PICKUP_TIME" required>
+                            
+                            <label for="total">Total:</label>
+                            <input type="text" id="total" name="TOTAL" placeholder="" required readonly>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="done-button">Done</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Receipt Modal -->
+<div id="receiptModal" class="modal">
+    <div class="modal-content receipt-content">
+        <span class="close-receipt">&times;</span>
+        <div id="receipt">
+            <h2>AN'E Laundry Receipt</h2>
+            <p><strong>Order ID:</strong> <span id="receiptOrderID"></span></p>
+            <p><strong>Name:</strong> <span id="receiptName"></span></p>
+            <p><strong>Date:</strong> <span id="receiptDate"></span></p>
+            <p><strong>Service:</strong> <span id="receiptService"></span></p>
+            <p><strong>Load:</strong> <span id="receiptLoad"></span></p>
+            <h3>Articles</h3>
+            <ul id="receiptArticles">
+                <!-- Articles will be listed here -->
+            </ul>
+            <p><strong>Total:</strong> ₱ <span id="receiptTotal"></span></p>
+            <p><strong>Pick Up Time:</strong> <span id="receiptPickupTime"></span></p>
+        </div>
+        <button id="printReceiptBtn" class="print-btn"><i class="fas fa-print"></i>&nbsp;Print Receipt</button>
+    </div>
+</div>
+
+
+
+        <!-- Laundry List Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Pick Up Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="laundryListTable">
+                <!-- Data will be inserted here dynamically -->
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+            <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
+            <span id="pageNumber">1</span>
+            <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+
+    <script src="../js/laundrylist.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    
+    
+    <script>
+      $(document).ready(function() {
+        // Get the current page's full path
+        var currentPath = window.location.pathname.toLowerCase();
+        console.log("Current Path:", currentPath); // Debugging line
+    
+        // Extract the filename from the path
+        var currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+        console.log("Current Page:", currentPage); // Debugging line
+    
+        // Handle default page if necessary (e.g., index.html)
+        if (currentPage === "") {
+          currentPage = "dashboard.html"; // Adjust to your default page
+          console.log("Defaulting to:", currentPage);
+        }
+    
+        // Iterate through each sidebar link
+        $('.sidebar ul li a').each(function() {
+          var linkHref = $(this).attr('href').toLowerCase();
+          console.log("Checking Link:", linkHref); // Debugging line
+    
+          // Extract the filename from the link's href
+          var linkPage = linkHref.substring(linkHref.lastIndexOf('/') + 1);
+          console.log("Link Page:", linkPage); // Debugging line
+    
+          // Compare the current page with the link's page
+          if (linkPage === currentPage) {
+            $(this).addClass("active");
+            console.log("Active class added to:", linkHref); // Debugging line
+          }
+        });
+      });
+    </script>
+    <!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000", /* Increased timeout for better visibility */
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+        });
+    </script>
+
+
+</body>
+</html>

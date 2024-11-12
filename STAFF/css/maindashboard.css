@@ -1,0 +1,380 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #eef2f7; /* Updated background color */
+}
+
+.sidebar {
+  background-color: #1A1A40;
+  color: white;
+  height: 100vh;
+  width: 220px;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Sidebar Links Style */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  position: relative;
+}
+
+.sidebar ul li {
+  position: relative;
+}
+
+.sidebar-logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Sidebar Links */
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 15px 20px;
+  display: block;
+  transition: color 0.3s ease, padding-left 0.3s ease; /* Smooth color and padding transition */
+}
+
+/* Active Link Style with Sliding and Bounce Effect */
+.sidebar ul li a.active {
+  color: #1A1A40; /* Darker color for active item */
+  font-weight: 700; /* Bold for active item */
+  background-color: #eef2f7; /* Highlight the active link */
+  padding-left: 30px; /* Emphasize active link */
+  border-radius: 50px 0 0 50px; /* Curved left edge to match desired style */
+  position: relative;
+  animation: slideBounce 0.6s ease-out; /* Apply bounce animation to active link */
+}
+
+/* Sliding and Bounce Animation Keyframes */
+@keyframes slideBounce {
+  0% {
+    transform: translateY(-10px);
+  }
+  40% {
+    transform: translateY(5px);
+  }
+  70% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Pseudo-element to create connection effect */
+.sidebar ul li a.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 10px;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 50px 0 0 50px;
+  z-index: -1;
+  transition: all 0.4s ease; /* Smooth transition */
+}
+
+/* Main Content */
+.main-content {
+  width: calc(100% - 220px);
+  padding: 20px;
+  margin-left: 220px;
+  .main-content {
+    background-color: #f4f7fa; /* Soft background */
+    padding: 40px;
+    border-radius: 20px;
+    margin: 20px;
+  }
+  
+}
+
+/* Updated Header Design */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow to separate header from content */
+}
+
+.date-selection {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.header-left .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #23253A;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-right i.fa-bell {
+  font-size: 1.2em;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-profile i.fa-user-circle {
+  font-size: 1.5em;
+  margin-right: 8px;
+}
+
+.user-profile span {
+  margin-right: 5px;
+}
+
+.user-profile i.fa-caret-down {
+  font-size: 0.9em;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #fff; /* Soft light background */
+  padding: 20px;
+  width: 23%;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  color: #03045e; /* Dark Blue text for titles */
+}
+
+.card h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #03045e; /* Accent blue for title */
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000; /* Dark blue for the numbers */
+}
+
+/* Adjust shadow intensity on hover */
+.card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect for cards */
+.card:hover {
+  transform: translateY(-5px); /* Lift the card on hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.1); /* Enhance shadow on hover */
+}
+
+/* Dark Mode for Cards */
+.card.dark-mode {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #ffffff;
+}
+
+/* Date Filter Form */
+.date-filter-form {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.date-filter-form label {
+  margin-right: 5px;
+  font-weight: 500;
+}
+
+.date-filter-form select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.date-filter-form button {
+  padding: 5px 15px;
+  background-color: #1A1A40;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.date-filter-form button:hover {
+  background-color: #3c3c5a;
+}
+
+/* Charts Container */
+.charts-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 20px;
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+/* Bar Chart Container */
+.bar-chart-container {
+  flex: 2; /* Takes twice the space compared to pie charts */
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  height: 400px; /* Increased height for a larger chart */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.bar-chart-container h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Pie Charts Wrapper */
+.pie-charts {
+  flex: 1;
+  flex-direction: row; /* Change from column to row */
+  gap: 20px;
+}
+
+/* Individual Pie Chart Containers */
+.pie-chart-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1; /* Equal width for both pie charts */
+  height: 200px; /* Adjusted height for stacked layout */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+.pie-chart-container canvas {
+  width: 100% !important; /* Force canvas to take full width */
+  height: 85% !important; /* Force canvas to take full height */
+}
+
+.pie-chart-container h3 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Dark Mode for Pie Charts */
+.pie-chart-container.dark-mode {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+/* Sidebar Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Keep the sidebar width larger */
+  }
+
+  .sidebar ul li a {
+    text-align: left; /* Keep text aligned to the left */
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  .sidebar-logo {
+    width: 80px; /* Shrink the logo */
+    height: 80px;
+  }
+
+  .main-content {
+    width: calc(100% - 200px); /* Adjust width based on sidebar */
+    margin-left: 200px; /* Adjust margin based on sidebar width */
+  }
+}
+
+/* Date Filter Section Responsiveness */
+@media (max-width: 768px) {
+  .date-filter-form {
+    flex-direction: column;
+    align-items: flex-start; /* Align form elements to the left */
+  }
+
+  .date-filter-form label {
+    width: 100%;
+    margin-bottom: 5px; /* Add space between elements */
+  }
+
+  .date-filter-form select, .date-filter-form button {
+    width: 100%;
+  }
+
+  .date-filter-form button {
+    margin-top: 10px;
+  }
+}
+
+/* Main Header Profile and Notification Responsiveness */
+@media (max-width: 768px) {
+  .header-right {
+    flex-direction: column; /* Stack notification and profile vertically */
+    align-items: flex-end;  /* Align them to the right */
+  }
+
+  .user-profile {
+    margin-top: 10px; /* Add some space between elements */
+  }
+}
+
+.bar-chart-container {
+  background-color: #ffffff; /* Soft background color to match the image */
+  border-radius: 15px; /* Rounds the corners of the container */
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a 3D effect */
+  height: 400px; /* Adjust height to give the chart enough space */
+}
+
