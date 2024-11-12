@@ -1,0 +1,6 @@
+2024-11-11 19:35:13,985 - ERROR - Failed to load model: [Errno 2] No such file or directory: 'model.joblib'
+2024-11-11 19:35:13,987 - INFO - Running Flask app directly without the Windows Service wrapper.
+2024-11-11 19:35:14,004 - WARNING -  * Debugger is active!
+2024-11-11 19:35:14,006 - INFO -  * Debugger PIN: 912-909-024
+2024-11-11 19:35:14,157 - INFO - 127.0.0.1 - - [11/Nov/2024 19:35:14] "[31m[1mGET /predict?year=2024&api_key=testkey123 HTTP/1.1[0m" 405 -
+2024-11-11 19:35:28,690 - INFO -  * Detected change in 'C:\\wamp64\\www\\Capstone-1\\flask_app\\predict_sales.py', reloading
