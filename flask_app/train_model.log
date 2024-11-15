@@ -334,3 +334,517 @@
 2024-11-12 22:00:38,644 INFO Plotting feature importances.
 2024-11-12 22:00:39,615 INFO Feature importances plotted and saved as 'feature_importances.png'.
 2024-11-12 22:00:39,615 INFO Model training and evaluation completed.
+2024-11-15 20:28:39,428 INFO Fetching sales data from the database.
+2024-11-15 20:28:39,484 INFO Fetched 3437 records from the database.
+2024-11-15 20:28:39,485 INFO Starting data preprocessing.
+2024-11-15 20:28:39,487 INFO Performing feature engineering.
+2024-11-15 20:28:39,494 INFO Adding lag features.
+2024-11-15 20:28:39,506 INFO Detected 310 outliers. Removing them.
+2024-11-15 20:28:39,507 INFO Data preprocessing completed.
+2024-11-15 20:28:39,508 INFO Starting model training and evaluation.
+2024-11-15 20:28:39,509 INFO Training and evaluating model: LinearRegression
+2024-11-15 20:28:39,575 INFO LinearRegression - MAE: 51.85, MSE: 7011.96, R²: -3.52
+2024-11-15 20:28:39,575 INFO Training and evaluating model: Ridge
+2024-11-15 20:28:39,614 INFO Ridge - MAE: 46.35, MSE: 5005.09, R²: -2.23
+2024-11-15 20:28:39,614 INFO Training and evaluating model: Lasso
+2024-11-15 20:28:39,708 INFO Lasso - MAE: 39.24, MSE: 3747.97, R²: -1.42
+2024-11-15 20:28:39,709 INFO Training and evaluating model: RandomForest
+2024-11-15 20:28:39,709 INFO Performing Grid Search for RandomForest
+2024-11-15 20:31:20,185 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 20:31:20,211 INFO RandomForest - MAE: 3.95, MSE: 138.55, R²: 0.91
+2024-11-15 20:31:20,212 INFO Training and evaluating model: GradientBoosting
+2024-11-15 20:31:20,217 INFO Performing Grid Search for GradientBoosting
+2024-11-15 20:32:21,613 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 20:32:21,632 INFO GradientBoosting - MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 20:32:21,633 INFO Best model: GradientBoosting with MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 20:32:21,656 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 20:32:21,659 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 20:32:21,661 INFO Plotting feature importances.
+2024-11-15 20:32:22,246 INFO Feature importances plotted and saved as 'feature_importances.png'.
+2024-11-15 20:32:22,247 INFO Model training and evaluation completed.
+2024-11-15 21:08:41,428 INFO Fetching sales data from the database.
+2024-11-15 21:08:41,532 INFO Fetched 3437 records from the database.
+2024-11-15 21:08:41,532 INFO Starting data preprocessing.
+2024-11-15 21:08:41,537 INFO Performing feature engineering.
+2024-11-15 21:08:41,550 INFO Adding lag features.
+2024-11-15 21:08:41,565 INFO Creating preprocessing pipelines.
+2024-11-15 21:08:41,568 INFO Detected 310 outliers. Removing them.
+2024-11-15 21:08:41,570 INFO Data preprocessing completed.
+2024-11-15 21:08:41,571 INFO Starting model training and evaluation.
+2024-11-15 21:08:41,572 INFO Training and evaluating model: LinearRegression
+2024-11-15 21:08:42,012 INFO LinearRegression - Cross-Validation R²: -2.37 ± 6.35
+2024-11-15 21:08:42,026 INFO LinearRegression - MAE: 51.85, MSE: 7011.96, R²: -3.52
+2024-11-15 21:08:42,026 INFO Training and evaluating model: Ridge
+2024-11-15 21:08:42,220 INFO Ridge - Cross-Validation R²: -2.24 ± 6.12
+2024-11-15 21:08:42,232 INFO Ridge - MAE: 46.35, MSE: 5005.09, R²: -2.23
+2024-11-15 21:08:42,232 INFO Training and evaluating model: Lasso
+2024-11-15 21:08:42,866 INFO Lasso - Cross-Validation R²: -2.25 ± 5.93
+2024-11-15 21:08:42,874 INFO Lasso - MAE: 39.24, MSE: 3747.97, R²: -1.42
+2024-11-15 21:08:42,874 INFO Training and evaluating model: RandomForest
+2024-11-15 21:08:42,874 INFO Performing Grid Search for RandomForest
+2024-11-15 21:12:59,609 INFO Fetching sales data from the database.
+2024-11-15 21:12:59,670 INFO Fetched 3437 records from the database.
+2024-11-15 21:12:59,670 INFO Starting data preprocessing.
+2024-11-15 21:12:59,674 INFO Performing feature engineering.
+2024-11-15 21:12:59,681 INFO Adding lag features.
+2024-11-15 21:12:59,690 INFO Creating preprocessing pipelines.
+2024-11-15 21:12:59,693 INFO Detected 310 outliers. Removing them.
+2024-11-15 21:12:59,695 INFO Data preprocessing completed.
+2024-11-15 21:12:59,696 INFO Starting model training and evaluation.
+2024-11-15 21:12:59,697 INFO Training and evaluating model: LinearRegression
+2024-11-15 21:13:00,024 INFO LinearRegression - Cross-Validation R²: -2.37 ± 6.35
+2024-11-15 21:13:00,032 INFO LinearRegression - MAE: 51.85, MSE: 7011.96, R²: -3.52
+2024-11-15 21:13:00,032 INFO Training and evaluating model: Ridge
+2024-11-15 21:13:00,216 INFO Ridge - Cross-Validation R²: -2.24 ± 6.12
+2024-11-15 21:13:00,224 INFO Ridge - MAE: 46.35, MSE: 5005.09, R²: -2.23
+2024-11-15 21:13:00,224 INFO Training and evaluating model: Lasso
+2024-11-15 21:13:00,746 INFO Lasso - Cross-Validation R²: -2.25 ± 5.93
+2024-11-15 21:13:00,754 INFO Lasso - MAE: 39.24, MSE: 3747.97, R²: -1.42
+2024-11-15 21:13:00,754 INFO Training and evaluating model: RandomForest
+2024-11-15 21:13:00,754 INFO Performing Grid Search for RandomForest
+2024-11-15 21:16:02,810 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 21:16:43,708 INFO RandomForest - Cross-Validation R²: -2.44 ± 6.81
+2024-11-15 21:16:43,761 INFO RandomForest - MAE: 3.95, MSE: 138.55, R²: 0.91
+2024-11-15 21:16:43,762 INFO Training and evaluating model: GradientBoosting
+2024-11-15 21:16:43,763 INFO Performing Grid Search for GradientBoosting
+2024-11-15 21:17:48,508 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 21:17:57,529 INFO GradientBoosting - Cross-Validation R²: -2.44 ± 6.83
+2024-11-15 21:17:57,542 INFO GradientBoosting - MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 21:17:57,542 INFO Best model: GradientBoosting with MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 21:17:57,556 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 21:17:57,559 INFO Preprocessor saved to preprocessor.joblib.
+2024-11-15 21:17:57,560 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 21:17:57,560 INFO Model training and evaluation completed.
+2024-11-15 21:19:05,817 INFO Fetching sales data from the database.
+2024-11-15 21:19:05,897 INFO Fetched 3437 records from the database.
+2024-11-15 21:19:05,898 INFO Starting data preprocessing.
+2024-11-15 21:19:05,901 INFO Performing feature engineering.
+2024-11-15 21:19:05,907 INFO Adding lag features.
+2024-11-15 21:19:05,921 INFO Creating preprocessing pipelines.
+2024-11-15 21:19:05,924 INFO Detected 310 outliers. Removing them.
+2024-11-15 21:19:05,926 INFO Data preprocessing completed.
+2024-11-15 21:19:05,926 INFO Starting model training and evaluation.
+2024-11-15 21:19:05,928 INFO Training and evaluating model: LinearRegression
+2024-11-15 21:19:06,262 INFO LinearRegression - Cross-Validation R²: -2.37 ± 6.35
+2024-11-15 21:19:06,270 INFO LinearRegression - MAE: 51.85, MSE: 7011.96, R²: -3.52
+2024-11-15 21:19:06,270 INFO Training and evaluating model: Ridge
+2024-11-15 21:19:06,437 INFO Ridge - Cross-Validation R²: -2.24 ± 6.12
+2024-11-15 21:19:06,446 INFO Ridge - MAE: 46.35, MSE: 5005.09, R²: -2.23
+2024-11-15 21:19:06,446 INFO Training and evaluating model: Lasso
+2024-11-15 21:19:06,957 INFO Lasso - Cross-Validation R²: -2.25 ± 5.93
+2024-11-15 21:19:06,964 INFO Lasso - MAE: 39.24, MSE: 3747.97, R²: -1.42
+2024-11-15 21:19:06,965 INFO Training and evaluating model: RandomForest
+2024-11-15 21:19:06,965 INFO Performing Grid Search for RandomForest
+2024-11-15 21:22:01,890 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 21:22:41,071 INFO RandomForest - Cross-Validation R²: -2.44 ± 6.81
+2024-11-15 21:22:41,104 INFO RandomForest - MAE: 3.95, MSE: 138.55, R²: 0.91
+2024-11-15 21:22:41,104 INFO Training and evaluating model: GradientBoosting
+2024-11-15 21:22:41,105 INFO Performing Grid Search for GradientBoosting
+2024-11-15 21:23:37,964 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 21:23:41,222 INFO Fetching sales data from the database.
+2024-11-15 21:23:41,406 INFO Fetched 3437 records from the database.
+2024-11-15 21:23:41,407 INFO Starting data preprocessing.
+2024-11-15 21:23:41,413 INFO Performing feature engineering.
+2024-11-15 21:23:41,431 INFO Adding lag features.
+2024-11-15 21:23:41,457 INFO Creating preprocessing pipelines.
+2024-11-15 21:23:41,463 INFO Detected 310 outliers. Removing them.
+2024-11-15 21:23:41,469 INFO Data preprocessing completed.
+2024-11-15 21:23:41,471 INFO Starting model training and evaluation.
+2024-11-15 21:23:41,481 INFO Training and evaluating model: LinearRegression
+2024-11-15 21:23:42,296 INFO LinearRegression - Cross-Validation R²: -2.37 ± 6.35
+2024-11-15 21:23:42,316 INFO LinearRegression - MAE: 51.85, MSE: 7011.96, R²: -3.52
+2024-11-15 21:23:42,317 INFO Training and evaluating model: Ridge
+2024-11-15 21:23:42,659 INFO Ridge - Cross-Validation R²: -2.24 ± 6.12
+2024-11-15 21:23:42,679 INFO Ridge - MAE: 46.35, MSE: 5005.09, R²: -2.23
+2024-11-15 21:23:42,679 INFO Training and evaluating model: Lasso
+2024-11-15 21:23:43,545 INFO Lasso - Cross-Validation R²: -2.25 ± 5.93
+2024-11-15 21:23:43,557 INFO Lasso - MAE: 39.24, MSE: 3747.97, R²: -1.42
+2024-11-15 21:23:43,557 INFO Training and evaluating model: RandomForest
+2024-11-15 21:23:43,557 INFO Performing Grid Search for RandomForest
+2024-11-15 21:24:00,521 INFO GradientBoosting - Cross-Validation R²: -2.44 ± 6.83
+2024-11-15 21:24:00,625 INFO GradientBoosting - MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 21:24:00,649 INFO Best model: GradientBoosting with MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 21:24:00,732 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 21:24:00,757 INFO Preprocessor saved to preprocessor.joblib.
+2024-11-15 21:24:00,791 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 21:24:00,802 INFO Model training and evaluation completed.
+2024-11-15 21:26:31,086 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 21:27:02,416 INFO RandomForest - Cross-Validation R²: -2.44 ± 6.81
+2024-11-15 21:27:02,450 INFO RandomForest - MAE: 3.95, MSE: 138.55, R²: 0.91
+2024-11-15 21:27:02,450 INFO Training and evaluating model: GradientBoosting
+2024-11-15 21:27:02,450 INFO Performing Grid Search for GradientBoosting
+2024-11-15 21:27:52,140 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 21:27:59,280 INFO GradientBoosting - Cross-Validation R²: -2.44 ± 6.83
+2024-11-15 21:27:59,293 INFO GradientBoosting - MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 21:27:59,293 INFO Best model: GradientBoosting with MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 21:27:59,306 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 21:27:59,310 INFO Preprocessor saved to preprocessor.joblib.
+2024-11-15 21:27:59,311 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 21:27:59,311 INFO Model training and evaluation completed.
+2024-11-15 21:46:37,297 INFO Fetching sales data from the database.
+2024-11-15 21:46:37,362 INFO Fetched 3437 records from the database.
+2024-11-15 21:46:37,363 INFO Starting data preprocessing.
+2024-11-15 21:46:37,367 INFO Performing feature engineering.
+2024-11-15 21:46:37,374 INFO Adding lag features.
+2024-11-15 21:46:37,389 INFO Detected 310 outliers. Removing them.
+2024-11-15 21:46:37,390 INFO Data preprocessing completed.
+2024-11-15 21:46:37,391 INFO Starting model training and evaluation.
+2024-11-15 21:46:37,393 INFO Training and evaluating model: LinearRegression
+2024-11-15 21:46:37,711 INFO LinearRegression - Cross-Validation R²: -2.37 ± 6.35
+2024-11-15 21:46:37,718 INFO LinearRegression - MAE: 51.85, MSE: 7011.96, R²: -3.52
+2024-11-15 21:46:37,718 INFO Training and evaluating model: Ridge
+2024-11-15 21:46:37,892 INFO Ridge - Cross-Validation R²: -2.24 ± 6.12
+2024-11-15 21:46:37,899 INFO Ridge - MAE: 46.35, MSE: 5005.09, R²: -2.23
+2024-11-15 21:46:37,900 INFO Training and evaluating model: Lasso
+2024-11-15 21:46:38,419 INFO Lasso - Cross-Validation R²: -2.25 ± 5.93
+2024-11-15 21:46:38,430 INFO Lasso - MAE: 39.24, MSE: 3747.97, R²: -1.42
+2024-11-15 21:46:38,430 INFO Training and evaluating model: RandomForest
+2024-11-15 21:46:38,431 INFO Performing Grid Search for RandomForest
+2024-11-15 21:49:33,858 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 21:50:10,526 INFO RandomForest - Cross-Validation R²: -2.44 ± 6.81
+2024-11-15 21:50:10,574 INFO RandomForest - MAE: 3.95, MSE: 138.55, R²: 0.91
+2024-11-15 21:50:10,575 INFO Training and evaluating model: GradientBoosting
+2024-11-15 21:50:10,575 INFO Performing Grid Search for GradientBoosting
+2024-11-15 21:51:08,848 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 21:51:18,481 INFO GradientBoosting - Cross-Validation R²: -2.44 ± 6.83
+2024-11-15 21:51:18,493 INFO GradientBoosting - MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 21:51:18,493 INFO Best model: GradientBoosting with MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 21:51:18,516 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 21:51:18,520 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 21:51:18,521 INFO Model training and evaluation completed.
+2024-11-15 21:58:47,982 INFO Fetching sales data from the database.
+2024-11-15 21:58:48,048 INFO Fetched 3437 records from the database.
+2024-11-15 21:58:48,048 INFO Starting data preprocessing.
+2024-11-15 21:58:48,051 INFO Performing feature engineering.
+2024-11-15 21:58:48,057 INFO Adding lag features.
+2024-11-15 21:58:48,063 INFO Adding rolling features.
+2024-11-15 21:58:48,070 INFO Detecting and removing outliers.
+2024-11-15 21:58:48,073 INFO Detected 369 outliers. Removing them.
+2024-11-15 21:58:48,074 INFO Data preprocessing completed.
+2024-11-15 21:58:48,075 INFO Starting model training and evaluation.
+2024-11-15 21:58:48,075 INFO Training and evaluating model: LinearRegression
+2024-11-15 21:58:48,115 INFO LinearRegression - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 21:58:48,118 INFO LinearRegression - MAE: 0.00, MSE: 0.00, R²: 1.00
+2024-11-15 21:58:48,119 INFO Training and evaluating model: Ridge
+2024-11-15 21:58:48,150 INFO Ridge - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 21:58:48,153 INFO Ridge - MAE: 0.17, MSE: 0.07, R²: 1.00
+2024-11-15 21:58:48,154 INFO Training and evaluating model: Lasso
+2024-11-15 21:58:48,195 INFO Lasso - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 21:58:48,199 INFO Lasso - MAE: 3.18, MSE: 24.62, R²: 1.00
+2024-11-15 21:58:48,199 INFO Training and evaluating model: RandomForest
+2024-11-15 21:58:48,200 INFO Performing Grid Search for RandomForest
+2024-11-15 21:59:18,695 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 100}
+2024-11-15 21:59:20,712 INFO RandomForest - Cross-Validation R²: 0.87 ± 0.12
+2024-11-15 21:59:20,741 INFO RandomForest - MAE: 2.79, MSE: 46.97, R²: 1.00
+2024-11-15 21:59:20,741 INFO Training and evaluating model: GradientBoosting
+2024-11-15 21:59:20,742 INFO Performing Grid Search for GradientBoosting
+2024-11-15 21:59:38,638 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 2, 'model__min_samples_split': 5, 'model__n_estimators': 200}
+2024-11-15 21:59:42,916 INFO GradientBoosting - Cross-Validation R²: 0.91 ± 0.05
+2024-11-15 21:59:42,935 INFO GradientBoosting - MAE: 2.25, MSE: 13.16, R²: 1.00
+2024-11-15 21:59:42,935 INFO Best model: LinearRegression with MAE: 0.00, MSE: 0.00, R²: 1.00
+2024-11-15 21:59:42,938 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 21:59:42,941 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 21:59:42,941 INFO Model training and evaluation completed.
+2024-11-15 22:01:38,095 INFO Fetching sales data from the database.
+2024-11-15 22:01:38,162 INFO Fetched 3437 records from the database.
+2024-11-15 22:01:38,162 INFO Starting data preprocessing.
+2024-11-15 22:01:38,165 INFO Performing feature engineering.
+2024-11-15 22:01:38,172 INFO Adding lag features.
+2024-11-15 22:01:38,178 INFO Adding rolling features.
+2024-11-15 22:01:38,185 INFO Detecting and removing outliers.
+2024-11-15 22:01:38,188 INFO Detected 369 outliers. Removing them.
+2024-11-15 22:01:38,189 INFO Data preprocessing completed.
+2024-11-15 22:01:38,190 INFO Starting model training and evaluation.
+2024-11-15 22:01:38,190 INFO Training and evaluating model: LinearRegression
+2024-11-15 22:01:38,272 INFO LinearRegression - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:02:10,397 INFO Fetching sales data from the database.
+2024-11-15 22:02:10,455 INFO Fetched 3437 records from the database.
+2024-11-15 22:02:10,455 INFO Starting data preprocessing.
+2024-11-15 22:02:10,459 INFO Performing feature engineering.
+2024-11-15 22:02:10,468 INFO Adding lag features.
+2024-11-15 22:02:10,475 INFO Adding rolling features.
+2024-11-15 22:02:10,483 INFO Detecting and removing outliers.
+2024-11-15 22:02:10,486 INFO Detected 369 outliers. Removing them.
+2024-11-15 22:02:10,487 INFO Data preprocessing completed.
+2024-11-15 22:02:10,488 INFO Starting model training and evaluation.
+2024-11-15 22:02:10,489 INFO Training and evaluating model: LinearRegression
+2024-11-15 22:02:10,620 INFO LinearRegression - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:02:10,624 INFO LinearRegression - MAE: 0.00, MSE: 0.00, R²: 1.00
+2024-11-15 22:02:10,624 INFO Training and evaluating model: Ridge
+2024-11-15 22:02:10,664 INFO Ridge - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:02:10,668 INFO Ridge - MAE: 0.17, MSE: 0.07, R²: 1.00
+2024-11-15 22:02:10,669 INFO Training and evaluating model: Lasso
+2024-11-15 22:02:10,713 INFO Lasso - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:02:10,718 INFO Lasso - MAE: 3.18, MSE: 24.62, R²: 1.00
+2024-11-15 22:02:10,718 INFO Training and evaluating model: RandomForest
+2024-11-15 22:02:10,718 INFO Performing Grid Search for RandomForest
+2024-11-15 22:02:55,762 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 100}
+2024-11-15 22:02:58,533 INFO RandomForest - Cross-Validation R²: 0.87 ± 0.12
+2024-11-15 22:02:58,563 INFO RandomForest - MAE: 2.79, MSE: 46.97, R²: 1.00
+2024-11-15 22:02:58,564 INFO Training and evaluating model: GradientBoosting
+2024-11-15 22:02:58,564 INFO Performing Grid Search for GradientBoosting
+2024-11-15 22:03:15,225 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 2, 'model__min_samples_split': 5, 'model__n_estimators': 200}
+2024-11-15 22:03:17,521 INFO GradientBoosting - Cross-Validation R²: 0.91 ± 0.05
+2024-11-15 22:03:17,532 INFO GradientBoosting - MAE: 2.25, MSE: 13.16, R²: 1.00
+2024-11-15 22:03:17,533 INFO Best model: LinearRegression with MAE: 0.00, MSE: 0.00, R²: 1.00
+2024-11-15 22:03:17,535 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 22:03:17,537 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 22:03:17,537 INFO Model training and evaluation completed.
+2024-11-15 22:03:52,106 INFO Fetching sales data from the database.
+2024-11-15 22:03:52,181 INFO Fetched 3437 records from the database.
+2024-11-15 22:03:52,181 INFO Starting data preprocessing.
+2024-11-15 22:03:52,185 INFO Performing feature engineering.
+2024-11-15 22:03:52,195 INFO Adding lag features.
+2024-11-15 22:03:52,201 INFO Adding rolling features.
+2024-11-15 22:03:52,209 INFO Detecting and removing outliers.
+2024-11-15 22:03:52,212 INFO Detected 369 outliers. Removing them.
+2024-11-15 22:03:52,213 INFO Data preprocessing completed.
+2024-11-15 22:03:52,213 INFO Starting model training and evaluation.
+2024-11-15 22:03:52,214 INFO Training and evaluating model: LinearRegression
+2024-11-15 22:03:52,330 INFO LinearRegression - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:12:08,706 INFO Fetching sales data from the database.
+2024-11-15 22:12:08,777 INFO Fetched 3437 records from the database.
+2024-11-15 22:12:08,778 INFO Starting data preprocessing.
+2024-11-15 22:12:08,782 INFO Performing feature engineering.
+2024-11-15 22:12:08,788 INFO Adding lag features.
+2024-11-15 22:12:08,794 INFO Adding rolling features.
+2024-11-15 22:12:08,803 INFO Detecting and removing outliers.
+2024-11-15 22:12:08,805 INFO Detected 369 outliers. Removing them.
+2024-11-15 22:12:08,806 INFO Data preprocessing completed.
+2024-11-15 22:12:08,807 INFO Starting model training and evaluation.
+2024-11-15 22:12:08,807 INFO Training and evaluating model: LinearRegression
+2024-11-15 22:12:14,439 INFO LinearRegression - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:12:14,440 INFO LinearRegression - MAE: 0.00, MSE: 0.00
+2024-11-15 22:12:14,441 INFO Training and evaluating model: Ridge
+2024-11-15 22:12:16,245 INFO Ridge - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:12:16,248 INFO Ridge - MAE: 0.22, MSE: 0.16
+2024-11-15 22:12:16,249 INFO Training and evaluating model: Lasso
+2024-11-15 22:12:16,333 INFO Lasso - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:12:16,343 INFO Lasso - MAE: 1.93, MSE: 7.94
+2024-11-15 22:12:16,345 INFO Training and evaluating model: RandomForest
+2024-11-15 22:12:16,345 INFO Performing Grid Search for RandomForest
+2024-11-15 22:12:48,808 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 100}
+2024-11-15 22:12:49,760 INFO RandomForest - Cross-Validation R²: 0.87 ± 0.12
+2024-11-15 22:12:49,761 INFO RandomForest - MAE: 15.01, MSE: 889.18
+2024-11-15 22:12:49,761 INFO Training and evaluating model: GradientBoosting
+2024-11-15 22:12:49,761 INFO Performing Grid Search for GradientBoosting
+2024-11-15 22:13:06,785 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 2, 'model__min_samples_split': 5, 'model__n_estimators': 200}
+2024-11-15 22:13:08,181 INFO GradientBoosting - Cross-Validation R²: 0.91 ± 0.05
+2024-11-15 22:13:08,182 INFO GradientBoosting - MAE: 12.85, MSE: 867.31
+2024-11-15 22:13:08,182 INFO Best model: LinearRegression with MAE: 0.00, MSE: 0.00, R²: 1.00
+2024-11-15 22:13:08,185 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 22:13:08,189 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 22:13:08,190 INFO Model training and evaluation completed.
+2024-11-15 22:17:39,173 INFO Fetching sales data from the database.
+2024-11-15 22:17:39,234 INFO Fetched 3437 records from the database.
+2024-11-15 22:17:39,235 INFO Starting data preprocessing.
+2024-11-15 22:17:39,237 INFO Performing feature engineering.
+2024-11-15 22:17:39,244 INFO Adding lag features.
+2024-11-15 22:17:39,248 INFO Adding rolling features.
+2024-11-15 22:17:39,255 INFO Detecting and removing outliers.
+2024-11-15 22:17:39,257 INFO Detected 369 outliers. Removing them.
+2024-11-15 22:17:39,258 INFO Data preprocessing completed.
+2024-11-15 22:17:39,259 INFO Starting model training and evaluation.
+2024-11-15 22:17:39,259 INFO Training and evaluating model: LinearRegression
+2024-11-15 22:17:41,757 INFO LinearRegression - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:17:41,757 INFO LinearRegression - MAE: 0.00, MSE: 0.00
+2024-11-15 22:17:41,757 INFO Training and evaluating model: Ridge
+2024-11-15 22:17:42,621 INFO Ridge - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:17:42,621 INFO Ridge - MAE: 0.22, MSE: 0.16
+2024-11-15 22:17:42,622 INFO Training and evaluating model: Lasso
+2024-11-15 22:17:42,663 INFO Lasso - Cross-Validation R²: 1.00 ± 0.00
+2024-11-15 22:17:42,663 INFO Lasso - MAE: 1.93, MSE: 7.94
+2024-11-15 22:17:42,663 INFO Training and evaluating model: RandomForest
+2024-11-15 22:17:42,663 INFO Performing Grid Search for RandomForest
+2024-11-15 22:18:08,358 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 100}
+2024-11-15 22:18:09,404 INFO RandomForest - Cross-Validation R²: 0.87 ± 0.12
+2024-11-15 22:18:09,405 INFO RandomForest - MAE: 15.01, MSE: 889.18
+2024-11-15 22:18:09,405 INFO Training and evaluating model: GradientBoosting
+2024-11-15 22:18:09,405 INFO Performing Grid Search for GradientBoosting
+2024-11-15 22:18:25,980 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 2, 'model__min_samples_split': 5, 'model__n_estimators': 200}
+2024-11-15 22:18:26,853 INFO GradientBoosting - Cross-Validation R²: 0.91 ± 0.05
+2024-11-15 22:18:26,854 INFO GradientBoosting - MAE: 12.85, MSE: 867.31
+2024-11-15 22:18:26,854 INFO Best model: LinearRegression with MAE: 0.00, MSE: 0.00, R²: 1.00
+2024-11-15 22:18:26,857 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 22:18:26,859 INFO Preprocessor saved as 'preprocessor.joblib'.
+2024-11-15 22:18:26,860 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 22:18:26,860 INFO Model training and evaluation completed.
+2024-11-15 22:18:41,472 INFO Fetching sales data from the database.
+2024-11-15 22:18:41,542 INFO Fetched 3437 records from the database.
+2024-11-15 22:18:41,542 INFO Starting data preprocessing.
+2024-11-15 22:18:41,545 INFO Performing feature engineering.
+2024-11-15 22:18:41,552 INFO Adding lag features.
+2024-11-15 22:18:41,568 INFO Detected 310 outliers. Removing them.
+2024-11-15 22:18:41,571 INFO Data preprocessing completed.
+2024-11-15 22:18:41,572 INFO Starting model training and evaluation.
+2024-11-15 22:18:41,575 INFO Training and evaluating model: LinearRegression
+2024-11-15 22:18:41,642 INFO LinearRegression - MAE: 51.85, MSE: 7011.96, R²: -3.52
+2024-11-15 22:18:41,643 INFO Training and evaluating model: Ridge
+2024-11-15 22:18:41,682 INFO Ridge - MAE: 46.35, MSE: 5005.09, R²: -2.23
+2024-11-15 22:18:41,683 INFO Training and evaluating model: Lasso
+2024-11-15 22:18:41,778 INFO Lasso - MAE: 39.24, MSE: 3747.97, R²: -1.42
+2024-11-15 22:18:41,779 INFO Training and evaluating model: RandomForest
+2024-11-15 22:18:41,779 INFO Performing Grid Search for RandomForest
+2024-11-15 22:21:35,049 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 22:21:35,079 INFO RandomForest - MAE: 3.95, MSE: 138.55, R²: 0.91
+2024-11-15 22:21:35,079 INFO Training and evaluating model: GradientBoosting
+2024-11-15 22:21:35,079 INFO Performing Grid Search for GradientBoosting
+2024-11-15 22:22:25,814 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 22:22:25,825 INFO GradientBoosting - MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 22:22:25,825 INFO Best model: GradientBoosting with MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 22:22:25,839 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 22:22:25,840 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 22:22:25,841 INFO Plotting feature importances.
+2024-11-15 22:22:26,192 INFO Feature importances plotted and saved as 'feature_importances.png'.
+2024-11-15 22:22:26,192 INFO Model training and evaluation completed.
+2024-11-15 22:26:15,065 INFO Fetching sales data from the database.
+2024-11-15 22:26:15,143 INFO Fetched 3437 records from the database.
+2024-11-15 22:26:15,143 INFO Starting data preprocessing.
+2024-11-15 22:26:15,145 INFO Performing feature engineering.
+2024-11-15 22:26:15,154 INFO Adding lag features.
+2024-11-15 22:26:15,179 INFO Detected 310 outliers. Removing them.
+2024-11-15 22:26:15,182 INFO Data preprocessing completed.
+2024-11-15 22:26:15,184 INFO Starting model training and evaluation.
+2024-11-15 22:26:15,187 INFO Training and evaluating model: LinearRegression
+2024-11-15 22:26:15,288 INFO LinearRegression - MAE: 51.85, MSE: 7011.96, R²: -3.52
+2024-11-15 22:26:15,288 INFO Training and evaluating model: Ridge
+2024-11-15 22:26:15,328 INFO Ridge - MAE: 46.35, MSE: 5005.09, R²: -2.23
+2024-11-15 22:26:15,329 INFO Training and evaluating model: Lasso
+2024-11-15 22:26:15,441 INFO Lasso - MAE: 39.24, MSE: 3747.97, R²: -1.42
+2024-11-15 22:26:15,441 INFO Training and evaluating model: RandomForest
+2024-11-15 22:26:15,441 INFO Performing Grid Search for RandomForest
+2024-11-15 22:29:39,209 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 22:29:39,239 INFO RandomForest - MAE: 3.95, MSE: 138.55, R²: 0.91
+2024-11-15 22:29:39,240 INFO Training and evaluating model: GradientBoosting
+2024-11-15 22:29:39,240 INFO Performing Grid Search for GradientBoosting
+2024-11-15 22:30:45,282 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 200}
+2024-11-15 22:30:45,305 INFO GradientBoosting - MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 22:30:45,306 INFO Best model: GradientBoosting with MAE: 3.22, MSE: 53.60, R²: 0.97
+2024-11-15 22:30:45,324 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 22:30:45,326 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 22:30:45,328 INFO Plotting feature importances.
+2024-11-15 22:30:45,810 INFO Feature importances plotted and saved as 'feature_importances.png'.
+2024-11-15 22:30:45,810 INFO Model training and evaluation completed.
+2024-11-15 22:38:53,240 INFO Fetching sales data from the database.
+2024-11-15 22:38:53,307 INFO Fetched 3437 records from the database.
+2024-11-15 22:38:53,307 INFO Starting data preprocessing.
+2024-11-15 22:38:53,310 INFO Performing feature engineering.
+2024-11-15 22:38:53,320 INFO Adding lag features.
+2024-11-15 22:38:53,328 INFO Handling outliers using capping.
+2024-11-15 22:38:53,336 INFO Data preprocessing completed.
+2024-11-15 22:38:53,336 INFO Starting model training and evaluation.
+2024-11-15 22:38:53,336 INFO Training and evaluating model: LinearRegression
+2024-11-15 22:38:53,416 INFO LinearRegression - MAE: 34.49, MSE: 3060.59, R²: 0.84
+2024-11-15 22:38:53,416 INFO Training and evaluating model: Ridge
+2024-11-15 22:38:53,416 INFO Performing Grid Search for Ridge
+2024-11-15 22:38:57,229 INFO Best parameters for Ridge: {'model__alpha': 0.1}
+2024-11-15 22:38:57,244 INFO Ridge - MAE: 34.56, MSE: 3064.20, R²: 0.84
+2024-11-15 22:38:57,245 INFO Training and evaluating model: Lasso
+2024-11-15 22:38:57,245 INFO Performing Grid Search for Lasso
+2024-11-15 22:38:57,508 INFO Best parameters for Lasso: {'model__alpha': 0.1}
+2024-11-15 22:38:57,524 INFO Lasso - MAE: 62.59, MSE: 12921.90, R²: 0.34
+2024-11-15 22:38:57,524 INFO Training and evaluating model: RandomForest
+2024-11-15 22:38:57,525 INFO Performing Grid Search for RandomForest
+2024-11-15 22:53:39,716 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 100}
+2024-11-15 22:53:39,801 INFO RandomForest - MAE: 0.82, MSE: 14.29, R²: 1.00
+2024-11-15 22:53:39,801 INFO Training and evaluating model: GradientBoosting
+2024-11-15 22:53:39,802 INFO Performing Grid Search for GradientBoosting
+2024-11-15 23:05:55,713 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 7, 'model__min_samples_leaf': 1, 'model__min_samples_split': 10, 'model__n_estimators': 300}
+2024-11-15 23:05:55,777 INFO GradientBoosting - MAE: 1.44, MSE: 7.59, R²: 1.00
+2024-11-15 23:05:55,777 INFO Best model: RandomForest with MAE: 0.82, MSE: 14.29, R²: 1.00
+2024-11-15 23:05:55,828 INFO Best model saved as 'best_model.joblib'.
+2024-11-15 23:05:55,833 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-15 23:05:55,833 INFO Plotting feature importances.
+2024-11-15 23:05:56,581 INFO Feature importances plotted and saved as 'feature_importances.png'.
+2024-11-15 23:05:56,581 INFO Model training and evaluation completed.
+2024-11-15 23:15:16,158 INFO Fetching sales data from the database.
+2024-11-15 23:15:16,243 INFO Fetched 3437 records from the database.
+2024-11-15 23:15:16,244 INFO Starting data preprocessing.
+2024-11-15 23:15:16,247 INFO Performing feature engineering.
+2024-11-15 23:15:16,262 INFO Adding lag features.
+2024-11-15 23:15:16,274 INFO Handling outliers using capping.
+2024-11-15 23:15:16,287 INFO Data preprocessing completed.
+2024-11-15 23:15:16,287 INFO Starting model training and evaluation.
+2024-11-15 23:15:16,288 INFO Training and evaluating model: LinearRegression
+2024-11-15 23:15:16,375 INFO LinearRegression - MAE: 34.49, MSE: 3060.59, R²: 0.84
+2024-11-15 23:15:16,376 INFO Training and evaluating model: Ridge
+2024-11-15 23:15:16,376 INFO Performing Grid Search for Ridge
+2024-11-15 23:15:19,417 INFO Best parameters for Ridge: {'model__alpha': 0.1}
+2024-11-15 23:15:19,433 INFO Ridge - MAE: 34.56, MSE: 3064.20, R²: 0.84
+2024-11-15 23:15:19,434 INFO Training and evaluating model: Lasso
+2024-11-15 23:15:19,434 INFO Performing Grid Search for Lasso
+2024-11-15 23:15:19,725 INFO Best parameters for Lasso: {'model__alpha': 0.1}
+2024-11-15 23:15:19,741 INFO Lasso - MAE: 62.59, MSE: 12921.90, R²: 0.34
+2024-11-15 23:15:19,741 INFO Training and evaluating model: RandomForest
+2024-11-15 23:15:19,742 INFO Performing Grid Search for RandomForest
+2024-11-16 00:00:03,807 INFO Fetching sales data from the database.
+2024-11-16 00:00:03,892 INFO Fetched 3437 records from the database.
+2024-11-16 00:00:03,892 INFO Starting data preprocessing.
+2024-11-16 00:00:03,898 INFO Performing feature engineering.
+2024-11-16 00:00:03,920 INFO Adding lag features.
+2024-11-16 00:00:03,932 INFO Handling outliers using capping.
+2024-11-16 00:00:03,945 INFO Data preprocessing completed.
+2024-11-16 00:00:03,945 INFO Starting model training and evaluation.
+2024-11-16 00:00:03,946 INFO Training on 2745 samples and testing on 687 samples.
+2024-11-16 00:00:03,946 INFO Training the model on the training set.
+2024-11-16 00:00:04,046 INFO Training Set - MAE: 36.92, MSE: 2837.27, R²: 0.86
+2024-11-16 00:00:04,046 INFO Testing Set - MAE: 21.18, MSE: 929.12, R²: 0.36
+2024-11-16 00:00:04,050 INFO Linear Regression model saved as 'best_model.joblib'.
+2024-11-16 00:00:04,050 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-16 00:02:32,489 INFO Fetching sales data from the database.
+2024-11-16 00:02:32,556 INFO Fetched 3437 records from the database.
+2024-11-16 00:02:32,556 INFO Starting data preprocessing.
+2024-11-16 00:02:32,561 INFO Performing feature engineering.
+2024-11-16 00:02:32,578 INFO Adding lag features.
+2024-11-16 00:02:32,587 INFO Handling outliers using capping.
+2024-11-16 00:02:32,595 INFO Data preprocessing completed.
+2024-11-16 00:02:32,596 INFO Starting model training and evaluation.
+2024-11-16 00:02:32,597 INFO Training on 2745 samples and testing on 687 samples.
+2024-11-16 00:02:32,597 INFO Training the model on the training set.
+2024-11-16 00:02:32,680 INFO Training Set - MAE: 36.92, MSE: 2837.27, R²: 0.86
+2024-11-16 00:02:32,681 INFO Testing Set - MAE: 21.18, MSE: 929.12, R²: 0.36
+2024-11-16 00:02:32,684 INFO Linear Regression model saved as 'best_model.joblib'.
+2024-11-16 00:02:32,684 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-16 00:03:39,758 INFO Fetching sales data from the database.
+2024-11-16 00:03:39,816 INFO Fetched 3437 records from the database.
+2024-11-16 00:03:39,816 INFO Starting data preprocessing.
+2024-11-16 00:03:39,818 INFO Performing feature engineering.
+2024-11-16 00:03:39,826 INFO Adding lag features.
+2024-11-16 00:03:39,834 INFO Handling outliers using capping.
+2024-11-16 00:03:39,841 INFO Data preprocessing completed.
+2024-11-16 00:03:39,841 INFO Starting model training and evaluation.
+2024-11-16 00:03:39,842 INFO Training Linear Regression model.
+2024-11-16 00:03:39,928 INFO LinearRegression - MAE: 34.49, MSE: 3060.59, R²: 0.84
+2024-11-16 00:03:39,932 INFO Linear Regression model saved as 'best_model.joblib'.
+2024-11-16 00:03:39,932 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-16 00:03:39,932 INFO Plotting feature coefficients.
+2024-11-16 00:05:02,048 INFO Fetching sales data from the database.
+2024-11-16 00:05:02,126 INFO Fetched 3437 records from the database.
+2024-11-16 00:05:02,126 INFO Starting data preprocessing.
+2024-11-16 00:05:02,131 INFO Performing feature engineering.
+2024-11-16 00:05:02,150 INFO Adding lag features.
+2024-11-16 00:05:02,159 INFO Handling outliers using capping.
+2024-11-16 00:05:02,168 INFO Data preprocessing completed.
+2024-11-16 00:05:02,168 INFO Starting model training and evaluation.
+2024-11-16 00:05:02,169 INFO Training and evaluating model: LinearRegression
+2024-11-16 00:05:02,246 INFO LinearRegression - MAE: 34.49, MSE: 3060.59, R²: 0.84
+2024-11-16 00:05:02,246 INFO Training and evaluating model: Ridge
+2024-11-16 00:05:02,247 INFO Performing Grid Search for Ridge
+2024-11-16 00:05:04,884 INFO Best parameters for Ridge: {'model__alpha': 0.1}
+2024-11-16 00:05:04,920 INFO Ridge - MAE: 34.56, MSE: 3064.20, R²: 0.84
+2024-11-16 00:05:04,921 INFO Training and evaluating model: Lasso
+2024-11-16 00:05:04,922 INFO Performing Grid Search for Lasso
+2024-11-16 00:05:05,419 INFO Best parameters for Lasso: {'model__alpha': 0.1}
+2024-11-16 00:05:05,444 INFO Lasso - MAE: 62.59, MSE: 12921.90, R²: 0.34
+2024-11-16 00:05:05,445 INFO Training and evaluating model: RandomForest
+2024-11-16 00:05:05,445 INFO Performing Grid Search for RandomForest
+2024-11-16 00:18:33,225 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 100}
+2024-11-16 00:18:33,324 INFO RandomForest - MAE: 0.82, MSE: 14.29, R²: 1.00
+2024-11-16 00:18:33,324 INFO Training and evaluating model: GradientBoosting
+2024-11-16 00:18:33,325 INFO Performing Grid Search for GradientBoosting
+2024-11-16 00:27:52,402 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 7, 'model__min_samples_leaf': 1, 'model__min_samples_split': 10, 'model__n_estimators': 300}
+2024-11-16 00:27:52,449 INFO GradientBoosting - MAE: 1.44, MSE: 7.59, R²: 1.00
+2024-11-16 00:27:52,450 INFO Best model: RandomForest with MAE: 0.82, MSE: 14.29, R²: 1.00
+2024-11-16 00:27:52,493 INFO Best model saved as 'best_model.joblib'.
+2024-11-16 00:27:52,496 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-16 00:27:52,496 INFO Plotting feature importances.

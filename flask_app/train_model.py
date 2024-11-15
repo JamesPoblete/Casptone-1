@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.model_selection import TimeSeriesSplit, GridSearchCV
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.pipeline import Pipeline
@@ -12,9 +12,8 @@ from sklearn.compose import ColumnTransformer
 from sqlalchemy import create_engine, text
 import joblib
 import logging
-import matplotlib.pyplot as plt
-import io
-import json  # Added to save metrics
+import json
+from scipy import stats
 
 # ================================
 # Configuration
@@ -63,37 +62,40 @@ def preprocess_data(df):
     - Encode categorical variables
     - Scale numerical features
     - Detect and handle outliers
+    - Transform target variable
     """
     logging.info("Starting data preprocessing.")
 
     # Handle missing values
-    if df.isnull().sum().sum() > 0:
-        logging.info("Handling missing values.")
-        df = df.dropna().copy()  # Explicitly create a copy
+    missing_values = df.isnull().sum().sum()
+    if missing_values > 0:
+        logging.info(f"Handling {missing_values} missing values by dropping rows with missing data.")
+        df = df.dropna().copy()  # Alternatively, you can impute missing values
 
     # Feature Engineering
     logging.info("Performing feature engineering.")
     df['DATE'] = pd.to_datetime(df['DATE'])
-    df.loc[:, 'Year'] = df['DATE'].dt.year
-    df.loc[:, 'Month'] = df['DATE'].dt.month
-    df.loc[:, 'Day'] = df['DATE'].dt.day
-    df.loc[:, 'Quarter'] = df['DATE'].dt.quarter
-    df.loc[:, 'DayOfWeek'] = df['DATE'].dt.dayofweek
-    df.loc[:, 'IsWeekend'] = df['DayOfWeek'].apply(lambda x: 1 if x >=5 else 0)
-
-    # Add lag features (e.g., sales from previous month)
-    logging.info("Adding lag features.")
     df = df.sort_values('DATE').copy()
-    df['Total_Lag1'] = df['TOTAL'].shift(1)
-    df['Total_Lag2'] = df['TOTAL'].shift(2)
-    df['Total_Lag3'] = df['TOTAL'].shift(3)
-    df['Total_Lag4'] = df['TOTAL'].shift(4)
-    df['Total_Lag5'] = df['TOTAL'].shift(5)
-    df = df.dropna().copy()
+    df['Year'] = df['DATE'].dt.year
+    df['Month'] = df['DATE'].dt.month
+    df['Day'] = df['DATE'].dt.day
+    df['Quarter'] = df['DATE'].dt.quarter
+    df['DayOfWeek'] = df['DATE'].dt.dayofweek
+    df['IsWeekend'] = df['DayOfWeek'].apply(lambda x: 1 if x >=5 else 0)
+
+    # Add lag features (e.g., sales from previous months)
+    logging.info("Adding lag features.")
+    for lag in range(1, 6):
+        df[f'Total_Lag{lag}'] = df['TOTAL'].shift(lag)
+    
+    df = df.dropna().copy()  # Drop rows with NaN after creating lag features
 
     # Define features and target
     X = df.drop(['DATE', 'TOTAL'], axis=1).copy()
     y = df['TOTAL'].copy()
+
+    # Apply log transformation to target variable to stabilize variance
+    y = np.log1p(y)  # log(1 + y) to handle zero sales
 
     # Identify numerical and categorical columns
     numerical_features = X.select_dtypes(include=['int64', 'float64']).columns.tolist()
@@ -114,14 +116,13 @@ def preprocess_data(df):
             ('cat', categorical_transformer, categorical_features)
         ])
 
-    # Detect and handle outliers using Z-score
-    from scipy import stats
-    z_scores = np.abs(stats.zscore(X[numerical_features]))
-    threshold = 3
-    outliers = (z_scores > threshold).any(axis=1)
-    logging.info(f"Detected {outliers.sum()} outliers. Removing them.")
-    X = X[~outliers].copy()
-    y = y[~outliers].copy()
+    # Detect and handle outliers using capping (e.g., Winsorization)
+    logging.info("Handling outliers using capping.")
+    for col in numerical_features:
+        lower_bound = df[col].quantile(0.01)
+        upper_bound = df[col].quantile(0.99)
+        df[col] = np.where(df[col] < lower_bound, lower_bound, df[col])
+        df[col] = np.where(df[col] > upper_bound, upper_bound, df[col])
 
     logging.info("Data preprocessing completed.")
 
@@ -133,9 +134,6 @@ def train_and_evaluate_model(X, y, preprocessor, categorical_features):
     Save the best model and its metrics.
     """
     logging.info("Starting model training and evaluation.")
-
-    # Split the data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
 
     # Define models to evaluate
     models = {
@@ -149,19 +147,28 @@ def train_and_evaluate_model(X, y, preprocessor, categorical_features):
     # Hyperparameter grids for each model
     param_grids = {
         'RandomForest': {
-            'model__n_estimators': [100, 200],
-            'model__max_depth': [None, 10, 20],
-            'model__min_samples_split': [2, 5],
-            'model__min_samples_leaf': [1, 2]
+            'model__n_estimators': [100, 200, 300],
+            'model__max_depth': [None, 10, 20, 30],
+            'model__min_samples_split': [2, 5, 10],
+            'model__min_samples_leaf': [1, 2, 4]
         },
         'GradientBoosting': {
-            'model__n_estimators': [100, 200],
-            'model__learning_rate': [0.05, 0.1],
-            'model__max_depth': [3, 5],
-            'model__min_samples_split': [2, 5],
-            'model__min_samples_leaf': [1, 2]
+            'model__n_estimators': [100, 200, 300],
+            'model__learning_rate': [0.01, 0.05, 0.1],
+            'model__max_depth': [3, 5, 7],
+            'model__min_samples_split': [2, 5, 10],
+            'model__min_samples_leaf': [1, 2, 4]
+        },
+        'Ridge': {
+            'model__alpha': [0.1, 1.0, 10.0, 100.0]
+        },
+        'Lasso': {
+            'model__alpha': [0.1, 1.0, 10.0, 100.0]
         }
     }
+
+    # Use TimeSeriesSplit for cross-validation
+    tscv = TimeSeriesSplit(n_splits=5)
 
     # Store model performance
     model_performance = {}
@@ -177,22 +184,33 @@ def train_and_evaluate_model(X, y, preprocessor, categorical_features):
 
         if name in param_grids:
             logging.info(f"Performing Grid Search for {name}")
-            grid_search = GridSearchCV(pipeline, param_grids[name], cv=5, scoring='neg_mean_absolute_error', n_jobs=-1)
-            grid_search.fit(X_train, y_train)
+            grid_search = GridSearchCV(
+                pipeline,
+                param_grids[name],
+                cv=tscv,
+                scoring='neg_mean_absolute_error',
+                n_jobs=-1,
+                verbose=1
+            )
+            grid_search.fit(X, y)
             best_model = grid_search.best_estimator_
             logging.info(f"Best parameters for {name}: {grid_search.best_params_}")
         else:
             # For models without hyperparameter tuning
-            pipeline.fit(X_train, y_train)
+            pipeline.fit(X, y)
             best_model = pipeline
 
         # Make predictions
-        y_pred = best_model.predict(X_test)
+        y_pred = best_model.predict(X)
+
+        # Inverse transform the target variable
+        y_true = np.expm1(y)  # inverse of log1p
+        y_pred_actual = np.expm1(y_pred)
 
         # Calculate metrics
-        mae = mean_absolute_error(y_test, y_pred)
-        mse = mean_squared_error(y_test, y_pred)
-        r2 = r2_score(y_test, y_pred)
+        mae = mean_absolute_error(y_true, y_pred_actual)
+        mse = mean_squared_error(y_true, y_pred_actual)
+        r2 = r2_score(y_true, y_pred_actual)
 
         logging.info(f"{name} - MAE: {mae:.2f}, MSE: {mse:.2f}, R²: {r2:.2f}")
 
@@ -230,27 +248,15 @@ def train_and_evaluate_model(X, y, preprocessor, categorical_features):
     logging.info("Model metrics saved as 'model_metrics.json'.")
 
     # Plot feature importance if model supports it
-    if hasattr(best_model.named_steps['model'], 'feature_importances_'):
+    if best_model.named_steps['model'].__class__.__name__ in ['RandomForestRegressor', 'GradientBoostingRegressor']:
         logging.info("Plotting feature importances.")
         importances = best_model.named_steps['model'].feature_importances_
         # Get feature names from preprocessor
         num_features = preprocessor.transformers_[0][2]
-        cat_features = preprocessor.transformers_[1][1].named_steps['onehot'].get_feature_names_out(categorical_features)
-        feature_names = num_features + list(cat_features)
+        cat_features = best_model.named_steps['preprocessor'].transformers_[1][1].named_steps['onehot'].get_feature_names_out(categorical_features)
+        feature_names = list(num_features) + list(cat_features)
         feature_importances = pd.Series(importances, index=feature_names).sort_values(ascending=False)
-        
-        plt.figure(figsize=(10,6))
-        feature_importances.head(20).plot(kind='barh')
-        plt.xlabel('Feature Importance')
-        plt.title(f'Feature Importances in {best_model_name}')
-        plt.gca().invert_yaxis()
-        plt.tight_layout()
-        plt.savefig('feature_importances.png')
-        plt.close()
-        logging.info("Feature importances plotted and saved as 'feature_importances.png'.")
-
-    logging.info("Model training and evaluation completed.")
-
+    
 def main():
     # Fetch data
     df = fetch_sales_data()

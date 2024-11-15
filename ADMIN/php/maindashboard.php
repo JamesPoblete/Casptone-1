@@ -447,7 +447,7 @@ echo "<script>
             <form method="POST" action="" class="date-filter-form">
                 <label for="year">Year:</label>
                 <select name="year" id="year">
-                    <?php for ($i = 2023; $i <= 2025; $i++): ?>
+                    <?php for ($i = 2022; $i <= 2025; $i++): ?>
                     <option value="<?php echo $i; ?>" <?php echo $i == $selectedYear ? 'selected' : ''; ?>><?php echo $i; ?></option>
                     <?php endfor; ?>
                 </select>

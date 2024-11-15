@@ -8,13 +8,7 @@ from sqlalchemy import create_engine, text
 from flask_cors import CORS
 from functools import wraps
 import logging
-import matplotlib
-matplotlib.use('Agg')  # Use Agg backend for headless servers
-import matplotlib.pyplot as plt
-import io
-import base64
 import json
-from sqlalchemy import text
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -221,7 +215,7 @@ def predict_sales():
         day (int): Day filter
 
     Returns:
-        JSON response with predicted_sales, next_period, accuracy metrics, and chart
+        JSON response with predicted_sales, next_period, and accuracy metrics
     """
     try:
         # Retrieve query parameters
@@ -259,39 +253,17 @@ def predict_sales():
         # Save the prediction to the database
         save_prediction_to_db(next_date.strftime('%Y-%m-%d'), predicted_sales)
 
-        # Add predictions to monthly_sales DataFrame for plotting
-        monthly_sales['Predicted'] = model.predict(X)
-
         # Load precomputed metrics
         latest_mae = metrics.get('mae') if metrics else None
         latest_mse = metrics.get('mse') if metrics else None
         latest_r2 = metrics.get('r2') if metrics else None
-
-        # Generate the line chart
-        plt.figure(figsize=(10, 6))
-        plt.plot(monthly_sales['DATE'], monthly_sales['TOTAL'], marker='o', label='Actual Sales')
-        plt.plot(monthly_sales['DATE'], monthly_sales['Predicted'], marker='x', linestyle='--', label='Predicted Sales')
-        plt.xlabel('Month')
-        plt.ylabel('Sales Total')
-        plt.title('Actual Sales vs Predicted Sales')
-        plt.legend()
-        plt.grid(True)
-        plt.xticks(rotation=45)
-
-        # Save the plot to a bytes buffer
-        buf = io.BytesIO()
-        plt.savefig(buf, format='png', bbox_inches='tight')
-        buf.seek(0)
-        image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
-        plt.close()
 
         return jsonify({
             'predicted_sales': predicted_sales,
             'next_period': next_period_label,
             'mae': latest_mae,
             'mse': latest_mse,
-            'r2': latest_r2,
-            'chart': image_base64
+            'r2': latest_r2
         }), 200
 
     except Exception as e:

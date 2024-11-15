@@ -1,10 +1,9 @@
-flask
+Flask
 flask-cors
 pandas
 numpy
 scikit-learn
 sqlalchemy
 pymysql
-waitress
-statsmodels
+joblib
 python-dotenv
