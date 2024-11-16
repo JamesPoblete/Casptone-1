@@ -3406,3 +3406,111 @@ TypeError: can only concatenate str (not "DateOffset") to str
 2024-11-16 00:10:00,598 INFO Prepared data for regression. Next period to predict: October 2024
 2024-11-16 00:10:00,600 INFO Linear regression model trained successfully.
 2024-11-16 00:10:00,616 INFO 127.0.0.1 - - [16/Nov/2024 00:10:00] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 21:47:49,217 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-16 21:47:49,219 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-16 21:47:49,256 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.27:5000
+2024-11-16 21:47:49,257 INFO [33mPress CTRL+C to quit[0m
+2024-11-16 21:47:49,259 INFO  * Restarting with stat
+2024-11-16 21:47:50,919 INFO Model metrics loaded from 'model_metrics.json'.
+2024-11-16 21:47:50,920 INFO Running Flask app directly without the Windows Service wrapper.
+2024-11-16 21:47:50,931 WARNING  * Debugger is active!
+2024-11-16 21:47:50,933 INFO  * Debugger PIN: 610-496-012
+2024-11-16 21:48:07,828 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 21:48:07,829 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 21:48:07,897 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 21:48:07,899 INFO Linear regression model trained successfully.
+2024-11-16 21:48:07,935 INFO 127.0.0.1 - - [16/Nov/2024 21:48:07] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 21:48:21,723 INFO Received prediction request with year=2022, month=None, day=None
+2024-11-16 21:48:21,724 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2022}
+2024-11-16 21:48:21,772 INFO Prepared data for regression. Next period to predict: January 2023
+2024-11-16 21:48:21,775 INFO Linear regression model trained successfully.
+2024-11-16 21:48:21,811 INFO 127.0.0.1 - - [16/Nov/2024 21:48:21] "GET /predict?year=2022&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 21:48:29,159 INFO Received prediction request with year=2023, month=None, day=None
+2024-11-16 21:48:29,160 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2023}
+2024-11-16 21:48:29,213 INFO Prepared data for regression. Next period to predict: January 2024
+2024-11-16 21:48:29,215 INFO Linear regression model trained successfully.
+2024-11-16 21:48:29,256 INFO 127.0.0.1 - - [16/Nov/2024 21:48:29] "GET /predict?year=2023&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 21:48:35,896 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 21:48:35,897 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 21:48:35,974 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 21:48:35,977 INFO Linear regression model trained successfully.
+2024-11-16 21:48:36,018 INFO 127.0.0.1 - - [16/Nov/2024 21:48:36] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 22:51:24,967 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 22:51:24,968 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 22:51:25,004 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 22:51:25,005 INFO Linear regression model trained successfully.
+2024-11-16 22:51:25,022 INFO 127.0.0.1 - - [16/Nov/2024 22:51:25] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 22:51:27,538 INFO 127.0.0.1 - - [16/Nov/2024 22:51:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-16 23:17:27,107 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 23:17:27,130 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 23:17:27,188 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 23:17:27,191 INFO Linear regression model trained successfully.
+2024-11-16 23:17:27,208 INFO 127.0.0.1 - - [16/Nov/2024 23:17:27] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 23:23:49,456 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 23:23:49,468 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 23:23:49,536 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 23:23:49,540 INFO Linear regression model trained successfully.
+2024-11-16 23:23:50,098 INFO 127.0.0.1 - - [16/Nov/2024 23:23:50] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 23:23:50,867 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 23:23:50,868 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 23:23:50,943 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 23:23:50,946 INFO Linear regression model trained successfully.
+2024-11-16 23:23:50,977 INFO 127.0.0.1 - - [16/Nov/2024 23:23:50] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 23:24:21,576 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 23:24:21,576 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 23:24:21,632 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 23:24:21,634 INFO Linear regression model trained successfully.
+2024-11-16 23:24:21,772 INFO 127.0.0.1 - - [16/Nov/2024 23:24:21] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 23:50:37,895 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 23:50:37,896 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 23:50:37,956 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 23:50:37,958 INFO Linear regression model trained successfully.
+2024-11-16 23:50:37,993 INFO 127.0.0.1 - - [16/Nov/2024 23:50:37] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 23:50:49,172 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 23:50:49,173 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 23:50:49,253 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 23:50:49,256 INFO Linear regression model trained successfully.
+2024-11-16 23:50:49,293 INFO 127.0.0.1 - - [16/Nov/2024 23:50:49] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-16 23:58:20,690 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-16 23:58:20,691 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-16 23:58:20,755 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-16 23:58:20,757 INFO Linear regression model trained successfully.
+2024-11-16 23:58:20,796 INFO 127.0.0.1 - - [16/Nov/2024 23:58:20] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-17 01:26:31,043 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-17 01:26:31,049 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-17 01:26:31,126 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-17 01:26:31,134 INFO Linear regression model trained successfully.
+2024-11-17 01:26:31,159 INFO 127.0.0.1 - - [17/Nov/2024 01:26:31] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-17 01:40:29,789 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-17 01:40:29,790 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-17 01:40:29,825 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-17 01:40:29,826 INFO Linear regression model trained successfully.
+2024-11-17 01:40:29,838 INFO 127.0.0.1 - - [17/Nov/2024 01:40:29] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-17 01:40:44,245 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-17 01:40:44,245 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-17 01:40:44,278 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-17 01:40:44,279 INFO Linear regression model trained successfully.
+2024-11-17 01:40:44,290 INFO 127.0.0.1 - - [17/Nov/2024 01:40:44] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-17 02:07:32,075 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-17 02:07:32,077 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-17 02:07:32,123 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-17 02:07:32,126 INFO Linear regression model trained successfully.
+2024-11-17 02:07:32,149 INFO 127.0.0.1 - - [17/Nov/2024 02:07:32] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-17 02:42:26,749 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-17 02:42:26,751 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-17 02:42:26,815 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-17 02:42:26,821 INFO Linear regression model trained successfully.
+2024-11-17 02:42:26,834 INFO 127.0.0.1 - - [17/Nov/2024 02:42:26] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-17 02:49:28,873 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-17 02:49:28,874 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-17 02:49:28,905 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-17 02:49:28,907 INFO Linear regression model trained successfully.
+2024-11-17 02:49:28,925 INFO 127.0.0.1 - - [17/Nov/2024 02:49:28] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-17 02:50:11,594 INFO Received prediction request with year=2024, month=None, day=None
+2024-11-17 02:50:11,595 INFO Executing query: SELECT DATE, TOTAL FROM laundry WHERE YEAR(DATE) = :year with params: {'year': 2024}
+2024-11-17 02:50:11,618 INFO Prepared data for regression. Next period to predict: October 2024
+2024-11-17 02:50:11,619 INFO Linear regression model trained successfully.
+2024-11-17 02:50:11,629 INFO 127.0.0.1 - - [17/Nov/2024 02:50:11] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -

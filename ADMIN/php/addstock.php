@@ -7,6 +7,9 @@ session_start(); // Start the session
 
 include 'dbconnection.php';
 
+// Set the desired timezone
+date_default_timezone_set('Asia/Manila'); // Change to your timezone if different
+
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if the user is logged in
@@ -72,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':inventoryID' => $inventoryID
         ]);
 
-        // Insert into inventory_expenses table
+        // Insert into inventory_expenses table with dynamic Description
         $insertExpenseSql = "INSERT INTO inventory_expenses (InventoryID, Amount, ExpenseDate, Description) 
                              VALUES (:inventoryID, :amount, :expenseDate, :description)";
         $insertExpenseStmt = $pdo->prepare($insertExpenseSql);
@@ -80,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':inventoryID' => $inventoryID,
             ':amount' => $totalExpense,
             ':expenseDate' => $expenseDate,
-            ':description' => "Added stock: {$quantity} units."
+            ':description' => "Added stock: {$quantity} units." // Dynamic Description
         ]);
 
         // Commit Transaction
@@ -98,7 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $pdo->rollBack();
         }
         // Log the error message to a file
-        error_log("Error in addstock.php: " . $e->getMessage(), 3, "/var/log/inventory_errors.log");
+        // Ensure the directory and file have appropriate permissions
+        error_log("Error in addstock.php: " . $e->getMessage(), 3, "/path/to/your/error.log"); // Update the path as needed
         
         // Set a user-friendly error message
         $_SESSION['error_message'] = 'An error occurred while adding stock. Please try again later.';

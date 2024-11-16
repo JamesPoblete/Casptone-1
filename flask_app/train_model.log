@@ -848,3 +848,33 @@
 2024-11-16 00:27:52,493 INFO Best model saved as 'best_model.joblib'.
 2024-11-16 00:27:52,496 INFO Model metrics saved as 'model_metrics.json'.
 2024-11-16 00:27:52,496 INFO Plotting feature importances.
+2024-11-16 22:52:00,761 INFO Fetching sales data from the database.
+2024-11-16 22:52:00,852 INFO Fetched 3437 records from the database.
+2024-11-16 22:52:00,852 INFO Starting data preprocessing.
+2024-11-16 22:52:00,855 INFO Performing feature engineering.
+2024-11-16 22:52:00,865 INFO Adding lag features.
+2024-11-16 22:52:00,876 INFO Handling outliers using capping.
+2024-11-16 22:52:00,883 INFO Data preprocessing completed.
+2024-11-16 22:52:00,883 INFO Starting model training and evaluation.
+2024-11-16 22:52:00,883 INFO Training and evaluating model: LinearRegression
+2024-11-16 22:52:00,986 INFO LinearRegression - MAE: 34.49, MSE: 3060.59, R²: 0.84
+2024-11-16 22:52:00,986 INFO Training and evaluating model: Ridge
+2024-11-16 22:52:00,986 INFO Performing Grid Search for Ridge
+2024-11-16 22:52:07,403 INFO Best parameters for Ridge: {'model__alpha': 0.1}
+2024-11-16 22:52:07,429 INFO Ridge - MAE: 34.56, MSE: 3064.20, R²: 0.84
+2024-11-16 22:52:07,430 INFO Training and evaluating model: Lasso
+2024-11-16 22:52:07,430 INFO Performing Grid Search for Lasso
+2024-11-16 22:52:07,832 INFO Best parameters for Lasso: {'model__alpha': 0.1}
+2024-11-16 22:52:07,858 INFO Lasso - MAE: 62.59, MSE: 12921.90, R²: 0.34
+2024-11-16 22:52:07,858 INFO Training and evaluating model: RandomForest
+2024-11-16 22:52:07,859 INFO Performing Grid Search for RandomForest
+2024-11-16 23:12:14,243 INFO Best parameters for RandomForest: {'model__max_depth': None, 'model__min_samples_leaf': 1, 'model__min_samples_split': 2, 'model__n_estimators': 100}
+2024-11-16 23:12:14,427 INFO RandomForest - MAE: 0.82, MSE: 14.29, R²: 1.00
+2024-11-16 23:12:14,428 INFO Training and evaluating model: GradientBoosting
+2024-11-16 23:12:14,429 INFO Performing Grid Search for GradientBoosting
+2024-11-16 23:25:44,580 INFO Best parameters for GradientBoosting: {'model__learning_rate': 0.1, 'model__max_depth': 7, 'model__min_samples_leaf': 1, 'model__min_samples_split': 10, 'model__n_estimators': 300}
+2024-11-16 23:25:44,723 INFO GradientBoosting - MAE: 1.44, MSE: 7.59, R²: 1.00
+2024-11-16 23:25:44,724 INFO Best model: RandomForest with MAE: 0.82, MSE: 14.29, R²: 1.00
+2024-11-16 23:25:44,813 INFO Best model saved as 'best_model.joblib'.
+2024-11-16 23:25:44,848 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-16 23:25:44,849 INFO Plotting feature importances.
