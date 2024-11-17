@@ -577,3 +577,63 @@ button:hover {
 #inventoryID option[disabled] {
     color: #888; /* Gray color for placeholder text to match input placeholder */
 }
+
+        /* Styles for Print Report */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printReport, #printReport * {
+                visibility: visible;
+            }
+            #printReport {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            /* Optional: Add page breaks */
+            .inventory-table, .stocks-today-table, .expenses-summary-table {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Hide the report section on screen */
+        .print-report {
+            display: none;
+        }
+
+        /* When printing, show the report section and hide other elements */
+        @media print {
+            .print-report {
+                display: block;
+            }
+            /* Hide elements that shouldn't appear in the print */
+            .sidebar, .main-content > header, .success-message, .error-message, .search-filter-container, .main-content > .inventory-list-header, .main-content > table, .modal {
+                display: none;
+            }
+        }
+
+        /* Additional styling for documentation-like appearance */
+        .print-report {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            padding: 20px;
+        }
+        .print-report h1, .print-report h2, .print-report h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .print-report table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .print-report th, .print-report td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+        }
+        .print-report th {
+            background-color: #f2f2f2;
+        }

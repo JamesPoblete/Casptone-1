@@ -41,11 +41,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h1 class="logo"></h1>
             </div>
             <div class="header-right">
-                <i class="fa fa-bell"></i>
                 <div class="user-profile">
                     <i class="fa fa-user-circle"></i>
                     <span>Admin</span>
-                    <i class="fa fa-caret-down"></i>
                 </div>
             </div>
         </header>

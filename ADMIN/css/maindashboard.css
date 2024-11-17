@@ -13,6 +13,7 @@ body {
   background-color: #eef2f7; /* Updated background color */
 }
 
+/* Sidebar Styles */
 .sidebar {
   background-color: #1A1A40;
   color: white;
@@ -105,13 +106,6 @@ body {
   width: calc(100% - 220px);
   padding: 20px;
   margin-left: 220px;
-  .main-content {
-    background-color: #f4f7fa; /* Soft background */
-    padding: 40px;
-    border-radius: 20px;
-    margin: 20px;
-  }
-  
 }
 
 /* Updated Header Design */
@@ -176,50 +170,70 @@ body {
 /* Cards */
 .cards {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.card {
-  background-color: #fff; /* Soft light background */
+  flex-direction: column;
+  gap: 20px; /* Space between rows */
   padding: 20px;
-  width: 23%;
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  color: #03045e; /* Dark Blue text for titles */
 }
 
+/* Row Container */
+.cards .row {
+  display: flex;
+  gap: 20px; /* Space between cards in the same row */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Standard Card Styles */
+.card {
+  flex: 1; /* Make all cards in a row equal width */
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px; /* Rounded corners */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Large Card for Predicted Sales */
+.card.predicted-sales {
+  flex: 2; /* Span the width of three cards */
+  background-color: #1d2b53; /* Custom color for this card */
+  color: white;
+  border-radius: 15px; /* Rounded corners */
+  display: flex; /* Make content align properly */
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
+  padding: 15px; /* Adjust padding for better spacing */
+  gap: 10px; /* Space between elements */
+}
+
+/* Hover Effects */
+.card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+  transform: translateY(-5px); /* Lift the card on hover */
+}
+
+/* Cards Typography */
 .card h3 {
   margin-bottom: 15px;
-  font-size: 18px;
+  font-size: 1.2em;
   font-weight: 600;
-  color: #03045e; /* Accent blue for title */
+  color: inherit; /* Inherit color from parent (handles dark mode) */
 }
 
 .card p {
-  font-size: 24px;
+  font-size: 2em;
   font-weight: 700;
-  color: #000000; /* Dark blue for the numbers */
+  color: inherit; /* Inherit color from parent */
 }
 
-/* Adjust shadow intensity on hover */
-.card:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Hover effect for cards */
-.card:hover {
-  transform: translateY(-5px); /* Lift the card on hover */
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.1); /* Enhance shadow on hover */
-}
-
-/* Dark Mode for Cards */
-.card.dark-mode {
-  background-color: #2a2a2a;
-  border: 1px solid #444;
-  color: #ffffff;
+/* Adjust icon sizes */
+.card h3 i {
+  margin-right: 8px;
+  font-size: 1.5em;
 }
 
 /* Date Filter Form */
@@ -255,29 +269,30 @@ body {
   background-color: #3c3c5a;
 }
 
-/* Charts Container */
 .charts-container {
   display: flex;
+  flex-wrap: wrap; /* Wrap charts to the next line if needed */
+  gap: 20px; /* Maintain spacing between charts */
   justify-content: space-between;
-  margin-top: 20px;
-  gap: 20px;
-  flex-wrap: nowrap; /* Prevent wrapping */
 }
 
-/* Bar Chart Container */
-.bar-chart-container {
-  flex: 2; /* Takes twice the space compared to pie charts */
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  height: 400px; /* Increased height for a larger chart */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
-}
-
-.bar-chart-container h3 {
+.bar-chart-container,
+.line-chart-container,
+.inventoryStockBarChart {
+  flex: 1 1 calc(50% - 20px); /* Responsive size */
+  min-width: 300px; /* Prevent shrinking too much */
+  max-width: 100%; /* Ensure it stretches fully */
+  height: 400px; /* Maintain consistent height */
   margin-bottom: 20px;
-  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .bar-chart-container,
+  .line-chart-container,
+  .inventoryStockBarChart {
+      flex: 1 1 100%; /* Full width on smaller screens */
+      height: 300px; /* Adjust height */
+  }
 }
 
 /* Pie Charts Wrapper */
@@ -309,36 +324,73 @@ body {
   text-align: center;
 }
 
-/* Dark Mode for Pie Charts */
-.pie-chart-container.dark-mode {
-  background-color: #2a2a2a;
-  color: #ffffff;
+.pie-chart-container h3 {
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-/* Sidebar Responsiveness */
+.bar-chart-container {
+  background-color: #ffffff; /* Soft background color to match the image */
+  border-radius: 15px; /* Rounds the corners of the container */
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a 3D effect */
+  height: 400px; /* Adjust height to give the chart enough space */
+}
+
+
+/* Line Chart Container */
+.line-chart-container {
+  width: 100%;
+  height: 450px; /* Adjust the height as needed */
+  margin: 20px 0;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Inventory Stock Bar Chart Container */
+.inventoryStockBarChart {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  height: 400px; /* Adjust height to give the chart enough space */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .charts-container {
+    flex-direction: column;
+  }
+
+  .bar-chart-container, .pie-chart-container, .line-chart-container, .inventoryStockBarChart {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
+  .cards .row {
+    flex-direction: column; /* Stack rows vertically */
+  }
+
+  .cards .card {
+    flex: 1 1 100%; /* Full width */
+  }
+
+  .cards .card.predicted-sales {
+    flex: 1 1 100%; /* Full width for large card on small screens */
+  }
+
   .sidebar {
-    width: 200px; /* Keep the sidebar width larger */
-  }
-
-  .sidebar ul li a {
-    text-align: left; /* Keep text aligned to the left */
-    font-size: 14px; /* Adjust font size for smaller screens */
-  }
-
-  .sidebar-logo {
-    width: 80px; /* Shrink the logo */
-    height: 80px;
+    width: 200px; /* Adjust sidebar width for smaller screens */
   }
 
   .main-content {
     width: calc(100% - 200px); /* Adjust width based on sidebar */
     margin-left: 200px; /* Adjust margin based on sidebar width */
   }
-}
 
-/* Date Filter Section Responsiveness */
-@media (max-width: 768px) {
   .date-filter-form {
     flex-direction: column;
     align-items: flex-start; /* Align form elements to the left */
@@ -356,10 +408,7 @@ body {
   .date-filter-form button {
     margin-top: 10px;
   }
-}
 
-/* Main Header Profile and Notification Responsiveness */
-@media (max-width: 768px) {
   .header-right {
     flex-direction: column; /* Stack notification and profile vertically */
     align-items: flex-end;  /* Align them to the right */
@@ -368,25 +417,17 @@ body {
   .user-profile {
     margin-top: 10px; /* Add some space between elements */
   }
-}
 
-.bar-chart-container {
-  background-color: #ffffff; /* Soft background color to match the image */
-  border-radius: 15px; /* Rounds the corners of the container */
-  padding: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a 3D effect */
-  height: 400px; /* Adjust height to give the chart enough space */
-}
+  .pie-charts {
+    flex-direction: column; /* Stack pie charts vertically */
+  }
 
-.line-chart-container {
-  width: 100%;
-  height: 400px; /* Adjust the height as needed */
-  margin: 20px 0;
-}
+  .pie-chart-container {
+    width: 100%;
+    height: 250px; /* Adjust height for better visibility on smaller screens */
+  }
 
-#predictionChart {
-  width: 100% !important;
-  height: 100% !important;
-  /* Temporarily add a border for debugging */
-  border: 1px solid red;
+  .bar-chart-container, .line-chart-container, .inventoryStockBarChart {
+    height: 300px; /* Adjust height for smaller screens */
+  }
 }

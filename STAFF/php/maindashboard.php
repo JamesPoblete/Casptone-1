@@ -346,7 +346,6 @@ echo "<script>
     const predictionError = " . json_encode($prediction_error) . ";
 </script>";
 
-
 // ==========================
 // Fetch Actual Sales and Historical Predictions Data for the Chart
 // ==========================
@@ -409,7 +408,6 @@ echo "<script>
     const actualSalesData = " . json_encode($actual_sales_values) . ";
     const predictedSalesData = " . json_encode($predicted_sales_values) . ";
 </script>";
-
 ?>
 
 <!DOCTYPE html>
@@ -446,7 +444,7 @@ echo "<script>
             <form method="POST" action="" class="date-filter-form">
                 <label for="year">Year:</label>
                 <select name="year" id="year">
-                    <?php for ($i = 2023; $i <= 2025; $i++): ?>
+                    <?php for ($i = 2022; $i <= 2025; $i++): ?>
                     <option value="<?php echo $i; ?>" <?php echo $i == $selectedYear ? 'selected' : ''; ?>><?php echo $i; ?></option>
                     <?php endfor; ?>
                 </select>
@@ -475,59 +473,59 @@ echo "<script>
             </div>
 
             <div class="header-right">
-                <i class="fa fa-bell"></i>
                 <div class="user-profile">
                     <i class="fa fa-user-circle"></i>
-                    <span>Admin</span>
-                    <i class="fa fa-caret-down"></i>
+                    <span>Staff</span>
                 </div>
             </div>
         </header>
 
         <!-- Dashboard Content -->
         <div class="dashboard-content">
+            <!-- Cards Section -->
             <div class="cards">
-                <div class="card">
-                    <h3><i class="fas fa-money-bill-wave"></i> Today's Sales</h3>
-                    <p>₱ <?php echo number_format($today_sales, 2); ?></p>
+                <div class="row">
+                    <div class="card">
+                        <h3><i class="fas fa-money-bill-wave"></i> Today's Sales</h3>
+                        <p>₱ <?php echo number_format($today_sales, 2); ?></p>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-calendar-alt"></i> Monthly Sales</h3>
+                        <p>₱ <?php echo number_format($monthly_sales, 2); ?></p>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-calendar-check"></i> Yearly Sales</h3>
+                        <p>₱ <?php echo number_format($yearly_sales, 2); ?></p>
+                    </div>
+                    <div class="card predicted-sales">
+                        <h3><i class="fas fa-chart-pie"></i> Predicted Sales for <span id="predictedMonth"><?php echo htmlspecialchars($predicted_month); ?></span></h3>
+                        <p id="predictedSales">
+                            <?php
+                            if ($predicted_sales !== null) {
+                                echo '₱ ' . number_format($predicted_sales, 2);
+                            } elseif ($prediction_error !== null) {
+                                echo 'Error: ' . htmlspecialchars($prediction_error);
+                            } else {
+                                echo 'N/A';
+                            }
+                            ?>
+                        </p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3><i class="fas fa-calendar-alt"></i> Monthly Sales</h3>
-                    <p>₱ <?php echo number_format($monthly_sales, 2); ?></p>
+                <div class="row">
+                    <div class="card">
+                        <h3><i class="fas fa-chart-line"></i> Average Sales</h3>
+                        <p>₱ <?php echo number_format($average_sales_per_day, 2); ?></p>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-box"></i> Inventory Expenses</h3>
+                        <p>₱ <span id="totalExpenses"><?php echo number_format($total_expenses, 2); ?></span></p>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-user-friends"></i> Average Customers</h3>
+                        <p><?php echo number_format($average_customers_per_day, 2); ?></p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3><i class="fas fa-calendar-check"></i> Yearly Sales</h3>
-                    <p>₱ <?php echo number_format($yearly_sales, 2); ?></p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-user-friends"></i> Average Customers</h3>
-                    <p><?php echo number_format($average_customers_per_day, 2); ?></p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-chart-line"></i> Average Sales</h3>
-                    <p>₱ <?php echo number_format($average_sales_per_day, 2); ?></p>
-                </div>
-                <!-- Inventory Expenses Card -->
-                <div class="card">
-                    <h3><i class="fas fa-chart-line"></i> Inventory Expenses</h3>
-                    <p>₱ <span id="totalExpenses"><?php echo number_format($total_expenses, 2); ?></span></p>
-                </div>
-                <!-- Predicted Sales Card -->
-    <!-- Predicted Sales Card -->
-    <div class="card">
-        <h3><i class="fas fa-chart-pie"></i> Predicted Sales for <span id="predictedMonth"><?php echo htmlspecialchars($predicted_month); ?></span></h3>
-        <p id="predictedSales">
-            <?php
-            if ($predicted_sales !== null) {
-                echo '₱ ' . number_format($predicted_sales, 2);
-            } elseif ($prediction_error !== null) {
-                echo 'Error: ' . htmlspecialchars($prediction_error);
-            } else {
-                echo 'N/A';
-            }
-            ?>
-        </p>
-    </div>
             </div>
 
             <!-- Line Chart for Actual vs Predicted Sales -->
@@ -546,8 +544,6 @@ echo "<script>
                     <h3>Inventory Expenses Overview</h3>
                     <canvas id="expensesChart"></canvas>
                 </div>
-
-                
             </div>
             <div class="charts-container">
                 <div class="bar-chart-container">
@@ -580,106 +576,63 @@ echo "<script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
 
     <script>
+        // Custom Shadow Plugin for Chart.js
+        const shadowPlugin = {
+            id: 'shadowPlugin',
+            beforeDatasetsDraw: (chart, args, options) => {
+                const ctx = chart.ctx;
+                ctx.save();
+                ctx.shadowColor = options.shadowColor || 'rgba(0, 0, 0, 0.1)';
+                ctx.shadowBlur = options.shadowBlur || 10;
+                ctx.shadowOffsetX = options.shadowOffsetX || 0;
+                ctx.shadowOffsetY = options.shadowOffsetY || 0;
+            },
+            afterDatasetsDraw: (chart, args, options) => {
+                chart.ctx.restore();
+            }
+        };
+
+        // Register the Shadow Plugin
+        Chart.register(shadowPlugin);
+
         // Chart Data Preparation
         const detergentNames = <?php echo json_encode($detergent_names); ?>;
         const detergentCounts = <?php echo json_encode($detergent_counts); ?>;
         const fabricDetergentNames = <?php echo json_encode($fabric_detergent_names); ?>;
         const fabricDetergentCounts = <?php echo json_encode($fabric_detergent_counts); ?>;
 
+        // ==========================
         // Bar Chart for Monthly Sales
+        // ==========================
         const ctxBar = document.getElementById('barChart').getContext('2d');
+
+        // Create gradient for monthly sales bars
+        const gradientSales = ctxBar.createLinearGradient(0, 0, 0, 400);
+        gradientSales.addColorStop(0, 'rgba(99, 132, 255, 0.8)');
+        gradientSales.addColorStop(1, 'rgba(54, 162, 235, 0.8)');
+
         const barChart = new Chart(ctxBar, {
             type: 'bar',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
                     label: 'Monthly Sales (₱)',
-                    data: salesByMonth, // Use the PHP data passed above
-                    backgroundColor: 'rgba(99, 132, 255, 0.8)',  // A single color for all bars (light blue)
-                    hoverBackgroundColor: 'rgba(99, 132, 255, 1)',  // Darker on hover
-                    borderRadius: 10, // Rounded corners for bars
-                    borderSkipped: false, // Removes border at the top of each bar
-                    barThickness: 40 // Controls the thickness of the bars
+                    data: salesByMonth,
+                    backgroundColor: gradientSales,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    barThickness: 30,
+                    hoverBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    hoverBorderColor: 'rgba(54, 162, 235, 1)',
                 }]
             },
             options: {
                 scales: {
                     x: {
-                        grid: {
-                            display: false // Remove grid lines for the X-axis
-                        },
+                        grid: { display: false },
                         ticks: {
-                            font: {
-                                size: 14,  // Adjusts the font size for the month labels
-                                weight: 'bold'
-                            },
-                            color: '#666' // Set label color
-                        }
-                    },
-                    y: {
-                        grid: {
-                            color: 'rgba(200, 200, 200, 0.5)', // Light grid lines on Y-axis
-                            borderDash: [5, 5]  // Dashed grid lines
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return '₱ ' + value; // Format ticks to show currency
-                            },
-                            font: {
-                                size: 12, // Adjust the font size for the Y-axis values
-                            },
-                            color: '#666' // Set label color
-                        },
-                        beginAtZero: true // Ensure Y-axis starts at zero
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: false, // Makes the chart responsive
-                plugins: {
-                    legend: {
-                        display: false // Hides the legend as in the example
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(99, 132, 255, 0.8)', // Tooltip background matches the bar color
-                        titleFont: { size: 16, weight: 'bold' },
-                        bodyFont: { size: 14 },
-                        callbacks: {
-                            label: function(context) {
-                                return '₱ ' + context.raw.toLocaleString(); // Format tooltip with currency
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Bar Chart for Inventory Expenses
-        const ctxExpenses = document.getElementById('expensesChart').getContext('2d');
-        const expensesChart = new Chart(ctxExpenses, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Inventory Expenses (₱)',
-                    data: expensesByMonthData, // Use the PHP data passed above
-                    backgroundColor: 'rgba(255, 99, 132, 0.8)',  // Light red
-                    hoverBackgroundColor: 'rgba(255, 99, 132, 1)',  // Darker red on hover
-                    borderRadius: 10,
-                    borderSkipped: false,
-                    barThickness: 40
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            },
+                            font: { size: 12, weight: 'bold' },
                             color: '#666'
                         }
                     },
@@ -689,12 +642,8 @@ echo "<script>
                             borderDash: [5, 5]
                         },
                         ticks: {
-                            callback: function(value) {
-                                return '₱ ' + value;
-                            },
-                            font: {
-                                size: 12,
-                            },
+                            callback: function(value) { return '₱ ' + value; },
+                            font: { size: 12 },
                             color: '#666'
                         },
                         beginAtZero: true
@@ -703,16 +652,14 @@ echo "<script>
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
                     tooltip: {
-                        backgroundColor: 'rgba(255, 99, 132, 0.8)',
-                        titleFont: { size: 16, weight: 'bold' },
-                        bodyFont: { size: 14 },
+                        backgroundColor: 'rgba(99, 132, 255, 0.8)',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
                         callbacks: {
                             label: function(context) {
-                                return '₱ ' + context.raw.toLocaleString();
+                                return '₱ ' + context.parsed.y.toLocaleString();
                             }
                         }
                     }
@@ -720,28 +667,128 @@ echo "<script>
             }
         });
 
+        // ==========================
+        // Bar Chart for Inventory Expenses
+        // ==========================
+        const ctxExpenses = document.getElementById('expensesChart').getContext('2d');
+
+        // Create gradient for inventory expenses bars
+        const gradientExpenses = ctxExpenses.createLinearGradient(0, 0, 0, 400);
+        gradientExpenses.addColorStop(0, 'rgba(255, 99, 132, 0.8)');
+        gradientExpenses.addColorStop(1, 'rgba(255, 159, 64, 0.8)');
+
+        const expensesChart = new Chart(ctxExpenses, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Inventory Expenses (₱)',
+                    data: expensesByMonthData,
+                    backgroundColor: gradientExpenses,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    barThickness: 30,
+                    hoverBackgroundColor: 'rgba(255, 99, 132, 1)',
+                    hoverBorderColor: 'rgba(255, 99, 132, 1)',
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { size: 12, weight: 'bold' },
+                            color: '#666'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.5)',
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            callback: function(value) { return '₱ ' + value; },
+                            font: { size: 12 },
+                            color: '#666'
+                        },
+                        beginAtZero: true
+                    }
+                },
+                responsive: true,
+maintainAspectRatio: false, // Ensures the chart adjusts to the container size
+plugins: {
+    legend: { 
+        display: true, // Enable legend
+        position: 'top', // Set legend position to top
+        labels: {
+            font: { size: 12 }, // Adjust font size
+            color: '#333' // Set label color
+        }
+    },
+    tooltip: {
+        backgroundColor: 'rgba(255, 99, 132, 0.9)', // Slightly darker tooltip background for better readability
+        titleFont: { size: 14, weight: 'bold' }, // Bold title font
+        bodyFont: { size: 12 }, // Font size for tooltip body
+        padding: 10, // Add padding around tooltip content
+        cornerRadius: 5, // Round tooltip corners
+        callbacks: {
+            label: function(context) {
+                // Add '₱' prefix and format the number with commas
+                return context.dataset.label + ': ₱ ' + context.parsed.y.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
+        }
+    },
+
+layout: {
+    padding: {
+        top: 20, // Add space above the chart
+        bottom: 20, // Add space below the chart
+        left: 10, // Add space to the left of the chart
+        right: 10 // Add space to the right of the chart
+    }
+},
+animation: {
+    duration: 800, // Smooth animation on load and resize
+    easing: 'easeInOutQuad' // Make the animation smoother
+},
+hover: {
+    mode: 'nearest', // Highlight the nearest point
+    intersect: true // Only highlight the point the cursor is over
+}
+                }
+            }
+        });
+
+        // ==========================
         // Pie Chart for Top Used Detergents
+        // ==========================
         const ctxPie = document.getElementById('pieChart').getContext('2d');
+
+        const pieGradient = [
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(75, 192, 192, 0.8)',
+            'rgba(153, 102, 255, 0.8)',
+            'rgba(255, 205, 86, 0.8)',
+            'rgba(255, 99, 132, 0.8)'
+        ];
+
+        const borderColorsPie = [
+            'rgba(54, 162, 235, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 205, 86, 1)',
+            'rgba(255, 99, 132, 1)'
+        ];
+
         const pieChart = new Chart(ctxPie, {
             type: 'pie',
             data: {
                 labels: detergentNames,
                 datasets: [{
                     data: detergentCounts,
-                    backgroundColor: [
-                        'rgba(54, 162, 235, 0.7)',   // Blue
-                        'rgba(75, 192, 192, 0.7)',   // Teal
-                        'rgba(153, 102, 255, 0.7)',  // Light Purple
-                        'rgba(255, 205, 86, 0.7)',   // Light Yellow
-                        'rgba(255, 99, 132, 0.7)'    // Soft Red
-                    ],
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)',     // Blue Border
-                        'rgba(75, 192, 192, 1)',     // Teal Border
-                        'rgba(153, 102, 255, 1)',    // Light Purple Border
-                        'rgba(255, 205, 86, 1)',     // Light Yellow Border
-                        'rgba(255, 99, 132, 1)'      // Soft Red Border
-                    ],
+                    backgroundColor: pieGradient,
+                    borderColor: borderColorsPie,
                     borderWidth: 1
                 }]
             },
@@ -752,38 +799,59 @@ echo "<script>
                     legend: {
                         position: 'right',
                         labels: {
-                            color: '#1D2B53'
+                            color: '#1D2B53',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
                         }
                     },
-                    title: {
-                        display: false
+                    tooltip: {
+                        backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) { label += ': '; }
+                                label += context.parsed + ' uses';
+                                return label;
+                            }
+                        }
                     }
                 }
             }
         });
 
+        // ==========================
         // Pie Chart for Top Used Fabric Detergents
+        // ==========================
         const ctxFabricPie = document.getElementById('fabricPieChart').getContext('2d');
+
+        const fabricPieGradient = [
+            'rgba(255, 159, 64, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(75, 192, 192, 0.8)',
+            'rgba(153, 102, 255, 0.8)',
+            'rgba(255, 99, 132, 0.8)'
+        ];
+
+        const borderColorsFabricPie = [
+            'rgba(255, 159, 64, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 99, 132, 1)'
+        ];
+
         const fabricPieChart = new Chart(ctxFabricPie, {
             type: 'pie',
             data: {
                 labels: fabricDetergentNames,
                 datasets: [{
                     data: fabricDetergentCounts,
-                    backgroundColor: [
-                        'rgba(54, 162, 235, 0.7)',   // Blue
-                        'rgba(75, 192, 192, 0.7)',   // Teal
-                        'rgba(153, 102, 255, 0.7)',  // Light Purple
-                        'rgba(255, 205, 86, 0.7)',   // Light Yellow
-                        'rgba(255, 159, 64, 0.7)'    // Light Orange
-                    ],
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)',     // Blue Border
-                        'rgba(75, 192, 192, 1)',     // Teal Border
-                        'rgba(153, 102, 255, 1)',    // Light Purple Border
-                        'rgba(255, 205, 86, 1)',     // Light Yellow Border
-                        'rgba(255, 159, 64, 1)'      // Light Orange Border
-                    ],
+                    backgroundColor: fabricPieGradient,
+                    borderColor: borderColorsFabricPie,
                     borderWidth: 1
                 }]
             },
@@ -794,18 +862,40 @@ echo "<script>
                     legend: {
                         position: 'right',
                         labels: {
-                            color: '#1D2B53'
+                            color: '#1D2B53',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
                         }
                     },
-                    title: {
-                        display: false
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 159, 64, 0.8)',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) { label += ': '; }
+                                label += context.parsed + ' uses';
+                                return label;
+                            }
+                        }
                     }
                 }
             }
         });
 
-        // Bar Chart for Inventory Stock Levels
+        // ==========================
+        // Bar Chart for Inventory Stock Levels (Horizontal)
+        // ==========================
         const inventoryStockBarChart = document.getElementById('inventoryStockBarChart').getContext('2d');
+
+        // Create gradient for the bars
+        const gradientInventory = inventoryStockBarChart.createLinearGradient(0, 0, inventoryStockBarChart.canvas.width, 0);
+        gradientInventory.addColorStop(0, 'rgba(75, 192, 192, 0.8)');
+        gradientInventory.addColorStop(1, 'rgba(153, 102, 255, 0.8)');
+
         const barChart2 = new Chart(inventoryStockBarChart, {
             type: 'bar',
             data: {
@@ -813,92 +903,183 @@ echo "<script>
                 datasets: [{
                     label: 'Stock Levels',
                     data: inventoryStockData, // Data from PHP
-                    backgroundColor: 'rgba(255, 159, 64, 0.8)',
-                    borderRadius: 10,
-                    borderSkipped: false,
-                    barThickness: 40
+                    backgroundColor: gradientInventory, // Use gradient
+                    borderColor: 'rgba(75, 192, 192, 1)', // Border color
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    barThickness: 30,
+                    hoverBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    hoverBorderColor: 'rgba(75, 192, 192, 1)',
                 }]
             },
             options: {
+                indexAxis: 'y', // This makes the bar chart horizontal
                 scales: {
-                    x: { grid: { display: false } },
-                    y: { beginAtZero: true }
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            callback: function(value) { return ' ' + value.toLocaleString(); },
+                            font: { size: 12, weight: 'bold' },
+                            color: '#666'
+                        }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { size: 12, weight: 'bold' },
+                            color: '#666'
+                        }
+                    }
                 },
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        callbacks: {
+                            label: function(context) {
+                                return ' ' + context.parsed.x.toLocaleString();
+                            }
+                        }
+                    }
+                }
             }
         });
 
-// Line Chart for Actual Sales vs Predicted Sales
-const ctxLine = document.getElementById('salesLineChart').getContext('2d');
-const salesLineChart = new Chart(ctxLine, {
-    type: 'line',
-    data: {
-        labels: salesLabels,
-        datasets: [
-            {
-                label: 'Actual Sales (₱)',
-                data: actualSalesData,
-                borderColor: 'rgba(54, 162, 235, 1)', // Blue
-                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light Blue fill
-                tension: 0.1,
-                spanGaps: true, // Connect lines over missing data
-            },
-            {
-                label: 'Predicted Sales (₱)',
-                data: predictedSalesData,
-                borderColor: 'rgba(255, 99, 132, 1)', // Red
-                backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light Red fill
-                borderDash: [5, 5], // Dashed line for predicted sales
-                tension: 0.1,
-                spanGaps: true,
-            }
-        ]
-    },
-    options: {
-        scales: {
-            x: {
-                type: 'category',
-                title: { display: true, text: 'Month' },
-                ticks: {
-                    callback: function(value, index) {
-                        return moment(salesLabels[index], 'YYYY-MM').format('MMM YYYY');
-                    }
-                }
-            },
-            y: {
-                title: { display: true, text: 'Sales (₱)' },
-                beginAtZero: true,
-                ticks: {
-                    callback: function(value) {
-                        return '₱ ' + value.toLocaleString();
-                    }
-                }
-            }
-        },
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return context.dataset.label + ': ₱ ' + context.parsed.y.toLocaleString();
-                    }
-                }
-            },
-            legend: { display: true, position: 'top' }
-        },
-        responsive: true,
-        maintainAspectRatio: false,
-    }
-});
+        // ==========================
+        // Line Chart for Actual Sales vs Predicted Sales with Enhancements
+        // ==========================
+        const ctxLine = document.getElementById('salesLineChart').getContext('2d');
 
+        // Create gradients for the lines
+        const gradientActual = ctxLine.createLinearGradient(0, 0, 0, 400);
+        gradientActual.addColorStop(0, 'rgba(54, 162, 235, 0.5)');
+        gradientActual.addColorStop(1, 'rgba(54, 162, 235, 0)');
+
+        const gradientPredicted = ctxLine.createLinearGradient(0, 0, 0, 400);
+        gradientPredicted.addColorStop(0, 'rgba(255, 99, 132, 0.5)');
+        gradientPredicted.addColorStop(1, 'rgba(255, 99, 132, 0)');
+
+        const salesLineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: salesLabels,
+                datasets: [
+                    {
+                        label: 'Actual Sales (₱)',
+                        data: actualSalesData,
+                        borderColor: 'rgba(54, 162, 235, 1)', // Blue
+                        backgroundColor: gradientActual, // Gradient fill
+                        pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Blue dots
+                        pointBorderColor: '#fff', // White border for points
+                        pointRadius: 5, // Size of data points
+                        pointHoverRadius: 8, // Hover size of data points
+                        tension: 0.4, // Smooth curve
+                        fill: true, // Fill area under the curve
+                        spanGaps: true, // Connect lines over missing data
+                        plugins: {
+                            shadowPlugin: {
+                                shadowColor: 'rgba(0, 0, 0, 0.2)',
+                                shadowBlur: 10,
+                                shadowOffsetX: 2,
+                                shadowOffsetY: 2
+                            }
+                        }
+                    },
+                    {
+                        label: 'Predicted Sales (₱)',
+                        data: predictedSalesData,
+                        borderColor: 'rgba(255, 99, 132, 1)', // Red
+                        backgroundColor: gradientPredicted, // Gradient fill
+                        pointBackgroundColor: 'rgba(255, 99, 132, 1)', // Red dots
+                        pointBorderColor: '#fff', // White border for points
+                        pointRadius: 5, // Size of data points
+                        pointHoverRadius: 8, // Hover size of data points
+                        tension: 0.4, // Smooth curve
+                        fill: true, // Fill area under the curve
+                        spanGaps: true, // Connect lines over missing data
+                        plugins: {
+                            shadowPlugin: {
+                                shadowColor: 'rgba(0, 0, 0, 0.2)',
+                                shadowBlur: 10,
+                                shadowOffsetX: 2,
+                                shadowOffsetY: 2
+                            }
+                        }
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ₱ ' + context.parsed.y.toLocaleString();
+                            }
+                        },
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 5
+                    },
+                    legend: { 
+                        display: true, 
+                        position: 'top', 
+                        labels: { 
+                            font: { size: 14 },
+                            color: '#333'
+                        } 
+                    },
+                    shadowPlugin: { // Ensure the shadow plugin is applied
+                        shadowColor: 'rgba(0, 0, 0, 0.2)',
+                        shadowBlur: 10,
+                        shadowOffsetX: 2,
+                        shadowOffsetY: 2
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'category',
+                        title: { display: true, text: 'Month', font: { size: 14 } },
+                        ticks: {
+                            callback: function(value, index) {
+                                return moment(salesLabels[index], 'YYYY-MM').format('MMM YYYY');
+                            },
+                            font: { size: 12 },
+                            color: '#666'
+                        }
+                    },
+                    y: {
+                        title: { display: true, text: 'Sales (₱)', font: { size: 14 } },
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '₱ ' + value.toLocaleString();
+                            },
+                            font: { size: 12 },
+                            color: '#666'
+                        }
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+            }
+        });
+
+        // ==========================
         // Display Predicted Sales using JavaScript
+        // ==========================
         document.addEventListener('DOMContentLoaded', function() {
             if (predictionError) {
                 // Display error message
                 document.getElementById('predictedSales').textContent = 'Error: ' + predictionError;
                 document.getElementById('predictedMonth').textContent = '...';
             } else if (predictedSales !== null && predictedMonth !== null) {
-                // Update the predicted sales and month
+                // Update the predicted sales and month with peso symbol
                 document.getElementById('predictedSales').textContent = '₱ ' + Number(predictedSales).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 document.getElementById('predictedMonth').textContent = predictedMonth;
             } else {
@@ -917,7 +1098,7 @@ const salesLineChart = new Chart(ctxLine, {
 
         // Set default path for home page
         if (path === "") {
-          path = "index.html";
+          path = "maindashboard.php";
         }
 
         // Find the sidebar link that matches the current path
