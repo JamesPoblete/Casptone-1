@@ -1,4 +1,5 @@
 function editUser(userId, userName, userType) {
+    // Existing code for editing user
     Swal.fire({
         title: 'Edit User',
         html: `
@@ -35,6 +36,7 @@ function editUser(userId, userName, userType) {
 }
 
 function confirmDelete(userId) {
+    // Existing code for deleting user
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -74,29 +76,84 @@ function confirmDelete(userId) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search');
+    const table = document.querySelector('table tbody');
 
-        const searchInput = document.getElementById('search');
-        const table = document.querySelector('table tbody');
+    searchInput.addEventListener('input', function() {
+        const searchValue = this.value.toLowerCase();
+        const rows = table.querySelectorAll('tr');
 
-        searchInput.addEventListener('input', function() {
-            const searchValue = this.value.toLowerCase();
-            const rows = table.querySelectorAll('tr');
+        rows.forEach(row => {
+            const userID = row.cells[0].textContent.toLowerCase();
+            const userName = row.cells[1].textContent.toLowerCase();
+            const userType = row.cells[2].textContent.toLowerCase();
 
-            rows.forEach(row => {
-                const userID = row.cells[0].textContent.toLowerCase();
-                const userName = row.cells[1].textContent.toLowerCase();
-                const userType = row.cells[2].textContent.toLowerCase();
-
-                if (userID.includes(searchValue) || userName.includes(searchValue) || userType.includes(searchValue)) {
-                    row.style.display = ''; // Show the row
-                } else {
-                    row.style.display = 'none'; // Hide the row
-                }
-            });
+            if (userID.includes(searchValue) || userName.includes(searchValue) || userType.includes(searchValue)) {
+                row.style.display = ''; // Show the row
+            } else {
+                row.style.display = 'none'; // Hide the row
+            }
         });
+    });
 
-        $(document).ready(function() {
-          if ($('body').hasClass('manage-user-page')) {
-            $('.sidebar ul li a[href="../php/manageuser.php"]').addClass("active");
-          }
+    // Notifications Modal Handling
+
+    // Notifications Elements
+    const notificationsIcon = document.getElementById('notificationsIcon');
+    const notificationsModal = document.getElementById('notificationsModal');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    // Function to open modal with animation
+    function openModal() {
+        notificationsModal.style.display = 'flex'; // Use 'flex' to align items centrally
+        // Allow the browser to render the display change before adding the class
+        setTimeout(() => {
+            notificationsModal.classList.add('show');
+        }, 10); // 10ms delay to ensure the transition
+    }
+
+    // Function to close modal with animation
+    function closeModal() {
+        notificationsModal.classList.remove('show');
+        // Wait for the animation to finish before hiding
+        setTimeout(() => {
+            notificationsModal.style.display = 'none';
+        }, 500); // Duration should match the CSS transition (0.5s)
+    }
+
+    // Event Listener to Open Modal
+    notificationsIcon.addEventListener('click', openModal);
+
+    // Event Listener to Close Modal via Close Button
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Event Listener to Close Modal by Clicking Outside the Modal Content
+    window.addEventListener('click', function(event) {
+        if (event.target === notificationsModal) {
+            closeModal();
+        }
+    });
+
+    // Active Link Highlighting
+    $(document).ready(function() {
+        // Get the current path from the URL
+        var path = window.location.pathname.split("/").pop();
+
+        // Set default path for the home page (if necessary)
+        if (path === "") {
+            path = "index.html"; // or whatever the home page path is
+        }
+
+        // Loop through all sidebar links
+        $('.sidebar ul li a').each(function() {
+            // Extract the href attribute and split to get just the file name
+            var hrefPath = $(this).attr('href').split("/").pop();
+
+            // Compare the current URL path with the href path
+            if (hrefPath === path) {
+                $(this).addClass("active");
+            }
         });
+    });
+});

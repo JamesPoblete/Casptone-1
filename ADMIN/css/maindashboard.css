@@ -431,3 +431,121 @@ body {
     height: 300px; /* Adjust height for smaller screens */
   }
 }
+
+
+/* Notifications Icon Styles */
+.notifications {
+  position: relative;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.notifications .fa-bell {
+  font-size: 20px;
+  color: #333;
+}
+
+.notifications .badge {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+  background-color: red;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+/* Notifications Modal Styles */
+.notifmodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1001; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.5); /* Black with opacity */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.notifmodal .modal-content {
+  background-color: #fefefe;
+  margin: 0; /* Remove default margin */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Adjust width as needed */
+  border-radius: 8px;
+  position: relative;
+  
+  /* Initial state: scaled down and transparent */
+  transform: scale(0.5);
+  opacity: 0;
+  
+  /* Transition properties */
+  transition: transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6), opacity 0.5s ease-out;
+}
+
+.notifmodal.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Close Button Styles */
+.notifmodal .close-button {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.notifmodal .close-button:hover,
+.notifmodal .close-button:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Notifications Section */
+.notifmodal .notifications-section {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notifmodal .notifications-section h3 {
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.notifmodal .modal-content h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.notifmodal .notifications-section ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.notifmodal .notifications-section li {
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+/* Responsive Styles for Notifications Modal */
+@media screen and (max-width: 768px) {
+  .notifmodal .modal-content {
+      width: 80%; /* Adjust width for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .notifmodal .modal-content {
+      width: 95%; /* Further adjust width for very small screens */
+  }
+}
+

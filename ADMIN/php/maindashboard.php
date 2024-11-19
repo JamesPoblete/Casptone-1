@@ -408,8 +408,39 @@ echo "<script>
     const actualSalesData = " . json_encode($actual_sales_values) . ";
     const predictedSalesData = " . json_encode($predicted_sales_values) . ";
 </script>";
-?>
 
+// ==========================
+// Fetch Low and Out-of-Stock Inventory Data
+// ==========================
+
+// Define the threshold for low stock
+$low_stock_threshold = 5;
+
+// Query to fetch out-of-stock products
+$stmt_out_of_stock = $conn->prepare("SELECT ProductName, CurrentStock FROM inventory WHERE userID = :userID AND CurrentStock = 0");
+$stmt_out_of_stock->execute(['userID' => $_SESSION['userID']]);
+$out_of_stock_products = $stmt_out_of_stock->fetchAll(PDO::FETCH_ASSOC);
+
+// Query to fetch low-stock products
+$stmt_low_stock = $conn->prepare("SELECT ProductName, CurrentStock FROM inventory WHERE userID = :userID AND CurrentStock > 0 AND CurrentStock <= :threshold");
+$stmt_low_stock->execute(['userID' => $_SESSION['userID'], 'threshold' => $low_stock_threshold]);
+$low_stock_products = $stmt_low_stock->fetchAll(PDO::FETCH_ASSOC);
+
+// Combine both out-of-stock and low-stock products
+$notifications = [
+    'out_of_stock' => $out_of_stock_products,
+    'low_stock' => $low_stock_products
+];
+
+// Calculate the total number of notifications
+$total_notifications = count($out_of_stock_products) + count($low_stock_products);
+
+// Pass the notifications data to JavaScript
+echo "<script>
+    const notifications = " . json_encode($notifications) . ";
+    const totalNotifications = " . json_encode($total_notifications) . ";
+</script>";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -422,6 +453,7 @@ echo "<script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Include custom fonts if needed -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -432,7 +464,7 @@ echo "<script>
         <ul>
             <li><a href="maindashboard.php" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
             <li><a href="inventorylist.php"><i class="fas fa-box"></i> Inventory</a></li>
-            <li><a href="../html/laundrylist.html"><i class="fas fa-list-alt"></i> Laundries List</a></li>
+            <li><a href="../php/laundry.php"><i class="fas fa-list-alt"></i> Laundries List</a></li>
             <li><a href="../php/manageuser.php"><i class="fas fa-users-cog"></i> Manage User</a></li>
             <li><a href="../html/login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
         </ul>
@@ -474,6 +506,13 @@ echo "<script>
             </div>
 
             <div class="header-right">
+                <!-- Notifications Icon -->
+<div class="notifications">
+    <i class="fas fa-bell" id="notificationsIcon"></i>
+    <?php if ($total_notifications > 0): ?>
+        <span class="badge" id="notificationBadge"><?php echo $total_notifications; ?></span>
+    <?php endif; ?>
+</div>
                 <div class="user-profile">
                     <i class="fa fa-user-circle"></i>
                     <span>Admin</span>
@@ -564,6 +603,37 @@ echo "<script>
             </div>
         </div>
 
+    </div>
+
+    <!-- Notifications Modal -->
+    <div id="notificationsModal" class="notifmodal">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+            <h2>Notifications</h2>
+            <?php if ($total_notifications > 0): ?>
+                <div class="notifications-section">
+                    <?php if (count($out_of_stock_products) > 0): ?>
+                        <h3>Out of Stock</h3>
+                        <ul>
+                            <?php foreach ($out_of_stock_products as $product): ?>
+                                <li><?php echo htmlspecialchars($product['ProductName']); ?> - Current Stock: <?php echo htmlspecialchars($product['CurrentStock']); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+
+                    <?php if (count($low_stock_products) > 0): ?>
+                        <h3>Low Stock</h3>
+                        <ul>
+                            <?php foreach ($low_stock_products as $product): ?>
+                                <li><?php echo htmlspecialchars($product['ProductName']); ?> - Current Stock: <?php echo htmlspecialchars($product['CurrentStock']); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                </div>
+            <?php else: ?>
+                <p>No inventory issues detected.</p>
+            <?php endif; ?>
+        </div>
     </div>
 
     <!-- jQuery and Bootstrap JS (if needed) -->
@@ -717,46 +787,29 @@ echo "<script>
                     }
                 },
                 responsive: true,
-maintainAspectRatio: false, // Ensures the chart adjusts to the container size
-plugins: {
-    legend: { 
-        display: true, // Enable legend
-        position: 'top', // Set legend position to top
-        labels: {
-            font: { size: 12 }, // Adjust font size
-            color: '#333' // Set label color
-        }
-    },
-    tooltip: {
-        backgroundColor: 'rgba(255, 99, 132, 0.9)', // Slightly darker tooltip background for better readability
-        titleFont: { size: 14, weight: 'bold' }, // Bold title font
-        bodyFont: { size: 12 }, // Font size for tooltip body
-        padding: 10, // Add padding around tooltip content
-        cornerRadius: 5, // Round tooltip corners
-        callbacks: {
-            label: function(context) {
-                // Add '₱' prefix and format the number with commas
-                return context.dataset.label + ': ₱ ' + context.parsed.y.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            }
-        }
-    },
-
-layout: {
-    padding: {
-        top: 20, // Add space above the chart
-        bottom: 20, // Add space below the chart
-        left: 10, // Add space to the left of the chart
-        right: 10 // Add space to the right of the chart
-    }
-},
-animation: {
-    duration: 800, // Smooth animation on load and resize
-    easing: 'easeInOutQuad' // Make the animation smoother
-},
-hover: {
-    mode: 'nearest', // Highlight the nearest point
-    intersect: true // Only highlight the point the cursor is over
-}
+                maintainAspectRatio: false, // Ensures the chart adjusts to the container size
+                plugins: {
+                    legend: { 
+                        display: true, // Enable legend
+                        position: 'top', // Set legend position to top
+                        labels: {
+                            font: { size: 12 }, // Adjust font size
+                            color: '#333' // Set label color
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 99, 132, 0.9)', // Slightly darker tooltip background for better readability
+                        titleFont: { size: 14, weight: 'bold' }, // Bold title font
+                        bodyFont: { size: 12 }, // Font size for tooltip body
+                        padding: 10, // Add padding around tooltip content
+                        cornerRadius: 5, // Round tooltip corners
+                        callbacks: {
+                            label: function(context) {
+                                // Add '₱' prefix and format the number with commas
+                                return context.dataset.label + ': ₱ ' + context.parsed.y.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1089,7 +1142,52 @@ hover: {
                 document.getElementById('predictedMonth').textContent = '...';
             }
         });
-    </script>
+
+    // Handle Notifications Modal with Animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Notification Modal Elements
+        const notificationsIcon = document.getElementById('notificationsIcon');
+        const notificationsModal = document.getElementById('notificationsModal');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        // Function to Open Modal with Animation
+        function openModal() {
+            notificationsModal.style.display = 'flex'; // Use 'flex' to align items centrally
+            // Allow the browser to render the display change before adding the class
+            setTimeout(() => {
+                notificationsModal.classList.add('show');
+            }, 10); // 10ms delay to ensure the transition
+        }
+
+        // Function to Close Modal with Animation
+        function closeModal() {
+            notificationsModal.classList.remove('show');
+            // Wait for the animation to finish before hiding
+            setTimeout(() => {
+                notificationsModal.style.display = 'none';
+            }, 500); // Duration should match the CSS transition (0.5s)
+        }
+
+        // Event Listener to Open Modal
+        notificationsIcon.addEventListener('click', openModal);
+
+        // Event Listener to Close Modal via Close Button
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Event Listener to Close Modal by Clicking Outside the Modal Content
+        window.addEventListener('click', function(event) {
+            if (event.target === notificationsModal) {
+                closeModal();
+            }
+        });
+
+        // Update Notification Badge if Necessary
+        if (totalNotifications > 0) {
+            document.getElementById('notificationBadge').textContent = totalNotifications;
+        }
+    });
+</script>
+
 
     <!-- Optional: Add script for active sidebar link -->
     <script>

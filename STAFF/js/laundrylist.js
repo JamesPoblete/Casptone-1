@@ -1,69 +1,69 @@
 // laundrylist.js
 
 document.addEventListener('DOMContentLoaded', function() {
-  // ----- Delete Selected Entries Handling -----
-  const deleteSelectedEntriesBtn = document.getElementById('deleteSelectedEntries');
+    // ----- Delete Selected Entries Handling -----
+    const deleteSelectedEntriesBtn = document.getElementById('deleteSelectedEntries');
 
-  // Function to handle deletion of selected entries
-  deleteSelectedEntriesBtn.addEventListener('click', function() {
-      // Get all checked checkboxes
-      const checkedBoxes = document.querySelectorAll('.select:checked');
-      if (checkedBoxes.length === 0) {
-          toastr.warning('Please select at least one laundry entry to delete.');
-          return;
-      }
+    // Function to handle deletion of selected entries
+    deleteSelectedEntriesBtn.addEventListener('click', function() {
+        // Get all checked checkboxes
+        const checkedBoxes = document.querySelectorAll('.select:checked');
+        if (checkedBoxes.length === 0) {
+            toastr.warning('Please select at least one laundry entry to delete.');
+            return;
+        }
 
-      // Collect OrderIDs of selected entries
-      const selectedOrderIDs = Array.from(checkedBoxes).map(cb => cb.closest('tr').children[1].textContent.trim());
+        // Collect OrderIDs of selected entries
+        const selectedOrderIDs = Array.from(checkedBoxes).map(cb => cb.closest('tr').children[1].textContent.trim());
 
-      // Confirmation dialog
-      const confirmDelete = confirm(`Are you sure you want to delete ${selectedOrderIDs.length} selected entr${selectedOrderIDs.length > 1 ? 'ies' : 'y'}? This action cannot be undone.`);
-      if (!confirmDelete) {
-          return;
-      }
+        // Confirmation dialog
+        const confirmDelete = confirm(`Are you sure you want to delete ${selectedOrderIDs.length} selected entr${selectedOrderIDs.length > 1 ? 'ies' : 'y'}? This action cannot be undone.`);
+        if (!confirmDelete) {
+            return;
+        }
 
-      // Show loader
-      const loader = document.getElementById('loader');
-      if (loader) {
-          loader.style.display = 'block';
-      }
+        // Show loader
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.display = 'block';
+        }
 
-      // Prepare data to send
-      const formData = new FormData();
-      selectedOrderIDs.forEach(id => formData.append('orderIDs[]', id));
+        // Prepare data to send
+        const formData = new FormData();
+        selectedOrderIDs.forEach(id => formData.append('orderIDs[]', id));
 
-      // Send AJAX request to deleteLaundry.php
-      fetch('../php/deleteLaundry.php', {
-          method: 'POST',
-          body: formData
-      })
-      .then(response => response.json())
-      .then(responseData => {
-          // Hide loader
-          if (loader) {
-              loader.style.display = 'none';
-          }
+        // Send AJAX request to deleteLaundry.php
+        fetch('../php/deleteLaundry.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            // Hide loader
+            if (loader) {
+                loader.style.display = 'none';
+            }
 
-          if (responseData.success) {
-              toastr.success(`<i class="fas fa-check-circle"></i> Successfully deleted ${selectedOrderIDs.length} entr${selectedOrderIDs.length > 1 ? 'ies' : 'y'}.`);
-              fetchDataAndApplyFilters(); // Refresh the table
-          } else {
-              toastr.error(`<i class="fas fa-exclamation-triangle"></i> Failed to delete entries: ${responseData.message}`);
-          }
-      })
-      .catch(error => {
-          // Hide loader
-          if (loader) {
-              loader.style.display = 'none';
-          }
+            if (responseData.success) {
+                toastr.success(`<i class="fas fa-check-circle"></i> Successfully deleted ${selectedOrderIDs.length} entr${selectedOrderIDs.length > 1 ? 'ies' : 'y'}.`);
+                fetchDataAndApplyFilters(); // Refresh the table
+            } else {
+                toastr.error(`<i class="fas fa-exclamation-triangle"></i> Failed to delete entries: ${responseData.message}`);
+            }
+        })
+        .catch(error => {
+            // Hide loader
+            if (loader) {
+                loader.style.display = 'none';
+            }
 
-          console.error('Error deleting entries:', error);
-          toastr.error('<i class="fas fa-exclamation-triangle"></i> An error occurred while deleting the entries.');
-      });
-  });
-    
-     // Ensure that the attachStatusListeners is called after the table is updated
-     function updateTable() {
+            console.error('Error deleting entries:', error);
+            toastr.error('<i class="fas fa-exclamation-triangle"></i> An error occurred while deleting the entries.');
+        });
+    });
+
+    // Ensure that the attachStatusListeners is called after the table is updated
+    function updateTable() {
         const tableBody = document.getElementById('laundryListTable');
         tableBody.innerHTML = ''; // Clear existing rows
 
@@ -175,84 +175,83 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to update the table with the filtered data
-    // Update the table with filtered data
-function updateTable() {
-    const tableBody = document.getElementById('laundryListTable');
-    tableBody.innerHTML = ''; // Clear existing rows
+    function updateTable() {
+        const tableBody = document.getElementById('laundryListTable');
+        tableBody.innerHTML = ''; // Clear existing rows
 
-    const startIndex = (currentPage - 1) * rowsPerPage;
-    const endIndex = startIndex + rowsPerPage;
-    const paginatedData = filteredData.slice(startIndex, endIndex); // Paginate filteredData
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        const paginatedData = filteredData.slice(startIndex, endIndex); // Paginate filteredData
 
-    if (paginatedData.length === 0) {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td colspan="6">No data found</td>`;
-        tableBody.appendChild(row);
-    } else {
-        paginatedData.forEach(item => {
+        if (paginatedData.length === 0) {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td><input type="checkbox" class="select"></td>
-                <td>${item.OrderID}</td>
-                <td>${new Date(item.DATE).toLocaleDateString()}</td>
-                <td>${item.NAME}</td>
-                <td>${item.PICKUP_TIME || 'No time set'}</td>
-                <td>
-                    <select class="status-dropdown ${item.STATUS.toLowerCase()}" data-order-id="${item.OrderID}" data-original-status="${item.STATUS}">
-                        <option value="Pending" ${item.STATUS === 'Pending' ? 'selected' : ''}>🔴 Pending</option>
-                        <option value="Completed" ${item.STATUS === 'Completed' ? 'selected' : ''}>✔ Completed</option>
-                    </select>
-                </td>
-            `;
+            row.innerHTML = `<td colspan="6">No data found</td>`;
             tableBody.appendChild(row);
-        });
+        } else {
+            paginatedData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><input type="checkbox" class="select"></td>
+                    <td>${item.OrderID}</td>
+                    <td>${new Date(item.DATE).toLocaleDateString()}</td>
+                    <td>${item.NAME}</td>
+                    <td>${item.PICKUP_TIME || 'No time set'}</td>
+                    <td>
+                        <select class="status-dropdown ${item.STATUS.toLowerCase()}" data-order-id="${item.OrderID}" data-original-status="${item.STATUS}">
+                            <option value="Pending" ${item.STATUS === 'Pending' ? 'selected' : ''}>🔴 Pending</option>
+                            <option value="Completed" ${item.STATUS === 'Completed' ? 'selected' : ''}>✔ Completed</option>
+                        </select>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        updatePagination(); // Update pagination after table update
     }
-    updatePagination(); // Update pagination after table update
-}
 
-// Update pagination controls
-function updatePagination() {
-    document.getElementById('pageNumber').textContent = currentPage;
+    // Update pagination controls
+    function updatePagination() {
+        document.getElementById('pageNumber').textContent = currentPage;
 
-    // Enable/disable pagination buttons based on the current page and data length
-    document.getElementById('prevPage').disabled = currentPage === 1;
-    document.getElementById('firstPage').disabled = currentPage === 1;
-    document.getElementById('nextPage').disabled = currentPage * rowsPerPage >= totalRows;
-    document.getElementById('lastPage').disabled = currentPage * rowsPerPage >= totalRows;
-}
-
-// Previous page button event
-document.getElementById('prevPage').addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        updateTable(); // Use the filteredData for pagination
+        // Enable/disable pagination buttons based on the current page and data length
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('firstPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = currentPage * rowsPerPage >= totalRows;
+        document.getElementById('lastPage').disabled = currentPage * rowsPerPage >= totalRows;
     }
-});
 
-// Next page button event
-document.getElementById('nextPage').addEventListener('click', () => {
-    if (currentPage * rowsPerPage < totalRows) {
-        currentPage++;
-        updateTable(); // Use the filteredData for pagination
-    }
-});
+    // Previous page button event
+    document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            updateTable(); // Use the filteredData for pagination
+        }
+    });
 
-// First page button event
-document.getElementById('firstPage').addEventListener('click', () => {
-    if (currentPage !== 1) {
-        currentPage = 1;
-        updateTable();
-    }
-});
+    // Next page button event
+    document.getElementById('nextPage').addEventListener('click', () => {
+        if (currentPage * rowsPerPage < totalRows) {
+            currentPage++;
+            updateTable(); // Use the filteredData for pagination
+        }
+    });
 
-// Last page button event
-document.getElementById('lastPage').addEventListener('click', () => {
-    const lastPage = Math.ceil(totalRows / rowsPerPage);
-    if (currentPage !== lastPage) {
-        currentPage = lastPage;
-        updateTable();
-    }
-});
+    // First page button event
+    document.getElementById('firstPage').addEventListener('click', () => {
+        if (currentPage !== 1) {
+            currentPage = 1;
+            updateTable();
+        }
+    });
+
+    // Last page button event
+    document.getElementById('lastPage').addEventListener('click', () => {
+        const lastPage = Math.ceil(totalRows / rowsPerPage);
+        if (currentPage !== lastPage) {
+            currentPage = lastPage;
+            updateTable();
+        }
+    });
 
 
     // Filter functionality
@@ -486,6 +485,9 @@ document.getElementById('lastPage').addEventListener('click', () => {
                 inputField.required = false;
             }
             calculateTotal(); // Recalculate total on change
+
+            // ----- Stock Check for Detergent -----
+            checkDetergentStock(this.value, 'DETERGENT');
         });
     });
 
@@ -502,8 +504,62 @@ document.getElementById('lastPage').addEventListener('click', () => {
                 inputField.required = false;
             }
             calculateTotal(); // Recalculate total on change
+
+            // ----- Stock Check for Fabric Detergent -----
+            checkDetergentStock(this.value, 'FABRIC_DETERGENT');
         });
     });
+
+    /**
+     * Function to check detergent stock when a detergent radio button is selected.
+     * Displays an error message if out of stock and unchecks the radio button.
+     * @param {string} detergentType - The selected detergent type.
+     * @param {string} detergentCategory - 'DETERGENT' or 'FABRIC_DETERGENT'.
+     */
+    async function checkDetergentStock(detergentType, detergentCategory) {
+        try {
+            const response = await fetch('../php/checkDetergentStock.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `detergent_type=${encodeURIComponent(detergentType)}&required_count=1`
+            });
+
+            const data = await response.json();
+
+            if (!data.success) {
+                toastr.error(`Error checking stock for "${detergentType}": ${data.message}`);
+                // Uncheck the radio button
+                const radioButtons = document.querySelectorAll(`input[name="${detergentCategory}_TYPE"]`);
+                radioButtons.forEach(radio => {
+                    if (radio.value === detergentType) {
+                        radio.checked = false;
+                    }
+                });
+                return;
+            }
+
+            if (data.stock <= 0) {
+                toastr.error(`"${detergentType}" is out of stock.`);
+                // Uncheck the radio button
+                const radioButtons = document.querySelectorAll(`input[name="${detergentCategory}_TYPE"]`);
+                radioButtons.forEach(radio => {
+                    if (radio.value === detergentType) {
+                        radio.checked = false;
+                    }
+                });
+            }
+        } catch (error) {
+            console.error(`Error checking stock for "${detergentType}":`, error);
+            toastr.error('An error occurred while checking detergent stock.');
+            // Optionally, uncheck the radio button
+            const radioButtons = document.querySelectorAll(`input[name="${detergentCategory}_TYPE"]`);
+            radioButtons.forEach(radio => {
+                if (radio.value === detergentType) {
+                    radio.checked = false;
+                }
+            });
+        }
+    }
 
     // ----- Total Calculation -----
     function calculateTotal() {
@@ -627,10 +683,77 @@ document.getElementById('lastPage').addEventListener('click', () => {
     });
 
     // ----- Form Submission Handling -----
-    laundryForm.addEventListener('submit', function(event) {
+    // Updated to include stock checks for Detergent and Fabric Detergent
+    laundryForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent default form submission
 
         calculateTotal(); // Ensure total is up-to-date before submission
+
+        const detergentType = document.querySelector('input[name="DETERGENT_TYPE"]:checked')?.value || null;
+        const fabricDetergentType = document.querySelector('input[name="FABRIC_DETERGENT_TYPE"]:checked')?.value || null;
+
+        let isOutOfStock = false;
+
+        // Check detergent stock if a detergent type is selected
+        if (detergentType) {
+            await fetch('../php/checkDetergentStock.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `detergent_type=${encodeURIComponent(detergentType)}&required_count=1`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success || data.stock <= 0) {
+                    isOutOfStock = true;
+                    toastr.error(`Detergent "${detergentType}" is out of stock.`);
+                    // Uncheck the radio button
+                    const detergentRadios = document.querySelectorAll(`input[name="DETERGENT_TYPE"]`);
+                    detergentRadios.forEach(radio => {
+                        if (radio.value === detergentType) {
+                            radio.checked = false;
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error checking detergent stock:', error);
+                toastr.error('An error occurred while checking detergent stock.');
+                isOutOfStock = true;
+            });
+        }
+
+        // Check fabric detergent stock if a fabric detergent type is selected
+        if (fabricDetergentType) {
+            await fetch('../php/checkDetergentStock.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `detergent_type=${encodeURIComponent(fabricDetergentType)}&required_count=1`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success || data.stock <= 0) {
+                    isOutOfStock = true;
+                    toastr.error(`Fabric Detergent "${fabricDetergentType}" is out of stock.`);
+                    // Uncheck the radio button
+                    const fabricDetergentRadios = document.querySelectorAll(`input[name="FABRIC_DETERGENT_TYPE"]`);
+                    fabricDetergentRadios.forEach(radio => {
+                        if (radio.value === fabricDetergentType) {
+                            radio.checked = false;
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error checking fabric detergent stock:', error);
+                toastr.error('An error occurred while checking fabric detergent stock.');
+                isOutOfStock = true;
+            });
+        }
+
+        // Prevent form submission if any detergent is out of stock
+        if (isOutOfStock) {
+            return;
+        }
 
         const formData = new FormData();
 
@@ -724,9 +847,9 @@ document.getElementById('lastPage').addEventListener('click', () => {
                 <ul>
                     ${generateArticlesList(data)}
                 </ul>
-                <p><p><strong>Detergent:</strong> <span>${data.DETERGENT}</span></p></p>
-                <p><p><strong>Fabric Detergent:</strong> <span>${data.FABRIC_DETERGENT}</span></p></p>
-                <p><p><strong>Additional Cost:</strong> <span>${data.ADDITIONAL_COST}</span></p></p>
+                <p><strong>Detergent:</strong> <span>${data.DETERGENT}</span></p>
+                <p><strong>Fabric Detergent:</strong> <span>${data.FABRIC_DETERGENT}</span></p>
+                <p><strong>Additional Cost:</strong> <span>${data.ADDITIONAL_COST}</span></p>
                 <p><strong>Pick Up Time:</strong> <span>${data.PICKUP_TIME || 'No time set'}</span></p>
                 <p>
                     <strong style="font-size: 24px;">Total:</strong> ₱ <span>${data.TOTAL}</span>
@@ -942,5 +1065,3 @@ document.getElementById('lastPage').addEventListener('click', () => {
     // Call the function to attach listeners after the table is updated
     attachStatusListeners();
 });
-
-

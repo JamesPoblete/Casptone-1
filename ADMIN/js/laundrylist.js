@@ -78,50 +78,46 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePagination(); // Update pagination after table update
     }
 
-   // Update pagination controls
-function updatePagination() {
-    document.getElementById('pageNumber').textContent = currentPage;
+    // Update pagination controls
+    function updatePagination() {
+        document.getElementById('pageNumber').textContent = currentPage;
 
-    // Enable/disable pagination buttons based on the current page and data length
-    document.getElementById('prevPage').disabled = currentPage === 1;
-    document.getElementById('firstPage').disabled = currentPage === 1;
-    document.getElementById('nextPage').disabled = currentPage * rowsPerPage >= totalRows;
-    document.getElementById('lastPage').disabled = currentPage * rowsPerPage >= totalRows;
-}
-
-// Previous page button event
-document.getElementById('prevPage').addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        updateTable(); // Use the filteredData for pagination
+        // Enable/disable pagination buttons based on the current page and data length
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('firstPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = currentPage * rowsPerPage >= totalRows;
+        document.getElementById('lastPage').disabled = currentPage * rowsPerPage >= totalRows;
     }
-});
 
-// Next page button event
-document.getElementById('nextPage').addEventListener('click', () => {
-    if (currentPage * rowsPerPage < totalRows) {
-        currentPage++;
-        updateTable(); // Use the filteredData for pagination
-    }
-});
+    // Pagination button events
+    document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            updateTable(); // Use the filteredData for pagination
+        }
+    });
 
-// First page button event
-document.getElementById('firstPage').addEventListener('click', () => {
-    if (currentPage !== 1) {
-        currentPage = 1;
-        updateTable();
-    }
-});
+    document.getElementById('nextPage').addEventListener('click', () => {
+        if (currentPage * rowsPerPage < totalRows) {
+            currentPage++;
+            updateTable(); // Use the filteredData for pagination
+        }
+    });
 
-// Last page button event
-document.getElementById('lastPage').addEventListener('click', () => {
-    const lastPage = Math.ceil(totalRows / rowsPerPage);
-    if (currentPage !== lastPage && lastPage > 0) {
-        currentPage = lastPage;
-        updateTable();
-    }
-});
+    document.getElementById('firstPage').addEventListener('click', () => {
+        if (currentPage !== 1) {
+            currentPage = 1;
+            updateTable();
+        }
+    });
 
+    document.getElementById('lastPage').addEventListener('click', () => {
+        const lastPage = Math.ceil(totalRows / rowsPerPage);
+        if (currentPage !== lastPage && lastPage > 0) {
+            currentPage = lastPage;
+            updateTable();
+        }
+    });
 
     // Filter functionality
     const filterSelect = document.querySelector('.status-filter');
@@ -140,12 +136,51 @@ document.getElementById('lastPage').addEventListener('click', () => {
     });
 
     // Select All functionality
-    document.getElementById('selectAll').addEventListener('click', function() {
-        const checkboxes = document.querySelectorAll('.select');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = this.checked;
+    const selectAllCheckbox = document.getElementById('selectAll');
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('.select');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
         });
+    }
+
+    // Notifications Modal Handling
+
+    // Notifications Elements
+    const notificationsIcon = document.getElementById('notificationsIcon');
+    const notificationsModal = document.getElementById('notificationsModal');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    // Function to open modal with animation
+    function openModal() {
+        notificationsModal.style.display = 'flex'; // Use 'flex' to align items centrally
+        // Allow the browser to render the display change before adding the class
+        setTimeout(() => {
+            notificationsModal.classList.add('show');
+        }, 10); // 10ms delay to ensure the transition
+    }
+
+    // Function to close modal with animation
+    function closeModal() {
+        notificationsModal.classList.remove('show');
+        // Wait for the animation to finish before hiding
+        setTimeout(() => {
+            notificationsModal.style.display = 'none';
+        }, 500); // Duration should match the CSS transition (0.5s)
+    }
+
+    // Event Listener to Open Modal
+    notificationsIcon.addEventListener('click', openModal);
+
+    // Event Listener to Close Modal via Close Button
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Event Listener to Close Modal by Clicking Outside the Modal Content
+    window.addEventListener('click', function(event) {
+        if (event.target === notificationsModal) {
+            closeModal();
+        }
     });
 });
-
-

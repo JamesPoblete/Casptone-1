@@ -96,6 +96,33 @@ $monthlyExpenses = $expenseStmt->fetchAll(PDO::FETCH_ASSOC);
 function getMonthName($monthNumber) {
     return DateTime::createFromFormat('!m', $monthNumber)->format('F');
 }
+
+// ==========================
+// Fetch Low and Out-of-Stock Inventory Data
+// ==========================
+
+// Define the threshold for low stock
+$low_stock_threshold = 5;
+
+// Query to fetch out-of-stock products
+$stmt_out_of_stock = $pdo->prepare("SELECT ProductName, CurrentStock FROM inventory WHERE userID = :userID AND CurrentStock = 0");
+$stmt_out_of_stock->execute(['userID' => $_SESSION['userID']]);
+$out_of_stock_products = $stmt_out_of_stock->fetchAll(PDO::FETCH_ASSOC);
+
+// Query to fetch low-stock products
+$stmt_low_stock = $pdo->prepare("SELECT ProductName, CurrentStock FROM inventory WHERE userID = :userID AND CurrentStock > 0 AND CurrentStock <= :threshold");
+$stmt_low_stock->execute(['userID' => $_SESSION['userID'], 'threshold' => $low_stock_threshold]);
+$low_stock_products = $stmt_low_stock->fetchAll(PDO::FETCH_ASSOC);
+
+// Combine both out-of-stock and low-stock products
+$notifications = [
+    'out_of_stock' => $out_of_stock_products,
+    'low_stock' => $low_stock_products
+];
+
+// Calculate the total number of notifications
+$total_notifications = count($out_of_stock_products) + count($low_stock_products);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +145,7 @@ function getMonthName($monthNumber) {
         <ul>
             <li><a href="../php/maindashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
             <li><a href="inventorylist.php" class="active"><i class="fas fa-box"></i> Inventory</a></li>
-            <li><a href="../html/laundrylist.html"><i class="fas fa-list-alt"></i> Laundries List</a></li>
+            <li><a href="../php/laundry.php"><i class="fas fa-list-alt"></i> Laundries List</a></li>
             <li><a href="../php/manageuser.php"><i class="fas fa-users-cog"></i> Manage User</a></li>
             <li><a href="../php/logout.php" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
         </ul>
@@ -132,6 +159,14 @@ function getMonthName($monthNumber) {
             </div>
             
             <div class="header-right">
+                <!-- Notifications Icon -->
+                <div class="notifications">
+    <i class="fas fa-bell" id="notificationsIcon"></i>
+    <?php if ($total_notifications > 0): ?>
+        <span class="badge" id="notificationBadge"><?php echo $total_notifications; ?></span>
+    <?php endif; ?>
+</div>
+
                 <div class="user-profile">
                     <i class="fa fa-user-circle"></i>
                     <span>Admin</span>
@@ -306,6 +341,39 @@ function getMonthName($monthNumber) {
             </div>
         </div>
 
+<!-- Notifications Modal -->
+<div id="notificationsModal" class="notifmodal" role="dialog" aria-labelledby="notificationsModalTitle" aria-modal="true">
+    <div class="modal-content">
+        <span class="close-button" id="closeModal" role="button" aria-label="Close">&times;</span>
+        <h2>Notifications</h2>
+        <?php if ($total_notifications > 0): ?>
+            <div class="notifications-section">
+                <?php if (count($out_of_stock_products) > 0): ?>
+                    <h3>Out of Stock</h3>
+                    <ul>
+                        <?php foreach ($out_of_stock_products as $product): ?>
+                            <li><?php echo htmlspecialchars($product['ProductName'], ENT_QUOTES, 'UTF-8'); ?> - Current Stock: <?php echo htmlspecialchars($product['CurrentStock'], ENT_QUOTES, 'UTF-8'); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if (count($low_stock_products) > 0): ?>
+                    <h3>Low Stock</h3>
+                    <ul>
+                        <?php foreach ($low_stock_products as $product): ?>
+                            <li><?php echo htmlspecialchars($product['ProductName'], ENT_QUOTES, 'UTF-8'); ?> - Current Stock: <?php echo htmlspecialchars($product['CurrentStock'], ENT_QUOTES, 'UTF-8'); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+        <?php else: ?>
+            <p>No inventory issues detected.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+
+
         <!-- Report Section (Hidden on Screen, Visible on Print) -->
         <div id="printReport" class="print-report">
             <h1>AN'E Laundry Inventory Report</h1>
@@ -378,14 +446,6 @@ function getMonthName($monthNumber) {
                     ]);
                     $stocksToday = $stocksTodayStmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    // Debugging: Uncomment the following lines to see the fetched data
-                    /*
-                    echo "<h4>Debugging: Stocks Added Today</h4>";
-                    echo "<pre>";
-                    print_r($stocksToday);
-                    echo "</pre>";
-                    */
-
                     if (count($stocksToday) > 0) {
                         foreach ($stocksToday as $stock) {
                             // Extract quantity from the Description
@@ -437,6 +497,12 @@ function getMonthName($monthNumber) {
             </table>
         </div>
 
+<!-- Pass PHP variables to JavaScript -->
+<script>
+    const notifications = <?php echo json_encode($notifications); ?>;
+    const totalNotifications = <?php echo json_encode($total_notifications); ?>;
+</script>
+
         <!-- JavaScript -->
         <script>
         // Generic function to handle modal behavior
@@ -480,6 +546,10 @@ function getMonthName($monthNumber) {
 
         // Setup Edit Stock Modal
         setupModal('editStockModal', null, '.edit-close');
+
+// Setup Notifications Modal
+setupModal('notificationsModal', 'notificationsIcon', '.close-button');
+
 
         // Function to attach event listeners to edit buttons using event delegation
         function attachEditButtonListeners() {
@@ -601,6 +671,8 @@ function getMonthName($monthNumber) {
                 }
             });
         });
+
         </script>
+    </div>
 </body>
 </html>
