@@ -62,74 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Ensure that the attachStatusListeners is called after the table is updated
-    function updateTable() {
-        const tableBody = document.getElementById('laundryListTable');
-        tableBody.innerHTML = ''; // Clear existing rows
-
-        const startIndex = (currentPage - 1) * rowsPerPage;
-        const endIndex = startIndex + rowsPerPage;
-        const paginatedData = filteredData.slice(startIndex, endIndex); // Paginate filteredData
-
-        if (paginatedData.length === 0) {
-            const row = document.createElement('tr');
-            row.innerHTML = `<td colspan="6">No data found</td>`;
-            tableBody.appendChild(row);
-        } else {
-            paginatedData.forEach(item => {
-                const row = document.createElement('tr');
-
-                // Determine status class and icon based on status
-                let statusClass = '';
-                let statusIcon = '';
-                if (item.STATUS === 'Completed') {
-                    statusClass = 'completed';
-                    statusIcon = '<i class="fas fa-check-circle"></i>';
-                } else if (item.STATUS === 'Pending') {
-                    statusClass = 'pending';
-                    statusIcon = '<i class="fas fa-exclamation-triangle"></i>';
-                } else {
-                    statusClass = 'other';
-                    statusIcon = '<i class="fas fa-info-circle"></i>';
-                }
-
-                row.innerHTML = `
-                    <td><input type="checkbox" class="select"></td>
-                    <td>${item.OrderID}</td>
-                    <td>${new Date(item.DATE).toLocaleDateString()}</td>
-                    <td>${item.NAME}</td>
-                    <td>${item.PICKUP_TIME || 'No time set'}</td>
-                    <td>
-                        <select class="status-dropdown ${item.STATUS.toLowerCase()}" data-order-id="${item.OrderID}" data-original-status="${item.STATUS}">
-                            <option value="Pending" ${item.STATUS === 'Pending' ? 'selected' : ''}>🔴 Pending</option>
-                            <option value="Completed" ${item.STATUS === 'Completed' ? 'selected' : ''}>✔ Completed</option>
-                        </select>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-        updatePagination(); // Update pagination after table update
-        attachStatusListeners(); // Re-attach listeners after updating the table
-    }
-    
-    // ----- jQuery Code for Sidebar Active Link -----
-    $(document).ready(function() {
-        // Get the current path from the URL
-        var path = window.location.pathname.split("/").pop();
-
-        // Set default path for home page
-        if (path === "") {
-            path = "index.html";
-        }
-
-        // Find the sidebar link that matches the current path
-        var target = $('.sidebar ul li a[href="' + path + '"]');
-
-        // Add active class to the matching link
-        target.addClass("active");
-    });
-
     // ----- Data Table Handling -----
     const rowsPerPage = 7; // Maximum number of rows to display per page
     let currentPage = 1;
@@ -207,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         updatePagination(); // Update pagination after table update
+        // No need to re-attach status listeners here
     }
 
     // Update pagination controls
@@ -395,6 +328,59 @@ document.addEventListener('DOMContentLoaded', function() {
         setPickUpTime(); // Set the PickUp Time to current time + 30 minutes
         updateDate(); // Set the date field to today's date
         calculateTotal(); // Initialize total
+        fetchDetergents(); // Fetch and populate detergents
+        fetchFabricDetergents(); // Fetch and populate fabric detergents
+    }
+
+    // Function to fetch Detergents from the server
+    function fetchDetergents() {
+        fetch('../php/getProducts.php?type=Detergent')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    populateDetergentOptions(data.data, 'DETERGENT_TYPE', 'detergentAdditional');
+                } else {
+                    toastr.error('Failed to fetch Detergent products.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching Detergent products:', error);
+                toastr.error('An error occurred while fetching Detergent products.');
+            });
+    }
+
+    // Function to fetch Fabric Detergents from the server
+    function fetchFabricDetergents() {
+        fetch('../php/getProducts.php?type=Fabric%20Detergent')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    populateDetergentOptions(data.data, 'FABRIC_DETERGENT_TYPE', 'fabricDetergentAdditional');
+                } else {
+                    toastr.error('Failed to fetch Fabric Detergent products.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching Fabric Detergent products:', error);
+                toastr.error('An error occurred while fetching Fabric Detergent products.');
+            });
+    }
+
+    // Function to populate Detergent options dynamically
+    function populateDetergentOptions(products, nameAttribute, additionalInputId) {
+        const containerId = nameAttribute === 'DETERGENT_TYPE' ? 'detergentOptions' : 'fabricDetergentOptions';
+        const container = document.getElementById(containerId);
+        container.innerHTML = ''; // Clear existing options
+
+        products.forEach(product => {
+            const label = document.createElement('label');
+            label.classList.add('radio-label'); // Add class for CSS styling
+            label.innerHTML = `
+                <input type="radio" name="${nameAttribute}" value="${product.ProductName}" class="${nameAttribute === 'DETERGENT_TYPE' ? 'detergent-radio' : 'fabric-detergent-radio'}" data-input-id="${additionalInputId}">
+                ${product.ProductName}
+            `;
+            container.appendChild(label);
+        });
     }
 
     // Open the modal
@@ -473,41 +459,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ----- Detergent Radio Button Handling -----
     // Handle enabling/disabling of detergent 'Additional' inputs for DETERGENT_TYPE
-    document.querySelectorAll('.detergent-radio').forEach(function(radio) {
-        radio.addEventListener('change', function() {
+    document.addEventListener('change', function(event) {
+        if (event.target.classList.contains('detergent-radio')) {
             disableDetergentAdditional(); // Disable all detergent additional inputs first
 
             // Enable the corresponding additional input
-            var inputId = this.getAttribute('data-input-id');
+            var inputId = event.target.getAttribute('data-input-id');
             var inputField = document.getElementById(inputId);
-            if (this.checked) {
+            if (event.target.checked) {
                 inputField.disabled = false;
                 inputField.required = false;
             }
             calculateTotal(); // Recalculate total on change
 
             // ----- Stock Check for Detergent -----
-            checkDetergentStock(this.value, 'DETERGENT');
-        });
-    });
+            checkDetergentStock(event.target.value, 'DETERGENT');
+        }
 
-    // Handle enabling/disabling of fabric detergent 'Additional' inputs for FABRIC_DETERGENT_TYPE
-    document.querySelectorAll('.fabric-detergent-radio').forEach(function(radio) {
-        radio.addEventListener('change', function() {
+        if (event.target.classList.contains('fabric-detergent-radio')) {
             disableFabricDetergentAdditional(); // Disable all fabric detergent additional inputs first
 
             // Enable the corresponding additional input
-            var inputId = this.getAttribute('data-input-id');
+            var inputId = event.target.getAttribute('data-input-id');
             var inputField = document.getElementById(inputId);
-            if (this.checked) {
+            if (event.target.checked) {
                 inputField.disabled = false;
                 inputField.required = false;
             }
             calculateTotal(); // Recalculate total on change
 
             // ----- Stock Check for Fabric Detergent -----
-            checkDetergentStock(this.value, 'FABRIC_DETERGENT');
-        });
+            checkDetergentStock(event.target.value, 'FABRIC_DETERGENT');
+        }
     });
 
     /**
@@ -1052,6 +1035,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /**
      * Attaches event listeners to all status dropdowns in the table using event delegation.
+     * This function should be called only once.
      */
     function attachStatusListeners() {
         const tableBody = document.getElementById('laundryListTable');
@@ -1062,6 +1046,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Call the function to attach listeners after the table is updated
+    // Attach the status listeners once after DOM content is loaded
     attachStatusListeners();
 });

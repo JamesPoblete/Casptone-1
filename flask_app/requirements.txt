@@ -1,9 +1,13 @@
-Flask
-flask-cors
 pandas
 numpy
-scikit-learn
 sqlalchemy
 pymysql
+scikit-learn
+statsmodels
 joblib
+flask
+flask-cors
 python-dotenv
+seaborn
+matplotlib
+python-dateutil

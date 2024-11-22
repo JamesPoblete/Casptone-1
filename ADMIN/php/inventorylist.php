@@ -13,6 +13,7 @@ if (empty($_SESSION['csrf_token'])) {
 // Check for success messages
 $addSuccess = false;
 $editSuccess = false;
+$addProductSuccess = false;
 $errorMessage = '';
 
 if (isset($_SESSION['add_success'])) {
@@ -23,6 +24,11 @@ if (isset($_SESSION['add_success'])) {
 if (isset($_SESSION['edit_success'])) {
     $editSuccess = true;
     unset($_SESSION['edit_success']); // Clear the session variable
+}
+
+if (isset($_SESSION['add_product_success'])) {
+    $addProductSuccess = true;
+    unset($_SESSION['add_product_success']);
 }
 
 if (isset($_SESSION['error_message'])) {
@@ -147,7 +153,7 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
             <li><a href="inventorylist.php" class="active"><i class="fas fa-box"></i> Inventory</a></li>
             <li><a href="../php/laundry.php"><i class="fas fa-list-alt"></i> Laundries List</a></li>
             <li><a href="../php/manageuser.php"><i class="fas fa-users-cog"></i> Manage User</a></li>
-            <li><a href="../php/logout.php" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            <li><a href="../html/login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
         </ul>
     </div>
 
@@ -161,7 +167,7 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
             <div class="header-right">
                 <!-- Notifications Icon -->
                 <div class="notifications">
-    <i class="fas fa-bell" id="notificationsIcon"></i>
+    <i class="fas fa-bell" id="notificationsIcon" tabindex="0" aria-label="Notifications"></i>
     <?php if ($total_notifications > 0): ?>
         <span class="badge" id="notificationBadge"><?php echo $total_notifications; ?></span>
     <?php endif; ?>
@@ -183,6 +189,10 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
             <div class="success-message" id="successMessage">
                 Stock successfully updated!
             </div>
+        <?php elseif ($addProductSuccess): ?>
+            <div class="success-message" id="successMessage">
+                Product successfully added!
+            </div>
         <?php endif; ?>
 
         <?php if ($errorMessage): ?>
@@ -194,14 +204,17 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
         <!-- Inventory List Header Section -->
         <div class="inventory-list-header">
             <h2>Inventory</h2>
-            <button class="print-btn" id="printBtn" aria-label="Print Inventory Report"><i class="fas fa-print" aria-hidden="true">&nbsp;&nbsp;</i>Print Report</button>
-            <button class="add-inventory-btn" id="addStockBtn"><i class="fas fa-plus">&nbsp;&nbsp;</i>Add Stock</button>
+            <div class="header-buttons">
+                <button class="print-btn" id="printBtn" aria-label="Print Inventory Report"><i class="fas fa-print" aria-hidden="true"></i>&nbsp;Print Report</button>
+                <button class="add-inventory-btn" id="addStockBtn" aria-label="Add Stock"><i class="fas fa-plus"></i>&nbsp;Add Stock</button>
+                <button class="add-product-btn" id="addProductBtn" aria-label="Add New Product"><i class="fas fa-plus-circle"></i>&nbsp;Add Product</button>
+            </div>
         </div>
 
         <!-- Search Bar -->
         <div class="search-filter-container">
-            <input type="text" id="search" name="search" placeholder="Search by Product ID, Name, or Type" autocomplete="off">
-            <select class="status-filter" id="statusFilter" name="status">
+            <input type="text" id="search" name="search" placeholder="Search by Product ID, Name, or Type" autocomplete="off" aria-label="Search Inventory">
+            <select class="status-filter" id="statusFilter" name="status" aria-label="Filter by Status">
                 <option value="all">All</option> 
                 <option value="high">High</option>
                 <option value="medium">Medium</option>
@@ -266,7 +279,7 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
                             data-productname='".htmlspecialchars($row['ProductName'], ENT_QUOTES, 'UTF-8')."'
                             data-producttype='".htmlspecialchars($row['ProductType'], ENT_QUOTES, 'UTF-8')."'
                             data-currentstock='".htmlspecialchars($row['CurrentStock'], ENT_QUOTES, 'UTF-8')."'>
-                            <i class='fas fa-edit'></i></button></td>";
+                            <i class='fas fa-edit' aria-hidden='true'></i></button></td>";
                         echo "</tr>";
                     }
                 } else {
@@ -287,7 +300,7 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
 
                     <div class="form-group">
                         <label for="inventoryID">Product Name:</label>
-                        <select id="inventoryID" name="InventoryID" required>
+                        <select id="inventoryID" name="InventoryID" required aria-required="true">
                             <option value="" disabled selected>Select a Product</option>
                             <?php
                             // Fetch inventory items from the database
@@ -301,11 +314,52 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
 
                     <div class="form-group">
                         <label for="quantity">Quantity to Add:</label>
-                        <input type="number" id="quantity" name="quantity" min="1" required>
+                        <input type="number" id="quantity" name="quantity" min="1" required aria-required="true">
                     </div>
 
                     <div class="form-actions">
                         <button type="submit" class="submit-btn">Add Stock</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Product Modal -->
+        <div id="addProductModal" class="modal" role="dialog" aria-labelledby="addProductModalTitle" aria-modal="true">
+            <div class="modal-content">
+                <span class="close add-product-close" role="button" aria-label="Close">&times;</span>
+                <h3 id="addProductModalTitle" class="modal-title">Add New Product</h3>
+                
+                <form id="addProductForm" method="POST" action="addinventory.php">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+                    <div class="form-group">
+                        <label for="newProductName">Product Name:</label>
+                        <input type="text" id="newProductName" name="ProductName" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newProductType">Product Type:</label>
+                        <select id="newProductType" name="ProductType" required aria-required="true">
+                            <option value="" disabled selected>Select Type</option>
+                            <option value="Detergent">Detergent</option>
+                            <option value="Fabric Detergent">Fabric Detergent</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="pricePerStock">Price Per Stock (₱):</label>
+                        <input type="number" id="pricePerStock" name="PricePerStock" min="0" step="0.01" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="initialStock">Initial Stock:</label>
+                        <input type="number" id="initialStock" name="InitialStock" min="0" required aria-required="true">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Add Product</button>
                     </div>
                 </form>
             </div>
@@ -321,17 +375,17 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
                     <input type="hidden" id="editInventoryID" name="InventoryID">
                     <div class="form-group">
                         <label for="editProductName">Product Name:</label>
-                        <input type="text" id="editProductName" name="editProductName" required readonly>
+                        <input type="text" id="editProductName" name="editProductName" required readonly aria-readonly="true">
                     </div>
 
                     <div class="form-group">
                         <label for="editProductType">Product Type:</label>
-                        <input type="text" id="editProductType" name="editProductType" required readonly>
+                        <input type="text" id="editProductType" name="editProductType" required readonly aria-readonly="true">
                     </div>
 
                     <div class="form-group">
                         <label for="editQuantity">Current Stock:</label>
-                        <input type="number" id="editQuantity" name="editQuantity" min="0" required>
+                        <input type="number" id="editQuantity" name="editQuantity" min="0" required aria-required="true">
                     </div>
 
                     <div class="form-actions">
@@ -544,11 +598,14 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
         // Setup Add Stock Modal
         setupModal('addStockModal', 'addStockBtn', '.close');
 
+        // Setup Add Product Modal
+        setupModal('addProductModal', 'addProductBtn', '.add-product-close');
+
         // Setup Edit Stock Modal
         setupModal('editStockModal', null, '.edit-close');
 
-// Setup Notifications Modal
-setupModal('notificationsModal', 'notificationsIcon', '.close-button');
+        // Setup Notifications Modal
+        setupModal('notificationsModal', 'notificationsIcon', '.close-button');
 
 
         // Function to attach event listeners to edit buttons using event delegation

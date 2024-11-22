@@ -196,9 +196,9 @@ body {
   transition: all 0.3s ease; /* Smooth transition */
 }
 
-/* Large Card for Predicted Sales */
+/* Card for Predicted Sales */
 .card.predicted-sales {
-  flex: 2; /* Span the width of three cards */
+  flex: 1; /* Same width as other cards */
   background-color: #1d2b53; /* Custom color for this card */
   color: white;
   border-radius: 15px; /* Rounded corners */

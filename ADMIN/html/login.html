@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Add this line -->
+    <!-- Include SweetAlert2 library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container">
@@ -15,29 +16,27 @@
             <div class="login-form">
                 <h2>Login</h2>
                 <p>Sign in to continue</p>
-                <form action="../php/login.php" method="POST"> <!-- Ensure the form submits to login.php -->
+                <form action="../php/login.php" method="POST">
                     <label for="username">Username*</label>
                     <input type="text" id="username" name="username" placeholder="Username" required>
-    
+
                     <label for="password">Password*</label>
                     <input type="password" id="password" name="password" placeholder="Password" required>
-    
+
                     <button type="submit" class="btn">Login</button>
                 </form> 
+                <!-- Added Forgot Password Link -->
+                <a href="forgotpassword.html" class="forgot-password">Forgot Password?</a>
             </div>
-    
+
             <div class="logo-section">
                 <img src="../img/ane-laundry-logo.png" alt="AN'E Laundry Logo" class="logo">
-                
             </div>
-
-
         </div>
     </div>
     <div class="wave-container">
         <div class="wave wave1"></div>
         <div class="wave wave2"></div>
     </div>
-
 </body>
 </html>

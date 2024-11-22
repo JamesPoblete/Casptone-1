@@ -9,8 +9,8 @@ body {
   font-family: 'Poppins', sans-serif;
   display: flex;
   min-height: 100vh;
-  overflow: hidden;
   background-color: #eef2f7; /* Updated background color */
+  overflow-x: hidden;
 }
 
 /* Sidebar Styles */
@@ -412,4 +412,26 @@ table tbody tr:hover {
     .notifmodal .modal-content {
         width: 95%; /* Further adjust width for very small screens */
     }
+}
+
+/* Style for radio button labels */
+.radio-label {
+  display: flex;
+  align-items: center;
+  margin-top: 5px; /* Reduced from a larger value */
+  margin-bottom: 5px; /* Reduced from a larger value */
+  cursor: pointer;
+}
+
+/* Style for radio inputs */
+.radio-label input[type="radio"] {
+  margin-right: 8px; /* Space between radio button and label text */
+  margin-top: 0; /* Remove top margin */
+  margin-bottom: 0; /* Remove bottom margin */
+}
+
+/* Optional: Adjust font size or weight if needed */
+.radio-label {
+  font-size: 14px; /* Adjust as needed */
+  font-weight: 400; /* Adjust as needed */
 }

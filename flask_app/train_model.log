@@ -908,3 +908,1299 @@
 2024-11-20 00:48:57,723 INFO Best model saved as 'best_model.joblib'.
 2024-11-20 00:48:57,727 INFO Model metrics saved as 'model_metrics.json'.
 2024-11-20 00:48:57,728 INFO Plotting feature importances.
+2024-11-20 11:14:21,837 INFO Fetching sales data from the database.
+2024-11-20 11:14:21,942 INFO Fetched 3398 records from the database.
+2024-11-20 11:14:21,942 INFO Starting data preprocessing.
+2024-11-20 11:14:21,946 INFO Handling 4 missing values by dropping rows with missing data.
+2024-11-20 11:14:21,950 INFO Performing feature engineering.
+2024-11-20 11:14:21,957 INFO Adding lag features.
+2024-11-20 11:14:21,964 INFO Preprocessing exogenous variables.
+2024-11-20 11:41:26,307 INFO Fetching sales data from the database.
+2024-11-20 11:41:26,395 INFO Fetched 3398 records from the database.
+2024-11-20 11:41:26,396 INFO Starting data preprocessing.
+2024-11-20 11:41:26,399 INFO Handling 4 missing values by dropping rows with missing data.
+2024-11-20 11:41:26,403 INFO Performing feature engineering.
+2024-11-20 11:41:26,418 INFO Numerical features: ['COST_PER_LOADS_CLOTHES', 'OrderID', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-20 11:41:26,419 INFO Categorical features: ['NAME', 'CLOTHES_WEIGHT_KG', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'ADDITIONAL_COST', 'REMARKS', 'STATUS', 'DETERGENT_ADDITIONAL', 'FABRIC_DETERGENT_ADDITIONAL', 'PICKUP_TIME']
+2024-11-20 11:41:26,419 INFO Creating preprocessor with numerical and categorical transformers.
+2024-11-20 11:41:26,419 INFO Preprocessing exogenous variables.
+2024-11-20 11:41:26,445 INFO Total preprocessed features: 525
+2024-11-20 11:41:26,446 INFO Shape of X_preprocessed: (3392, 525)
+2024-11-20 11:41:26,524 ERROR Error creating DataFrame with preprocessed data: Shape of passed values is (3392, 1), indices imply (3392, 525)
+2024-11-20 11:41:26,524 ERROR An error occurred during the training process: Shape of passed values is (3392, 1), indices imply (3392, 525)
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\train_model.py", line 237, in main
+    y, X_preprocessed, preprocessor = preprocess_data(df)
+                                      ~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\train_model.py", line 126, in preprocess_data
+    X_preprocessed = pd.DataFrame(X_preprocessed, columns=feature_names, index=X.index)
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\frame.py", line 867, in __init__
+    mgr = ndarray_to_mgr(
+        data,
+    ...<4 lines>...
+        typ=manager,
+    )
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\internals\construction.py", line 336, in ndarray_to_mgr
+    _check_values_indices_shape_match(values, index, columns)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\venv\Lib\site-packages\pandas\core\internals\construction.py", line 420, in _check_values_indices_shape_match
+    raise ValueError(f"Shape of passed values is {passed}, indices imply {implied}")
+ValueError: Shape of passed values is (3392, 1), indices imply (3392, 525)
+2024-11-20 11:48:04,517 INFO Fetching sales data from the database.
+2024-11-20 11:48:04,611 INFO Fetched 3398 records from the database.
+2024-11-20 11:48:04,611 INFO Starting data preprocessing.
+2024-11-20 11:48:04,615 INFO Handling 4 missing values by dropping rows with missing data.
+2024-11-20 11:48:04,619 INFO Performing feature engineering.
+2024-11-20 11:48:04,637 INFO Numerical features: ['COST_PER_LOADS_CLOTHES', 'OrderID', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-20 11:48:04,637 INFO Categorical features: ['NAME', 'CLOTHES_WEIGHT_KG', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'ADDITIONAL_COST', 'REMARKS', 'STATUS', 'DETERGENT_ADDITIONAL', 'FABRIC_DETERGENT_ADDITIONAL', 'PICKUP_TIME']
+2024-11-20 11:48:04,638 ERROR An error occurred during the training process: OneHotEncoder.__init__() got an unexpected keyword argument 'sparse'
+Traceback (most recent call last):
+  File "C:\wamp64\www\Capstone-1\flask_app\train_model.py", line 237, in main
+    y, X_preprocessed, preprocessor = preprocess_data(df)
+                                      ~~~~~~~~~~~~~~~^^^^
+  File "C:\wamp64\www\Capstone-1\flask_app\train_model.py", line 111, in preprocess_data
+    ('cat', OneHotEncoder(handle_unknown='ignore', sparse=False), categorical_features)  # Set sparse=False
+            ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: OneHotEncoder.__init__() got an unexpected keyword argument 'sparse'
+2024-11-20 11:53:07,688 INFO Fetching sales data from the database.
+2024-11-20 11:53:07,771 INFO Fetched 3398 records from the database.
+2024-11-20 11:53:07,771 INFO Starting data preprocessing.
+2024-11-20 11:53:07,774 INFO Handling 4 missing values by dropping rows with missing data.
+2024-11-20 11:53:07,778 INFO Performing feature engineering.
+2024-11-20 11:53:07,793 INFO Numerical features: ['COST_PER_LOADS_CLOTHES', 'OrderID', 'Total_Lag1', 'Total_Lag2', 'Total_Lag3', 'Total_Lag4', 'Total_Lag5']
+2024-11-20 11:53:07,793 INFO Categorical features: ['NAME', 'CLOTHES_WEIGHT_KG', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_COMFORTER_SINGLE', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'ADDITIONAL_COST', 'REMARKS', 'STATUS', 'DETERGENT_ADDITIONAL', 'FABRIC_DETERGENT_ADDITIONAL', 'PICKUP_TIME']
+2024-11-20 11:53:07,794 INFO Creating preprocessor with numerical and categorical transformers.
+2024-11-20 11:53:07,794 INFO Preprocessing exogenous variables.
+2024-11-20 11:53:07,825 INFO Total preprocessed features: 525
+2024-11-20 11:53:07,825 INFO Shape of X_preprocessed: (3392, 525)
+2024-11-20 11:53:07,826 INFO Preprocessed DataFrame created with columns: 525
+2024-11-20 11:53:07,826 INFO Handling outliers using capping.
+2024-11-20 11:53:07,827 INFO Capped outliers in column: COST_PER_LOADS_CLOTHES
+2024-11-20 11:53:07,829 INFO Capped outliers in column: OrderID
+2024-11-20 11:53:07,830 INFO Capped outliers in column: Total_Lag1
+2024-11-20 11:53:07,831 INFO Capped outliers in column: Total_Lag2
+2024-11-20 11:53:07,834 INFO Capped outliers in column: Total_Lag3
+2024-11-20 11:53:07,836 INFO Capped outliers in column: Total_Lag4
+2024-11-20 11:53:07,837 INFO Capped outliers in column: Total_Lag5
+2024-11-20 11:53:07,837 INFO Data preprocessing completed.
+2024-11-20 11:53:07,840 INFO Preprocessor saved as 'preprocessor.joblib'.
+2024-11-20 11:53:07,841 INFO Starting grid search over 216 hyperparameter combinations.
+2024-11-20 11:53:07,841 INFO Trying SARIMAX parameters (1/216): order=(0, 0, 0), seasonal_order=(0, 0, 0, 12)
+2024-11-20 11:55:49,300 INFO Model fitted. AIC: 350.20184807895725
+2024-11-20 11:55:49,301 INFO Trying SARIMAX parameters (2/216): order=(0, 0, 0), seasonal_order=(0, 0, 1, 12)
+2024-11-20 12:01:37,777 INFO Model fitted. AIC: -578.1733423886378
+2024-11-20 12:01:37,783 INFO Trying SARIMAX parameters (3/216): order=(0, 0, 0), seasonal_order=(0, 1, 0, 12)
+2024-11-21 01:11:06,185 INFO Database engine initialized successfully.
+2024-11-21 01:11:06,186 INFO Fetching all data from the laundry table.
+2024-11-21 01:11:06,282 INFO Fetched 3401 records from the database.
+2024-11-21 01:11:06,289 INFO Data after DATE conversion: 3401 records.
+2024-11-21 01:11:06,290 WARNING Duplicate dates found in the dataset. Removing duplicates.
+2024-11-21 01:11:06,291 INFO Data after removing duplicates: 955 records.
+2024-11-21 01:11:06,292 INFO Total columns fetched: 22
+2024-11-21 01:11:06,292 INFO Starting data preprocessing.
+2024-11-21 01:11:06,292 INFO Handling missing values.
+2024-11-21 01:11:06,299 INFO Data after imputation: 955 records.
+2024-11-21 01:11:06,299 INFO Inspecting distribution of 'TOTAL'.
+2024-11-21 01:11:06,302 INFO 'TOTAL' distribution:
+count     955.000000
+mean      190.544503
+std       136.200458
+min         0.000000
+25%        99.000000
+50%       175.000000
+75%       190.000000
+max      1055.000000
+Name: TOTAL, dtype: float64
+2024-11-21 01:11:06,306 INFO Capped outliers in 'TOTAL' between -469.74999999999966 and 924.2499999999994 (original min: 0, max: 1055).
+2024-11-21 01:11:06,306 INFO Performing feature engineering.
+2024-11-21 01:11:06,316 INFO Data after adding lag features: 941 records.
+2024-11-21 01:11:06,319 WARNING Converting column 'NAME' to numeric.
+2024-11-21 01:11:06,320 WARNING Converting column 'CLOTHES_WEIGHT_KG' to numeric.
+2024-11-21 01:11:06,321 WARNING Converting column 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS' to numeric.
+2024-11-21 01:11:06,321 WARNING Converting column 'COMFORTER_SINGLE' to numeric.
+2024-11-21 01:11:06,322 WARNING Converting column 'COMFORT_DOUBLE' to numeric.
+2024-11-21 01:11:06,324 WARNING Converting column 'SERVICE' to numeric.
+2024-11-21 01:11:06,325 WARNING Converting column 'DETERGENT' to numeric.
+2024-11-21 01:11:06,327 WARNING Converting column 'FABRIC_DETERGENT' to numeric.
+2024-11-21 01:11:06,328 WARNING Converting column 'LAUNDRY_LOAD' to numeric.
+2024-11-21 01:11:06,330 WARNING Converting column 'COST_PER_COMFORTER_SINGLE' to numeric.
+2024-11-21 01:11:06,331 WARNING Converting column 'COST_PER_COMFORTER_DOUBLE' to numeric.
+2024-11-21 01:11:06,333 WARNING Converting column 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS' to numeric.
+2024-11-21 01:11:06,334 WARNING Converting column 'ADDITIONAL_COST' to numeric.
+2024-11-21 01:11:06,335 WARNING Converting column 'REMARKS' to numeric.
+2024-11-21 01:11:06,338 WARNING Converting column 'STATUS' to numeric.
+2024-11-21 01:11:06,339 WARNING Converting column 'DETERGENT_ADDITIONAL' to numeric.
+2024-11-21 01:11:06,340 WARNING Converting column 'FABRIC_DETERGENT_ADDITIONAL' to numeric.
+2024-11-21 01:11:06,342 WARNING Converting column 'PICKUP_TIME' to numeric.
+2024-11-21 01:11:06,343 WARNING Converting column 'Additional_Cost_Lag1' to numeric.
+2024-11-21 01:11:06,344 WARNING Converting column 'Additional_Cost_Lag2' to numeric.
+2024-11-21 01:11:06,345 WARNING Converting column 'Additional_Cost_Lag3' to numeric.
+2024-11-21 01:11:06,346 WARNING Converting column 'Additional_Cost_Lag4' to numeric.
+2024-11-21 01:11:06,348 WARNING Converting column 'Additional_Cost_Lag5' to numeric.
+2024-11-21 01:11:06,349 WARNING Converting column 'Additional_Cost_Lag6' to numeric.
+2024-11-21 01:11:06,350 WARNING Converting column 'Additional_Cost_Lag7' to numeric.
+2024-11-21 01:11:06,352 WARNING Converting column 'Additional_Cost_Lag8' to numeric.
+2024-11-21 01:11:06,354 WARNING Converting column 'Additional_Cost_Lag9' to numeric.
+2024-11-21 01:11:06,355 WARNING Converting column 'Additional_Cost_Lag10' to numeric.
+2024-11-21 01:11:06,356 WARNING Converting column 'Additional_Cost_Lag11' to numeric.
+2024-11-21 01:11:06,357 WARNING Converting column 'Additional_Cost_Lag12' to numeric.
+2024-11-21 01:11:06,359 INFO Numerical features: ['NAME', 'CLOTHES_WEIGHT_KG', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_LOADS_CLOTHES', 'COST_PER_COMFORTER_SINGLE', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'ADDITIONAL_COST', 'REMARKS', 'OrderID', 'STATUS', 'DETERGENT_ADDITIONAL', 'FABRIC_DETERGENT_ADDITIONAL', 'PICKUP_TIME', 'Total_Lag1', 'Additional_Cost_Lag1', 'Total_Lag2', 'Additional_Cost_Lag2', 'Total_Lag3', 'Additional_Cost_Lag3', 'Total_Lag4', 'Additional_Cost_Lag4', 'Total_Lag5', 'Additional_Cost_Lag5', 'Total_Lag6', 'Additional_Cost_Lag6', 'Total_Lag7', 'Additional_Cost_Lag7', 'Total_Lag8', 'Additional_Cost_Lag8', 'Total_Lag9', 'Additional_Cost_Lag9', 'Total_Lag10', 'Additional_Cost_Lag10', 'Total_Lag11', 'Additional_Cost_Lag11', 'Total_Lag12', 'Additional_Cost_Lag12']
+2024-11-21 01:11:06,360 INFO Categorical features: []
+2024-11-21 01:11:22,366 INFO Database engine initialized successfully.
+2024-11-21 01:11:22,367 INFO Fetching all data from the laundry table.
+2024-11-21 01:11:22,454 INFO Fetched 3401 records from the database.
+2024-11-21 01:11:22,460 INFO Data after DATE conversion: 3401 records.
+2024-11-21 01:11:22,461 WARNING Duplicate dates found in the dataset. Removing duplicates.
+2024-11-21 01:11:22,463 INFO Data after removing duplicates: 955 records.
+2024-11-21 01:11:22,464 INFO Total columns fetched: 22
+2024-11-21 01:11:22,464 INFO Starting data preprocessing.
+2024-11-21 01:11:22,464 INFO Handling missing values.
+2024-11-21 01:11:22,469 INFO Data after imputation: 955 records.
+2024-11-21 01:11:22,469 INFO Inspecting distribution of 'TOTAL'.
+2024-11-21 01:11:22,473 INFO 'TOTAL' distribution:
+count     955.000000
+mean      190.544503
+std       136.200458
+min         0.000000
+25%        99.000000
+50%       175.000000
+75%       190.000000
+max      1055.000000
+Name: TOTAL, dtype: float64
+2024-11-21 01:11:22,477 INFO Capped outliers in 'TOTAL' between -469.74999999999966 and 924.2499999999994 (original min: 0, max: 1055).
+2024-11-21 01:11:22,478 INFO Performing feature engineering.
+2024-11-21 01:11:22,490 INFO Data after adding lag features: 941 records.
+2024-11-21 01:11:22,494 WARNING Converting column 'NAME' to numeric.
+2024-11-21 01:11:22,496 WARNING Converting column 'CLOTHES_WEIGHT_KG' to numeric.
+2024-11-21 01:11:22,497 WARNING Converting column 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS' to numeric.
+2024-11-21 01:11:22,497 WARNING Converting column 'COMFORTER_SINGLE' to numeric.
+2024-11-21 01:11:22,498 WARNING Converting column 'COMFORT_DOUBLE' to numeric.
+2024-11-21 01:11:22,499 WARNING Converting column 'SERVICE' to numeric.
+2024-11-21 01:11:22,501 WARNING Converting column 'DETERGENT' to numeric.
+2024-11-21 01:11:22,503 WARNING Converting column 'FABRIC_DETERGENT' to numeric.
+2024-11-21 01:11:22,504 WARNING Converting column 'LAUNDRY_LOAD' to numeric.
+2024-11-21 01:11:22,506 WARNING Converting column 'COST_PER_COMFORTER_SINGLE' to numeric.
+2024-11-21 01:11:22,507 WARNING Converting column 'COST_PER_COMFORTER_DOUBLE' to numeric.
+2024-11-21 01:11:22,508 WARNING Converting column 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS' to numeric.
+2024-11-21 01:11:22,509 WARNING Converting column 'ADDITIONAL_COST' to numeric.
+2024-11-21 01:11:22,510 WARNING Converting column 'REMARKS' to numeric.
+2024-11-21 01:11:22,512 WARNING Converting column 'STATUS' to numeric.
+2024-11-21 01:11:22,513 WARNING Converting column 'DETERGENT_ADDITIONAL' to numeric.
+2024-11-21 01:11:22,515 WARNING Converting column 'FABRIC_DETERGENT_ADDITIONAL' to numeric.
+2024-11-21 01:11:22,517 WARNING Converting column 'PICKUP_TIME' to numeric.
+2024-11-21 01:11:22,518 WARNING Converting column 'Additional_Cost_Lag1' to numeric.
+2024-11-21 01:11:22,519 WARNING Converting column 'Additional_Cost_Lag2' to numeric.
+2024-11-21 01:11:22,521 WARNING Converting column 'Additional_Cost_Lag3' to numeric.
+2024-11-21 01:11:22,523 WARNING Converting column 'Additional_Cost_Lag4' to numeric.
+2024-11-21 01:11:22,524 WARNING Converting column 'Additional_Cost_Lag5' to numeric.
+2024-11-21 01:11:22,526 WARNING Converting column 'Additional_Cost_Lag6' to numeric.
+2024-11-21 01:11:22,528 WARNING Converting column 'Additional_Cost_Lag7' to numeric.
+2024-11-21 01:11:22,529 WARNING Converting column 'Additional_Cost_Lag8' to numeric.
+2024-11-21 01:11:22,531 WARNING Converting column 'Additional_Cost_Lag9' to numeric.
+2024-11-21 01:11:22,532 WARNING Converting column 'Additional_Cost_Lag10' to numeric.
+2024-11-21 01:11:22,533 WARNING Converting column 'Additional_Cost_Lag11' to numeric.
+2024-11-21 01:11:22,534 WARNING Converting column 'Additional_Cost_Lag12' to numeric.
+2024-11-21 01:11:22,540 INFO Numerical features: ['NAME', 'CLOTHES_WEIGHT_KG', 'BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'COMFORTER_SINGLE', 'COMFORT_DOUBLE', 'SERVICE', 'DETERGENT', 'FABRIC_DETERGENT', 'LAUNDRY_LOAD', 'COST_PER_LOADS_CLOTHES', 'COST_PER_COMFORTER_SINGLE', 'COST_PER_COMFORTER_DOUBLE', 'COST_PER_BEDSHEETS_CURTAINS_TOWEL_BLANKETS', 'ADDITIONAL_COST', 'REMARKS', 'OrderID', 'STATUS', 'DETERGENT_ADDITIONAL', 'FABRIC_DETERGENT_ADDITIONAL', 'PICKUP_TIME', 'Total_Lag1', 'Additional_Cost_Lag1', 'Total_Lag2', 'Additional_Cost_Lag2', 'Total_Lag3', 'Additional_Cost_Lag3', 'Total_Lag4', 'Additional_Cost_Lag4', 'Total_Lag5', 'Additional_Cost_Lag5', 'Total_Lag6', 'Additional_Cost_Lag6', 'Total_Lag7', 'Additional_Cost_Lag7', 'Total_Lag8', 'Additional_Cost_Lag8', 'Total_Lag9', 'Additional_Cost_Lag9', 'Total_Lag10', 'Additional_Cost_Lag10', 'Total_Lag11', 'Additional_Cost_Lag11', 'Total_Lag12', 'Additional_Cost_Lag12']
+2024-11-21 01:11:22,541 INFO Categorical features: []
+2024-11-21 01:13:23,954 INFO Fetching all data from the laundry table.
+2024-11-21 01:13:24,052 INFO Fetched 3401 records from the database.
+2024-11-21 01:13:24,063 INFO Data after DATE conversion: 3401 records.
+2024-11-21 01:13:24,064 WARNING Duplicate dates found in the dataset. Removing duplicates.
+2024-11-21 01:13:24,067 INFO Data after removing duplicates: 955 records.
+2024-11-21 01:13:24,068 INFO Total columns fetched: 22
+2024-11-21 01:13:24,068 INFO Starting data preprocessing.
+2024-11-21 01:13:24,068 INFO Handling missing values.
+2024-11-21 01:13:24,075 INFO Data after imputation: 955 records.
+2024-11-21 01:29:25,217 INFO Fetching sales data from the database.
+2024-11-21 01:29:25,311 INFO Fetched 3399 records from the database.
+2024-11-21 01:29:25,312 INFO Starting data preprocessing.
+2024-11-21 01:29:25,323 INFO Filling missing values with forward-fill method.
+2024-11-21 01:29:25,333 INFO Data preprocessing completed.
+2024-11-21 01:29:25,333 INFO Starting SARIMAX model training.
+2024-11-21 01:43:41,214 INFO Fetching sales data from the database.
+2024-11-21 01:43:41,282 INFO Fetched 3398 records from the database.
+2024-11-21 01:43:41,282 INFO Starting data preprocessing.
+2024-11-21 01:43:41,291 INFO Filling missing values with forward-fill method.
+2024-11-21 01:43:41,297 INFO Data preprocessing completed.
+2024-11-21 01:43:41,298 INFO Starting SARIMAX model training.
+2024-11-21 01:53:03,761 INFO Fetching sales data from the database.
+2024-11-21 01:53:03,836 INFO Fetched 3398 records from the database.
+2024-11-21 01:53:03,836 INFO Starting data preprocessing.
+2024-11-21 01:53:03,839 INFO Successfully converted DATE to datetime format.
+2024-11-21 01:53:03,847 INFO Filling missing values with forward-fill method.
+2024-11-21 01:53:03,855 INFO Data preprocessing completed.
+2024-11-21 01:53:03,856 INFO Starting SARIMAX model training.
+2024-11-21 01:53:13,352 INFO SARIMAX model training completed.
+2024-11-21 01:53:13,352 INFO Evaluating SARIMAX model.
+2024-11-21 01:53:13,355 INFO Evaluation Metrics - MAE: 76.12, MSE: 12697.01, R²: 0.29
+2024-11-21 01:53:13,356 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 01:53:14,692 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 01:56:11,458 INFO Fetching sales data from the database.
+2024-11-21 01:56:11,536 INFO Fetched 3398 records from the database.
+2024-11-21 01:56:11,536 INFO Starting data preprocessing.
+2024-11-21 01:56:11,539 INFO Successfully converted DATE to datetime format.
+2024-11-21 01:56:11,544 INFO Filling missing values with forward-fill method.
+2024-11-21 01:56:11,551 INFO Log-transformed the 'TOTAL' column.
+2024-11-21 01:56:11,553 INFO Data preprocessing completed.
+2024-11-21 01:59:09,990 INFO Fetching sales data from the database.
+2024-11-21 01:59:10,056 INFO Fetched 3398 records from the database.
+2024-11-21 01:59:10,056 INFO Starting data preprocessing.
+2024-11-21 01:59:10,060 INFO Successfully converted DATE to datetime format.
+2024-11-21 01:59:10,065 INFO Filling missing values with forward-fill method.
+2024-11-21 01:59:10,072 INFO Data preprocessing completed.
+2024-11-21 01:59:10,073 INFO Starting SARIMAX model training.
+2024-11-21 01:59:11,022 INFO SARIMAX model training completed.
+2024-11-21 01:59:11,022 INFO Evaluating SARIMAX model.
+2024-11-21 01:59:11,025 INFO Evaluation Metrics - MAE: 75.37, MSE: 12220.38, R²: 0.32
+2024-11-21 01:59:11,026 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 01:59:11,058 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 02:00:40,942 INFO Fetching sales data from the database.
+2024-11-21 02:00:41,006 INFO Fetched 3398 records from the database.
+2024-11-21 02:00:41,006 INFO Starting data preprocessing.
+2024-11-21 02:00:41,010 INFO Successfully converted DATE to datetime format.
+2024-11-21 02:00:41,016 INFO Filling missing values with forward-fill method.
+2024-11-21 02:00:41,023 INFO Data preprocessing completed.
+2024-11-21 02:00:41,024 INFO Starting SARIMAX model training.
+2024-11-21 02:00:57,812 INFO SARIMAX model training completed.
+2024-11-21 02:00:57,813 INFO Evaluating SARIMAX model.
+2024-11-21 02:00:57,818 INFO Evaluation Metrics - MAE: 76.64, MSE: 12951.99, R²: 0.28
+2024-11-21 02:00:57,819 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 02:00:59,037 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 02:01:25,434 INFO Fetching sales data from the database.
+2024-11-21 02:01:25,511 INFO Fetched 3398 records from the database.
+2024-11-21 02:01:25,512 INFO Starting data preprocessing.
+2024-11-21 02:01:25,515 INFO Successfully converted DATE to datetime format.
+2024-11-21 02:01:25,522 INFO Filling missing values with forward-fill method.
+2024-11-21 02:01:25,530 INFO Data preprocessing completed.
+2024-11-21 02:01:25,531 INFO Starting SARIMAX model training.
+2024-11-21 02:01:26,462 INFO SARIMAX model training completed.
+2024-11-21 02:01:26,462 INFO Evaluating SARIMAX model.
+2024-11-21 02:01:26,465 INFO Evaluation Metrics - MAE: 75.37, MSE: 12220.38, R²: 0.32
+2024-11-21 02:01:26,466 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 02:01:26,542 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 02:06:56,071 INFO Fetching sales data from the database.
+2024-11-21 02:06:56,130 INFO Fetched 3398 records from the database.
+2024-11-21 02:06:56,130 INFO Starting data preprocessing.
+2024-11-21 02:06:56,133 INFO Successfully converted DATE to datetime format.
+2024-11-21 02:06:56,139 INFO Filling missing values with forward-fill method.
+2024-11-21 02:06:56,147 INFO Data preprocessing completed.
+2024-11-21 02:06:56,148 INFO Starting SARIMAX model training.
+2024-11-21 02:07:10,643 INFO SARIMAX model training completed.
+2024-11-21 02:07:10,644 INFO Evaluating SARIMAX model.
+2024-11-21 02:07:10,647 INFO Evaluation Metrics - MAE: 76.49, MSE: 12929.03, R²: 0.28
+2024-11-21 02:07:10,649 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 02:07:11,212 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 02:08:08,150 INFO Fetching sales data from the database.
+2024-11-21 02:08:08,218 INFO Fetched 3398 records from the database.
+2024-11-21 02:08:08,219 INFO Starting data preprocessing.
+2024-11-21 02:08:08,222 INFO Successfully converted DATE to datetime format.
+2024-11-21 02:08:08,228 INFO Filling missing values with forward-fill method.
+2024-11-21 02:08:08,242 INFO Data preprocessing completed.
+2024-11-21 02:08:08,243 INFO Starting SARIMAX model training.
+2024-11-21 02:08:25,346 INFO SARIMAX model training completed.
+2024-11-21 02:08:25,346 INFO Evaluating SARIMAX model.
+2024-11-21 02:08:25,349 INFO Evaluation Metrics - MAE: 42.83, MSE: 4339.25, R²: 0.76
+2024-11-21 02:08:25,350 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 02:08:26,490 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 03:25:32,128 INFO Fetching sales data from the database.
+2024-11-21 03:25:32,215 INFO Fetched 3398 records from the database.
+2024-11-21 03:25:32,216 INFO Starting data preprocessing.
+2024-11-21 03:25:32,258 INFO Successfully converted DATE to datetime format.
+2024-11-21 03:25:32,274 INFO Filling missing values with forward-fill method.
+2024-11-21 03:25:32,302 INFO Data preprocessing completed.
+2024-11-21 03:25:32,303 INFO Starting SARIMAX model training.
+2024-11-21 03:31:39,277 INFO Fetching sales data from the database.
+2024-11-21 03:31:39,317 INFO Fetched 3398 records from the database.
+2024-11-21 03:31:39,318 INFO Starting data preprocessing.
+2024-11-21 03:31:39,321 INFO Successfully converted DATE to datetime format.
+2024-11-21 03:31:39,328 INFO Data preprocessing completed.
+2024-11-21 03:31:39,329 INFO Starting SARIMAX model training.
+2024-11-21 03:31:39,553 ERROR Error training SARIMAX model: 'SARIMAXResults' object has no attribute 'k_exog'
+2024-11-21 03:33:32,691 INFO Fetching sales data from the database.
+2024-11-21 03:33:32,800 INFO Fetched 3398 records from the database.
+2024-11-21 03:33:32,801 INFO Starting data preprocessing.
+2024-11-21 03:33:32,806 INFO Successfully converted DATE to datetime format.
+2024-11-21 03:33:32,818 INFO Number of monthly data points: 34
+2024-11-21 03:33:32,819 INFO Missing values in df_monthly:
+TOTAL    0
+Month    0
+dtype: int64
+2024-11-21 03:33:32,820 INFO Data preprocessing completed.
+2024-11-21 03:33:32,820 INFO Starting SARIMAX model training.
+2024-11-21 03:33:32,847 INFO SARIMAX model training completed with 1 exogenous variable(s).
+2024-11-21 03:33:32,848 INFO Evaluating SARIMAX model.
+2024-11-21 03:33:32,853 INFO Evaluation Metrics - MAE: 8311.80, MSE: 115491256.21, R²: -0.22
+2024-11-21 03:33:32,854 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 03:33:32,915 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 03:34:10,557 INFO Fetching sales data from the database.
+2024-11-21 03:34:10,614 INFO Fetched 3398 records from the database.
+2024-11-21 03:34:10,614 INFO Starting data preprocessing.
+2024-11-21 03:34:10,618 INFO Successfully converted DATE to datetime format.
+2024-11-21 03:34:10,623 INFO Filling missing values with forward-fill method.
+2024-11-21 03:34:10,630 INFO Data preprocessing completed.
+2024-11-21 03:34:10,631 INFO Starting SARIMAX model training.
+2024-11-21 03:34:11,730 INFO SARIMAX model training completed.
+2024-11-21 03:34:11,731 INFO Evaluating SARIMAX model.
+2024-11-21 03:34:11,734 INFO Evaluation Metrics - MAE: 75.40, MSE: 12207.79, R²: 0.32
+2024-11-21 03:34:11,735 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 03:34:11,759 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 03:35:14,033 INFO Fetching sales data from the database.
+2024-11-21 03:35:14,138 INFO Fetched 3398 records from the database.
+2024-11-21 03:35:14,138 INFO Starting data preprocessing.
+2024-11-21 03:35:14,142 INFO Successfully converted DATE to datetime format.
+2024-11-21 03:35:14,148 INFO Filling missing values with forward-fill method.
+2024-11-21 03:35:14,192 INFO Data preprocessing completed.
+2024-11-21 03:35:14,193 INFO Starting SARIMAX model training.
+2024-11-21 03:35:33,373 INFO SARIMAX model training completed.
+2024-11-21 03:35:33,374 INFO Evaluating SARIMAX model.
+2024-11-21 03:35:33,377 INFO Evaluation Metrics - MAE: 43.86, MSE: 4450.97, R²: 0.75
+2024-11-21 03:35:33,379 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 03:35:34,264 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 03:44:31,432 INFO Fetching sales data from the database.
+2024-11-21 03:44:31,535 INFO Fetched 3398 records from the database.
+2024-11-21 03:44:31,536 INFO Starting data preprocessing.
+2024-11-21 03:44:31,539 INFO Successfully converted DATE to datetime format.
+2024-11-21 03:44:31,547 INFO Filling missing values with forward-fill method.
+2024-11-21 03:44:31,563 INFO Data preprocessing completed.
+2024-11-21 03:44:31,564 INFO Starting SARIMAX model training.
+2024-11-21 03:44:49,436 INFO SARIMAX model training completed.
+2024-11-21 03:44:49,436 INFO Evaluating SARIMAX model.
+2024-11-21 03:44:49,439 INFO Evaluation Metrics - MAE: 43.86, MSE: 4450.97, R²: 0.75
+2024-11-21 03:44:49,440 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 03:44:52,024 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 03:46:52,722 INFO Fetching sales data from the database.
+2024-11-21 03:46:52,833 INFO Fetched 3398 records from the database.
+2024-11-21 03:46:52,834 INFO Starting data preprocessing.
+2024-11-21 03:46:52,837 INFO Successfully converted DATE to datetime format.
+2024-11-21 03:46:52,844 INFO Filling missing values with forward-fill method.
+2024-11-21 03:46:52,852 INFO Data preprocessing completed.
+2024-11-21 03:46:52,853 INFO Starting SARIMAX model training.
+2024-11-21 03:47:16,967 INFO SARIMAX model training completed.
+2024-11-21 03:47:16,968 INFO Evaluating SARIMAX model.
+2024-11-21 03:47:16,971 INFO Evaluation Metrics - MAE: 76.61, MSE: 12966.53, R²: 0.28
+2024-11-21 03:47:16,972 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 03:47:18,777 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 03:47:45,893 INFO Fetching sales data from the database.
+2024-11-21 03:47:45,989 INFO Fetched 3398 records from the database.
+2024-11-21 03:47:45,989 INFO Starting data preprocessing.
+2024-11-21 03:47:45,993 INFO Successfully converted DATE to datetime format.
+2024-11-21 03:47:46,002 INFO Filling missing values with forward-fill method.
+2024-11-21 03:47:46,022 INFO Data preprocessing completed.
+2024-11-21 03:47:46,023 INFO Starting SARIMAX model training.
+2024-11-21 03:48:52,060 INFO SARIMAX model training completed.
+2024-11-21 03:48:52,061 INFO Evaluating SARIMAX model.
+2024-11-21 03:48:52,065 INFO Evaluation Metrics - MAE: 43.86, MSE: 4450.97, R²: 0.75
+2024-11-21 03:48:52,066 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 03:48:54,232 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 04:06:14,745 INFO Fetching sales data from the database.
+2024-11-21 04:06:14,853 INFO Fetched 3397 records from the database.
+2024-11-21 04:06:14,853 INFO Starting data preprocessing.
+2024-11-21 04:06:14,857 INFO Successfully converted DATE to datetime format.
+2024-11-21 04:06:14,867 INFO Data preprocessing completed.
+2024-11-21 04:06:14,868 INFO Starting SARIMAX model training.
+2024-11-21 04:06:41,023 INFO SARIMAX model training completed.
+2024-11-21 04:06:41,023 INFO Evaluating SARIMAX model.
+2024-11-21 04:06:41,027 INFO Evaluation Metrics - MAE: 43.28, MSE: 4384.11, R²: 0.76
+2024-11-21 04:06:41,056 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 04:06:42,754 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 06:35:14,933 INFO Fetching sales data from the database.
+2024-11-21 06:35:15,031 INFO Fetched 5239 records from the database.
+2024-11-21 06:35:15,031 INFO Starting data preprocessing.
+2024-11-21 06:35:15,034 INFO Successfully converted DATE to datetime format.
+2024-11-21 06:35:15,043 INFO Filling missing values with forward-fill method.
+2024-11-21 06:35:15,057 INFO Data preprocessing completed.
+2024-11-21 06:35:15,058 INFO Starting SARIMAX model training.
+2024-11-21 06:35:40,351 INFO SARIMAX model training completed.
+2024-11-21 06:35:40,351 INFO Evaluating SARIMAX model.
+2024-11-21 06:35:40,355 INFO Evaluation Metrics - MAE: 53.62, MSE: 6641.86, R²: 0.71
+2024-11-21 06:35:40,356 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 06:35:42,911 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 07:12:18,476 INFO Fetching sales data from the database.
+2024-11-21 07:12:18,559 INFO Fetched 5237 records from the database.
+2024-11-21 07:12:18,559 INFO Starting data preprocessing.
+2024-11-21 07:12:18,562 INFO Successfully converted DATE to datetime format.
+2024-11-21 07:12:18,585 INFO Data preprocessing completed.
+2024-11-21 07:12:18,586 INFO Starting SARIMAX model training.
+2024-11-21 07:12:18,793 INFO SARIMAX model training completed.
+2024-11-21 07:12:18,867 INFO                                       SARIMAX Results                                       
+============================================================================================
+Dep. Variable:                                TOTAL   No. Observations:                   34
+Model:             SARIMAX(2, 1, 2)x(1, 1, [1], 12)   Log Likelihood                 -61.542
+Date:                              Thu, 21 Nov 2024   AIC                            145.083
+Time:                                      07:12:18   BIC                            142.793
+Sample:                                  01-31-2022   HQIC                           135.914
+                                       - 10-31-2024                                         
+Covariance Type:                                opg                                         
+====================================================================================
+                       coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Month               -0.0006   2663.374  -2.19e-07      1.000   -5220.117    5220.116
+Quarter             -0.0002    878.921   -2.2e-07      1.000   -1722.653    1722.653
+Prev_Month_Sales    -0.2117   3503.976  -6.04e-05      1.000   -6867.879    6867.456
+Rolling_Avg_3        1.1467   2630.100      0.000      1.000   -5153.755    5156.048
+ar.L1               -0.9930   1453.020     -0.001      0.999   -2848.860    2846.874
+ar.L2               -1.3152   1397.926     -0.001      0.999   -2741.201    2738.570
+ma.L1                0.0841   7177.490   1.17e-05      1.000   -1.41e+04    1.41e+04
+ma.L2               -0.4123   6647.232   -6.2e-05      1.000    -1.3e+04     1.3e+04
+ar.S.L12            -0.2640   6105.060  -4.32e-05      1.000    -1.2e+04     1.2e+04
+ma.S.L12            -0.5222   4110.300     -0.000      1.000   -8056.562    8055.518
+sigma2            1.275e+08      1.717   7.42e+07      0.000    1.27e+08    1.27e+08
+===================================================================================
+Ljung-Box (L1) (Q):                   3.14   Jarque-Bera (JB):                 0.66
+Prob(Q):                              0.08   Prob(JB):                         0.72
+Heteroskedasticity (H):               2.49   Skew:                             0.24
+Prob(H) (two-sided):                  0.57   Kurtosis:                         1.45
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+[2] Covariance matrix is singular or near-singular, with condition number 5.5e+23. Standard errors may be unstable.
+2024-11-21 07:12:18,873 INFO Evaluating SARIMAX model.
+2024-11-21 07:12:18,876 INFO Evaluation Metrics - MAE: 9943.51, MSE: 202285894.68, R²: 0.64
+2024-11-21 07:12:18,877 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 07:12:18,981 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 07:18:38,928 INFO Fetching sales data from the database.
+2024-11-21 07:18:39,005 INFO Fetched 5237 records from the database.
+2024-11-21 07:18:39,005 INFO Starting data preprocessing.
+2024-11-21 07:18:39,008 INFO Successfully converted DATE to datetime format.
+2024-11-21 07:18:39,027 INFO Data preprocessing completed.
+2024-11-21 07:18:39,029 INFO Starting grid search for best SARIMAX model.
+2024-11-21 07:18:39,072 INFO Tested SARIMAX(0, 0, 0)x(0, 0, 0, 12)12 - AIC:0.53
+2024-11-21 07:18:39,126 INFO Tested SARIMAX(0, 0, 0)x(0, 0, 1, 12)12 - AIC:13.61
+2024-11-21 07:18:39,238 INFO Tested SARIMAX(0, 0, 0)x(0, 0, 2, 12)12 - AIC:-0.12
+2024-11-21 07:18:39,252 INFO Tested SARIMAX(0, 0, 0)x(0, 1, 0, 12)12 - AIC:14.11
+2024-11-21 07:18:39,305 INFO Tested SARIMAX(0, 0, 0)x(0, 1, 1, 12)12 - AIC:14.05
+2024-11-21 07:18:39,329 INFO Tested SARIMAX(0, 0, 0)x(0, 1, 2, 12)12 - AIC:14.00
+2024-11-21 07:18:39,356 INFO Tested SARIMAX(0, 0, 0)x(0, 2, 0, 12)12 - AIC:22.81
+2024-11-21 07:18:39,375 INFO Tested SARIMAX(0, 0, 0)x(0, 2, 1, 12)12 - AIC:12.00
+2024-11-21 07:18:40,318 INFO Tested SARIMAX(0, 0, 0)x(0, 2, 2, 12)12 - AIC:14.00
+2024-11-21 07:18:40,360 INFO Tested SARIMAX(0, 0, 0)x(1, 0, 0, 12)12 - AIC:11.18
+2024-11-21 07:18:40,444 INFO Tested SARIMAX(0, 0, 0)x(1, 0, 1, 12)12 - AIC:11.16
+2024-11-21 07:18:40,588 INFO Tested SARIMAX(0, 0, 0)x(1, 0, 2, 12)12 - AIC:1.86
+2024-11-21 07:18:40,614 INFO Tested SARIMAX(0, 0, 0)x(1, 1, 0, 12)12 - AIC:15.52
+2024-11-21 07:18:40,678 INFO Tested SARIMAX(0, 0, 0)x(1, 1, 1, 12)12 - AIC:14.34
+2024-11-21 07:18:40,698 INFO Tested SARIMAX(0, 0, 0)x(1, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:40,714 INFO Tested SARIMAX(0, 0, 0)x(1, 2, 0, 12)12 - AIC:12.00
+2024-11-21 07:18:40,735 INFO Tested SARIMAX(0, 0, 0)x(1, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:18:40,777 INFO Tested SARIMAX(0, 0, 0)x(1, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:40,882 INFO Tested SARIMAX(0, 0, 0)x(2, 0, 0, 12)12 - AIC:5.10
+2024-11-21 07:18:40,996 INFO Tested SARIMAX(0, 0, 0)x(2, 0, 1, 12)12 - AIC:9.88
+2024-11-21 07:18:41,138 INFO Tested SARIMAX(0, 0, 0)x(2, 0, 2, 12)12 - AIC:2.03
+2024-11-21 07:18:41,158 INFO Tested SARIMAX(0, 0, 0)x(2, 1, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:41,178 INFO Tested SARIMAX(0, 0, 0)x(2, 1, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:41,201 INFO Tested SARIMAX(0, 0, 0)x(2, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:41,239 INFO Tested SARIMAX(0, 0, 0)x(2, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:41,307 INFO Tested SARIMAX(0, 0, 0)x(2, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:41,346 INFO Tested SARIMAX(0, 0, 0)x(2, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:41,389 INFO Tested SARIMAX(0, 0, 1)x(0, 0, 0, 12)12 - AIC:-11.42
+2024-11-21 07:18:41,475 INFO Tested SARIMAX(0, 0, 1)x(0, 0, 1, 12)12 - AIC:6.47
+2024-11-21 07:18:41,638 INFO Tested SARIMAX(0, 0, 1)x(0, 0, 2, 12)12 - AIC:-2.13
+2024-11-21 07:18:41,661 INFO Tested SARIMAX(0, 0, 1)x(0, 1, 0, 12)12 - AIC:8.56
+2024-11-21 07:18:41,735 INFO Tested SARIMAX(0, 0, 1)x(0, 1, 1, 12)12 - AIC:12.48
+2024-11-21 07:18:41,756 INFO Tested SARIMAX(0, 0, 1)x(0, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:41,789 INFO Tested SARIMAX(0, 0, 1)x(0, 2, 0, 12)12 - AIC:18.10
+2024-11-21 07:18:41,808 INFO Tested SARIMAX(0, 0, 1)x(0, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:18:41,849 INFO Tested SARIMAX(0, 0, 1)x(0, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:41,921 INFO Tested SARIMAX(0, 0, 1)x(1, 0, 0, 12)12 - AIC:4.55
+2024-11-21 07:18:42,012 INFO Tested SARIMAX(0, 0, 1)x(1, 0, 1, 12)12 - AIC:8.12
+2024-11-21 07:18:42,222 INFO Tested SARIMAX(0, 0, 1)x(1, 0, 2, 12)12 - AIC:1.51
+2024-11-21 07:18:42,273 INFO Tested SARIMAX(0, 0, 1)x(1, 1, 0, 12)12 - AIC:16.47
+2024-11-21 07:18:42,378 INFO Tested SARIMAX(0, 0, 1)x(1, 1, 1, 12)12 - AIC:10.31
+2024-11-21 07:18:42,401 INFO Tested SARIMAX(0, 0, 1)x(1, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:42,419 INFO Tested SARIMAX(0, 0, 1)x(1, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:42,441 INFO Tested SARIMAX(0, 0, 1)x(1, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:42,483 INFO Tested SARIMAX(0, 0, 1)x(1, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:42,607 INFO Tested SARIMAX(0, 0, 1)x(2, 0, 0, 12)12 - AIC:6.14
+2024-11-21 07:18:42,742 INFO Tested SARIMAX(0, 0, 1)x(2, 0, 1, 12)12 - AIC:9.85
+2024-11-21 07:18:42,965 INFO Tested SARIMAX(0, 0, 1)x(2, 0, 2, 12)12 - AIC:1.76
+2024-11-21 07:18:42,985 INFO Tested SARIMAX(0, 0, 1)x(2, 1, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:43,007 INFO Tested SARIMAX(0, 0, 1)x(2, 1, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:43,032 INFO Tested SARIMAX(0, 0, 1)x(2, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:43,074 INFO Tested SARIMAX(0, 0, 1)x(2, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:43,110 INFO Tested SARIMAX(0, 0, 1)x(2, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:43,155 INFO Tested SARIMAX(0, 0, 1)x(2, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:43,210 INFO Tested SARIMAX(0, 0, 2)x(0, 0, 0, 12)12 - AIC:-7.91
+2024-11-21 07:18:43,308 INFO Tested SARIMAX(0, 0, 2)x(0, 0, 1, 12)12 - AIC:7.56
+2024-11-21 07:18:43,444 INFO Tested SARIMAX(0, 0, 2)x(0, 0, 2, 12)12 - AIC:7.45
+2024-11-21 07:18:43,506 INFO Tested SARIMAX(0, 0, 2)x(0, 1, 0, 12)12 - AIC:10.25
+2024-11-21 07:18:43,589 INFO Tested SARIMAX(0, 0, 2)x(0, 1, 1, 12)12 - AIC:14.31
+2024-11-21 07:18:43,613 INFO Tested SARIMAX(0, 0, 2)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:43,754 INFO Tested SARIMAX(0, 0, 2)x(0, 2, 0, 12)12 - AIC:19.56
+2024-11-21 07:18:43,776 INFO Tested SARIMAX(0, 0, 2)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:43,931 INFO Tested SARIMAX(0, 0, 2)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:44,011 INFO Tested SARIMAX(0, 0, 2)x(1, 0, 0, 12)12 - AIC:6.11
+2024-11-21 07:18:44,111 INFO Tested SARIMAX(0, 0, 2)x(1, 0, 1, 12)12 - AIC:8.66
+2024-11-21 07:18:44,387 INFO Tested SARIMAX(0, 0, 2)x(1, 0, 2, 12)12 - AIC:8.68
+2024-11-21 07:18:44,443 INFO Tested SARIMAX(0, 0, 2)x(1, 1, 0, 12)12 - AIC:17.46
+2024-11-21 07:18:44,608 INFO Tested SARIMAX(0, 0, 2)x(1, 1, 1, 12)12 - AIC:9.19
+2024-11-21 07:18:44,636 INFO Tested SARIMAX(0, 0, 2)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:44,656 INFO Tested SARIMAX(0, 0, 2)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:44,683 INFO Tested SARIMAX(0, 0, 2)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:44,728 INFO Tested SARIMAX(0, 0, 2)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:44,837 INFO Tested SARIMAX(0, 0, 2)x(2, 0, 0, 12)12 - AIC:7.99
+2024-11-21 07:18:44,983 INFO Tested SARIMAX(0, 0, 2)x(2, 0, 1, 12)12 - AIC:12.88
+2024-11-21 07:18:45,203 INFO Tested SARIMAX(0, 0, 2)x(2, 0, 2, 12)12 - AIC:10.15
+2024-11-21 07:18:45,222 INFO Tested SARIMAX(0, 0, 2)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:18:45,245 INFO Tested SARIMAX(0, 0, 2)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:18:45,276 INFO Tested SARIMAX(0, 0, 2)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:18:45,315 INFO Tested SARIMAX(0, 0, 2)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:18:45,358 INFO Tested SARIMAX(0, 0, 2)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:18:45,412 INFO Tested SARIMAX(0, 0, 2)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:18:45,428 INFO Tested SARIMAX(0, 1, 0)x(0, 0, 0, 12)12 - AIC:1.38
+2024-11-21 07:18:45,466 INFO Tested SARIMAX(0, 1, 0)x(0, 0, 1, 12)12 - AIC:12.07
+2024-11-21 07:18:45,529 INFO Tested SARIMAX(0, 1, 0)x(0, 0, 2, 12)12 - AIC:11.03
+2024-11-21 07:18:45,544 INFO Tested SARIMAX(0, 1, 0)x(0, 1, 0, 12)12 - AIC:16.65
+2024-11-21 07:18:45,592 INFO Tested SARIMAX(0, 1, 0)x(0, 1, 1, 12)12 - AIC:17.47
+2024-11-21 07:18:45,612 INFO Tested SARIMAX(0, 1, 0)x(0, 1, 2, 12)12 - AIC:14.00
+2024-11-21 07:18:45,637 INFO Tested SARIMAX(0, 1, 0)x(0, 2, 0, 12)12 - AIC:20.30
+2024-11-21 07:18:45,655 INFO Tested SARIMAX(0, 1, 0)x(0, 2, 1, 12)12 - AIC:12.00
+2024-11-21 07:18:45,708 INFO Tested SARIMAX(0, 1, 0)x(0, 2, 2, 12)12 - AIC:14.00
+2024-11-21 07:18:45,740 INFO Tested SARIMAX(0, 1, 0)x(1, 0, 0, 12)12 - AIC:12.29
+2024-11-21 07:18:45,791 INFO Tested SARIMAX(0, 1, 0)x(1, 0, 1, 12)12 - AIC:13.20
+2024-11-21 07:18:45,873 INFO Tested SARIMAX(0, 1, 0)x(1, 0, 2, 12)12 - AIC:13.02
+2024-11-21 07:18:45,906 INFO Tested SARIMAX(0, 1, 0)x(1, 1, 0, 12)12 - AIC:17.74
+2024-11-21 07:18:45,948 INFO Tested SARIMAX(0, 1, 0)x(1, 1, 1, 12)12 - AIC:19.35
+2024-11-21 07:18:45,969 INFO Tested SARIMAX(0, 1, 0)x(1, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:45,987 INFO Tested SARIMAX(0, 1, 0)x(1, 2, 0, 12)12 - AIC:12.00
+2024-11-21 07:18:46,006 INFO Tested SARIMAX(0, 1, 0)x(1, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:18:46,138 INFO Tested SARIMAX(0, 1, 0)x(1, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:46,232 INFO Tested SARIMAX(0, 1, 0)x(2, 0, 0, 12)12 - AIC:6.74
+2024-11-21 07:18:46,352 INFO Tested SARIMAX(0, 1, 0)x(2, 0, 1, 12)12 - AIC:8.74
+2024-11-21 07:18:46,475 INFO Tested SARIMAX(0, 1, 0)x(2, 0, 2, 12)12 - AIC:13.57
+2024-11-21 07:18:46,493 INFO Tested SARIMAX(0, 1, 0)x(2, 1, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:46,514 INFO Tested SARIMAX(0, 1, 0)x(2, 1, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:46,537 INFO Tested SARIMAX(0, 1, 0)x(2, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:46,574 INFO Tested SARIMAX(0, 1, 0)x(2, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:46,612 INFO Tested SARIMAX(0, 1, 0)x(2, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:46,657 INFO Tested SARIMAX(0, 1, 0)x(2, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:46,682 INFO Tested SARIMAX(0, 1, 1)x(0, 0, 0, 12)12 - AIC:3.98
+2024-11-21 07:18:46,730 INFO Tested SARIMAX(0, 1, 1)x(0, 0, 1, 12)12 - AIC:13.86
+2024-11-21 07:18:46,883 INFO Tested SARIMAX(0, 1, 1)x(0, 0, 2, 12)12 - AIC:-1.84
+2024-11-21 07:18:46,910 INFO Tested SARIMAX(0, 1, 1)x(0, 1, 0, 12)12 - AIC:17.25
+2024-11-21 07:18:46,997 INFO Tested SARIMAX(0, 1, 1)x(0, 1, 1, 12)12 - AIC:14.22
+2024-11-21 07:18:47,019 INFO Tested SARIMAX(0, 1, 1)x(0, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:47,051 INFO Tested SARIMAX(0, 1, 1)x(0, 2, 0, 12)12 - AIC:21.65
+2024-11-21 07:18:47,073 INFO Tested SARIMAX(0, 1, 1)x(0, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:18:47,114 INFO Tested SARIMAX(0, 1, 1)x(0, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:47,162 INFO Tested SARIMAX(0, 1, 1)x(1, 0, 0, 12)12 - AIC:14.28
+2024-11-21 07:18:47,231 INFO Tested SARIMAX(0, 1, 1)x(1, 0, 1, 12)12 - AIC:14.72
+2024-11-21 07:18:47,423 INFO Tested SARIMAX(0, 1, 1)x(1, 0, 2, 12)12 - AIC:0.02
+2024-11-21 07:18:47,484 INFO Tested SARIMAX(0, 1, 1)x(1, 1, 0, 12)12 - AIC:13.45
+2024-11-21 07:18:47,565 INFO Tested SARIMAX(0, 1, 1)x(1, 1, 1, 12)12 - AIC:15.86
+2024-11-21 07:18:47,588 INFO Tested SARIMAX(0, 1, 1)x(1, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:47,607 INFO Tested SARIMAX(0, 1, 1)x(1, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:47,631 INFO Tested SARIMAX(0, 1, 1)x(1, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:47,701 INFO Tested SARIMAX(0, 1, 1)x(1, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:47,826 INFO Tested SARIMAX(0, 1, 1)x(2, 0, 0, 12)12 - AIC:5.18
+2024-11-21 07:18:47,996 INFO Tested SARIMAX(0, 1, 1)x(2, 0, 1, 12)12 - AIC:7.18
+2024-11-21 07:18:48,201 INFO Tested SARIMAX(0, 1, 1)x(2, 0, 2, 12)12 - AIC:3.60
+2024-11-21 07:18:48,220 INFO Tested SARIMAX(0, 1, 1)x(2, 1, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:48,243 INFO Tested SARIMAX(0, 1, 1)x(2, 1, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:48,271 INFO Tested SARIMAX(0, 1, 1)x(2, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:48,312 INFO Tested SARIMAX(0, 1, 1)x(2, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:48,354 INFO Tested SARIMAX(0, 1, 1)x(2, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:48,398 INFO Tested SARIMAX(0, 1, 1)x(2, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:48,447 INFO Tested SARIMAX(0, 1, 2)x(0, 0, 0, 12)12 - AIC:-4.42
+2024-11-21 07:18:48,536 INFO Tested SARIMAX(0, 1, 2)x(0, 0, 1, 12)12 - AIC:12.04
+2024-11-21 07:18:48,712 INFO Tested SARIMAX(0, 1, 2)x(0, 0, 2, 12)12 - AIC:4.38
+2024-11-21 07:18:48,739 INFO Tested SARIMAX(0, 1, 2)x(0, 1, 0, 12)12 - AIC:12.18
+2024-11-21 07:18:48,844 INFO Tested SARIMAX(0, 1, 2)x(0, 1, 1, 12)12 - AIC:16.48
+2024-11-21 07:18:48,868 INFO Tested SARIMAX(0, 1, 2)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:48,961 INFO Tested SARIMAX(0, 1, 2)x(0, 2, 0, 12)12 - AIC:19.60
+2024-11-21 07:18:48,984 INFO Tested SARIMAX(0, 1, 2)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:49,026 INFO Tested SARIMAX(0, 1, 2)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:49,118 INFO Tested SARIMAX(0, 1, 2)x(1, 0, 0, 12)12 - AIC:9.76
+2024-11-21 07:18:49,216 INFO Tested SARIMAX(0, 1, 2)x(1, 0, 1, 12)12 - AIC:14.02
+2024-11-21 07:18:49,434 INFO Tested SARIMAX(0, 1, 2)x(1, 0, 2, 12)12 - AIC:6.88
+2024-11-21 07:18:49,521 INFO Tested SARIMAX(0, 1, 2)x(1, 1, 0, 12)12 - AIC:11.20
+2024-11-21 07:18:49,639 INFO Tested SARIMAX(0, 1, 2)x(1, 1, 1, 12)12 - AIC:14.82
+2024-11-21 07:18:49,665 INFO Tested SARIMAX(0, 1, 2)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:49,687 INFO Tested SARIMAX(0, 1, 2)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:49,712 INFO Tested SARIMAX(0, 1, 2)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:49,760 INFO Tested SARIMAX(0, 1, 2)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:49,896 INFO Tested SARIMAX(0, 1, 2)x(2, 0, 0, 12)12 - AIC:7.50
+2024-11-21 07:18:50,007 INFO Tested SARIMAX(0, 1, 2)x(2, 0, 1, 12)12 - AIC:19.38
+2024-11-21 07:18:50,231 INFO Tested SARIMAX(0, 1, 2)x(2, 0, 2, 12)12 - AIC:11.42
+2024-11-21 07:18:50,251 INFO Tested SARIMAX(0, 1, 2)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:18:50,276 INFO Tested SARIMAX(0, 1, 2)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:18:50,303 INFO Tested SARIMAX(0, 1, 2)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:18:50,344 INFO Tested SARIMAX(0, 1, 2)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:18:50,507 INFO Tested SARIMAX(0, 1, 2)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:18:50,559 INFO Tested SARIMAX(0, 1, 2)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:18:50,576 INFO Tested SARIMAX(0, 2, 0)x(0, 0, 0, 12)12 - AIC:20.10
+2024-11-21 07:18:50,610 INFO Tested SARIMAX(0, 2, 0)x(0, 0, 1, 12)12 - AIC:24.00
+2024-11-21 07:18:50,665 INFO Tested SARIMAX(0, 2, 0)x(0, 0, 2, 12)12 - AIC:20.30
+2024-11-21 07:18:50,691 INFO Tested SARIMAX(0, 2, 0)x(0, 1, 0, 12)12 - AIC:29.69
+2024-11-21 07:18:50,740 INFO Tested SARIMAX(0, 2, 0)x(0, 1, 1, 12)12 - AIC:24.28
+2024-11-21 07:18:50,761 INFO Tested SARIMAX(0, 2, 0)x(0, 1, 2, 12)12 - AIC:14.00
+2024-11-21 07:18:50,794 INFO Tested SARIMAX(0, 2, 0)x(0, 2, 0, 12)12 - AIC:23.87
+2024-11-21 07:18:50,814 INFO Tested SARIMAX(0, 2, 0)x(0, 2, 1, 12)12 - AIC:12.00
+2024-11-21 07:18:50,853 INFO Tested SARIMAX(0, 2, 0)x(0, 2, 2, 12)12 - AIC:14.00
+2024-11-21 07:18:50,891 INFO Tested SARIMAX(0, 2, 0)x(1, 0, 0, 12)12 - AIC:24.51
+2024-11-21 07:18:50,941 INFO Tested SARIMAX(0, 2, 0)x(1, 0, 1, 12)12 - AIC:25.83
+2024-11-21 07:18:51,033 INFO Tested SARIMAX(0, 2, 0)x(1, 0, 2, 12)12 - AIC:22.23
+2024-11-21 07:18:51,065 INFO Tested SARIMAX(0, 2, 0)x(1, 1, 0, 12)12 - AIC:26.13
+2024-11-21 07:18:51,116 INFO Tested SARIMAX(0, 2, 0)x(1, 1, 1, 12)12 - AIC:26.28
+2024-11-21 07:18:51,137 INFO Tested SARIMAX(0, 2, 0)x(1, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:51,155 INFO Tested SARIMAX(0, 2, 0)x(1, 2, 0, 12)12 - AIC:12.00
+2024-11-21 07:18:51,177 INFO Tested SARIMAX(0, 2, 0)x(1, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:18:51,223 INFO Tested SARIMAX(0, 2, 0)x(1, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:51,295 INFO Tested SARIMAX(0, 2, 0)x(2, 0, 0, 12)12 - AIC:13.91
+2024-11-21 07:18:51,407 INFO Tested SARIMAX(0, 2, 0)x(2, 0, 1, 12)12 - AIC:15.91
+2024-11-21 07:18:51,609 INFO Tested SARIMAX(0, 2, 0)x(2, 0, 2, 12)12 - AIC:8.94
+2024-11-21 07:18:51,628 INFO Tested SARIMAX(0, 2, 0)x(2, 1, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:51,649 INFO Tested SARIMAX(0, 2, 0)x(2, 1, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:51,673 INFO Tested SARIMAX(0, 2, 0)x(2, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:51,720 INFO Tested SARIMAX(0, 2, 0)x(2, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:51,757 INFO Tested SARIMAX(0, 2, 0)x(2, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:51,801 INFO Tested SARIMAX(0, 2, 0)x(2, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:51,837 INFO Tested SARIMAX(0, 2, 1)x(0, 0, 0, 12)12 - AIC:7.69
+2024-11-21 07:18:51,885 INFO Tested SARIMAX(0, 2, 1)x(0, 0, 1, 12)12 - AIC:18.50
+2024-11-21 07:18:51,978 INFO Tested SARIMAX(0, 2, 1)x(0, 0, 2, 12)12 - AIC:17.84
+2024-11-21 07:18:52,005 INFO Tested SARIMAX(0, 2, 1)x(0, 1, 0, 12)12 - AIC:21.68
+2024-11-21 07:18:52,058 INFO Tested SARIMAX(0, 2, 1)x(0, 1, 1, 12)12 - AIC:19.57
+2024-11-21 07:18:52,081 INFO Tested SARIMAX(0, 2, 1)x(0, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:52,127 INFO Tested SARIMAX(0, 2, 1)x(0, 2, 0, 12)12 - AIC:22.99
+2024-11-21 07:18:52,148 INFO Tested SARIMAX(0, 2, 1)x(0, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:18:52,190 INFO Tested SARIMAX(0, 2, 1)x(0, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:52,238 INFO Tested SARIMAX(0, 2, 1)x(1, 0, 0, 12)12 - AIC:18.04
+2024-11-21 07:18:52,301 INFO Tested SARIMAX(0, 2, 1)x(1, 0, 1, 12)12 - AIC:19.98
+2024-11-21 07:18:52,484 INFO Tested SARIMAX(0, 2, 1)x(1, 0, 2, 12)12 - AIC:12.51
+2024-11-21 07:18:52,529 INFO Tested SARIMAX(0, 2, 1)x(1, 1, 0, 12)12 - AIC:22.22
+2024-11-21 07:18:52,621 INFO Tested SARIMAX(0, 2, 1)x(1, 1, 1, 12)12 - AIC:21.64
+2024-11-21 07:18:52,650 INFO Tested SARIMAX(0, 2, 1)x(1, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:52,669 INFO Tested SARIMAX(0, 2, 1)x(1, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:52,690 INFO Tested SARIMAX(0, 2, 1)x(1, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:52,738 INFO Tested SARIMAX(0, 2, 1)x(1, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:52,848 INFO Tested SARIMAX(0, 2, 1)x(2, 0, 0, 12)12 - AIC:12.69
+2024-11-21 07:18:52,989 INFO Tested SARIMAX(0, 2, 1)x(2, 0, 1, 12)12 - AIC:14.68
+2024-11-21 07:18:53,202 INFO Tested SARIMAX(0, 2, 1)x(2, 0, 2, 12)12 - AIC:7.29
+2024-11-21 07:18:53,222 INFO Tested SARIMAX(0, 2, 1)x(2, 1, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:53,246 INFO Tested SARIMAX(0, 2, 1)x(2, 1, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:53,271 INFO Tested SARIMAX(0, 2, 1)x(2, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:53,309 INFO Tested SARIMAX(0, 2, 1)x(2, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:53,351 INFO Tested SARIMAX(0, 2, 1)x(2, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:53,397 INFO Tested SARIMAX(0, 2, 1)x(2, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:53,449 INFO Tested SARIMAX(0, 2, 2)x(0, 0, 0, 12)12 - AIC:10.43
+2024-11-21 07:18:53,513 INFO Tested SARIMAX(0, 2, 2)x(0, 0, 1, 12)12 - AIC:17.54
+2024-11-21 07:18:53,679 INFO Tested SARIMAX(0, 2, 2)x(0, 0, 2, 12)12 - AIC:8.98
+2024-11-21 07:18:53,726 INFO Tested SARIMAX(0, 2, 2)x(0, 1, 0, 12)12 - AIC:22.05
+2024-11-21 07:18:53,850 INFO Tested SARIMAX(0, 2, 2)x(0, 1, 1, 12)12 - AIC:19.39
+2024-11-21 07:18:54,040 INFO Tested SARIMAX(0, 2, 2)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:54,141 INFO Tested SARIMAX(0, 2, 2)x(0, 2, 0, 12)12 - AIC:222.16
+2024-11-21 07:18:54,173 INFO Tested SARIMAX(0, 2, 2)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:54,221 INFO Tested SARIMAX(0, 2, 2)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:54,281 INFO Tested SARIMAX(0, 2, 2)x(1, 0, 0, 12)12 - AIC:19.97
+2024-11-21 07:18:54,389 INFO Tested SARIMAX(0, 2, 2)x(1, 0, 1, 12)12 - AIC:18.14
+2024-11-21 07:18:54,606 INFO Tested SARIMAX(0, 2, 2)x(1, 0, 2, 12)12 - AIC:9.50
+2024-11-21 07:18:54,773 INFO Tested SARIMAX(0, 2, 2)x(1, 1, 0, 12)12 - AIC:20.52
+2024-11-21 07:18:54,904 INFO Tested SARIMAX(0, 2, 2)x(1, 1, 1, 12)12 - AIC:19.66
+2024-11-21 07:18:54,941 INFO Tested SARIMAX(0, 2, 2)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:54,962 INFO Tested SARIMAX(0, 2, 2)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:55,000 INFO Tested SARIMAX(0, 2, 2)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:55,055 INFO Tested SARIMAX(0, 2, 2)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:55,197 INFO Tested SARIMAX(0, 2, 2)x(2, 0, 0, 12)12 - AIC:12.65
+2024-11-21 07:18:55,399 INFO Tested SARIMAX(0, 2, 2)x(2, 0, 1, 12)12 - AIC:14.65
+2024-11-21 07:18:55,729 INFO Tested SARIMAX(0, 2, 2)x(2, 0, 2, 12)12 - AIC:-13.39
+2024-11-21 07:18:55,751 INFO Tested SARIMAX(0, 2, 2)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:18:55,777 INFO Tested SARIMAX(0, 2, 2)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:18:55,818 INFO Tested SARIMAX(0, 2, 2)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:18:55,956 INFO Tested SARIMAX(0, 2, 2)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:18:56,003 INFO Tested SARIMAX(0, 2, 2)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:18:56,111 INFO Tested SARIMAX(0, 2, 2)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:18:56,148 INFO Tested SARIMAX(1, 0, 0)x(0, 0, 0, 12)12 - AIC:-4.82
+2024-11-21 07:18:56,230 INFO Tested SARIMAX(1, 0, 0)x(0, 0, 1, 12)12 - AIC:11.13
+2024-11-21 07:18:56,379 INFO Tested SARIMAX(1, 0, 0)x(0, 0, 2, 12)12 - AIC:1.81
+2024-11-21 07:18:56,397 INFO Tested SARIMAX(1, 0, 0)x(0, 1, 0, 12)12 - AIC:11.55
+2024-11-21 07:18:56,445 INFO Tested SARIMAX(1, 0, 0)x(0, 1, 1, 12)12 - AIC:15.26
+2024-11-21 07:18:56,465 INFO Tested SARIMAX(1, 0, 0)x(0, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:56,487 INFO Tested SARIMAX(1, 0, 0)x(0, 2, 0, 12)12 - AIC:21.90
+2024-11-21 07:18:56,507 INFO Tested SARIMAX(1, 0, 0)x(0, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:18:56,553 INFO Tested SARIMAX(1, 0, 0)x(0, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:18:56,620 INFO Tested SARIMAX(1, 0, 0)x(1, 0, 0, 12)12 - AIC:9.46
+2024-11-21 07:18:56,716 INFO Tested SARIMAX(1, 0, 0)x(1, 0, 1, 12)12 - AIC:10.63
+2024-11-21 07:18:56,894 INFO Tested SARIMAX(1, 0, 0)x(1, 0, 2, 12)12 - AIC:3.79
+2024-11-21 07:18:56,953 INFO Tested SARIMAX(1, 0, 0)x(1, 1, 0, 12)12 - AIC:14.02
+2024-11-21 07:18:57,129 INFO Tested SARIMAX(1, 0, 0)x(1, 1, 1, 12)12 - AIC:16.01
+2024-11-21 07:18:57,150 INFO Tested SARIMAX(1, 0, 0)x(1, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:57,169 INFO Tested SARIMAX(1, 0, 0)x(1, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:18:57,188 INFO Tested SARIMAX(1, 0, 0)x(1, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:57,231 INFO Tested SARIMAX(1, 0, 0)x(1, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:57,355 INFO Tested SARIMAX(1, 0, 0)x(2, 0, 0, 12)12 - AIC:4.08
+2024-11-21 07:18:57,501 INFO Tested SARIMAX(1, 0, 0)x(2, 0, 1, 12)12 - AIC:2.55
+2024-11-21 07:18:57,662 INFO Tested SARIMAX(1, 0, 0)x(2, 0, 2, 12)12 - AIC:3.86
+2024-11-21 07:18:57,682 INFO Tested SARIMAX(1, 0, 0)x(2, 1, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:57,705 INFO Tested SARIMAX(1, 0, 0)x(2, 1, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:57,727 INFO Tested SARIMAX(1, 0, 0)x(2, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:57,861 INFO Tested SARIMAX(1, 0, 0)x(2, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:57,900 INFO Tested SARIMAX(1, 0, 0)x(2, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:57,939 INFO Tested SARIMAX(1, 0, 0)x(2, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:57,998 INFO Tested SARIMAX(1, 0, 1)x(0, 0, 0, 12)12 - AIC:-9.51
+2024-11-21 07:18:58,089 INFO Tested SARIMAX(1, 0, 1)x(0, 0, 1, 12)12 - AIC:8.47
+2024-11-21 07:18:58,238 INFO Tested SARIMAX(1, 0, 1)x(0, 0, 2, 12)12 - AIC:-2.07
+2024-11-21 07:18:58,270 INFO Tested SARIMAX(1, 0, 1)x(0, 1, 0, 12)12 - AIC:10.36
+2024-11-21 07:18:58,355 INFO Tested SARIMAX(1, 0, 1)x(0, 1, 1, 12)12 - AIC:14.30
+2024-11-21 07:18:58,377 INFO Tested SARIMAX(1, 0, 1)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:58,434 INFO Tested SARIMAX(1, 0, 1)x(0, 2, 0, 12)12 - AIC:20.05
+2024-11-21 07:18:58,453 INFO Tested SARIMAX(1, 0, 1)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:18:58,682 INFO Tested SARIMAX(1, 0, 1)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:18:58,778 INFO Tested SARIMAX(1, 0, 1)x(1, 0, 0, 12)12 - AIC:6.57
+2024-11-21 07:18:58,892 INFO Tested SARIMAX(1, 0, 1)x(1, 0, 1, 12)12 - AIC:8.97
+2024-11-21 07:18:59,093 INFO Tested SARIMAX(1, 0, 1)x(1, 0, 2, 12)12 - AIC:-1.21
+2024-11-21 07:18:59,196 INFO Tested SARIMAX(1, 0, 1)x(1, 1, 0, 12)12 - AIC:13.82
+2024-11-21 07:18:59,365 INFO Tested SARIMAX(1, 0, 1)x(1, 1, 1, 12)12 - AIC:9.42
+2024-11-21 07:18:59,389 INFO Tested SARIMAX(1, 0, 1)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:59,410 INFO Tested SARIMAX(1, 0, 1)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:18:59,430 INFO Tested SARIMAX(1, 0, 1)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:18:59,475 INFO Tested SARIMAX(1, 0, 1)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:18:59,630 INFO Tested SARIMAX(1, 0, 1)x(2, 0, 0, 12)12 - AIC:7.45
+2024-11-21 07:18:59,813 INFO Tested SARIMAX(1, 0, 1)x(2, 0, 1, 12)12 - AIC:-4.16
+2024-11-21 07:19:00,009 INFO Tested SARIMAX(1, 0, 1)x(2, 0, 2, 12)12 - AIC:-0.08
+2024-11-21 07:19:00,030 INFO Tested SARIMAX(1, 0, 1)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:00,053 INFO Tested SARIMAX(1, 0, 1)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:00,079 INFO Tested SARIMAX(1, 0, 1)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:00,723 INFO Tested SARIMAX(1, 0, 1)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:00,769 INFO Tested SARIMAX(1, 0, 1)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:00,817 INFO Tested SARIMAX(1, 0, 1)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:00,888 INFO Tested SARIMAX(1, 0, 2)x(0, 0, 0, 12)12 - AIC:-10.60
+2024-11-21 07:19:01,076 INFO Tested SARIMAX(1, 0, 2)x(0, 0, 1, 12)12 - AIC:5.32
+2024-11-21 07:19:01,297 INFO Tested SARIMAX(1, 0, 2)x(0, 0, 2, 12)12 - AIC:4.42
+2024-11-21 07:19:01,353 INFO Tested SARIMAX(1, 0, 2)x(0, 1, 0, 12)12 - AIC:10.41
+2024-11-21 07:19:01,531 INFO Tested SARIMAX(1, 0, 2)x(0, 1, 1, 12)12 - AIC:15.67
+2024-11-21 07:19:01,557 INFO Tested SARIMAX(1, 0, 2)x(0, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:01,790 INFO Tested SARIMAX(1, 0, 2)x(0, 2, 0, 12)12 - AIC:20.53
+2024-11-21 07:19:01,813 INFO Tested SARIMAX(1, 0, 2)x(0, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:02,204 INFO Tested SARIMAX(1, 0, 2)x(0, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:02,297 INFO Tested SARIMAX(1, 0, 2)x(1, 0, 0, 12)12 - AIC:6.37
+2024-11-21 07:19:02,407 INFO Tested SARIMAX(1, 0, 2)x(1, 0, 1, 12)12 - AIC:6.63
+2024-11-21 07:19:02,635 INFO Tested SARIMAX(1, 0, 2)x(1, 0, 2, 12)12 - AIC:8.69
+2024-11-21 07:19:02,781 INFO Tested SARIMAX(1, 0, 2)x(1, 1, 0, 12)12 - AIC:11.59
+2024-11-21 07:19:02,949 INFO Tested SARIMAX(1, 0, 2)x(1, 1, 1, 12)12 - AIC:19.11
+2024-11-21 07:19:02,977 INFO Tested SARIMAX(1, 0, 2)x(1, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:02,998 INFO Tested SARIMAX(1, 0, 2)x(1, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:03,023 INFO Tested SARIMAX(1, 0, 2)x(1, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:03,069 INFO Tested SARIMAX(1, 0, 2)x(1, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:03,229 INFO Tested SARIMAX(1, 0, 2)x(2, 0, 0, 12)12 - AIC:3.88
+2024-11-21 07:19:03,432 INFO Tested SARIMAX(1, 0, 2)x(2, 0, 1, 12)12 - AIC:0.40
+2024-11-21 07:19:03,728 INFO Tested SARIMAX(1, 0, 2)x(2, 0, 2, 12)12 - AIC:10.16
+2024-11-21 07:19:03,761 INFO Tested SARIMAX(1, 0, 2)x(2, 1, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:03,826 INFO Tested SARIMAX(1, 0, 2)x(2, 1, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:03,897 INFO Tested SARIMAX(1, 0, 2)x(2, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:03,964 INFO Tested SARIMAX(1, 0, 2)x(2, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:04,023 INFO Tested SARIMAX(1, 0, 2)x(2, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:04,086 INFO Tested SARIMAX(1, 0, 2)x(2, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:04,138 INFO Tested SARIMAX(1, 1, 0)x(0, 0, 0, 12)12 - AIC:3.04
+2024-11-21 07:19:04,221 INFO Tested SARIMAX(1, 1, 0)x(0, 0, 1, 12)12 - AIC:13.95
+2024-11-21 07:19:04,359 INFO Tested SARIMAX(1, 1, 0)x(0, 0, 2, 12)12 - AIC:10.90
+2024-11-21 07:19:04,380 INFO Tested SARIMAX(1, 1, 0)x(0, 1, 0, 12)12 - AIC:18.59
+2024-11-21 07:19:04,478 INFO Tested SARIMAX(1, 1, 0)x(0, 1, 1, 12)12 - AIC:18.03
+2024-11-21 07:19:04,511 INFO Tested SARIMAX(1, 1, 0)x(0, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:19:04,558 INFO Tested SARIMAX(1, 1, 0)x(0, 2, 0, 12)12 - AIC:22.10
+2024-11-21 07:19:04,598 INFO Tested SARIMAX(1, 1, 0)x(0, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:19:04,787 INFO Tested SARIMAX(1, 1, 0)x(0, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:19:04,858 INFO Tested SARIMAX(1, 1, 0)x(1, 0, 0, 12)12 - AIC:13.43
+2024-11-21 07:19:05,031 INFO Tested SARIMAX(1, 1, 0)x(1, 0, 1, 12)12 - AIC:15.20
+2024-11-21 07:19:05,287 INFO Tested SARIMAX(1, 1, 0)x(1, 0, 2, 12)12 - AIC:12.67
+2024-11-21 07:19:05,356 INFO Tested SARIMAX(1, 1, 0)x(1, 1, 0, 12)12 - AIC:17.59
+2024-11-21 07:19:05,631 INFO Tested SARIMAX(1, 1, 0)x(1, 1, 1, 12)12 - AIC:19.58
+2024-11-21 07:19:05,659 INFO Tested SARIMAX(1, 1, 0)x(1, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:05,682 INFO Tested SARIMAX(1, 1, 0)x(1, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:19:05,711 INFO Tested SARIMAX(1, 1, 0)x(1, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:19:05,900 INFO Tested SARIMAX(1, 1, 0)x(1, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:06,169 INFO Tested SARIMAX(1, 1, 0)x(2, 0, 0, 12)12 - AIC:1.91
+2024-11-21 07:19:06,481 INFO Tested SARIMAX(1, 1, 0)x(2, 0, 1, 12)12 - AIC:11.88
+2024-11-21 07:19:06,823 INFO Tested SARIMAX(1, 1, 0)x(2, 0, 2, 12)12 - AIC:13.88
+2024-11-21 07:19:06,859 INFO Tested SARIMAX(1, 1, 0)x(2, 1, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:06,889 INFO Tested SARIMAX(1, 1, 0)x(2, 1, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:06,925 INFO Tested SARIMAX(1, 1, 0)x(2, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:07,042 INFO Tested SARIMAX(1, 1, 0)x(2, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:07,088 INFO Tested SARIMAX(1, 1, 0)x(2, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:07,148 INFO Tested SARIMAX(1, 1, 0)x(2, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:07,220 INFO Tested SARIMAX(1, 1, 1)x(0, 0, 0, 12)12 - AIC:1.86
+2024-11-21 07:19:07,459 INFO Tested SARIMAX(1, 1, 1)x(0, 0, 1, 12)12 - AIC:13.68
+2024-11-21 07:19:07,745 INFO Tested SARIMAX(1, 1, 1)x(0, 0, 2, 12)12 - AIC:0.04
+2024-11-21 07:19:07,817 INFO Tested SARIMAX(1, 1, 1)x(0, 1, 0, 12)12 - AIC:14.37
+2024-11-21 07:19:08,027 INFO Tested SARIMAX(1, 1, 1)x(0, 1, 1, 12)12 - AIC:16.16
+2024-11-21 07:19:08,062 INFO Tested SARIMAX(1, 1, 1)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:08,285 INFO Tested SARIMAX(1, 1, 1)x(0, 2, 0, 12)12 - AIC:22.39
+2024-11-21 07:19:08,319 INFO Tested SARIMAX(1, 1, 1)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:19:08,390 INFO Tested SARIMAX(1, 1, 1)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:08,463 INFO Tested SARIMAX(1, 1, 1)x(1, 0, 0, 12)12 - AIC:14.52
+2024-11-21 07:19:08,664 INFO Tested SARIMAX(1, 1, 1)x(1, 0, 1, 12)12 - AIC:16.48
+2024-11-21 07:19:08,986 INFO Tested SARIMAX(1, 1, 1)x(1, 0, 2, 12)12 - AIC:2.91
+2024-11-21 07:19:09,151 INFO Tested SARIMAX(1, 1, 1)x(1, 1, 0, 12)12 - AIC:14.56
+2024-11-21 07:19:09,551 INFO Tested SARIMAX(1, 1, 1)x(1, 1, 1, 12)12 - AIC:17.33
+2024-11-21 07:19:09,593 INFO Tested SARIMAX(1, 1, 1)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:09,644 INFO Tested SARIMAX(1, 1, 1)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:09,690 INFO Tested SARIMAX(1, 1, 1)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:09,845 INFO Tested SARIMAX(1, 1, 1)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:10,158 INFO Tested SARIMAX(1, 1, 1)x(2, 0, 0, 12)12 - AIC:5.50
+2024-11-21 07:19:10,518 INFO Tested SARIMAX(1, 1, 1)x(2, 0, 1, 12)12 - AIC:6.50
+2024-11-21 07:19:10,876 INFO Tested SARIMAX(1, 1, 1)x(2, 0, 2, 12)12 - AIC:3.90
+2024-11-21 07:19:10,901 INFO Tested SARIMAX(1, 1, 1)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:10,931 INFO Tested SARIMAX(1, 1, 1)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:10,968 INFO Tested SARIMAX(1, 1, 1)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:11,034 INFO Tested SARIMAX(1, 1, 1)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:11,088 INFO Tested SARIMAX(1, 1, 1)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:11,384 INFO Tested SARIMAX(1, 1, 1)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:11,447 INFO Tested SARIMAX(1, 1, 2)x(0, 0, 0, 12)12 - AIC:-2.50
+2024-11-21 07:19:11,543 INFO Tested SARIMAX(1, 1, 2)x(0, 0, 1, 12)12 - AIC:13.99
+2024-11-21 07:19:11,726 INFO Tested SARIMAX(1, 1, 2)x(0, 0, 2, 12)12 - AIC:7.78
+2024-11-21 07:19:11,810 INFO Tested SARIMAX(1, 1, 2)x(0, 1, 0, 12)12 - AIC:13.57
+2024-11-21 07:19:11,920 INFO Tested SARIMAX(1, 1, 2)x(0, 1, 1, 12)12 - AIC:17.91
+2024-11-21 07:19:11,945 INFO Tested SARIMAX(1, 1, 2)x(0, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:12,187 INFO Tested SARIMAX(1, 1, 2)x(0, 2, 0, 12)12 - AIC:21.60
+2024-11-21 07:19:12,212 INFO Tested SARIMAX(1, 1, 2)x(0, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:12,264 INFO Tested SARIMAX(1, 1, 2)x(0, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:12,384 INFO Tested SARIMAX(1, 1, 2)x(1, 0, 0, 12)12 - AIC:11.02
+2024-11-21 07:19:12,496 INFO Tested SARIMAX(1, 1, 2)x(1, 0, 1, 12)12 - AIC:15.41
+2024-11-21 07:19:12,707 INFO Tested SARIMAX(1, 1, 2)x(1, 0, 2, 12)12 - AIC:8.75
+2024-11-21 07:19:12,913 INFO Tested SARIMAX(1, 1, 2)x(1, 1, 0, 12)12 - AIC:16.54
+2024-11-21 07:19:13,118 INFO Tested SARIMAX(1, 1, 2)x(1, 1, 1, 12)12 - AIC:19.88
+2024-11-21 07:19:13,147 INFO Tested SARIMAX(1, 1, 2)x(1, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:13,242 INFO Tested SARIMAX(1, 1, 2)x(1, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:13,269 INFO Tested SARIMAX(1, 1, 2)x(1, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:13,330 INFO Tested SARIMAX(1, 1, 2)x(1, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:13,486 INFO Tested SARIMAX(1, 1, 2)x(2, 0, 0, 12)12 - AIC:10.98
+2024-11-21 07:19:13,692 INFO Tested SARIMAX(1, 1, 2)x(2, 0, 1, 12)12 - AIC:2.76
+2024-11-21 07:19:13,943 INFO Tested SARIMAX(1, 1, 2)x(2, 0, 2, 12)12 - AIC:4.49
+2024-11-21 07:19:13,968 INFO Tested SARIMAX(1, 1, 2)x(2, 1, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:13,995 INFO Tested SARIMAX(1, 1, 2)x(2, 1, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:14,025 INFO Tested SARIMAX(1, 1, 2)x(2, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:14,109 INFO Tested SARIMAX(1, 1, 2)x(2, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:14,197 INFO Tested SARIMAX(1, 1, 2)x(2, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:14,252 INFO Tested SARIMAX(1, 1, 2)x(2, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:14,272 INFO Tested SARIMAX(1, 2, 0)x(0, 0, 0, 12)12 - AIC:17.35
+2024-11-21 07:19:14,314 INFO Tested SARIMAX(1, 2, 0)x(0, 0, 1, 12)12 - AIC:21.89
+2024-11-21 07:19:14,369 INFO Tested SARIMAX(1, 2, 0)x(0, 0, 2, 12)12 - AIC:19.64
+2024-11-21 07:19:14,393 INFO Tested SARIMAX(1, 2, 0)x(0, 1, 0, 12)12 - AIC:27.56
+2024-11-21 07:19:14,455 INFO Tested SARIMAX(1, 2, 0)x(0, 1, 1, 12)12 - AIC:21.93
+2024-11-21 07:19:14,475 INFO Tested SARIMAX(1, 2, 0)x(0, 1, 2, 12)12 - AIC:16.00
+2024-11-21 07:19:14,552 INFO Tested SARIMAX(1, 2, 0)x(0, 2, 0, 12)12 - AIC:24.67
+2024-11-21 07:19:14,572 INFO Tested SARIMAX(1, 2, 0)x(0, 2, 1, 12)12 - AIC:14.00
+2024-11-21 07:19:14,614 INFO Tested SARIMAX(1, 2, 0)x(0, 2, 2, 12)12 - AIC:16.00
+2024-11-21 07:19:14,670 INFO Tested SARIMAX(1, 2, 0)x(1, 0, 0, 12)12 - AIC:22.39
+2024-11-21 07:19:14,738 INFO Tested SARIMAX(1, 2, 0)x(1, 0, 1, 12)12 - AIC:23.70
+2024-11-21 07:19:14,816 INFO Tested SARIMAX(1, 2, 0)x(1, 0, 2, 12)12 - AIC:21.34
+2024-11-21 07:19:14,876 INFO Tested SARIMAX(1, 2, 0)x(1, 1, 0, 12)12 - AIC:21.93
+2024-11-21 07:19:14,978 INFO Tested SARIMAX(1, 2, 0)x(1, 1, 1, 12)12 - AIC:23.83
+2024-11-21 07:19:15,019 INFO Tested SARIMAX(1, 2, 0)x(1, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:15,042 INFO Tested SARIMAX(1, 2, 0)x(1, 2, 0, 12)12 - AIC:14.00
+2024-11-21 07:19:15,073 INFO Tested SARIMAX(1, 2, 0)x(1, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:19:15,135 INFO Tested SARIMAX(1, 2, 0)x(1, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:15,311 INFO Tested SARIMAX(1, 2, 0)x(2, 0, 0, 12)12 - AIC:5.63
+2024-11-21 07:19:15,554 INFO Tested SARIMAX(1, 2, 0)x(2, 0, 1, 12)12 - AIC:7.25
+2024-11-21 07:19:15,799 INFO Tested SARIMAX(1, 2, 0)x(2, 0, 2, 12)12 - AIC:9.25
+2024-11-21 07:19:15,819 INFO Tested SARIMAX(1, 2, 0)x(2, 1, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:15,842 INFO Tested SARIMAX(1, 2, 0)x(2, 1, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:15,866 INFO Tested SARIMAX(1, 2, 0)x(2, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:16,014 INFO Tested SARIMAX(1, 2, 0)x(2, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:16,057 INFO Tested SARIMAX(1, 2, 0)x(2, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:16,098 INFO Tested SARIMAX(1, 2, 0)x(2, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:16,134 INFO Tested SARIMAX(1, 2, 1)x(0, 0, 0, 12)12 - AIC:9.86
+2024-11-21 07:19:16,190 INFO Tested SARIMAX(1, 2, 1)x(0, 0, 1, 12)12 - AIC:20.20
+2024-11-21 07:19:16,380 INFO Tested SARIMAX(1, 2, 1)x(0, 0, 2, 12)12 - AIC:10.39
+2024-11-21 07:19:16,408 INFO Tested SARIMAX(1, 2, 1)x(0, 1, 0, 12)12 - AIC:23.53
+2024-11-21 07:19:16,483 INFO Tested SARIMAX(1, 2, 1)x(0, 1, 1, 12)12 - AIC:20.93
+2024-11-21 07:19:16,504 INFO Tested SARIMAX(1, 2, 1)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:16,549 INFO Tested SARIMAX(1, 2, 1)x(0, 2, 0, 12)12 - AIC:24.70
+2024-11-21 07:19:16,570 INFO Tested SARIMAX(1, 2, 1)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:19:16,608 INFO Tested SARIMAX(1, 2, 1)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:16,705 INFO Tested SARIMAX(1, 2, 1)x(1, 0, 0, 12)12 - AIC:18.97
+2024-11-21 07:19:16,780 INFO Tested SARIMAX(1, 2, 1)x(1, 0, 1, 12)12 - AIC:20.57
+2024-11-21 07:19:16,993 INFO Tested SARIMAX(1, 2, 1)x(1, 0, 2, 12)12 - AIC:12.14
+2024-11-21 07:19:17,071 INFO Tested SARIMAX(1, 2, 1)x(1, 1, 0, 12)12 - AIC:21.31
+2024-11-21 07:19:17,262 INFO Tested SARIMAX(1, 2, 1)x(1, 1, 1, 12)12 - AIC:23.16
+2024-11-21 07:19:17,290 INFO Tested SARIMAX(1, 2, 1)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:17,312 INFO Tested SARIMAX(1, 2, 1)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:17,337 INFO Tested SARIMAX(1, 2, 1)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:17,465 INFO Tested SARIMAX(1, 2, 1)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:17,748 INFO Tested SARIMAX(1, 2, 1)x(2, 0, 0, 12)12 - AIC:8.82
+2024-11-21 07:19:17,972 INFO Tested SARIMAX(1, 2, 1)x(2, 0, 1, 12)12 - AIC:6.88
+2024-11-21 07:19:18,219 INFO Tested SARIMAX(1, 2, 1)x(2, 0, 2, 12)12 - AIC:13.90
+2024-11-21 07:19:18,277 INFO Tested SARIMAX(1, 2, 1)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:18,327 INFO Tested SARIMAX(1, 2, 1)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:18,371 INFO Tested SARIMAX(1, 2, 1)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:18,430 INFO Tested SARIMAX(1, 2, 1)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:18,568 INFO Tested SARIMAX(1, 2, 1)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:18,629 INFO Tested SARIMAX(1, 2, 1)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:18,733 INFO Tested SARIMAX(1, 2, 2)x(0, 0, 0, 12)12 - AIC:7.92
+2024-11-21 07:19:18,879 INFO Tested SARIMAX(1, 2, 2)x(0, 0, 1, 12)12 - AIC:17.81
+2024-11-21 07:19:19,225 INFO Tested SARIMAX(1, 2, 2)x(0, 0, 2, 12)12 - AIC:9.40
+2024-11-21 07:19:19,327 INFO Tested SARIMAX(1, 2, 2)x(0, 1, 0, 12)12 - AIC:22.96
+2024-11-21 07:19:19,571 INFO Tested SARIMAX(1, 2, 2)x(0, 1, 1, 12)12 - AIC:23.25
+2024-11-21 07:19:19,667 INFO Tested SARIMAX(1, 2, 2)x(0, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:19,886 INFO Tested SARIMAX(1, 2, 2)x(0, 2, 0, 12)12 - AIC:23.37
+2024-11-21 07:19:19,926 INFO Tested SARIMAX(1, 2, 2)x(0, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:19,986 INFO Tested SARIMAX(1, 2, 2)x(0, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:20,118 INFO Tested SARIMAX(1, 2, 2)x(1, 0, 0, 12)12 - AIC:19.89
+2024-11-21 07:19:20,290 INFO Tested SARIMAX(1, 2, 2)x(1, 0, 1, 12)12 - AIC:19.80
+2024-11-21 07:19:20,874 INFO Tested SARIMAX(1, 2, 2)x(1, 0, 2, 12)12 - AIC:-4.88
+2024-11-21 07:19:21,092 INFO Tested SARIMAX(1, 2, 2)x(1, 1, 0, 12)12 - AIC:23.46
+2024-11-21 07:19:21,405 INFO Tested SARIMAX(1, 2, 2)x(1, 1, 1, 12)12 - AIC:25.33
+2024-11-21 07:19:21,671 INFO Tested SARIMAX(1, 2, 2)x(1, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:21,700 INFO Tested SARIMAX(1, 2, 2)x(1, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:21,840 INFO Tested SARIMAX(1, 2, 2)x(1, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:22,032 INFO Tested SARIMAX(1, 2, 2)x(1, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:22,323 INFO Tested SARIMAX(1, 2, 2)x(2, 0, 0, 12)12 - AIC:9.38
+2024-11-21 07:19:22,664 INFO Tested SARIMAX(1, 2, 2)x(2, 0, 1, 12)12 - AIC:22.78
+2024-11-21 07:19:23,551 INFO Tested SARIMAX(1, 2, 2)x(2, 0, 2, 12)12 - AIC:-3.29
+2024-11-21 07:19:23,582 INFO Tested SARIMAX(1, 2, 2)x(2, 1, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:23,651 INFO Tested SARIMAX(1, 2, 2)x(2, 1, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:23,712 INFO Tested SARIMAX(1, 2, 2)x(2, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:23,994 INFO Tested SARIMAX(1, 2, 2)x(2, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:24,052 INFO Tested SARIMAX(1, 2, 2)x(2, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:24,122 INFO Tested SARIMAX(1, 2, 2)x(2, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:24,240 INFO Tested SARIMAX(2, 0, 0)x(0, 0, 0, 12)12 - AIC:-7.74
+2024-11-21 07:19:24,390 INFO Tested SARIMAX(2, 0, 0)x(0, 0, 1, 12)12 - AIC:7.96
+2024-11-21 07:19:24,661 INFO Tested SARIMAX(2, 0, 0)x(0, 0, 2, 12)12 - AIC:-4.98
+2024-11-21 07:19:24,702 INFO Tested SARIMAX(2, 0, 0)x(0, 1, 0, 12)12 - AIC:10.05
+2024-11-21 07:19:24,864 INFO Tested SARIMAX(2, 0, 0)x(0, 1, 1, 12)12 - AIC:16.70
+2024-11-21 07:19:24,924 INFO Tested SARIMAX(2, 0, 0)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:25,012 INFO Tested SARIMAX(2, 0, 0)x(0, 2, 0, 12)12 - AIC:19.79
+2024-11-21 07:19:25,044 INFO Tested SARIMAX(2, 0, 0)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:19:25,112 INFO Tested SARIMAX(2, 0, 0)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:25,268 INFO Tested SARIMAX(2, 0, 0)x(1, 0, 0, 12)12 - AIC:7.98
+2024-11-21 07:19:25,469 INFO Tested SARIMAX(2, 0, 0)x(1, 0, 1, 12)12 - AIC:9.08
+2024-11-21 07:19:25,813 INFO Tested SARIMAX(2, 0, 0)x(1, 0, 2, 12)12 - AIC:-5.49
+2024-11-21 07:19:25,977 INFO Tested SARIMAX(2, 0, 0)x(1, 1, 0, 12)12 - AIC:9.20
+2024-11-21 07:19:26,267 INFO Tested SARIMAX(2, 0, 0)x(1, 1, 1, 12)12 - AIC:11.11
+2024-11-21 07:19:26,293 INFO Tested SARIMAX(2, 0, 0)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:26,330 INFO Tested SARIMAX(2, 0, 0)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:26,387 INFO Tested SARIMAX(2, 0, 0)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:26,458 INFO Tested SARIMAX(2, 0, 0)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:26,664 INFO Tested SARIMAX(2, 0, 0)x(2, 0, 0, 12)12 - AIC:2.71
+2024-11-21 07:19:26,949 INFO Tested SARIMAX(2, 0, 0)x(2, 0, 1, 12)12 - AIC:4.57
+2024-11-21 07:19:27,342 INFO Tested SARIMAX(2, 0, 0)x(2, 0, 2, 12)12 - AIC:6.71
+2024-11-21 07:19:27,370 INFO Tested SARIMAX(2, 0, 0)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:27,418 INFO Tested SARIMAX(2, 0, 0)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:27,476 INFO Tested SARIMAX(2, 0, 0)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:27,543 INFO Tested SARIMAX(2, 0, 0)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:27,594 INFO Tested SARIMAX(2, 0, 0)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:27,644 INFO Tested SARIMAX(2, 0, 0)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:27,741 INFO Tested SARIMAX(2, 0, 1)x(0, 0, 0, 12)12 - AIC:-6.60
+2024-11-21 07:19:27,887 INFO Tested SARIMAX(2, 0, 1)x(0, 0, 1, 12)12 - AIC:4.57
+2024-11-21 07:19:28,187 INFO Tested SARIMAX(2, 0, 1)x(0, 0, 2, 12)12 - AIC:2.88
+2024-11-21 07:19:28,316 INFO Tested SARIMAX(2, 0, 1)x(0, 1, 0, 12)12 - AIC:9.27
+2024-11-21 07:19:28,489 INFO Tested SARIMAX(2, 0, 1)x(0, 1, 1, 12)12 - AIC:15.70
+2024-11-21 07:19:28,558 INFO Tested SARIMAX(2, 0, 1)x(0, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:28,745 INFO Tested SARIMAX(2, 0, 1)x(0, 2, 0, 12)12 - AIC:17.27
+2024-11-21 07:19:28,800 INFO Tested SARIMAX(2, 0, 1)x(0, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:28,856 INFO Tested SARIMAX(2, 0, 1)x(0, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:28,989 INFO Tested SARIMAX(2, 0, 1)x(1, 0, 0, 12)12 - AIC:3.34
+2024-11-21 07:19:29,177 INFO Tested SARIMAX(2, 0, 1)x(1, 0, 1, 12)12 - AIC:5.33
+2024-11-21 07:19:29,602 INFO Tested SARIMAX(2, 0, 1)x(1, 0, 2, 12)12 - AIC:4.33
+2024-11-21 07:19:30,054 INFO Tested SARIMAX(2, 0, 1)x(1, 1, 0, 12)12 - AIC:6.14
+2024-11-21 07:19:30,492 INFO Tested SARIMAX(2, 0, 1)x(1, 1, 1, 12)12 - AIC:20.62
+2024-11-21 07:19:30,524 INFO Tested SARIMAX(2, 0, 1)x(1, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:30,560 INFO Tested SARIMAX(2, 0, 1)x(1, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:30,626 INFO Tested SARIMAX(2, 0, 1)x(1, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:30,782 INFO Tested SARIMAX(2, 0, 1)x(1, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:31,500 INFO Tested SARIMAX(2, 0, 1)x(2, 0, 0, 12)12 - AIC:0.76
+2024-11-21 07:19:31,948 INFO Tested SARIMAX(2, 0, 1)x(2, 0, 1, 12)12 - AIC:3.47
+2024-11-21 07:19:32,318 INFO Tested SARIMAX(2, 0, 1)x(2, 0, 2, 12)12 - AIC:6.33
+2024-11-21 07:19:32,349 INFO Tested SARIMAX(2, 0, 1)x(2, 1, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:32,388 INFO Tested SARIMAX(2, 0, 1)x(2, 1, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:32,474 INFO Tested SARIMAX(2, 0, 1)x(2, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:32,528 INFO Tested SARIMAX(2, 0, 1)x(2, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:32,586 INFO Tested SARIMAX(2, 0, 1)x(2, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:32,736 INFO Tested SARIMAX(2, 0, 1)x(2, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:32,894 INFO Tested SARIMAX(2, 0, 2)x(0, 0, 0, 12)12 - AIC:-7.26
+2024-11-21 07:19:33,108 INFO Tested SARIMAX(2, 0, 2)x(0, 0, 1, 12)12 - AIC:6.03
+2024-11-21 07:19:33,658 INFO Tested SARIMAX(2, 0, 2)x(0, 0, 2, 12)12 - AIC:2.12
+2024-11-21 07:19:33,766 INFO Tested SARIMAX(2, 0, 2)x(0, 1, 0, 12)12 - AIC:8.10
+2024-11-21 07:19:34,182 INFO Tested SARIMAX(2, 0, 2)x(0, 1, 1, 12)12 - AIC:17.60
+2024-11-21 07:19:34,232 INFO Tested SARIMAX(2, 0, 2)x(0, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:34,400 INFO Tested SARIMAX(2, 0, 2)x(0, 2, 0, 12)12 - AIC:7949.02
+2024-11-21 07:19:34,448 INFO Tested SARIMAX(2, 0, 2)x(0, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:34,523 INFO Tested SARIMAX(2, 0, 2)x(0, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:34,719 INFO Tested SARIMAX(2, 0, 2)x(1, 0, 0, 12)12 - AIC:5.32
+2024-11-21 07:19:34,893 INFO Tested SARIMAX(2, 0, 2)x(1, 0, 1, 12)12 - AIC:7.42
+2024-11-21 07:19:35,381 INFO Tested SARIMAX(2, 0, 2)x(1, 0, 2, 12)12 - AIC:8.16
+2024-11-21 07:19:35,794 INFO Tested SARIMAX(2, 0, 2)x(1, 1, 0, 12)12 - AIC:7.19
+2024-11-21 07:19:36,120 INFO Tested SARIMAX(2, 0, 2)x(1, 1, 1, 12)12 - AIC:19.72
+2024-11-21 07:19:36,192 INFO Tested SARIMAX(2, 0, 2)x(1, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:36,228 INFO Tested SARIMAX(2, 0, 2)x(1, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:36,280 INFO Tested SARIMAX(2, 0, 2)x(1, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:36,356 INFO Tested SARIMAX(2, 0, 2)x(1, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:36,766 INFO Tested SARIMAX(2, 0, 2)x(2, 0, 0, 12)12 - AIC:-0.92
+2024-11-21 07:19:37,145 INFO Tested SARIMAX(2, 0, 2)x(2, 0, 1, 12)12 - AIC:5.56
+2024-11-21 07:19:37,421 INFO Tested SARIMAX(2, 0, 2)x(2, 0, 2, 12)12 - AIC:9.93
+2024-11-21 07:19:37,444 INFO Tested SARIMAX(2, 0, 2)x(2, 1, 0, 12)12 - AIC:22.00
+2024-11-21 07:19:37,469 INFO Tested SARIMAX(2, 0, 2)x(2, 1, 1, 12)12 - AIC:24.00
+2024-11-21 07:19:37,500 INFO Tested SARIMAX(2, 0, 2)x(2, 1, 2, 12)12 - AIC:26.00
+2024-11-21 07:19:37,546 INFO Tested SARIMAX(2, 0, 2)x(2, 2, 0, 12)12 - AIC:22.00
+2024-11-21 07:19:37,713 INFO Tested SARIMAX(2, 0, 2)x(2, 2, 1, 12)12 - AIC:24.00
+2024-11-21 07:19:37,783 INFO Tested SARIMAX(2, 0, 2)x(2, 2, 2, 12)12 - AIC:26.00
+2024-11-21 07:19:37,808 INFO Tested SARIMAX(2, 1, 0)x(0, 0, 0, 12)12 - AIC:4.35
+2024-11-21 07:19:37,858 INFO Tested SARIMAX(2, 1, 0)x(0, 0, 1, 12)12 - AIC:15.80
+2024-11-21 07:19:38,022 INFO Tested SARIMAX(2, 1, 0)x(0, 0, 2, 12)12 - AIC:2.71
+2024-11-21 07:19:38,045 INFO Tested SARIMAX(2, 1, 0)x(0, 1, 0, 12)12 - AIC:17.85
+2024-11-21 07:19:38,130 INFO Tested SARIMAX(2, 1, 0)x(0, 1, 1, 12)12 - AIC:17.55
+2024-11-21 07:19:38,153 INFO Tested SARIMAX(2, 1, 0)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:38,187 INFO Tested SARIMAX(2, 1, 0)x(0, 2, 0, 12)12 - AIC:23.24
+2024-11-21 07:19:38,209 INFO Tested SARIMAX(2, 1, 0)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:19:39,121 INFO Tested SARIMAX(2, 1, 0)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:39,176 INFO Tested SARIMAX(2, 1, 0)x(1, 0, 0, 12)12 - AIC:14.27
+2024-11-21 07:19:39,262 INFO Tested SARIMAX(2, 1, 0)x(1, 0, 1, 12)12 - AIC:15.15
+2024-11-21 07:19:39,502 INFO Tested SARIMAX(2, 1, 0)x(1, 0, 2, 12)12 - AIC:-6.19
+2024-11-21 07:19:39,671 INFO Tested SARIMAX(2, 1, 0)x(1, 1, 0, 12)12 - AIC:-0.35
+2024-11-21 07:19:39,882 INFO Tested SARIMAX(2, 1, 0)x(1, 1, 1, 12)12 - AIC:1.65
+2024-11-21 07:19:39,905 INFO Tested SARIMAX(2, 1, 0)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:39,928 INFO Tested SARIMAX(2, 1, 0)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:39,957 INFO Tested SARIMAX(2, 1, 0)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:40,001 INFO Tested SARIMAX(2, 1, 0)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:40,159 INFO Tested SARIMAX(2, 1, 0)x(2, 0, 0, 12)12 - AIC:6.42
+2024-11-21 07:19:40,361 INFO Tested SARIMAX(2, 1, 0)x(2, 0, 1, 12)12 - AIC:2.39
+2024-11-21 07:19:40,571 INFO Tested SARIMAX(2, 1, 0)x(2, 0, 2, 12)12 - AIC:4.10
+2024-11-21 07:19:40,594 INFO Tested SARIMAX(2, 1, 0)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:40,619 INFO Tested SARIMAX(2, 1, 0)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:40,645 INFO Tested SARIMAX(2, 1, 0)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:40,685 INFO Tested SARIMAX(2, 1, 0)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:40,730 INFO Tested SARIMAX(2, 1, 0)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:40,776 INFO Tested SARIMAX(2, 1, 0)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:40,825 INFO Tested SARIMAX(2, 1, 1)x(0, 0, 0, 12)12 - AIC:-0.66
+2024-11-21 07:19:40,921 INFO Tested SARIMAX(2, 1, 1)x(0, 0, 1, 12)12 - AIC:15.05
+2024-11-21 07:19:41,131 INFO Tested SARIMAX(2, 1, 1)x(0, 0, 2, 12)12 - AIC:3.66
+2024-11-21 07:19:41,168 INFO Tested SARIMAX(2, 1, 1)x(0, 1, 0, 12)12 - AIC:13.98
+2024-11-21 07:19:41,262 INFO Tested SARIMAX(2, 1, 1)x(0, 1, 1, 12)12 - AIC:17.83
+2024-11-21 07:19:41,286 INFO Tested SARIMAX(2, 1, 1)x(0, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:41,355 INFO Tested SARIMAX(2, 1, 1)x(0, 2, 0, 12)12 - AIC:23.13
+2024-11-21 07:19:41,377 INFO Tested SARIMAX(2, 1, 1)x(0, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:41,453 INFO Tested SARIMAX(2, 1, 1)x(0, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:41,552 INFO Tested SARIMAX(2, 1, 1)x(1, 0, 0, 12)12 - AIC:14.34
+2024-11-21 07:19:41,665 INFO Tested SARIMAX(2, 1, 1)x(1, 0, 1, 12)12 - AIC:17.40
+2024-11-21 07:19:41,869 INFO Tested SARIMAX(2, 1, 1)x(1, 0, 2, 12)12 - AIC:5.73
+2024-11-21 07:19:42,122 INFO Tested SARIMAX(2, 1, 1)x(1, 1, 0, 12)12 - AIC:4.58
+2024-11-21 07:19:42,303 INFO Tested SARIMAX(2, 1, 1)x(1, 1, 1, 12)12 - AIC:6.58
+2024-11-21 07:19:42,328 INFO Tested SARIMAX(2, 1, 1)x(1, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:42,351 INFO Tested SARIMAX(2, 1, 1)x(1, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:42,377 INFO Tested SARIMAX(2, 1, 1)x(1, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:42,425 INFO Tested SARIMAX(2, 1, 1)x(1, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:42,590 INFO Tested SARIMAX(2, 1, 1)x(2, 0, 0, 12)12 - AIC:10.73
+2024-11-21 07:19:42,820 INFO Tested SARIMAX(2, 1, 1)x(2, 0, 1, 12)12 - AIC:-1.41
+2024-11-21 07:19:43,067 INFO Tested SARIMAX(2, 1, 1)x(2, 0, 2, 12)12 - AIC:0.93
+2024-11-21 07:19:43,090 INFO Tested SARIMAX(2, 1, 1)x(2, 1, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:43,116 INFO Tested SARIMAX(2, 1, 1)x(2, 1, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:43,144 INFO Tested SARIMAX(2, 1, 1)x(2, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:43,230 INFO Tested SARIMAX(2, 1, 1)x(2, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:43,278 INFO Tested SARIMAX(2, 1, 1)x(2, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:43,327 INFO Tested SARIMAX(2, 1, 1)x(2, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:43,388 INFO Tested SARIMAX(2, 1, 2)x(0, 0, 0, 12)12 - AIC:-0.50
+2024-11-21 07:19:43,495 INFO Tested SARIMAX(2, 1, 2)x(0, 0, 1, 12)12 - AIC:15.58
+2024-11-21 07:19:43,812 INFO Tested SARIMAX(2, 1, 2)x(0, 0, 2, 12)12 - AIC:-28.31
+2024-11-21 07:19:43,883 INFO Tested SARIMAX(2, 1, 2)x(0, 1, 0, 12)12 - AIC:15.37
+2024-11-21 07:19:44,045 INFO Tested SARIMAX(2, 1, 2)x(0, 1, 1, 12)12 - AIC:17.95
+2024-11-21 07:19:44,071 INFO Tested SARIMAX(2, 1, 2)x(0, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:44,198 INFO Tested SARIMAX(2, 1, 2)x(0, 2, 0, 12)12 - AIC:18566599.15
+2024-11-21 07:19:44,317 INFO Tested SARIMAX(2, 1, 2)x(0, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:44,363 INFO Tested SARIMAX(2, 1, 2)x(0, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:44,466 INFO Tested SARIMAX(2, 1, 2)x(1, 0, 0, 12)12 - AIC:14.89
+2024-11-21 07:19:44,587 INFO Tested SARIMAX(2, 1, 2)x(1, 0, 1, 12)12 - AIC:16.78
+2024-11-21 07:19:44,981 INFO Tested SARIMAX(2, 1, 2)x(1, 0, 2, 12)12 - AIC:-21.35
+2024-11-21 07:19:45,207 INFO Tested SARIMAX(2, 1, 2)x(1, 1, 0, 12)12 - AIC:-6.53
+2024-11-21 07:19:45,379 INFO Tested SARIMAX(2, 1, 2)x(1, 1, 1, 12)12 - AIC:21.09
+2024-11-21 07:19:45,406 INFO Tested SARIMAX(2, 1, 2)x(1, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:45,431 INFO Tested SARIMAX(2, 1, 2)x(1, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:45,459 INFO Tested SARIMAX(2, 1, 2)x(1, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:45,518 INFO Tested SARIMAX(2, 1, 2)x(1, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:45,743 INFO Tested SARIMAX(2, 1, 2)x(2, 0, 0, 12)12 - AIC:7.35
+2024-11-21 07:19:46,024 INFO Tested SARIMAX(2, 1, 2)x(2, 0, 1, 12)12 - AIC:19.13
+2024-11-21 07:19:46,304 INFO Tested SARIMAX(2, 1, 2)x(2, 0, 2, 12)12 - AIC:-0.69
+2024-11-21 07:19:46,329 INFO Tested SARIMAX(2, 1, 2)x(2, 1, 0, 12)12 - AIC:22.00
+2024-11-21 07:19:46,356 INFO Tested SARIMAX(2, 1, 2)x(2, 1, 1, 12)12 - AIC:24.00
+2024-11-21 07:19:46,384 INFO Tested SARIMAX(2, 1, 2)x(2, 1, 2, 12)12 - AIC:26.00
+2024-11-21 07:19:46,535 INFO Tested SARIMAX(2, 1, 2)x(2, 2, 0, 12)12 - AIC:22.00
+2024-11-21 07:19:46,584 INFO Tested SARIMAX(2, 1, 2)x(2, 2, 1, 12)12 - AIC:24.00
+2024-11-21 07:19:46,635 INFO Tested SARIMAX(2, 1, 2)x(2, 2, 2, 12)12 - AIC:26.00
+2024-11-21 07:19:46,660 INFO Tested SARIMAX(2, 2, 0)x(0, 0, 0, 12)12 - AIC:16.68
+2024-11-21 07:19:46,724 INFO Tested SARIMAX(2, 2, 0)x(0, 0, 1, 12)12 - AIC:23.45
+2024-11-21 07:19:46,932 INFO Tested SARIMAX(2, 2, 0)x(0, 0, 2, 12)12 - AIC:-8.26
+2024-11-21 07:19:46,953 INFO Tested SARIMAX(2, 2, 0)x(0, 1, 0, 12)12 - AIC:27.47
+2024-11-21 07:19:47,027 INFO Tested SARIMAX(2, 2, 0)x(0, 1, 1, 12)12 - AIC:22.22
+2024-11-21 07:19:47,050 INFO Tested SARIMAX(2, 2, 0)x(0, 1, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:47,132 INFO Tested SARIMAX(2, 2, 0)x(0, 2, 0, 12)12 - AIC:20.33
+2024-11-21 07:19:47,152 INFO Tested SARIMAX(2, 2, 0)x(0, 2, 1, 12)12 - AIC:16.00
+2024-11-21 07:19:47,193 INFO Tested SARIMAX(2, 2, 0)x(0, 2, 2, 12)12 - AIC:18.00
+2024-11-21 07:19:47,245 INFO Tested SARIMAX(2, 2, 0)x(1, 0, 0, 12)12 - AIC:22.89
+2024-11-21 07:19:47,331 INFO Tested SARIMAX(2, 2, 0)x(1, 0, 1, 12)12 - AIC:23.72
+2024-11-21 07:19:47,547 INFO Tested SARIMAX(2, 2, 0)x(1, 0, 2, 12)12 - AIC:-5.72
+2024-11-21 07:19:47,786 INFO Tested SARIMAX(2, 2, 0)x(1, 1, 0, 12)12 - AIC:-3.47
+2024-11-21 07:19:48,093 INFO Tested SARIMAX(2, 2, 0)x(1, 1, 1, 12)12 - AIC:-1.47
+2024-11-21 07:19:48,118 INFO Tested SARIMAX(2, 2, 0)x(1, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:48,139 INFO Tested SARIMAX(2, 2, 0)x(1, 2, 0, 12)12 - AIC:16.00
+2024-11-21 07:19:48,162 INFO Tested SARIMAX(2, 2, 0)x(1, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:48,386 INFO Tested SARIMAX(2, 2, 0)x(1, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:48,577 INFO Tested SARIMAX(2, 2, 0)x(2, 0, 0, 12)12 - AIC:-6.78
+2024-11-21 07:19:48,817 INFO Tested SARIMAX(2, 2, 0)x(2, 0, 1, 12)12 - AIC:-15.43
+2024-11-21 07:19:49,081 INFO Tested SARIMAX(2, 2, 0)x(2, 0, 2, 12)12 - AIC:-19.21
+2024-11-21 07:19:49,103 INFO Tested SARIMAX(2, 2, 0)x(2, 1, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:49,127 INFO Tested SARIMAX(2, 2, 0)x(2, 1, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:49,152 INFO Tested SARIMAX(2, 2, 0)x(2, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:49,191 INFO Tested SARIMAX(2, 2, 0)x(2, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:49,235 INFO Tested SARIMAX(2, 2, 0)x(2, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:49,308 INFO Tested SARIMAX(2, 2, 0)x(2, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:49,369 INFO Tested SARIMAX(2, 2, 1)x(0, 0, 0, 12)12 - AIC:10.78
+2024-11-21 07:19:49,486 INFO Tested SARIMAX(2, 2, 1)x(0, 0, 1, 12)12 - AIC:22.20
+2024-11-21 07:19:49,768 INFO Tested SARIMAX(2, 2, 1)x(0, 0, 2, 12)12 - AIC:-9.83
+2024-11-21 07:19:49,820 INFO Tested SARIMAX(2, 2, 1)x(0, 1, 0, 12)12 - AIC:23.67
+2024-11-21 07:19:49,929 INFO Tested SARIMAX(2, 2, 1)x(0, 1, 1, 12)12 - AIC:21.01
+2024-11-21 07:19:49,956 INFO Tested SARIMAX(2, 2, 1)x(0, 1, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:50,100 INFO Tested SARIMAX(2, 2, 1)x(0, 2, 0, 12)12 - AIC:26.43
+2024-11-21 07:19:50,126 INFO Tested SARIMAX(2, 2, 1)x(0, 2, 1, 12)12 - AIC:18.00
+2024-11-21 07:19:50,254 INFO Tested SARIMAX(2, 2, 1)x(0, 2, 2, 12)12 - AIC:20.00
+2024-11-21 07:19:50,337 INFO Tested SARIMAX(2, 2, 1)x(1, 0, 0, 12)12 - AIC:19.12
+2024-11-21 07:19:50,456 INFO Tested SARIMAX(2, 2, 1)x(1, 0, 1, 12)12 - AIC:19.28
+2024-11-21 07:19:50,729 INFO Tested SARIMAX(2, 2, 1)x(1, 0, 2, 12)12 - AIC:-19.06
+2024-11-21 07:19:50,988 INFO Tested SARIMAX(2, 2, 1)x(1, 1, 0, 12)12 - AIC:-0.19
+2024-11-21 07:19:51,246 INFO Tested SARIMAX(2, 2, 1)x(1, 1, 1, 12)12 - AIC:1.76
+2024-11-21 07:19:51,272 INFO Tested SARIMAX(2, 2, 1)x(1, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:51,295 INFO Tested SARIMAX(2, 2, 1)x(1, 2, 0, 12)12 - AIC:18.00
+2024-11-21 07:19:51,322 INFO Tested SARIMAX(2, 2, 1)x(1, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:51,428 INFO Tested SARIMAX(2, 2, 1)x(1, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:51,629 INFO Tested SARIMAX(2, 2, 1)x(2, 0, 0, 12)12 - AIC:9.31
+2024-11-21 07:19:51,888 INFO Tested SARIMAX(2, 2, 1)x(2, 0, 1, 12)12 - AIC:-2.17
+2024-11-21 07:19:52,206 INFO Tested SARIMAX(2, 2, 1)x(2, 0, 2, 12)12 - AIC:-6.87
+2024-11-21 07:19:52,230 INFO Tested SARIMAX(2, 2, 1)x(2, 1, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:52,261 INFO Tested SARIMAX(2, 2, 1)x(2, 1, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:52,296 INFO Tested SARIMAX(2, 2, 1)x(2, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:52,391 INFO Tested SARIMAX(2, 2, 1)x(2, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:52,533 INFO Tested SARIMAX(2, 2, 1)x(2, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:52,597 INFO Tested SARIMAX(2, 2, 1)x(2, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:52,680 INFO Tested SARIMAX(2, 2, 2)x(0, 0, 0, 12)12 - AIC:9.47
+2024-11-21 07:19:52,803 INFO Tested SARIMAX(2, 2, 2)x(0, 0, 1, 12)12 - AIC:18.52
+2024-11-21 07:19:53,078 INFO Tested SARIMAX(2, 2, 2)x(0, 0, 2, 12)12 - AIC:1.62
+2024-11-21 07:19:53,208 INFO Tested SARIMAX(2, 2, 2)x(0, 1, 0, 12)12 - AIC:23.85
+2024-11-21 07:19:53,485 INFO Tested SARIMAX(2, 2, 2)x(0, 1, 1, 12)12 - AIC:19.12
+2024-11-21 07:19:53,594 INFO Tested SARIMAX(2, 2, 2)x(0, 1, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:53,918 INFO Tested SARIMAX(2, 2, 2)x(0, 2, 0, 12)12 - AIC:23.92
+2024-11-21 07:19:53,955 INFO Tested SARIMAX(2, 2, 2)x(0, 2, 1, 12)12 - AIC:20.00
+2024-11-21 07:19:54,169 INFO Tested SARIMAX(2, 2, 2)x(0, 2, 2, 12)12 - AIC:22.00
+2024-11-21 07:19:54,283 INFO Tested SARIMAX(2, 2, 2)x(1, 0, 0, 12)12 - AIC:21.35
+2024-11-21 07:19:54,420 INFO Tested SARIMAX(2, 2, 2)x(1, 0, 1, 12)12 - AIC:22.06
+2024-11-21 07:19:55,032 INFO Tested SARIMAX(2, 2, 2)x(1, 0, 2, 12)12 - AIC:-19.64
+2024-11-21 07:19:55,511 INFO Tested SARIMAX(2, 2, 2)x(1, 1, 0, 12)12 - AIC:2.81
+2024-11-21 07:19:56,237 INFO Tested SARIMAX(2, 2, 2)x(1, 1, 1, 12)12 - AIC:-25.30
+2024-11-21 07:19:56,461 INFO Tested SARIMAX(2, 2, 2)x(1, 1, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:56,497 INFO Tested SARIMAX(2, 2, 2)x(1, 2, 0, 12)12 - AIC:20.00
+2024-11-21 07:19:56,560 INFO Tested SARIMAX(2, 2, 2)x(1, 2, 1, 12)12 - AIC:22.00
+2024-11-21 07:19:56,729 INFO Tested SARIMAX(2, 2, 2)x(1, 2, 2, 12)12 - AIC:24.00
+2024-11-21 07:19:57,120 INFO Tested SARIMAX(2, 2, 2)x(2, 0, 0, 12)12 - AIC:0.99
+2024-11-21 07:19:57,619 INFO Tested SARIMAX(2, 2, 2)x(2, 0, 1, 12)12 - AIC:-29.87
+2024-11-21 07:19:58,170 INFO Tested SARIMAX(2, 2, 2)x(2, 0, 2, 12)12 - AIC:-17.43
+2024-11-21 07:19:58,213 INFO Tested SARIMAX(2, 2, 2)x(2, 1, 0, 12)12 - AIC:22.00
+2024-11-21 07:19:58,256 INFO Tested SARIMAX(2, 2, 2)x(2, 1, 1, 12)12 - AIC:24.00
+2024-11-21 07:19:58,326 INFO Tested SARIMAX(2, 2, 2)x(2, 1, 2, 12)12 - AIC:26.00
+2024-11-21 07:19:58,398 INFO Tested SARIMAX(2, 2, 2)x(2, 2, 0, 12)12 - AIC:22.00
+2024-11-21 07:19:58,463 INFO Tested SARIMAX(2, 2, 2)x(2, 2, 1, 12)12 - AIC:24.00
+2024-11-21 07:19:58,526 INFO Tested SARIMAX(2, 2, 2)x(2, 2, 2, 12)12 - AIC:26.00
+2024-11-21 07:19:58,527 INFO Best SARIMAX(2, 2, 2)x(2, 0, 1, 12)12 model selected with AIC: -29.87
+2024-11-21 07:19:58,527 INFO Evaluating SARIMAX model.
+2024-11-21 07:19:58,531 INFO Evaluation Metrics - MAE: 8121290.26, MSE: 2165215948100485.25, R²: -3878521.23
+2024-11-21 07:19:58,532 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 07:19:58,558 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 07:19:58,558 WARNING Model does not meet the required R² threshold. Consider revising parameters or data preprocessing.
+2024-11-21 07:23:33,727 INFO Fetching sales data from the database.
+2024-11-21 07:23:33,824 INFO Fetched 5237 records from the database.
+2024-11-21 07:23:33,825 INFO Starting data preprocessing.
+2024-11-21 07:23:33,829 INFO Successfully converted DATE to datetime format.
+2024-11-21 07:23:33,855 INFO Data preprocessing completed.
+2024-11-21 07:23:33,855 INFO Starting SARIMAX model training.
+2024-11-21 07:23:34,022 INFO SARIMAX model training completed.
+2024-11-21 07:23:34,056 INFO                                       SARIMAX Results                                       
+============================================================================================
+Dep. Variable:                                TOTAL   No. Observations:                   34
+Model:             SARIMAX(2, 1, 2)x(1, 1, [1], 12)   Log Likelihood                 -61.542
+Date:                              Thu, 21 Nov 2024   AIC                            145.083
+Time:                                      07:23:34   BIC                            142.793
+Sample:                                  01-31-2022   HQIC                           135.914
+                                       - 10-31-2024                                         
+Covariance Type:                                opg                                         
+====================================================================================
+                       coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Month               -0.0006   2663.374  -2.19e-07      1.000   -5220.117    5220.116
+Quarter             -0.0002    878.921   -2.2e-07      1.000   -1722.653    1722.653
+Prev_Month_Sales    -0.2117   3503.976  -6.04e-05      1.000   -6867.879    6867.456
+Rolling_Avg_3        1.1467   2630.100      0.000      1.000   -5153.755    5156.048
+ar.L1               -0.9930   1453.020     -0.001      0.999   -2848.860    2846.874
+ar.L2               -1.3152   1397.926     -0.001      0.999   -2741.201    2738.570
+ma.L1                0.0841   7177.490   1.17e-05      1.000   -1.41e+04    1.41e+04
+ma.L2               -0.4123   6647.232   -6.2e-05      1.000    -1.3e+04     1.3e+04
+ar.S.L12            -0.2640   6105.060  -4.32e-05      1.000    -1.2e+04     1.2e+04
+ma.S.L12            -0.5222   4110.300     -0.000      1.000   -8056.562    8055.518
+sigma2            1.275e+08      1.717   7.42e+07      0.000    1.27e+08    1.27e+08
+===================================================================================
+Ljung-Box (L1) (Q):                   3.14   Jarque-Bera (JB):                 0.66
+Prob(Q):                              0.08   Prob(JB):                         0.72
+Heteroskedasticity (H):               2.49   Skew:                             0.24
+Prob(H) (two-sided):                  0.57   Kurtosis:                         1.45
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+[2] Covariance matrix is singular or near-singular, with condition number 5.5e+23. Standard errors may be unstable.
+2024-11-21 07:23:34,063 INFO Evaluating SARIMAX model.
+2024-11-21 07:23:34,066 INFO Evaluation Metrics - MAE: 9943.51, MSE: 202285894.68, R²: 0.64
+2024-11-21 07:23:34,067 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 07:23:34,086 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 07:24:28,222 INFO Fetching sales data from the database.
+2024-11-21 07:24:28,317 INFO Fetched 5237 records from the database.
+2024-11-21 07:24:28,317 INFO Starting data preprocessing.
+2024-11-21 07:24:28,320 INFO Successfully converted DATE to datetime format.
+2024-11-21 07:24:28,346 INFO Data preprocessing completed.
+2024-11-21 07:24:28,346 INFO Starting SARIMAX model training.
+2024-11-21 07:24:28,532 INFO SARIMAX model training completed.
+2024-11-21 07:24:28,567 INFO                                       SARIMAX Results                                       
+============================================================================================
+Dep. Variable:                                TOTAL   No. Observations:                   34
+Model:             SARIMAX(2, 1, 2)x(1, 1, [1], 12)   Log Likelihood                 -61.542
+Date:                              Thu, 21 Nov 2024   AIC                            145.083
+Time:                                      07:24:28   BIC                            142.793
+Sample:                                  01-31-2022   HQIC                           135.914
+                                       - 10-31-2024                                         
+Covariance Type:                                opg                                         
+====================================================================================
+                       coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Month               -0.0006   2663.374  -2.19e-07      1.000   -5220.117    5220.116
+Quarter             -0.0002    878.921   -2.2e-07      1.000   -1722.653    1722.653
+Prev_Month_Sales    -0.2117   3503.976  -6.04e-05      1.000   -6867.879    6867.456
+Rolling_Avg_3        1.1467   2630.100      0.000      1.000   -5153.755    5156.048
+ar.L1               -0.9930   1453.020     -0.001      0.999   -2848.860    2846.874
+ar.L2               -1.3152   1397.926     -0.001      0.999   -2741.201    2738.570
+ma.L1                0.0841   7177.490   1.17e-05      1.000   -1.41e+04    1.41e+04
+ma.L2               -0.4123   6647.232   -6.2e-05      1.000    -1.3e+04     1.3e+04
+ar.S.L12            -0.2640   6105.060  -4.32e-05      1.000    -1.2e+04     1.2e+04
+ma.S.L12            -0.5222   4110.300     -0.000      1.000   -8056.562    8055.518
+sigma2            1.275e+08      1.717   7.42e+07      0.000    1.27e+08    1.27e+08
+===================================================================================
+Ljung-Box (L1) (Q):                   3.14   Jarque-Bera (JB):                 0.66
+Prob(Q):                              0.08   Prob(JB):                         0.72
+Heteroskedasticity (H):               2.49   Skew:                             0.24
+Prob(H) (two-sided):                  0.57   Kurtosis:                         1.45
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+[2] Covariance matrix is singular or near-singular, with condition number 5.5e+23. Standard errors may be unstable.
+2024-11-21 07:24:28,575 INFO Evaluating SARIMAX model.
+2024-11-21 07:24:28,577 INFO Evaluation Metrics - MAE: 9943.51, MSE: 202285894.68, R²: 0.64
+2024-11-21 07:24:28,578 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 07:24:28,598 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 07:28:17,822 INFO Fetching sales data from the database.
+2024-11-21 07:28:17,918 INFO Fetched 5237 records from the database.
+2024-11-21 07:28:17,919 INFO Starting data preprocessing.
+2024-11-21 07:28:17,942 INFO Data preprocessing completed.
+2024-11-21 07:28:19,059 INFO Best parameters: ((1, 1, 1), (2, 1, 2, 12)), AIC: 22.0
+2024-11-21 07:28:19,062 INFO Evaluation Metrics - MAE: 9035.26, MSE: 148703566.24, R²: 0.73
+2024-11-21 07:28:19,062 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 07:28:19,087 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-21 08:12:33,292 INFO Fetching sales data from the database.
+2024-11-21 08:12:33,385 INFO Fetched 5237 records from the database.
+2024-11-21 08:12:33,386 INFO Starting data preprocessing.
+2024-11-21 08:12:33,413 INFO Data preprocessing completed.
+2024-11-21 08:12:34,162 INFO Best parameters: ((1, 1, 1), (2, 1, 2, 12)), AIC: 22.0
+2024-11-21 08:12:34,165 INFO Evaluation Metrics - MAE: 9035.26, MSE: 148703566.24, R²: 0.73
+2024-11-21 08:12:34,170 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-21 08:12:34,192 INFO SARIMAX model saved as 'sarimax_model.pkl'.
