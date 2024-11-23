@@ -68,22 +68,26 @@ if (!isset($isDateTime)) {
 // Fetch Today's Sales (Always Based on Current Date)
 // ==========================
 
-// Today's Sales - always based on current date using MySQL's CURDATE()
+// Define the filtered date from user input or use current date as fallback
+$filteredDate = isset($_POST['year']) ? sprintf("%04d-%02d-%02d", $_POST['year'], $_POST['month'], $_POST['day']) : date('Y-m-d');
+
 try {
     if ($isDateTime) {
-        // For DATETIME or TIMESTAMP, use range to cover the entire day
+        // For DATETIME or TIMESTAMP, use a range to cover the entire selected day
         $stmt_today_sales = $conn->prepare("
         SELECT SUM(TOTAL) as total_sales 
         FROM laundry 
-        WHERE `DATE` >= CURDATE() AND `DATE` < CURDATE() + INTERVAL 1 DAY AND `PAYMENT_STATUS` = 'Paid'
+        WHERE DATE(`DATE`) BETWEEN :filteredDate AND DATE_ADD(:filteredDate, INTERVAL 1 DAY) AND `PAYMENT_STATUS` = 'Paid'
         ");
+        $stmt_today_sales->bindParam(':filteredDate', $filteredDate);
     } else {
-        // For DATE, direct comparison
+        // For DATE, use direct comparison
         $stmt_today_sales = $conn->prepare("
         SELECT SUM(TOTAL) as total_sales 
         FROM laundry 
-        WHERE `DATE` >= CURDATE() AND `DATE` < CURDATE() + INTERVAL 1 DAY AND `PAYMENT_STATUS` = 'Paid'
+        WHERE DATE(`DATE`) = :filteredDate AND `PAYMENT_STATUS` = 'Paid'
         ");
+        $stmt_today_sales->bindParam(':filteredDate', $filteredDate);
     }
     $stmt_today_sales->execute();
     $today_sales = $stmt_today_sales->fetch(PDO::FETCH_ASSOC)['total_sales'] ?: 0;
