@@ -549,3 +549,112 @@ body {
   }
 }
 
+/* Filter Container */
+.filter-container {
+  position: relative;
+}
+
+/* Filter Button */
+.filter-button {
+  background-color: #1A1A40;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 3D shadow */
+  transition: all 0.3s ease;
+}
+
+.filter-button i {
+  margin-right: 8px;
+}
+
+.filter-button:hover {
+  background-color: #3c3c5a;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Filter Panel */
+.filter-panel {
+  position: absolute;
+  top: 60px; /* Adjust based on filter button height */
+  background-color: #fff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Prominent 3D shadow */
+  display: none; /* Hidden by default */
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.filter-panel.active {
+  display: block;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+.filter-group select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus {
+  border-color: #1A1A40;
+  outline: none;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.apply-btn, .reset-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.apply-btn {
+  background-color: #1A1A40;
+  color: #fff;
+}
+
+.apply-btn:hover {
+  background-color: #3c3c5a;
+}
+
+.reset-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.reset-btn:hover {
+  background-color: #999;
+}

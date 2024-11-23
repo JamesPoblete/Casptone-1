@@ -13,7 +13,6 @@ body {
   background-color: #eef2f7; /* Updated background color */
 }
 
-/* Sidebar Styles */
 .sidebar {
   background-color: #1A1A40;
   color: white;
@@ -57,7 +56,7 @@ body {
   font-size: 16px;
   padding: 15px 20px;
   display: block;
-  transition: color 0.3s ease, padding-left 0.3s ease; /* Smooth color and padding transition */
+  transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
 /* Active Link Style with Sliding and Bounce Effect */
@@ -101,11 +100,13 @@ body {
   transition: all 0.4s ease; /* Smooth transition */
 }
 
+
 /* Main Content */
 .main-content {
   width: calc(100% - 220px);
   padding: 20px;
   margin-left: 220px;
+  transition: all 0.3s ease; /* Smooth transition */
 }
 
 /* Updated Header Design */
@@ -117,35 +118,125 @@ body {
   background-color: #f8f9fa;
   border-bottom: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow to separate header from content */
+  position: relative;
+  z-index: 10;
+  border-radius: 0 0 10px 10px; /* Rounded bottom corners */
 }
 
-.date-selection {
+/* Filter Container */
+.filter-container {
+  position: relative;
+}
+
+/* Filter Button */
+.filter-button {
+  background-color: #1A1A40;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
   display: flex;
-  gap: 10px;
   align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 3D shadow */
+  transition: all 0.3s ease;
 }
 
-.header-left .logo {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #23253A;
+.filter-button i {
+  margin-right: 8px;
 }
 
-.header-center {
-  flex: 1;
+.filter-button:hover {
+  background-color: #3c3c5a;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Filter Panel */
+.filter-panel {
+  position: absolute;
+  top: 60px; /* Adjust based on filter button height */
+  background-color: #fff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Prominent 3D shadow */
+  display: none; /* Hidden by default */
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.filter-panel.active {
+  display: block;
+}
+
+.filter-form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
 }
 
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+.filter-group select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus {
+  border-color: #1A1A40;
+  outline: none;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.apply-btn, .reset-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.apply-btn {
+  background-color: #1A1A40;
+  color: #fff;
+}
+
+.apply-btn:hover {
+  background-color: #3c3c5a;
+}
+
+.reset-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.reset-btn:hover {
+  background-color: #999;
+}
+
+/* Header Right */
 .header-right {
   display: flex;
   align-items: center;
-}
-
-.header-right i.fa-bell {
-  font-size: 1.2em;
-  margin-right: 20px;
-  cursor: pointer;
 }
 
 .user-profile {
@@ -155,231 +246,85 @@ body {
 }
 
 .user-profile i.fa-user-circle {
-  font-size: 1.5em;
+  font-size: 1.8em;
   margin-right: 8px;
 }
 
 .user-profile span {
-  margin-right: 5px;
-}
-
-.user-profile i.fa-caret-down {
-  font-size: 0.9em;
+  font-size: 1em;
+  color: #333;
 }
 
 /* Cards */
+.dashboard-content {
+  padding: 20px 0;
+}
+
 .cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Space between rows */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px; /* Increased space between rows and columns */
   padding: 20px;
 }
 
-/* Row Container */
-.cards .row {
-  display: flex;
-  gap: 20px; /* Space between cards in the same row */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-}
-
-/* Standard Card Styles */
 .card {
-  flex: 1; /* Make all cards in a row equal width */
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 15px; /* Rounded corners */
+  background: linear-gradient(135deg, #ffffff, #f0f4f8);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 20px; /* More rounded corners */
   text-align: center;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center align content */
   justify-content: center;
-  transition: all 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  cursor: default;
 }
 
-/* Large Card for Predicted Sales */
-.card.predicted-sales {
-  flex: 2; /* Span the width of three cards */
-  background-color: #1d2b53; /* Custom color for this card */
-  color: white;
-  border-radius: 15px; /* Rounded corners */
-  display: flex; /* Make content align properly */
-  flex-direction: column;
-  justify-content: center; /* Vertically center content */
-  align-items: center; /* Horizontally center content */
-  padding: 15px; /* Adjust padding for better spacing */
-  gap: 10px; /* Space between elements */
-}
-
-/* Hover Effects */
 .card:hover {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
-  transform: translateY(-5px); /* Lift the card on hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+  transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
 }
 
-/* Cards Typography */
-.card h3 {
-  margin-bottom: 15px;
-  font-size: 1.2em;
-  font-weight: 600;
-  color: inherit; /* Inherit color from parent (handles dark mode) */
+.card-icon {
+  background-color: #1A1A40;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
 }
 
-.card p {
-  font-size: 2em;
-  font-weight: 700;
-  color: inherit; /* Inherit color from parent */
-}
-
-/* Adjust icon sizes */
-.card h3 i {
-  margin-right: 8px;
+.card-icon i {
   font-size: 1.5em;
 }
 
-/* Date Filter Form */
-.date-filter-form {
-  margin-top: 5px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.date-filter-form label {
-  margin-right: 5px;
-  font-weight: 500;
-}
-
-.date-filter-form select {
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.date-filter-form button {
-  padding: 5px 15px;
-  background-color: #1A1A40;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.date-filter-form button:hover {
+.card:hover .card-icon {
   background-color: #3c3c5a;
 }
 
-.charts-container {
-  display: flex;
-  flex-wrap: wrap; /* Wrap charts to the next line if needed */
-  gap: 20px; /* Maintain spacing between charts */
-  justify-content: space-between;
-}
-
-.bar-chart-container,
-.line-chart-container,
-.inventoryStockBarChart {
-  flex: 1 1 calc(50% - 20px); /* Responsive size */
-  min-width: 300px; /* Prevent shrinking too much */
-  max-width: 100%; /* Ensure it stretches fully */
-  height: 400px; /* Maintain consistent height */
-  margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-  .bar-chart-container,
-  .line-chart-container,
-  .inventoryStockBarChart {
-      flex: 1 1 100%; /* Full width on smaller screens */
-      height: 300px; /* Adjust height */
-  }
-}
-
-/* Pie Charts Wrapper */
-.pie-charts {
-  flex: 1;
-  flex-direction: row; /* Change from column to row */
-  gap: 20px;
-}
-
-/* Individual Pie Chart Containers */
-.pie-chart-container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  flex: 1; /* Equal width for both pie charts */
-  height: 200px; /* Adjusted height for stacked layout */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  width: 400px;
-}
-
-.pie-chart-container canvas {
-  width: 100% !important; /* Force canvas to take full width */
-  height: 85% !important; /* Force canvas to take full height */
-}
-
-.pie-chart-container h3 {
+.card-info h3 {
   margin-bottom: 10px;
-  text-align: center;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333;
 }
 
-.pie-chart-container h3 {
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.bar-chart-container {
-  background-color: #ffffff; /* Soft background color to match the image */
-  border-radius: 15px; /* Rounds the corners of the container */
-  padding: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a 3D effect */
-  height: 400px; /* Adjust height to give the chart enough space */
-}
-
-
-/* Line Chart Container */
-.line-chart-container {
-  width: 100%;
-  height: 450px; /* Adjust the height as needed */
-  margin: 20px 0;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Inventory Stock Bar Chart Container */
-.inventoryStockBarChart {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  height: 400px; /* Adjust height to give the chart enough space */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+.card-info p {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #1A1A40;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .charts-container {
-    flex-direction: column;
-  }
-
-  .bar-chart-container, .pie-chart-container, .line-chart-container, .inventoryStockBarChart {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .cards .row {
-    flex-direction: column; /* Stack rows vertically */
-  }
-
-  .cards .card {
-    flex: 1 1 100%; /* Full width */
-  }
-
-  .cards .card.predicted-sales {
-    flex: 1 1 100%; /* Full width for large card on small screens */
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; /* Adjust gap for smaller screens */
   }
 
   .sidebar {
@@ -387,47 +332,66 @@ body {
   }
 
   .main-content {
-    width: calc(100% - 200px); /* Adjust width based on sidebar */
-    margin-left: 200px; /* Adjust margin based on sidebar width */
+    width: calc(100% - 200px);
+    margin-left: 200px;
   }
 
-  .date-filter-form {
+  .filter-panel {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr; /* Stack all cards vertically */
+    gap: 15px; /* Reduce gap for better fit */
+  }
+
+  .filter-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-panel {
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 60px;
+  }
+
+  .filter-form {
     flex-direction: column;
-    align-items: flex-start; /* Align form elements to the left */
   }
+}
 
-  .date-filter-form label {
-    width: 100%;
-    margin-bottom: 5px; /* Add space between elements */
-  }
+/* Loading Spinner Styles */
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 200;
+}
 
-  .date-filter-form select, .date-filter-form button {
-    width: 100%;
-  }
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #1A1A40;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
 
-  .date-filter-form button {
-    margin-top: 10px;
-  }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-  .header-right {
-    flex-direction: column; /* Stack notification and profile vertically */
-    align-items: flex-end;  /* Align them to the right */
-  }
-
-  .user-profile {
-    margin-top: 10px; /* Add some space between elements */
-  }
-
-  .pie-charts {
-    flex-direction: column; /* Stack pie charts vertically */
-  }
-
-  .pie-chart-container {
-    width: 100%;
-    height: 250px; /* Adjust height for better visibility on smaller screens */
-  }
-
-  .bar-chart-container, .line-chart-container, .inventoryStockBarChart {
-    height: 300px; /* Adjust height for smaller screens */
-  }
+/* Accessibility Enhancements */
+.filter-button:focus,
+.apply-btn:focus,
+.reset-btn:focus,
+.sidebar ul li a:focus {
+    outline: 2px solid #3c3c5a;
+    outline-offset: 2px;
 }

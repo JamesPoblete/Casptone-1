@@ -9,7 +9,7 @@ body {
   font-family: 'Poppins', sans-serif;
   display: flex;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: #eef2f7; /* Updated background color */
 }
 
@@ -403,11 +403,6 @@ table tbody tr:hover {
   color: white;
 }
 
-/* Other Status */
-.status.other {
-  background-color: #17a2b8; /* Teal */
-  color: white !important;
-}
 
 /* Adjusting Status Dropdown */
 .status-dropdown {
@@ -870,6 +865,53 @@ input[type="checkbox"] {
   }
 }
 
-/* laundrylist.css */
+/* Status Styles */
+.payment-status-dropdown {
+  padding: 8px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
 
-/* Existing styles ... */
+.status i {
+  margin-left: 5px; /* Space between text and icon */
+}
+
+
+.payment-status-dropdown.paid {
+  background-color: #1A1A40; /* Green for Completed */
+  color: white;
+}
+
+.payment-status-dropdown.unpaid {
+  background-color: #ff3007; /* Yellow for Pending */
+  color: white;
+}
+
+
+/* Adjusting Status Dropdown */
+.payment-status-dropdown {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Optional: Hide the dropdown arrow for a cleaner look */
+.payment-status-dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 5px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 15px;
+}

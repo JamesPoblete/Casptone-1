@@ -261,9 +261,7 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
                         }
 
                         // Calculate expense for the current item
-                        // If TotalExpense is already in the database, use it
                         $totalExpense = $row['TotalExpense'];
-                        // Removed accumulation of $totalExpenses since Total Inventory Expenses is removed
 
                         echo "<tr>";
                         echo "<td>#".htmlspecialchars($row['InventoryID'], ENT_QUOTES, 'UTF-8')."</td>";
@@ -273,12 +271,13 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
                         echo "<td>".number_format($row['PricePerStock'], 2)."</td>";
                         echo "<td>".number_format($totalExpense, 2)."</td>";
                         echo "<td><span class='status ".$status."'>".$statusText."</span></td>";
-                        // Add data attributes to the edit button
+                        // **Added data-priceperstock attribute**
                         echo "<td><button class='edit-btn' 
                             data-id='".htmlspecialchars($row['InventoryID'], ENT_QUOTES, 'UTF-8')."'
                             data-productname='".htmlspecialchars($row['ProductName'], ENT_QUOTES, 'UTF-8')."'
                             data-producttype='".htmlspecialchars($row['ProductType'], ENT_QUOTES, 'UTF-8')."'
-                            data-currentstock='".htmlspecialchars($row['CurrentStock'], ENT_QUOTES, 'UTF-8')."'>
+                            data-currentstock='".htmlspecialchars($row['CurrentStock'], ENT_QUOTES, 'UTF-8')."'
+                            data-priceperstock='".htmlspecialchars($row['PricePerStock'], ENT_QUOTES, 'UTF-8')."'>
                             <i class='fas fa-edit' aria-hidden='true'></i></button></td>";
                         echo "</tr>";
                     }
@@ -386,6 +385,12 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
                     <div class="form-group">
                         <label for="editQuantity">Current Stock:</label>
                         <input type="number" id="editQuantity" name="editQuantity" min="0" required aria-required="true">
+                    </div>
+                    
+                    <!-- **New Price Per Stock Field** -->
+                    <div class="form-group">
+                        <label for="editPricePerStock">Price Per Stock (₱):</label>
+                        <input type="number" id="editPricePerStock" name="editPricePerStock" min="0" step="0.01" required aria-required="true">
                     </div>
 
                     <div class="form-actions">
@@ -559,177 +564,181 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
 
         <!-- JavaScript -->
         <script>
-        // Generic function to handle modal behavior
-        function setupModal(modalId, openBtnId, closeBtnClass) {
-            var modal = document.getElementById(modalId);
-            var openBtn = openBtnId ? document.getElementById(openBtnId) : null;
-            var closeBtn = modal.querySelector(closeBtnClass);
+// Generic function to handle modal behavior
+function setupModal(modalId, openBtnId, closeBtnClass) {
+    var modal = document.getElementById(modalId);
+    var openBtn = openBtnId ? document.getElementById(openBtnId) : null;
+    var closeBtn = modal.querySelector(closeBtnClass);
 
-            // Function to open the modal
-            function openModal() {
-                modal.style.display = 'flex';
-                setTimeout(function() {
-                    modal.classList.add('show');
-                }, 10);
-                document.body.classList.add('modal-active');
-            }
+    // Function to open the modal
+    function openModal() {
+        modal.style.display = 'flex';
+        setTimeout(function() {
+            modal.classList.add('show');
+        }, 10);
+        document.body.classList.add('modal-active');
+    }
 
-            // Function to close the modal
-            function closeModal() {
-                modal.classList.remove('show');
-                setTimeout(function() {
-                    modal.style.display = 'none';
-                    document.body.classList.remove('modal-active');
-                }, 500);
-            }
+    // Function to close the modal
+    function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(function() {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-active');
+        }, 500);
+    }
 
-            // Event listeners
-            if (openBtn) {
-                openBtn.addEventListener('click', openModal);
-            }
-            closeBtn.addEventListener('click', closeModal);
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    closeModal();
-                }
-            });
+    // Event listeners
+    if (openBtn) {
+        openBtn.addEventListener('click', openModal);
+    }
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
         }
+    });
+}
 
-        // Setup Add Stock Modal
-        setupModal('addStockModal', 'addStockBtn', '.close');
+// Setup Add Stock Modal
+setupModal('addStockModal', 'addStockBtn', '.close');
 
-        // Setup Add Product Modal
-        setupModal('addProductModal', 'addProductBtn', '.add-product-close');
+// Setup Add Product Modal
+setupModal('addProductModal', 'addProductBtn', '.add-product-close');
 
-        // Setup Edit Stock Modal
-        setupModal('editStockModal', null, '.edit-close');
+// Setup Edit Stock Modal
+setupModal('editStockModal', null, '.edit-close');
 
-        // Setup Notifications Modal
-        setupModal('notificationsModal', 'notificationsIcon', '.close-button');
+// Setup Notifications Modal
+setupModal('notificationsModal', 'notificationsIcon', '.close-button');
 
 
-        // Function to attach event listeners to edit buttons using event delegation
-        function attachEditButtonListeners() {
-            var inventoryTableBody = document.getElementById('inventoryTableBody');
+// Function to attach event listeners to edit buttons using event delegation
+function attachEditButtonListeners() {
+    var inventoryTableBody = document.getElementById('inventoryTableBody');
 
-            inventoryTableBody.addEventListener('click', function(event) {
-                var button = event.target.closest('.edit-btn');
-                if (button) {
-                    var inventoryID = button.getAttribute('data-id');
-                    var productName = button.getAttribute('data-productname');
-                    var productType = button.getAttribute('data-producttype');
-                    var currentStock = button.getAttribute('data-currentstock');
+    inventoryTableBody.addEventListener('click', function(event) {
+        var button = event.target.closest('.edit-btn');
+        if (button) {
+            var inventoryID = button.getAttribute('data-id');
+            var productName = button.getAttribute('data-productname');
+            var productType = button.getAttribute('data-producttype');
+            var currentStock = button.getAttribute('data-currentstock');
+            // **Retrieve Price Per Stock**
+            var pricePerStock = button.getAttribute('data-priceperstock');
 
-                    // Populate the Edit Stock Modal fields
-                    document.getElementById('editInventoryID').value = inventoryID;
-                    document.getElementById('editProductName').value = productName;
-                    document.getElementById('editProductType').value = productType;
-                    document.getElementById('editQuantity').value = currentStock;
+            // Populate the Edit Stock Modal fields
+            document.getElementById('editInventoryID').value = inventoryID;
+            document.getElementById('editProductName').value = productName;
+            document.getElementById('editProductType').value = productType;
+            document.getElementById('editQuantity').value = currentStock;
+            // **Set the Price Per Stock field**
+            document.getElementById('editPricePerStock').value = pricePerStock;
 
-                    // Open the Edit Stock Modal
-                    var editStockModal = document.getElementById('editStockModal');
-                    editStockModal.style.display = 'flex';
-                    setTimeout(function() {
-                        editStockModal.classList.add('show');
-                    }, 10);
-                    document.body.classList.add('modal-active');
-                }
-            });
+            // Open the Edit Stock Modal
+            var editStockModal = document.getElementById('editStockModal');
+            editStockModal.style.display = 'flex';
+            setTimeout(function() {
+                editStockModal.classList.add('show');
+            }, 10);
+            document.body.classList.add('modal-active');
         }
+    });
+}
 
-        // Initial attachment of event listeners
-        attachEditButtonListeners();
+// Initial attachment of event listeners
+attachEditButtonListeners();
 
-        // JavaScript for Client-Side Search with Debouncing
-        const searchInput = document.getElementById('search');
-        const statusFilter = document.getElementById('statusFilter');
-        const table = document.querySelector('table tbody');
+// JavaScript for Client-Side Search with Debouncing
+const searchInput = document.getElementById('search');
+const statusFilter = document.getElementById('statusFilter');
+const table = document.querySelector('table tbody');
 
-        let debounceTimeout;
-        searchInput.addEventListener('input', function() {
-            clearTimeout(debounceTimeout);
-            debounceTimeout = setTimeout(filterTable, 300);
-        });
-        statusFilter.addEventListener('change', filterTable);
+let debounceTimeout;
+searchInput.addEventListener('input', function() {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(filterTable, 300);
+});
+statusFilter.addEventListener('change', filterTable);
 
-        function filterTable() {
-            const searchValue = searchInput.value.toLowerCase();
-            const statusValue = statusFilter.value.toLowerCase();
-            const rows = table.querySelectorAll('tr');
+function filterTable() {
+    const searchValue = searchInput.value.toLowerCase();
+    const statusValue = statusFilter.value.toLowerCase();
+    const rows = table.querySelectorAll('tr');
 
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('td');
-                if (cells.length < 8) return; // Skip if not enough cells (e.g., no records)
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        if (cells.length < 8) return; // Skip if not enough cells (e.g., no records)
 
-                const productID = cells[0].textContent.toLowerCase().replace('#', '');
-                const productName = cells[1].textContent.toLowerCase();
-                const productType = cells[2].textContent.toLowerCase();
-                const currentStatus = cells[6].textContent.toLowerCase();
+        const productID = cells[0].textContent.toLowerCase().replace('#', '');
+        const productName = cells[1].textContent.toLowerCase();
+        const productType = cells[2].textContent.toLowerCase();
+        const currentStatus = cells[6].textContent.toLowerCase();
 
-                const matchesSearch = 
-                    productID.includes(searchValue) || 
-                    productName.includes(searchValue) || 
-                    productType.includes(searchValue);
+        const matchesSearch = 
+            productID.includes(searchValue) || 
+            productName.includes(searchValue) || 
+            productType.includes(searchValue);
 
-                const matchesStatus = statusValue === 'all' || currentStatus.includes(statusValue);
+        const matchesStatus = statusValue === 'all' || currentStatus.includes(statusValue);
 
-                if (matchesSearch && matchesStatus) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+        if (matchesSearch && matchesStatus) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
         }
+    });
+}
 
-        // JavaScript to handle the success and error messages
-        document.addEventListener('DOMContentLoaded', function() {
-            var successMessage = document.getElementById('successMessage');
-            var errorMessage = document.getElementById('errorMessage');
+// JavaScript to handle the success and error messages
+document.addEventListener('DOMContentLoaded', function() {
+    var successMessage = document.getElementById('successMessage');
+    var errorMessage = document.getElementById('errorMessage');
 
-            if (successMessage) {
-                // Automatically hide the message after 5 seconds
-                setTimeout(function() {
-                    successMessage.style.display = 'none';
-                }, 5000);
-            }
+    if (successMessage) {
+        // Automatically hide the message after 5 seconds
+        setTimeout(function() {
+            successMessage.style.display = 'none';
+        }, 5000);
+    }
 
-            if (errorMessage) {
-                // Automatically hide the message after 7 seconds
-                setTimeout(function() {
-                    errorMessage.style.display = 'none';
-                }, 7000);
-            }
+    if (errorMessage) {
+        // Automatically hide the message after 7 seconds
+        setTimeout(function() {
+            errorMessage.style.display = 'none';
+        }, 7000);
+    }
+});
+
+// Print Report Functionality
+document.getElementById('printBtn').addEventListener('click', function() {
+    window.print();
+});
+
+// Keyboard navigation for modals (closing with Esc key)
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        var modals = document.querySelectorAll('.modal.show');
+        modals.forEach(function(modal) {
+            modal.classList.remove('show');
+            modal.style.display = 'none';
         });
+        document.body.classList.remove('modal-active');
+    }
+});
 
-        // Print Report Functionality
-        document.getElementById('printBtn').addEventListener('click', function() {
-            window.print();
-        });
+// Sidebar Active State without jQuery
+document.addEventListener('DOMContentLoaded', function() {
+    var path = window.location.pathname.split("/").pop() || "index.html";
+    var links = document.querySelectorAll('.sidebar ul li a');
+    links.forEach(function(link) {
+        if (link.getAttribute('href') === path) {
+            link.classList.add('active');
+        }
+    });
+});
 
-        // Keyboard navigation for modals (closing with Esc key)
-        window.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                var modals = document.querySelectorAll('.modal.show');
-                modals.forEach(function(modal) {
-                    modal.classList.remove('show');
-                    modal.style.display = 'none';
-                });
-                document.body.classList.remove('modal-active');
-            }
-        });
-
-        // Sidebar Active State without jQuery
-        document.addEventListener('DOMContentLoaded', function() {
-            var path = window.location.pathname.split("/").pop() || "index.html";
-            var links = document.querySelectorAll('.sidebar ul li a');
-            links.forEach(function(link) {
-                if (link.getAttribute('href') === path) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        </script>
+</script>
     </div>
 </body>
 </html>

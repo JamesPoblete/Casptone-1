@@ -2204,3 +2204,19 @@ Warnings:
 2024-11-21 08:12:34,165 INFO Evaluation Metrics - MAE: 9035.26, MSE: 148703566.24, R²: 0.73
 2024-11-21 08:12:34,170 INFO Model metrics saved as 'model_metrics.json'.
 2024-11-21 08:12:34,192 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-23 20:54:38,448 INFO Fetching sales data from the database.
+2024-11-23 20:54:38,568 INFO Fetched 5240 records from the database.
+2024-11-23 20:54:38,568 INFO Starting data preprocessing.
+2024-11-23 20:54:38,608 INFO Data preprocessing completed.
+2024-11-23 20:54:39,593 INFO Best parameters: ((1, 1, 1), (2, 1, 2, 12)), AIC: 22.0
+2024-11-23 20:54:39,596 INFO Evaluation Metrics - MAE: 10915.99, MSE: 267752249.03, R²: 0.54
+2024-11-23 20:54:39,597 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-23 20:54:39,620 INFO SARIMAX model saved as 'sarimax_model.pkl'.
+2024-11-23 20:55:54,412 INFO Fetching sales data from the database.
+2024-11-23 20:55:54,496 INFO Fetched 5233 records from the database.
+2024-11-23 20:55:54,497 INFO Starting data preprocessing.
+2024-11-23 20:55:54,532 INFO Data preprocessing completed.
+2024-11-23 20:55:55,446 INFO Best parameters: ((1, 1, 1), (2, 1, 2, 12)), AIC: 22.0
+2024-11-23 20:55:55,449 INFO Evaluation Metrics - MAE: 8992.90, MSE: 148093585.13, R²: 0.73
+2024-11-23 20:55:55,449 INFO Model metrics saved as 'model_metrics.json'.
+2024-11-23 20:55:55,473 INFO SARIMAX model saved as 'sarimax_model.pkl'.

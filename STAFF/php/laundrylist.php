@@ -7,8 +7,10 @@ try {
     // Establish the database connection
     $conn = connectDB();
 
-    // SQL query to fetch the required columns from the laundry table
-    $sql = "SELECT OrderID, NAME, DATE, STATUS, PICKUP_TIME FROM laundry ORDER BY OrderID DESC";
+    // SQL query to fetch the required columns from the laundry table, including PAYMENT_STATUS
+    $sql = "SELECT OrderID, NAME, DATE, STATUS, PAYMENT_STATUS, PICKUP_TIME 
+            FROM laundry 
+            ORDER BY OrderID DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
@@ -22,7 +24,12 @@ try {
     echo json_encode($laundryData);
 
 } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    // Return a JSON error response
+    header('Content-Type: application/json');
+    echo json_encode([
+        "success" => false,
+        "error" => $e->getMessage()
+    ]);
 }
 
 // Close the connection

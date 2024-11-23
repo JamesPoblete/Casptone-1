@@ -7,7 +7,7 @@ include 'dbconnection.php'; // Ensure correct path
 $conn = connectDB();
 
 // SQL query to fetch the required columns from the laundry table
-$sql = "SELECT OrderID, NAME, DATE, STATUS FROM laundry";
+$sql = "SELECT OrderID, NAME, DATE, STATUS, PAYMENT_STATUS FROM laundry";
 $stmt = $conn->prepare($sql); // Prepare the SQL statement
 $stmt->execute(); // Execute the query
 

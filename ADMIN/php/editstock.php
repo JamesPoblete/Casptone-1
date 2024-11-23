@@ -23,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ProductName = trim($_POST['editProductName']);
     $ProductType = trim($_POST['editProductType']);
     $CurrentStock = intval($_POST['editQuantity']);
+    // **Retrieve and sanitize PricePerStock**
+    $PricePerStock = floatval($_POST['editPricePerStock']);
     // Assuming ReorderLevel and InventoryDescription are optional
     $ReorderLevel = isset($_POST['editReorderLevel']) ? intval($_POST['editReorderLevel']) : null;
     $InventoryDescription = isset($_POST['editInventoryDescription']) ? trim($_POST['editInventoryDescription']) : '';
@@ -33,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     ProductName = :ProductName, 
                     ProductType = :ProductType, 
                     CurrentStock = :CurrentStock, 
+                    PricePerStock = :PricePerStock, 
                     ReorderLevel = :ReorderLevel, 
                     InventoryDescription = :InventoryDescription 
                 WHERE InventoryID = :InventoryID AND userID = :userID";
@@ -42,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':ProductName', $ProductName);
         $stmt->bindParam(':ProductType', $ProductType);
         $stmt->bindParam(':CurrentStock', $CurrentStock, PDO::PARAM_INT);
+        $stmt->bindParam(':PricePerStock', $PricePerStock);
         $stmt->bindParam(':ReorderLevel', $ReorderLevel, PDO::PARAM_INT);
         $stmt->bindParam(':InventoryDescription', $InventoryDescription);
         $stmt->bindParam(':InventoryID', $InventoryID, PDO::PARAM_INT);
@@ -49,6 +53,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Execute the statement
         if ($stmt->execute()) {
+            // **Optionally Update TotalExpense if needed**
+            // For example, you might want to recalculate TotalExpense based on PricePerStock and CurrentStock
+            /*
+            $newTotalExpense = $PricePerStock * $CurrentStock;
+            $updateExpenseSql = "UPDATE inventory SET TotalExpense = :TotalExpense WHERE InventoryID = :InventoryID AND userID = :userID";
+            $updateExpenseStmt = $pdo->prepare($updateExpenseSql);
+            $updateExpenseStmt->bindParam(':TotalExpense', $newTotalExpense);
+            $updateExpenseStmt->bindParam(':InventoryID', $InventoryID, PDO::PARAM_INT);
+            $updateExpenseStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+            $updateExpenseStmt->execute();
+            */
+
             // Set success flag in session
             $_SESSION['edit_success'] = true;
 

@@ -99,12 +99,10 @@ $total_notifications = count($out_of_stock_products) + count($low_stock_products
         <table>
             <thead>
                 <tr>
-                    <th>
-                        Select All
-                    </th>
                     <th>Order ID</th>
                     <th>Date</th>
                     <th>Name</th>
+                    <th>Payment Status</th>
                     <th>Status</th>
                 </tr>
             </thead>

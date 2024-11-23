@@ -37,42 +37,38 @@ document.addEventListener('DOMContentLoaded', function() {
         updateTable(); // Update the table with the filtered data
     }
 
-    // Function to update the table with the filtered data
-    function updateTable() {
-        const tableBody = document.getElementById('laundryListTable');
-        tableBody.innerHTML = ''; // Clear existing rows
+// Function to update the table with the filtered data
+function updateTable() {
+    const tableBody = document.getElementById('laundryListTable');
+    tableBody.innerHTML = ''; // Clear existing rows
 
-        const startIndex = (currentPage - 1) * rowsPerPage;
-        const endIndex = startIndex + rowsPerPage;
-        const paginatedData = filteredData.slice(startIndex, endIndex); // Paginate filteredData
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    const paginatedData = filteredData.slice(startIndex, endIndex); // Paginate filteredData
 
-        if (paginatedData.length === 0) {
+    if (paginatedData.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td colspan="6">No data found</td>`; // Ensure colspan matches number of columns
+        tableBody.appendChild(row);
+    } else {
+        paginatedData.forEach(item => {
             const row = document.createElement('tr');
-            row.innerHTML = `<td colspan="5">No data found</td>`;
+            const statusClass = item.STATUS === 'Completed' ? 'completed' : 'pending';
+            const statusIcon = item.STATUS === 'Completed' ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-exclamation-circle"></i>';
+
+            // Check for undefined payment status and handle it
+            const paymentStatus = item.PAYMENT_STATUS || 'Not Available'; // Default text if undefined
+            const paymentStatusClass = item.PAYMENT_STATUS === 'Paid' ? 'paid' : 'unpaid';
+            const paymentStatusIcon = item.PAYMENT_STATUS === 'Paid' ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>';
+
+            row.innerHTML = `
+                <td>${item.OrderID}</td>
+                <td>${item.DATE}</td>
+                <td>${item.NAME}</td>
+                <td><span class="status ${paymentStatusClass}">${paymentStatus} ${paymentStatusIcon}</span></td>
+                <td><span class="status ${statusClass}">${item.STATUS} ${statusIcon}</span></td>
+            `;
             tableBody.appendChild(row);
-        } else {
-            paginatedData.forEach(item => {
-                const row = document.createElement('tr');
-                let statusClass = '';
-                let statusIcon = '';
-
-                // Set status class and icon based on item status
-                if (item.STATUS === 'Completed') {
-                    statusClass = 'completed';
-                    statusIcon = '<i class="fas fa-check-circle"></i>'; // Green check icon for completed
-                } else if (item.STATUS === 'Pending') {
-                    statusClass = 'pending';
-                    statusIcon = '<i class="fas fa-exclamation-circle"></i>'; // Yellow exclamation icon for pending
-                }
-
-                row.innerHTML = `
-                    <td><input type="checkbox" class="select"></td>
-                    <td>${item.OrderID}</td>
-                    <td>${item.DATE}</td>
-                    <td>${item.NAME}</td>
-                    <td><span class="status ${statusClass}">${item.STATUS} ${statusIcon}</span></td>
-                `;
-                tableBody.appendChild(row);
             });
         }
         updatePagination(); // Update pagination after table update

@@ -123,24 +123,108 @@ document.addEventListener('DOMContentLoaded', function() {
             paginatedData.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td><input type="checkbox" class="select"></td>
-                    <td>${item.OrderID}</td>
-                    <td>${new Date(item.DATE).toLocaleDateString()}</td>
-                    <td>${item.NAME}</td>
-                    <td>${item.PICKUP_TIME || 'No time set'}</td>
-                    <td>
-                        <select class="status-dropdown ${item.STATUS.toLowerCase()}" data-order-id="${item.OrderID}" data-original-status="${item.STATUS}">
-                            <option value="Pending" ${item.STATUS === 'Pending' ? 'selected' : ''}>🔴 Pending</option>
-                            <option value="Completed" ${item.STATUS === 'Completed' ? 'selected' : ''}>✔ Completed</option>
-                        </select>
-                    </td>
-                `;
+                <td><input type="checkbox" class="select"></td>
+                <td>${item.OrderID}</td>
+                <td>${new Date(item.DATE).toLocaleDateString()}</td>
+                <td>${item.NAME}</td>
+                <td>${item.PICKUP_TIME || 'No time set'}</td>
+                <td>
+                    <select class="payment-status-dropdown ${item.PAYMENT_STATUS.toLowerCase()}" data-order-id="${item.OrderID}">
+                        <option value="Unpaid" ${item.PAYMENT_STATUS === 'Unpaid' ? 'selected' : ''}>Unpaid</option>
+                        <option value="Paid" ${item.PAYMENT_STATUS === 'Paid' ? 'selected' : ''}>Paid</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="status-dropdown ${item.STATUS.toLowerCase()}" data-order-id="${item.OrderID}" data-original-status="${item.STATUS}">
+                        <option value="Pending" ${item.STATUS === 'Pending' ? 'selected' : ''}>🔴 Pending</option>
+                        <option value="Completed" ${item.STATUS === 'Completed' ? 'selected' : ''}>✔ Completed</option>
+                    </select>
+                </td>
+            `;
+            
                 tableBody.appendChild(row);
             });
         }
         updatePagination(); // Update pagination after table update
         // No need to re-attach status listeners here
     }
+
+// Function to calculate total sales (excluding unpaid)
+function calculateTotalSales(data) {
+    console.log("Data received for sales calculation:", data);  // Debugging log
+
+    // Ensure we're using the most recent data
+    const paidData = data.filter(item => item.PAYMENT_STATUS === 'Paid');
+    console.log("Filtered Paid Data:", paidData);  // Debugging log
+
+    // Calculate total sales from paid entries
+    const totalSales = paidData.reduce((sum, item) => sum + parseFloat(item.TOTAL || 0), 0);
+
+    console.log(`Total Sales (Paid Only): ₱${totalSales.toFixed(2)}`);  // Debugging log
+    return totalSales;
+}
+
+
+// Function to update sales display
+function updateSalesDisplay() {
+    const totalSales = calculateTotalSales(filteredData); // Make sure to pass the filtered data
+    document.getElementById('totalSalesDisplay').textContent = `₱${totalSales.toFixed(2)}`;
+}
+
+
+    
+
+    function handlePaymentStatusChange(event) {
+        const dropdown = event.target;
+        const orderID = dropdown.getAttribute('data-order-id');
+        const newPaymentStatus = dropdown.value; // Should be 'Paid' or 'Unpaid'
+    
+        // Debugging log to check the value being sent
+        console.log(`Updating Payment Status for OrderID: ${orderID}, New Status: ${newPaymentStatus}`);
+    
+        if (!confirm(`Change payment status of Order ID ${orderID} to "${newPaymentStatus}"?`)) {
+            return;
+        }
+    
+        const formData = new FormData();
+        formData.append('OrderID', orderID);
+        formData.append('PaymentStatus', newPaymentStatus);
+    
+        fetch('../php/updatePaymentStatus.php', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                if (responseData.success) {
+                    // Update the class dynamically
+                    dropdown.classList.remove('paid', 'unpaid'); // Remove existing classes
+                    dropdown.classList.add(newPaymentStatus.toLowerCase()); // Add the new class
+                    toastr.success(`Payment status for Order ID ${orderID} updated to "${newPaymentStatus}".`);
+                } else {
+                    toastr.error(`Failed to update payment status: ${responseData.message}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error updating payment status:', error);
+                toastr.error('An error occurred while updating the payment status.');
+            });
+    }
+    
+    
+    
+    
+    function attachPaymentStatusListeners() {
+        const tableBody = document.getElementById('laundryListTable');
+        tableBody.addEventListener('change', function (event) {
+            if (event.target && event.target.classList.contains('payment-status-dropdown')) {
+                handlePaymentStatusChange(event);
+            }
+        });
+    }
+    
+    // Attach payment status listeners once
+    attachPaymentStatusListeners();
 
     // Update pagination controls
     function updatePagination() {
@@ -939,83 +1023,42 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleStatusChange(event) {
         const dropdown = event.target;
         const orderID = dropdown.getAttribute('data-order-id');
-        const newStatus = dropdown.value;
-        const previousStatus = dropdown.getAttribute('data-original-status') || 'Pending';
-
-        // If status hasn't changed, do nothing
-        if (newStatus === previousStatus) {
+        const newStatus = dropdown.value; // Should be 'Pending' or 'Completed'
+    
+        // Debugging log to check the value being sent
+        console.log(`Updating Status for OrderID: ${orderID}, New Status: ${newStatus}`);
+    
+        if (!confirm(`Change status of Order ID ${orderID} to "${newStatus}"?`)) {
             return;
         }
-
-        // Optional: Add a confirmation dialog
-        const confirmChange = confirm(`Change status of Order ID ${orderID} to "${newStatus}"?`);
-        if (!confirmChange) {
-            // Revert to previous status
-            dropdown.value = previousStatus;
-            updateDropdownStyle(dropdown, previousStatus); // Revert the style as well
-            return;
-        }
-
-        // Show the loader (if implemented)
-        const loader = document.getElementById('loader');
-        if (loader) {
-            loader.style.display = 'block';
-        }
-
-        // Prepare data to send
+    
         const formData = new FormData();
         formData.append('OrderID', orderID);
         formData.append('Status', newStatus);
-
-        // Send AJAX request to updateStatus.php
-        fetch('../php/updateStatus.php', { // Adjust the path if necessary
+    
+        fetch('../php/updateStatus.php', {
             method: 'POST',
-            body: formData
+            body: formData,
         })
-        .then(response => response.json())
-        .then(responseData => {
-            // Hide the loader
-            if (loader) {
-                loader.style.display = 'none';
-            }
-
-            if (responseData.success) {
-                // Update the original status attribute
-                dropdown.setAttribute('data-original-status', newStatus);
-
-                // Update the global data array
-                const dataIndex = data.findIndex(item => String(item.OrderID) === String(orderID));
-                if (dataIndex !== -1) {
-                    data[dataIndex].STATUS = newStatus;
+            .then(response => response.json())
+            .then(responseData => {
+                if (responseData.success) {
+                    // Update the class dynamically
+                    dropdown.classList.remove('completed', 'pending'); // Remove old classes
+                    dropdown.classList.add(newStatus.toLowerCase()); // Add new class
+                    toastr.success(`Status for Order ID ${orderID} updated to "${newStatus}".`);
                 } else {
-                    console.warn(`OrderID ${orderID} not found in data array.`);
+                    toastr.error(`Failed to update status: ${responseData.message}`);
                 }
-
-                // Re-apply filters to update the table display
-                applyFilters();
-
-                // Provide user feedback using Toastr
-                toastr.success(`<i class="fas fa-check-circle"></i> Order ID ${orderID} status updated to "${newStatus}".`);
-            } else {
-                // Revert to previous status if update failed
-                dropdown.value = previousStatus;
-                updateDropdownStyle(dropdown, previousStatus);
-                toastr.error(`Failed to update status: ${responseData.message}`);
-            }
-        })
-        .catch(error => {
-            // Hide the loader
-            if (loader) {
-                loader.style.display = 'none';
-            }
-
-            console.error('Error updating status:', error);
-            toastr.error('An error occurred while updating the status.');
-            // Revert to previous status in case of error
-            dropdown.value = previousStatus;
-            updateDropdownStyle(dropdown, previousStatus);
-        });
+            })
+            .catch(error => {
+                console.error('Error updating status:', error);
+                toastr.error('An error occurred while updating the status.');
+            });
     }
+    
+    
+    
 
     /**
      * Updates the dropdown's appearance based on status.

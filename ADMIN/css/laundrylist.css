@@ -201,6 +201,16 @@ table tbody tr:hover {
   color: white;
 }
 
+.status.paid {
+  background-color: #1A1A40; /* Dark color for paid status */
+  color: white;
+}
+
+.status.unpaid {
+  background-color: #ff3007; /* Bright red for unpaid status */
+  color: white;
+}
+
 /* Pagination Styles */
 .pagination {
   display: flex;

@@ -35,6 +35,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // ==========================
+// Determine the DATE Field Type
+// ==========================
+
+// Initialize the variable
+$isDateTime = false;
+
+// Determine the DATE field type
+try {
+    $stmt = $conn->prepare("DESCRIBE laundry");
+    $stmt->execute();
+    $columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($columns as $column) {
+        if (strtolower($column['Field']) === 'date') {
+            // Check if the field type is DATETIME or TIMESTAMP
+            $isDateTime = in_array(strtolower($column['Type']), ['datetime', 'timestamp']);
+            echo "<!-- DATE field type: " . $column['Type'] . " -->\n"; // Remove after verification
+            break; // Exit the loop once the DATE field is found
+        }
+    }
+} catch (PDOException $e) {
+    die("Error describing the laundry table: " . $e->getMessage());
+}
+
+// Default to false if DATE field is not found
+if (!isset($isDateTime)) {
+    $isDateTime = false;
+    echo "<!-- DATE field not found. Defaulting to DATE type. -->\n"; // Debugging
+}
+
+// ==========================
+// Fetch Today's Sales (Always Based on Current Date)
+// ==========================
+
+// Today's Sales - always based on current date using MySQL's CURDATE()
+try {
+    if ($isDateTime) {
+        // For DATETIME or TIMESTAMP, use range to cover the entire day
+        $stmt_today_sales = $conn->prepare("
+        SELECT SUM(TOTAL) as total_sales 
+        FROM laundry 
+        WHERE `DATE` >= CURDATE() AND `DATE` < CURDATE() + INTERVAL 1 DAY AND `PAYMENT_STATUS` = 'Paid'
+        ");
+    } else {
+        // For DATE, direct comparison
+        $stmt_today_sales = $conn->prepare("
+        SELECT SUM(TOTAL) as total_sales 
+        FROM laundry 
+        WHERE `DATE` >= CURDATE() AND `DATE` < CURDATE() + INTERVAL 1 DAY AND `PAYMENT_STATUS` = 'Paid'
+        ");
+    }
+    $stmt_today_sales->execute();
+    $today_sales = $stmt_today_sales->fetch(PDO::FETCH_ASSOC)['total_sales'] ?: 0;
+    echo "<!-- Debugging: Today's Sales Query Executed Successfully. Total Sales: $today_sales -->\n";
+} catch (PDOException $e) {
+    die("Error fetching today's sales: " . $e->getMessage());
+}
+
+// ==========================
 // Fetch Sales Data
 // ==========================
 
@@ -47,27 +105,47 @@ if ($selectedMonth) {
     $params['selectedMonth'] = $selectedMonth;
 }
 
-$stmt_monthly_sales = $conn->prepare("SELECT SUM(TOTAL) as total_sales FROM laundry $monthlySalesCondition");
+$stmt_monthly_sales = $conn->prepare("SELECT SUM(TOTAL) as total_sales FROM laundry $monthlySalesCondition AND PAYMENT_STATUS = 'Paid'");
 $stmt_monthly_sales->execute(array_filter($params));
 $monthly_sales = $stmt_monthly_sales->fetch(PDO::FETCH_ASSOC)['total_sales'] ?: 0;
 
-// Today's Sales
-if ($selectedDay && $selectedMonth && $selectedYear) {
-    // Use the selected date for "Today's Sales"
-    $selectedDate = "$selectedYear-$selectedMonth-$selectedDay";
-} else {
-    // If no specific day is selected, default to today's date
-    $selectedDate = date('Y-m-d');
-}
 
-$stmt_today_sales = $conn->prepare("SELECT SUM(TOTAL) as total_sales FROM laundry WHERE DATE = :selectedDate");
-$stmt_today_sales->execute(['selectedDate' => $selectedDate]);
-$today_sales = $stmt_today_sales->fetch(PDO::FETCH_ASSOC)['total_sales'] ?: 0;
-
-// Yearly Sales
-$stmt_yearly_sales = $conn->prepare("SELECT SUM(TOTAL) as total_sales FROM laundry WHERE YEAR(DATE) = :selectedYear");
+$stmt_yearly_sales = $conn->prepare("
+    SELECT SUM(TOTAL) as total_sales 
+    FROM laundry 
+    WHERE YEAR(`DATE`) = :selectedYear AND `PAYMENT_STATUS` = 'Paid'
+");
 $stmt_yearly_sales->execute(['selectedYear' => $selectedYear]);
 $yearly_sales = $stmt_yearly_sales->fetch(PDO::FETCH_ASSOC)['total_sales'] ?: 0;
+
+// Inventory Expenses
+$inventoryExpensesCondition = "WHERE YEAR(ExpenseDate) = :selectedYear";
+$params_inventory_expenses = ['selectedYear' => $selectedYear];
+
+if ($selectedMonth) {
+    $inventoryExpensesCondition .= " AND MONTH(ExpenseDate) = :selectedMonth";
+    $params_inventory_expenses['selectedMonth'] = $selectedMonth;
+}
+if ($selectedDay) {
+    $inventoryExpensesCondition .= " AND DAY(ExpenseDate) = :selectedDay";
+    $params_inventory_expenses['selectedDay'] = $selectedDay;
+}
+
+$stmt_inventory_expenses = $conn->prepare("SELECT SUM(Amount) as total_expenses FROM inventory_expenses $inventoryExpensesCondition");
+$stmt_inventory_expenses->execute(array_filter($params_inventory_expenses));
+$total_inventory_expenses = $stmt_inventory_expenses->fetch(PDO::FETCH_ASSOC)['total_expenses'] ?: 0;
+
+// ==========================
+// Calculate Revenue 
+// ==========================
+
+if ($selectedDay) {
+    $total_revenue = $today_sales - $total_inventory_expenses;
+} elseif ($selectedMonth) {
+    $total_revenue = $monthly_sales - $total_inventory_expenses;
+} else {
+    $total_revenue = $yearly_sales - $total_inventory_expenses;
+}
 
 // Sales by Month
 $stmt_sales_by_month = $conn->prepare("
@@ -88,6 +166,9 @@ foreach ($sales_by_month as $sale) {
 
 // Convert the monthly sales data to a format usable by JavaScript
 echo "<script>const salesByMonth = " . json_encode(array_values($monthly_sales_data)) . ";</script>";
+
+// Convert the revenue to JavaScript (if needed for display in charts or other UI components)
+echo "<script>const totalRevenue = " . json_encode($total_revenue) . ";</script>";
 
 // ==========================
 // Fetch Detergents Data
@@ -473,46 +554,67 @@ echo "<script>
     <!-- Main Content -->
     <div class="main-content">
         <header class="main-header">
-            <!-- Date Selection Form -->
-            <form method="POST" action="" class="date-filter-form">
-                <label for="year">Year:</label>
-                <select name="year" id="year">
-                    <?php for ($i = 2022; $i <= 2025; $i++): ?>
-                    <option value="<?php echo $i; ?>" <?php echo $i == $selectedYear ? 'selected' : ''; ?>><?php echo $i; ?></option>
-                    <?php endfor; ?>
-                </select>
+            <!-- Filter Button and Panel -->
+            <div class="filter-container">
+                <button class="filter-button" id="filterToggle">
+                    <i class="fas fa-filter"></i> Filter
+                </button>
 
-                <label for="month">Month:</label>
-                <select name="month" id="month">
-                    <option value="">All</option>
-                    <?php for ($i = 1; $i <= 12; $i++): ?>
-                    <option value="<?php echo $i; ?>" <?php echo $i == $selectedMonth ? 'selected' : ''; ?>><?php echo date('F', mktime(0, 0, 0, $i, 1)); ?></option>
-                    <?php endfor; ?>
-                </select>
+                <!-- Filter Options Panel -->
+                <div class="filter-panel" id="filterPanel">
+                    <form method="POST" action="" class="filter-form">
+                        <div class="filter-group">
+                            <label for="year">Year:</label>
+                            <select name="year" id="year">
+                                <?php for ($i = 2022; $i <= 2025; $i++): ?>
+                                <option value="<?php echo $i; ?>" <?php echo $i == $selectedYear ? 'selected' : ''; ?>>
+                                    <?php echo $i; ?>
+                                </option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
 
-                <label for="day">Day:</label>
-                <select name="day" id="day">
-                    <option value="">All</option>
-                    <?php for ($i = 1; $i <= 31; $i++): ?>
-                    <option value="<?php echo $i; ?>" <?php echo $i == $selectedDay ? 'selected' : ''; ?>><?php echo $i; ?></option>
-                    <?php endfor; ?>
-                </select>
+                        <div class="filter-group">
+                            <label for="month">Month:</label>
+                            <select name="month" id="month">
+                                <option value="">All</option>
+                                <?php for ($i = 1; $i <= 12; $i++): ?>
+                                <option value="<?php echo $i; ?>" <?php echo $i == $selectedMonth ? 'selected' : ''; ?>>
+                                    <?php echo date('F', mktime(0, 0, 0, $i, 1)); ?>
+                                </option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
 
-                <button type="submit">Filter</button>
-                <button type="reset" onclick="window.location.href='';">Reset</button>
-            </form>
-            <div class="header-left">
-                <h1 class="logo"></h1>
+                        <div class="filter-group">
+                            <label for="day">Day:</label>
+                            <select name="day" id="day">
+                                <option value="">All</option>
+                                <?php for ($i = 1; $i <= 31; $i++): ?>
+                                <option value="<?php echo $i; ?>" <?php echo $i == $selectedDay ? 'selected' : ''; ?>>
+                                    <?php echo $i; ?>
+                                </option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+
+                        <div class="filter-buttons">
+                            <button type="submit" class="apply-btn">Apply</button>
+                            <button type="button" class="reset-btn" onclick="window.location.href='maindashboard.php';">Reset</button>
+                        </div>
+                    </form>
+                </div>
             </div>
+
 
             <div class="header-right">
                 <!-- Notifications Icon -->
-<div class="notifications">
-    <i class="fas fa-bell" id="notificationsIcon"></i>
-    <?php if ($total_notifications > 0): ?>
-        <span class="badge" id="notificationBadge"><?php echo $total_notifications; ?></span>
-    <?php endif; ?>
-</div>
+                <div class="notifications">
+                    <i class="fas fa-bell" id="notificationsIcon"></i>
+                    <?php if ($total_notifications > 0): ?>
+                        <span class="badge" id="notificationBadge"><?php echo $total_notifications; ?></span>
+                    <?php endif; ?>
+                </div>
                 <div class="user-profile">
                     <i class="fa fa-user-circle"></i>
                     <span>Admin</span>
@@ -530,7 +632,7 @@ echo "<script>
                         <p>₱ <?php echo number_format($today_sales, 2); ?></p>
                     </div>
                     <div class="card">
-                        <h3><i class="fas fa-calendar-alt"></i> Monthly Sales</h3>
+                        <h3><i class="fas fa-chart-bar"></i> Monthly Sales</h3>
                         <p>₱ <?php echo number_format($monthly_sales, 2); ?></p>
                     </div>
                     <div class="card">
@@ -553,6 +655,10 @@ echo "<script>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="card">
+                        <h3><i class="fas fa-balance-scale-right"></i> Total Revenue</h3>
+                        <p>₱ <?php echo number_format($total_revenue, 2); ?></p>
+                    </div>
                     <div class="card">
                         <h3><i class="fas fa-chart-line"></i> Average Sales</h3>
                         <p>₱ <?php echo number_format($average_sales_per_day, 2); ?></p>
@@ -730,7 +836,7 @@ echo "<script>
                         bodyFont: { size: 12 },
                         callbacks: {
                             label: function(context) {
-                                return '₱ ' + context.parsed.y.toLocaleString();
+                                return '₱ ' + context.parsed.y.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
                             }
                         }
                     }
@@ -1075,8 +1181,13 @@ echo "<script>
                             }
                         },
                         backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                        titleFont: { size: 14, weight: 'bold' },
-                        bodyFont: { size: 12 },
+                        titleFont: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            size: 12
+                        },
                         padding: 10,
                         cornerRadius: 5
                     },
@@ -1143,50 +1254,60 @@ echo "<script>
             }
         });
 
-    // Handle Notifications Modal with Animations
-    document.addEventListener('DOMContentLoaded', function() {
-        // Notification Modal Elements
-        const notificationsIcon = document.getElementById('notificationsIcon');
-        const notificationsModal = document.getElementById('notificationsModal');
-        const closeModalBtn = document.getElementById('closeModal');
+        // Handle Notifications Modal with Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Notification Modal Elements
+            const notificationsIcon = document.getElementById('notificationsIcon');
+            const notificationsModal = document.getElementById('notificationsModal');
+            const closeModalBtn = document.getElementById('closeModal');
 
-        // Function to Open Modal with Animation
-        function openModal() {
-            notificationsModal.style.display = 'flex'; // Use 'flex' to align items centrally
-            // Allow the browser to render the display change before adding the class
-            setTimeout(() => {
-                notificationsModal.classList.add('show');
-            }, 10); // 10ms delay to ensure the transition
-        }
+            // Function to Open Modal with Animation
+            function openModal() {
+                notificationsModal.style.display = 'flex'; // Use 'flex' to align items centrally
+                // Allow the browser to render the display change before adding the class
+                setTimeout(() => {
+                    notificationsModal.classList.add('show');
+                }, 10); // 10ms delay to ensure the transition
+            }
 
-        // Function to Close Modal with Animation
-        function closeModal() {
-            notificationsModal.classList.remove('show');
-            // Wait for the animation to finish before hiding
-            setTimeout(() => {
-                notificationsModal.style.display = 'none';
-            }, 500); // Duration should match the CSS transition (0.5s)
-        }
+            // Function to Close Modal with Animation
+            function closeModal() {
+                notificationsModal.classList.remove('show');
+                // Wait for the animation to finish before hiding
+                setTimeout(() => {
+                    notificationsModal.style.display = 'none';
+                }, 500); // Duration should match the CSS transition (0.5s)
+            }
 
-        // Event Listener to Open Modal
-        notificationsIcon.addEventListener('click', openModal);
+            // Event Listener to Open Modal
+            notificationsIcon.addEventListener('click', openModal);
 
-        // Event Listener to Close Modal via Close Button
-        closeModalBtn.addEventListener('click', closeModal);
+            // Event Listener to Close Modal via Close Button
+            closeModalBtn.addEventListener('click', closeModal);
 
-        // Event Listener to Close Modal by Clicking Outside the Modal Content
-        window.addEventListener('click', function(event) {
-            if (event.target === notificationsModal) {
-                closeModal();
+            // Event Listener to Close Modal by Clicking Outside the Modal Content
+            window.addEventListener('click', function(event) {
+                if (event.target === notificationsModal) {
+                    closeModal();
+                }
+            });
+
+            // Update Notification Badge if Necessary
+            if (totalNotifications > 0) {
+                document.getElementById('notificationBadge').textContent = totalNotifications;
             }
         });
 
-        // Update Notification Badge if Necessary
-        if (totalNotifications > 0) {
-            document.getElementById('notificationBadge').textContent = totalNotifications;
-        }
-    });
-</script>
+        // Handle Filter Panel Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterToggle = document.getElementById('filterToggle');
+            const filterPanel = document.getElementById('filterPanel');
+
+            filterToggle.addEventListener('click', function() {
+                filterPanel.classList.toggle('active');
+            });
+        });
+    </script>
 
 
     <!-- Optional: Add script for active sidebar link -->
