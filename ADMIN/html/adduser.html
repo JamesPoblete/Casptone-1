@@ -4,47 +4,247 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add User</title>
+    <!-- Link to the updated adduser.css -->
     <link rel="stylesheet" href="../css/adduser.css">
+    <!-- Include SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Include SweetAlert2 library -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Include Google Fonts for Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Waves Animation Container -->
+    <div class="wave-container">
+        <div class="wave"></div>
+        <div class="wave wave2"></div>
+    </div>
+
+    <!-- Main Container -->
     <div class="container">
-        <div class="logo-section">
-            <img src="../img/ane-laundry-logo.png" alt="AN'E Laundry" class="logo">
-        </div>
-        <div class="form-section">
-            <h2>Add User</h2>
+        <div class="login-logo-container">
+            <div class="logo-section">
+                <img src="../img/ane-laundry-logo.png" alt="AN'E Laundry" class="logo">
+                <div class="tagline">Your Trusted Laundry Partner</div>
+            </div>
+            <div class="form-section">
+                <h2>Add User</h2>
 
-            <!-- Form starts here -->
-            <form action="../php/adduser.php" method="POST">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <!-- Form starts here -->
+                <form id="addUserForm" class="user-form">
+                    <div class="form-columns">
+                        <!-- Left Column -->
+                        <div class="form-column left-column">
+                            <label for="name">Name<span class="required">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <label for="email">Email<span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-                <label for="usertype">User Type</label>
-                <input type="text" id="usertype" name="usertype" placeholder="User Type" required>
+                            <label for="usertype">User Type<span class="required">*</span></label>
+                            <select id="usertype" name="usertype" required>
+                                <option value="" disabled selected>Select user type</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Staff">Staff</option>
+                            </select>
 
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                            <label for="username">Username<span class="required">*</span></label>
+                            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                        </div>
 
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <!-- Right Column -->
+                        <div class="form-column right-column">
+                            <label for="password">Password<span class="required">*</span></label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                            
+                            <!-- Password Strength Meter -->
+                            <div class="password-meter" id="passwordMeter">
+                                <div class="password-meter-fill" id="passwordMeterFill"></div>
+                            </div>
 
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                            <!-- Password Requirements List -->
+                            <ul class="password-requirements" id="passwordRequirements">
+                                <li id="req-length" class="invalid">At least 8 characters long</li>
+                                <li id="req-uppercase" class="invalid">At least one uppercase letter (A-Z)</li>
+                                <li id="req-lowercase" class="invalid">At least one lowercase letter (a-z)</li>
+                                <li id="req-digit" class="invalid">At least one number (0-9)</li>
+                                <li id="req-special" class="invalid">At least one special character (e.g., !@#$%^&*)</li>
+                            </ul>
 
-                <div class="button-container">
-                    <button class="signup-btn" type="submit">Sign Up</button>
-                    <a href="../php/manageuser.php" class="btn back-btn">Back</a>
-                </div>
+                            <label for="confirm-password">Confirm Password<span class="required">*</span></label>
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                        </div>
+                    </div>
 
-                <a href="login.html" class="already-account">Already have an account</a>
-            </form>
-            <!-- Form ends here -->
+                    <div class="button-container">
+                        <button class="btn signup-btn" type="submit">Sign Up</button>
+                        <a href="../php/manageuser.php" class="btn back-btn">Back</a>
+                    </div>
+
+                    <a href="login.html" class="already-account">Already have an account</a>
+                </form>
+                <!-- Form ends here -->
+            </div>
         </div>
     </div>
+
+    <!-- Client-Side Validation and AJAX Submission Script -->
+    <script>
+    document.getElementById('addUserForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(this);
+
+        // Perform client-side validation as before
+        const name = formData.get('name').trim();
+        const email = formData.get('email').trim();
+        const userType = formData.get('usertype');
+        const username = formData.get('username').trim();
+        const password = formData.get('password');
+        const confirmPassword = formData.get('confirm-password');
+
+        const passwordRequirements = [
+            { regex: /.{8,}/, element: document.getElementById('req-length') },
+            { regex: /[A-Z]/, element: document.getElementById('req-uppercase') },
+            { regex: /[a-z]/, element: document.getElementById('req-lowercase') },
+            { regex: /\d/, element: document.getElementById('req-digit') },
+            { regex: /[\W_]/, element: document.getElementById('req-special') }
+        ];
+        
+        let errors = [];
+
+        // Validate that all required fields are filled
+        if (!name || !email || !userType || !username || !password || !confirmPassword) {
+            errors.push('All fields are required.');
+        }
+
+        // Validate email format
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            errors.push('Please enter a valid email address.');
+        }
+
+        // Validate password strength
+        passwordRequirements.forEach(requirement => {
+            if (!requirement.regex.test(password)) {
+                errors.push(`Password must contain ${requirement.element.textContent}.`);
+            }
+        });
+
+        // Validate password match
+        if (password !== confirmPassword) {
+            errors.push('Passwords do not match.');
+        }
+
+        if (errors.length > 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                html: 'Please address the following issues:<br>' + errors.join('<br>'),
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        // Show loading indicator
+        Swal.fire({
+            title: 'Submitting...',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        });
+
+        // Submit the form data via AJAX
+        fetch('../php/adduser.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            Swal.close(); // Close the loading indicator
+            if (data.status === 'success') {
+                Swal.fire({
+                    icon: 'success',
+                    title: data.title,
+                    text: data.text,
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = data.redirect;
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: data.title,
+                    text: data.text,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Optionally, you can reset the form or perform other actions
+                });
+            }
+        })
+        .catch(error => {
+            Swal.close(); // Close the loading indicator
+            Swal.fire({
+                icon: 'error',
+                title: 'An Error Occurred',
+                text: 'Unable to process your request. Please try again later.',
+                confirmButtonText: 'OK'
+            });
+        });
+    });
+
+    // Password Requirements Validation and Strength Meter
+    const passwordInput = document.getElementById('password');
+    const passwordRequirementsList = [
+        { regex: /.{8,}/, element: document.getElementById('req-length') },
+        { regex: /[A-Z]/, element: document.getElementById('req-uppercase') },
+        { regex: /[a-z]/, element: document.getElementById('req-lowercase') },
+        { regex: /\d/, element: document.getElementById('req-digit') },
+        { regex: /[\W_]/, element: document.getElementById('req-special') }
+    ];
+
+    passwordInput.addEventListener('input', function() {
+        const password = passwordInput.value;
+
+        passwordRequirementsList.forEach(requirement => {
+            if (requirement.regex.test(password)) {
+                requirement.element.classList.remove('invalid');
+                requirement.element.classList.add('valid');
+            } else {
+                requirement.element.classList.remove('valid');
+                requirement.element.classList.add('invalid');
+            }
+        });
+
+        // Update password strength meter based on fulfilled requirements
+        updatePasswordMeter();
+    });
+
+    function updatePasswordMeter() {
+        let strength = 0;
+
+        passwordRequirementsList.forEach(requirement => {
+            if (requirement.regex.test(passwordInput.value)) {
+                strength += 20; // Each fulfilled requirement adds 20% strength
+            }
+        });
+
+        const passwordMeterFill = document.getElementById('passwordMeterFill');
+        passwordMeterFill.style.width = strength + '%';
+
+        // Change color based on strength
+        if (strength <= 40) {
+            passwordMeterFill.style.backgroundColor = '#e74c3c'; // Red
+        } else if (strength <= 60) {
+            passwordMeterFill.style.backgroundColor = '#f1c40f'; // Yellow
+        } else if (strength <= 80) {
+            passwordMeterFill.style.backgroundColor = '#2ecc71'; // Light Green
+        } else {
+            passwordMeterFill.style.backgroundColor = '#27ae60'; // Green
+        }
+    }
+    </script>
 </body>
 </html>

@@ -13051,3 +13051,541 @@ sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown 
             Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
 2024-11-30     11        4      37253.882353   72634.666667
 2024-11-23 21:52:07,352 - INFO - 127.0.0.1 - - [23/Nov/2024 21:52:07] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 21:58:59,052 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 21:58:59,053 - INFO - Fetching sales data from the database.
+2024-11-23 21:58:59,323 - INFO - Fetched 5233 records from the database.
+2024-11-23 21:58:59,324 - INFO - Starting data preprocessing.
+2024-11-23 21:58:59,331 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 21:58:59,465 - INFO - Data preprocessing completed.
+2024-11-23 21:58:59,467 - INFO - Generating future exogenous variables.
+2024-11-23 21:58:59,482 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 21:58:59,541 - INFO - 127.0.0.1 - - [23/Nov/2024 21:58:59] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 21:59:11,440 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 21:59:11,441 - INFO - Fetching sales data from the database.
+2024-11-23 21:59:11,801 - INFO - Fetched 5233 records from the database.
+2024-11-23 21:59:11,802 - INFO - Starting data preprocessing.
+2024-11-23 21:59:11,808 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 21:59:11,879 - INFO - Data preprocessing completed.
+2024-11-23 21:59:11,913 - INFO - Generating future exogenous variables.
+2024-11-23 21:59:11,933 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-03-31      3        1             65246   56043.333333
+2024-11-23 21:59:11,987 - INFO - 127.0.0.1 - - [23/Nov/2024 21:59:11] "GET /predict?year=2024&month=3&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 21:59:16,375 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 21:59:16,376 - INFO - Fetching sales data from the database.
+2024-11-23 21:59:16,656 - INFO - Fetched 5233 records from the database.
+2024-11-23 21:59:16,657 - INFO - Starting data preprocessing.
+2024-11-23 21:59:16,663 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 21:59:16,780 - INFO - Data preprocessing completed.
+2024-11-23 21:59:16,782 - INFO - Generating future exogenous variables.
+2024-11-23 21:59:16,819 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-03-31      3        1             65246   56043.333333
+2024-11-23 21:59:16,872 - INFO - 127.0.0.1 - - [23/Nov/2024 21:59:16] "GET /predict?year=2024&month=3&day=15&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 21:59:30,026 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 21:59:30,027 - INFO - Fetching sales data from the database.
+2024-11-23 21:59:30,297 - INFO - Fetched 5233 records from the database.
+2024-11-23 21:59:30,298 - INFO - Starting data preprocessing.
+2024-11-23 21:59:30,304 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 21:59:30,406 - INFO - Data preprocessing completed.
+2024-11-23 21:59:30,408 - INFO - Generating future exogenous variables.
+2024-11-23 21:59:30,422 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-03-31      3        1             65246   56043.333333
+2024-11-23 21:59:30,472 - INFO - 127.0.0.1 - - [23/Nov/2024 21:59:30] "GET /predict?year=2024&month=3&day=14&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 21:59:37,083 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 21:59:37,084 - INFO - Fetching sales data from the database.
+2024-11-23 21:59:37,305 - INFO - Fetched 5233 records from the database.
+2024-11-23 21:59:37,305 - INFO - Starting data preprocessing.
+2024-11-23 21:59:37,314 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 21:59:37,389 - INFO - Data preprocessing completed.
+2024-11-23 21:59:37,390 - INFO - Generating future exogenous variables.
+2024-11-23 21:59:37,402 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-03-31      3        1             65246   56043.333333
+2024-11-23 21:59:37,446 - INFO - 127.0.0.1 - - [23/Nov/2024 21:59:37] "GET /predict?year=2024&month=3&day=17&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 21:59:43,201 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 21:59:43,202 - INFO - Fetching sales data from the database.
+2024-11-23 21:59:43,453 - INFO - Fetched 5233 records from the database.
+2024-11-23 21:59:43,454 - INFO - Starting data preprocessing.
+2024-11-23 21:59:43,461 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 21:59:43,566 - INFO - Data preprocessing completed.
+2024-11-23 21:59:43,568 - INFO - Generating future exogenous variables.
+2024-11-23 21:59:43,582 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-03-31      3        1             65246   56043.333333
+2024-11-23 21:59:43,667 - INFO - 127.0.0.1 - - [23/Nov/2024 21:59:43] "GET /predict?year=2024&month=3&day=30&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 21:59:48,708 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 21:59:48,709 - INFO - Fetching sales data from the database.
+2024-11-23 21:59:48,928 - INFO - Fetched 5233 records from the database.
+2024-11-23 21:59:48,929 - INFO - Starting data preprocessing.
+2024-11-23 21:59:48,935 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 21:59:49,034 - INFO - Data preprocessing completed.
+2024-11-23 21:59:49,036 - INFO - Generating future exogenous variables.
+2024-11-23 21:59:49,052 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 21:59:49,099 - INFO - 127.0.0.1 - - [23/Nov/2024 21:59:49] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:00:01,168 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:00:01,168 - INFO - Fetching sales data from the database.
+2024-11-23 22:00:01,407 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:00:01,408 - INFO - Starting data preprocessing.
+2024-11-23 22:00:01,414 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:00:01,486 - INFO - Data preprocessing completed.
+2024-11-23 22:00:01,489 - INFO - Generating future exogenous variables.
+2024-11-23 22:00:01,501 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-03-31      3        1             65246   56043.333333
+2024-11-23 22:00:01,584 - INFO - 127.0.0.1 - - [23/Nov/2024 22:00:01] "GET /predict?year=2024&month=3&day=15&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:00:14,328 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:00:14,328 - INFO - Fetching sales data from the database.
+2024-11-23 22:00:14,566 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:00:14,567 - INFO - Starting data preprocessing.
+2024-11-23 22:00:14,573 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:00:14,652 - INFO - Data preprocessing completed.
+2024-11-23 22:00:14,654 - INFO - Generating future exogenous variables.
+2024-11-23 22:00:14,694 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-01-31      1        1             19633   23567.666667
+2024-11-23 22:00:14,746 - INFO - 127.0.0.1 - - [23/Nov/2024 22:00:14] "GET /predict?year=2024&month=1&day=5&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:00:15,204 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:00:15,204 - INFO - Fetching sales data from the database.
+2024-11-23 22:00:15,458 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:00:15,459 - INFO - Starting data preprocessing.
+2024-11-23 22:00:15,466 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:00:15,547 - INFO - Data preprocessing completed.
+2024-11-23 22:00:15,550 - INFO - Generating future exogenous variables.
+2024-11-23 22:00:15,563 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-01-31      1        1             19633   23567.666667
+2024-11-23 22:00:15,653 - INFO - 127.0.0.1 - - [23/Nov/2024 22:00:15] "GET /predict?year=2024&month=1&day=5&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:00:50,894 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:00:50,895 - INFO - Fetching sales data from the database.
+2024-11-23 22:00:51,128 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:00:51,129 - INFO - Starting data preprocessing.
+2024-11-23 22:00:51,135 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:00:51,200 - INFO - Data preprocessing completed.
+2024-11-23 22:00:51,203 - INFO - Generating future exogenous variables.
+2024-11-23 22:00:51,217 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-03-31      3        1             65246   56043.333333
+2024-11-23 22:00:51,301 - INFO - 127.0.0.1 - - [23/Nov/2024 22:00:51] "GET /predict?year=2024&month=3&day=1&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:01:20,946 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:01:20,947 - INFO - Fetching sales data from the database.
+2024-11-23 22:01:21,214 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:01:21,214 - INFO - Starting data preprocessing.
+2024-11-23 22:01:21,221 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:01:21,321 - INFO - Data preprocessing completed.
+2024-11-23 22:01:21,323 - INFO - Generating future exogenous variables.
+2024-11-23 22:01:21,369 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-02-29      2        1      37253.882353   42931.333333
+2024-11-23 22:01:21,423 - INFO - 127.0.0.1 - - [23/Nov/2024 22:01:21] "GET /predict?year=2024&month=2&day=1&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:04:02,088 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:04:02,088 - INFO - Fetching sales data from the database.
+2024-11-23 22:04:02,188 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:04:02,188 - INFO - Starting data preprocessing.
+2024-11-23 22:04:02,191 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:04:02,255 - INFO - Data preprocessing completed.
+2024-11-23 22:04:02,257 - INFO - Generating future exogenous variables.
+2024-11-23 22:04:02,266 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-02-29      2        1      37253.882353   42931.333333
+2024-11-23 22:04:02,290 - INFO - 127.0.0.1 - - [23/Nov/2024 22:04:02] "GET /predict?year=2024&month=2&day=7&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:05:43,737 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:05:43,738 - INFO - Fetching sales data from the database.
+2024-11-23 22:05:43,837 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:05:43,837 - INFO - Starting data preprocessing.
+2024-11-23 22:05:43,840 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:05:43,870 - INFO - Data preprocessing completed.
+2024-11-23 22:05:43,871 - INFO - Generating future exogenous variables.
+2024-11-23 22:05:43,877 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-02-29      2        1      37253.882353   42931.333333
+2024-11-23 22:05:43,918 - INFO - 127.0.0.1 - - [23/Nov/2024 22:05:43] "GET /predict?year=2024&month=2&day=7&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:05:49,473 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:05:49,474 - INFO - Fetching sales data from the database.
+2024-11-23 22:05:49,695 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:05:49,695 - INFO - Starting data preprocessing.
+2024-11-23 22:05:49,703 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:05:49,778 - INFO - Data preprocessing completed.
+2024-11-23 22:05:49,780 - INFO - Generating future exogenous variables.
+2024-11-23 22:05:49,797 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-02-29      2        1      37253.882353   42931.333333
+2024-11-23 22:05:49,845 - INFO - 127.0.0.1 - - [23/Nov/2024 22:05:49] "GET /predict?year=2024&month=2&day=5&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:05:52,728 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:05:52,729 - INFO - Fetching sales data from the database.
+2024-11-23 22:05:52,997 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:05:52,998 - INFO - Starting data preprocessing.
+2024-11-23 22:05:53,004 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:05:53,071 - INFO - Data preprocessing completed.
+2024-11-23 22:05:53,073 - INFO - Generating future exogenous variables.
+2024-11-23 22:05:53,087 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:05:53,138 - INFO - 127.0.0.1 - - [23/Nov/2024 22:05:53] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:05:59,790 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:05:59,791 - INFO - Fetching sales data from the database.
+2024-11-23 22:06:00,012 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:06:00,013 - INFO - Starting data preprocessing.
+2024-11-23 22:06:00,019 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:06:00,087 - INFO - Data preprocessing completed.
+2024-11-23 22:06:00,089 - INFO - Generating future exogenous variables.
+2024-11-23 22:06:00,105 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:06:00,158 - INFO - 127.0.0.1 - - [23/Nov/2024 22:06:00] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:07:06,520 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:07:06,520 - INFO - Fetching sales data from the database.
+2024-11-23 22:07:06,605 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:07:06,606 - INFO - Starting data preprocessing.
+2024-11-23 22:07:06,608 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:07:06,635 - INFO - Data preprocessing completed.
+2024-11-23 22:07:06,636 - INFO - Generating future exogenous variables.
+2024-11-23 22:07:06,642 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:07:06,667 - INFO - 127.0.0.1 - - [23/Nov/2024 22:07:06] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:08:12,766 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:08:12,767 - INFO - Fetching sales data from the database.
+2024-11-23 22:08:12,842 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:08:12,842 - INFO - Starting data preprocessing.
+2024-11-23 22:08:12,846 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:08:12,873 - INFO - Data preprocessing completed.
+2024-11-23 22:08:12,875 - INFO - Generating future exogenous variables.
+2024-11-23 22:08:12,881 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:08:12,939 - INFO - 127.0.0.1 - - [23/Nov/2024 22:08:12] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:08:16,115 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:08:16,116 - INFO - Fetching sales data from the database.
+2024-11-23 22:08:16,342 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:08:16,342 - INFO - Starting data preprocessing.
+2024-11-23 22:08:16,349 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:08:16,450 - INFO - Data preprocessing completed.
+2024-11-23 22:08:16,453 - INFO - Generating future exogenous variables.
+2024-11-23 22:08:16,468 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:08:16,516 - INFO - 127.0.0.1 - - [23/Nov/2024 22:08:16] "GET /predict?year=2022&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:08:37,041 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:08:37,042 - INFO - Fetching sales data from the database.
+2024-11-23 22:08:37,118 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:08:37,118 - INFO - Starting data preprocessing.
+2024-11-23 22:08:37,121 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:08:37,147 - INFO - Data preprocessing completed.
+2024-11-23 22:08:37,148 - INFO - Generating future exogenous variables.
+2024-11-23 22:08:37,153 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:08:37,205 - INFO - 127.0.0.1 - - [23/Nov/2024 22:08:37] "GET /predict?year=2022&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:08:55,868 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:08:55,868 - INFO - Fetching sales data from the database.
+2024-11-23 22:08:55,947 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:08:55,947 - INFO - Starting data preprocessing.
+2024-11-23 22:08:55,950 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:08:55,976 - INFO - Data preprocessing completed.
+2024-11-23 22:08:55,977 - INFO - Generating future exogenous variables.
+2024-11-23 22:08:55,984 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:08:56,009 - INFO - 127.0.0.1 - - [23/Nov/2024 22:08:56] "GET /predict?year=2022&month=&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:09:01,910 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:09:01,911 - INFO - Fetching sales data from the database.
+2024-11-23 22:09:02,141 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:09:02,142 - INFO - Starting data preprocessing.
+2024-11-23 22:09:02,149 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:09:02,221 - INFO - Data preprocessing completed.
+2024-11-23 22:09:02,224 - INFO - Generating future exogenous variables.
+2024-11-23 22:09:02,272 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2022-11-30     11        4      37253.882353        22095.0
+2024-11-23 22:09:02,327 - INFO - 127.0.0.1 - - [23/Nov/2024 22:09:02] "GET /predict?year=2022&month=11&day=6&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:09:15,724 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:09:15,724 - INFO - Fetching sales data from the database.
+2024-11-23 22:09:15,802 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:09:15,803 - INFO - Starting data preprocessing.
+2024-11-23 22:09:15,805 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:09:15,830 - INFO - Data preprocessing completed.
+2024-11-23 22:09:15,831 - INFO - Generating future exogenous variables.
+2024-11-23 22:09:15,837 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2022-11-30     11        4      37253.882353        22095.0
+2024-11-23 22:09:15,894 - INFO - 127.0.0.1 - - [23/Nov/2024 22:09:15] "GET /predict?year=2022&month=11&day=6&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:09:19,274 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:09:19,275 - INFO - Fetching sales data from the database.
+2024-11-23 22:09:19,519 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:09:19,520 - INFO - Starting data preprocessing.
+2024-11-23 22:09:19,528 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:09:19,601 - INFO - Data preprocessing completed.
+2024-11-23 22:09:19,603 - INFO - Generating future exogenous variables.
+2024-11-23 22:09:19,620 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:09:19,672 - INFO - 127.0.0.1 - - [23/Nov/2024 22:09:19] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:09:27,450 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:09:27,451 - INFO - Fetching sales data from the database.
+2024-11-23 22:09:27,724 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:09:27,725 - INFO - Starting data preprocessing.
+2024-11-23 22:09:27,732 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:09:27,803 - INFO - Data preprocessing completed.
+2024-11-23 22:09:27,805 - INFO - Generating future exogenous variables.
+2024-11-23 22:09:27,819 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:09:27,872 - INFO - 127.0.0.1 - - [23/Nov/2024 22:09:27] "GET /predict?year=2024&month=11&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:09:32,238 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:09:32,239 - INFO - Fetching sales data from the database.
+2024-11-23 22:09:32,466 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:09:32,467 - INFO - Starting data preprocessing.
+2024-11-23 22:09:32,474 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:09:32,539 - INFO - Data preprocessing completed.
+2024-11-23 22:09:32,541 - INFO - Generating future exogenous variables.
+2024-11-23 22:09:32,555 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:09:32,608 - INFO - 127.0.0.1 - - [23/Nov/2024 22:09:32] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:09:46,009 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:09:46,009 - INFO - Fetching sales data from the database.
+2024-11-23 22:09:46,256 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:09:46,257 - INFO - Starting data preprocessing.
+2024-11-23 22:09:46,263 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:09:46,328 - INFO - Data preprocessing completed.
+2024-11-23 22:09:46,330 - INFO - Generating future exogenous variables.
+2024-11-23 22:09:46,344 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:09:46,395 - INFO - 127.0.0.1 - - [23/Nov/2024 22:09:46] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:09:49,125 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:09:49,125 - INFO - Fetching sales data from the database.
+2024-11-23 22:09:49,203 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:09:49,203 - INFO - Starting data preprocessing.
+2024-11-23 22:09:49,206 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:09:49,232 - INFO - Data preprocessing completed.
+2024-11-23 22:09:49,233 - INFO - Generating future exogenous variables.
+2024-11-23 22:09:49,239 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:09:49,263 - INFO - 127.0.0.1 - - [23/Nov/2024 22:09:49] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:09:51,613 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:09:51,614 - INFO - Fetching sales data from the database.
+2024-11-23 22:09:51,691 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:09:51,692 - INFO - Starting data preprocessing.
+2024-11-23 22:09:51,696 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:09:51,756 - INFO - Data preprocessing completed.
+2024-11-23 22:09:51,757 - INFO - Generating future exogenous variables.
+2024-11-23 22:09:51,765 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:09:51,788 - INFO - 127.0.0.1 - - [23/Nov/2024 22:09:51] "GET /predict?year=2024&month=11&day=23&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:10:01,679 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:10:01,680 - INFO - Fetching sales data from the database.
+2024-11-23 22:10:01,782 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:10:01,783 - INFO - Starting data preprocessing.
+2024-11-23 22:10:01,785 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:10:01,809 - INFO - Data preprocessing completed.
+2024-11-23 22:10:01,810 - INFO - Generating future exogenous variables.
+2024-11-23 22:10:01,816 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:10:01,836 - INFO - 127.0.0.1 - - [23/Nov/2024 22:10:01] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:10:06,797 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:10:06,797 - INFO - Fetching sales data from the database.
+2024-11-23 22:10:06,976 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:10:06,977 - INFO - Starting data preprocessing.
+2024-11-23 22:10:06,979 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:10:07,070 - INFO - Data preprocessing completed.
+2024-11-23 22:10:07,072 - INFO - Generating future exogenous variables.
+2024-11-23 22:10:07,077 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-03-31      3        1             65246   56043.333333
+2024-11-23 22:10:07,100 - INFO - 127.0.0.1 - - [23/Nov/2024 22:10:07] "GET /predict?year=2024&month=3&day=3&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:10:16,702 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:10:16,703 - INFO - Fetching sales data from the database.
+2024-11-23 22:10:17,098 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:10:17,098 - INFO - Starting data preprocessing.
+2024-11-23 22:10:17,101 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:10:17,131 - INFO - Data preprocessing completed.
+2024-11-23 22:10:17,133 - INFO - Generating future exogenous variables.
+2024-11-23 22:10:17,138 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:10:17,157 - INFO - 127.0.0.1 - - [23/Nov/2024 22:10:17] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:10:21,860 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:10:21,860 - INFO - Fetching sales data from the database.
+2024-11-23 22:10:21,952 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:10:21,952 - INFO - Starting data preprocessing.
+2024-11-23 22:10:21,955 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:10:21,979 - INFO - Data preprocessing completed.
+2024-11-23 22:10:21,980 - INFO - Generating future exogenous variables.
+2024-11-23 22:10:21,986 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-06-30      6        2      37253.882353   63411.666667
+2024-11-23 22:10:22,009 - INFO - 127.0.0.1 - - [23/Nov/2024 22:10:22] "GET /predict?year=2024&month=6&day=&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:10:37,272 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:10:37,272 - INFO - Fetching sales data from the database.
+2024-11-23 22:10:37,353 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:10:37,354 - INFO - Starting data preprocessing.
+2024-11-23 22:10:37,357 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:10:37,382 - INFO - Data preprocessing completed.
+2024-11-23 22:10:37,383 - INFO - Generating future exogenous variables.
+2024-11-23 22:10:37,390 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-06-30      6        2      37253.882353   63411.666667
+2024-11-23 22:10:37,413 - INFO - 127.0.0.1 - - [23/Nov/2024 22:10:37] "GET /predict?year=2024&month=6&day=9&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:15:41,331 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:15:41,332 - INFO - Fetching sales data from the database.
+2024-11-23 22:15:41,410 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:15:41,410 - INFO - Starting data preprocessing.
+2024-11-23 22:15:41,413 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:15:41,440 - INFO - Data preprocessing completed.
+2024-11-23 22:15:41,441 - INFO - Generating future exogenous variables.
+2024-11-23 22:15:41,447 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-06-30      6        2      37253.882353   63411.666667
+2024-11-23 22:15:41,469 - INFO - 127.0.0.1 - - [23/Nov/2024 22:15:41] "GET /predict?year=2024&month=6&day=9&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:15:47,855 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:15:47,855 - INFO - Fetching sales data from the database.
+2024-11-23 22:15:48,112 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:15:48,113 - INFO - Starting data preprocessing.
+2024-11-23 22:15:48,119 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:15:48,197 - INFO - Data preprocessing completed.
+2024-11-23 22:15:48,199 - INFO - Generating future exogenous variables.
+2024-11-23 22:15:48,214 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-06-30      6        2      37253.882353   63411.666667
+2024-11-23 22:15:48,269 - INFO - 127.0.0.1 - - [23/Nov/2024 22:15:48] "GET /predict?year=2024&month=6&day=7&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:15:55,897 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:15:55,898 - INFO - Fetching sales data from the database.
+2024-11-23 22:15:56,170 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:15:56,171 - INFO - Starting data preprocessing.
+2024-11-23 22:15:56,178 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:15:56,255 - INFO - Data preprocessing completed.
+2024-11-23 22:15:56,257 - INFO - Generating future exogenous variables.
+2024-11-23 22:15:56,271 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-06-30      6        2      37253.882353   63411.666667
+2024-11-23 22:15:56,319 - INFO - 127.0.0.1 - - [23/Nov/2024 22:15:56] "GET /predict?year=2024&month=6&day=3&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-23 22:16:00,198 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-23 22:16:00,198 - INFO - Fetching sales data from the database.
+2024-11-23 22:16:00,487 - INFO - Fetched 5233 records from the database.
+2024-11-23 22:16:00,488 - INFO - Starting data preprocessing.
+2024-11-23 22:16:00,494 - INFO - Successfully converted DATE to datetime format.
+2024-11-23 22:16:00,564 - INFO - Data preprocessing completed.
+2024-11-23 22:16:00,566 - INFO - Generating future exogenous variables.
+2024-11-23 22:16:00,580 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-23 22:16:00,629 - INFO - 127.0.0.1 - - [23/Nov/2024 22:16:00] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:33:19,763 - INFO - Running Flask app directly without the Windows Service wrapper.
+2024-11-24 14:33:19,790 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.71:5000
+2024-11-24 14:33:19,790 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-24 14:33:19,792 - INFO -  * Restarting with stat
+2024-11-24 14:33:21,301 - INFO - Running Flask app directly without the Windows Service wrapper.
+2024-11-24 14:33:21,310 - WARNING -  * Debugger is active!
+2024-11-24 14:33:21,313 - INFO -  * Debugger PIN: 102-812-050
+2024-11-24 14:33:22,661 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:33:22,661 - INFO - Fetching sales data from the database.
+2024-11-24 14:33:22,752 - INFO - Fetched 5233 records from the database.
+2024-11-24 14:33:22,753 - INFO - Starting data preprocessing.
+2024-11-24 14:33:22,756 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:33:22,777 - INFO - Data preprocessing completed.
+2024-11-24 14:33:22,779 - INFO - Generating future exogenous variables.
+2024-11-24 14:33:22,787 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-24 14:33:22,816 - INFO - 127.0.0.1 - - [24/Nov/2024 14:33:22] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:34:15,572 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:34:15,572 - INFO - Fetching sales data from the database.
+2024-11-24 14:34:15,748 - INFO - Fetched 5234 records from the database.
+2024-11-24 14:34:15,749 - INFO - Starting data preprocessing.
+2024-11-24 14:34:15,752 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:34:15,806 - INFO - Data preprocessing completed.
+2024-11-24 14:34:15,807 - INFO - Generating future exogenous variables.
+2024-11-24 14:34:15,817 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-12-30     12        4               175   54494.333333
+2024-11-24 14:34:15,841 - INFO - 127.0.0.1 - - [24/Nov/2024 14:34:15] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:37:04,463 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:37:04,464 - INFO - Fetching sales data from the database.
+2024-11-24 14:37:04,573 - INFO - Fetched 5235 records from the database.
+2024-11-24 14:37:04,573 - INFO - Starting data preprocessing.
+2024-11-24 14:37:04,578 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:37:04,612 - INFO - Data preprocessing completed.
+2024-11-24 14:37:04,614 - INFO - Generating future exogenous variables.
+2024-11-24 14:37:04,619 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2025-01-31      1        1               155   21356.666667
+2024-11-24 14:37:04,641 - INFO - 127.0.0.1 - - [24/Nov/2024 14:37:04] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:37:25,793 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:37:25,794 - INFO - Fetching sales data from the database.
+2024-11-24 14:37:25,881 - INFO - Fetched 5233 records from the database.
+2024-11-24 14:37:25,881 - INFO - Starting data preprocessing.
+2024-11-24 14:37:25,884 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:37:25,911 - INFO - Data preprocessing completed.
+2024-11-24 14:37:25,912 - INFO - Generating future exogenous variables.
+2024-11-24 14:37:25,919 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-24 14:37:25,937 - INFO - 127.0.0.1 - - [24/Nov/2024 14:37:25] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:37:35,173 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:37:35,173 - INFO - Fetching sales data from the database.
+2024-11-24 14:37:35,299 - INFO - Fetched 5233 records from the database.
+2024-11-24 14:37:35,299 - INFO - Starting data preprocessing.
+2024-11-24 14:37:35,301 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:37:35,341 - INFO - Data preprocessing completed.
+2024-11-24 14:37:35,342 - INFO - Generating future exogenous variables.
+2024-11-24 14:37:35,350 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-24 14:37:35,369 - INFO - 127.0.0.1 - - [24/Nov/2024 14:37:35] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:38:08,530 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:38:08,531 - INFO - Fetching sales data from the database.
+2024-11-24 14:38:08,673 - INFO - Fetched 5233 records from the database.
+2024-11-24 14:38:08,673 - INFO - Starting data preprocessing.
+2024-11-24 14:38:08,676 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:38:08,705 - INFO - Data preprocessing completed.
+2024-11-24 14:38:08,706 - INFO - Generating future exogenous variables.
+2024-11-24 14:38:08,715 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-24 14:38:08,738 - INFO - 127.0.0.1 - - [24/Nov/2024 14:38:08] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:38:11,354 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:38:11,354 - INFO - Fetching sales data from the database.
+2024-11-24 14:38:11,454 - INFO - Fetched 5233 records from the database.
+2024-11-24 14:38:11,455 - INFO - Starting data preprocessing.
+2024-11-24 14:38:11,457 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:38:11,489 - INFO - Data preprocessing completed.
+2024-11-24 14:38:11,490 - INFO - Generating future exogenous variables.
+2024-11-24 14:38:11,496 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-24 14:38:11,515 - INFO - 127.0.0.1 - - [24/Nov/2024 14:38:11] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:38:19,048 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:38:19,048 - INFO - Fetching sales data from the database.
+2024-11-24 14:38:19,191 - INFO - Fetched 5233 records from the database.
+2024-11-24 14:38:19,192 - INFO - Starting data preprocessing.
+2024-11-24 14:38:19,196 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:38:19,220 - INFO - Data preprocessing completed.
+2024-11-24 14:38:19,221 - INFO - Generating future exogenous variables.
+2024-11-24 14:38:19,228 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-24 14:38:19,244 - INFO - 127.0.0.1 - - [24/Nov/2024 14:38:19] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -
+2024-11-24 14:38:20,623 - INFO - Loaded pre-trained SARIMAX model.
+2024-11-24 14:38:20,624 - INFO - Fetching sales data from the database.
+2024-11-24 14:38:20,729 - INFO - Fetched 5233 records from the database.
+2024-11-24 14:38:20,729 - INFO - Starting data preprocessing.
+2024-11-24 14:38:20,733 - INFO - Successfully converted DATE to datetime format.
+2024-11-24 14:38:20,766 - INFO - Data preprocessing completed.
+2024-11-24 14:38:20,767 - INFO - Generating future exogenous variables.
+2024-11-24 14:38:20,776 - INFO - Future exogenous variables:
+            Month  Quarter  Prev_Month_Sales  Rolling_Avg_3
+2024-11-30     11        4      37253.882353   72634.666667
+2024-11-24 14:38:20,793 - INFO - 127.0.0.1 - - [24/Nov/2024 14:38:20] "GET /predict?year=2024&api_key=testkey123 HTTP/1.1" 200 -

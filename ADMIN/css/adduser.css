@@ -1,158 +1,401 @@
+/* adduser.css */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
 }
 
-body {
-    background-color: #f0f4f8; /* Light background color */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Waves CSS */
+.wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%; /* Increased height for better coverage */
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(to top, #0070f8, #ffffff); /* Base gradient */
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 300%; /* Increased width for smoother animation */
+    height: 100%;
+    background: url('../img/wave.svg') repeat-x; /* Ensure correct path */
+    background-size: contain; /* Better scaling */
+    animation: waveAnimation 30s linear infinite;
+    opacity: 0.7;
+}
+
+.wave2 {
+    animation: waveAnimation 35s linear infinite reverse; /* Adjusted timing */
+    opacity: 0.5;
+}
+
+@keyframes waveAnimation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Main Container */
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    overflow-y: auto; /* Allow scrolling on smaller screens */
 }
 
-.container {
+.login-logo-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Increased from 1000px to 1200px */
+    padding: 40px; /* Increased padding for better spacing */
+    border-radius: 12px; /* Slightly larger border radius */
+    background: rgba(255, 255, 255, 0.15); /* Increased opacity */
+    backdrop-filter: blur(25px); /* Enhanced blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Thicker border */
     display: flex;
-    background-color: white; /* Set container background to white */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    max-width: none; /* Disable max-width to take the entire screen width */
-    max-height: none; /* Disable max-height to take the entire screen height */
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+    margin: 20px auto; /* Center the container */
 }
 
+/* Logo Section */
 .logo-section {
-    border-radius: 0 10px 10px 0;
-    padding: 30px;
+    width: 40%; /* Reduced from 50% to 40% */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: auto; /* Optional: set specific height if needed */
-    margin-left: 10%;
+    padding: 20px;
 }
 
 .logo {
-    width: 100%; /* Make the logo fill the section width */
-    height: 100%; /* Make the logo fill the section height */
-    max-height: 100%; /* Set max-height to prevent excessive sizing */
-    object-fit: contain; /* Maintain aspect ratio */
-    margin-bottom: 20px;
-}
-
-.logo-section h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #002366;
+    width: 100%;
+    height: auto;
+    max-width: 500px; /* Increased from 400px */
+    object-fit: contain;
+    margin-bottom: 30px; /* Increased margin */
 }
 
 .tagline {
-    font-size: 12px; /* Smaller tagline size */
-    color: #666; /* Grey text for tagline */
+    margin-top: 20px;
+    padding: 12px 24px; /* Increased padding */
+    background-color: #f9f9f9;
+    border: 2px solid #002366;
+    border-radius: 12px; /* Increased border radius */
+    font-weight: 600; /* Increased font weight */
+    color: #002366;
+    display: inline-block;
     text-align: center;
+    font-size: 18px; /* Increased font size */
 }
 
+/* Form Section */
 .form-section {
-    flex: 1; /* Fill the remaining space */
-    padding: 20px; /* Increased padding for form section */
-    display: flex;
-    flex-direction: column; /* Stack form elements */
+    width: 60%; /* Increased from 50% to 60% */
+    padding: 40px; /* Increased padding */
+    background: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
+    border-radius: 12px; /* Larger border radius */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
 }
 
 .form-section h2 {
-    font-size: 24px; /* Form title size */
-    color: #002366; /* Dark blue */
-    margin-bottom: 20px; /* Space below title */
-    text-align: left;
-    margin-top: 50px;
-}
-
-.form-section label {
-    font-size: 15px; /* Label font size */
-    margin-bottom: 5px; /* Space below labels */
-    color: #333; /* Dark text */
-    text-align: left; /* Ensure text is left-aligned */
-    margin-left: 0; /* Align labels to the left */
-    display: block; /* Make the label a block element to take full width */
-}
-
-.form-section input {
-    width: 50%; /* Full width input */
-    padding: 12px; /* Padding for inputs */
-    margin-bottom: 20px; /* Space between inputs */
-    border: 1px solid #ccc; /* Light border */
-    border-radius: 100px; /* More rounded edges */
-    font-size: 14px; /* Input text size */
-    transition: border-color 0.3s; /* Smooth transition */
-}
-
-.form-section input:focus {
-    border-color: #002366; /* Change border color on focus */
-    outline: none; /* Remove default outline */
-}
-
-.form-section .signup-btn, .back-btn {
-    padding: 10px; /* Button padding */
-    border: none; /* Remove default border */
-    border-radius: 100px; /* More rounded button */
-    font-size: 16px; /* Button text size */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s; /* Smooth transition */
-    width: 100%; /* Button width adjusted to be more centered */
-    max-width: 24%; /* Set a max width for buttons */
-}
-
-.form-section input::placeholder {
-    color: #aaa; /* Placeholder text color */
-    opacity: 1; /* Ensure opacity */
-}
-
-.already-account {
-    margin-top: 15px;
+    font-size: 32px; /* Increased font size */
     color: #002366;
-    cursor: pointer;
-    text-align: center; /* Center the text for already-account message */
-    margin-right: 330px;
+    margin-bottom: 30px; /* Increased margin */
+    text-align: center;
 }
 
+/* Form Columns */
+.form-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; /* Increased gap */
+}
+
+.form-column {
+    width: 48%; /* Adjusted width */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels and Inputs in Form */
+.user-form label {
+    font-size: 16px; /* Increased font size */
+    margin-bottom: 8px; /* Increased margin */
+    display: block;
+    color: #333;
+}
+
+.user-form input,
+.user-form select {
+    width: 100%;
+    padding: 14px; /* Increased padding */
+    margin-bottom: 20px; /* Increased margin */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px; /* Increased font size */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.user-form input:focus,
+.user-form select:focus {
+    border-color: #002366;
+    box-shadow: 0 0 5px rgba(0, 32, 102, 0.5);
+    outline: none;
+}
+
+.user-form input::placeholder,
+.user-form select::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+
+/* Required Field Indicator */
+.required {
+    color: red;
+}
+
+/* Password Requirements List */
+.password-requirements {
+    list-style: none;
+    margin-bottom: 20px; /* Increased margin */
+    padding-left: 0;
+}
+
+.password-requirements li {
+    font-size: 14px; /* Increased font size */
+    margin-bottom: 8px; /* Increased margin */
+    padding-left: 20px;
+    position: relative;
+    color: #e74c3c; /* Red color */
+}
+
+.password-requirements li.valid {
+    color: #2ecc71; /* Green color */
+}
+
+.password-requirements li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: inherit;
+}
+
+/* Password Strength Meter */
+.password-meter {
+    height: 8px; /* Increased height */
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 4px; /* Smoother edges */
+    margin-bottom: 20px; /* Increased margin */
+}
+
+.password-meter-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #e74c3c; /* Initial color red */
+    border-radius: 4px; /* Matching border radius */
+    transition: width 0.3s, background-color 0.3s;
+}
+
+/* Button Container */
 .button-container {
-    display: flex; /* Use flexbox to align buttons */
-    justify-content: flex-start; /* Space between buttons */
-    margin-bottom: 20px; /* Space below buttons */
+    display: flex;
+    justify-content: space-between; /* Align buttons to the edges */
+    align-items: center;
+    margin-bottom: 20px; /* Maintain existing margin */
 }
 
-.form-section .back-btn {
-    padding: 10px; /* Button padding */
-    background-color: #f4f4f4; /* Light background for back button */
-    color: #001a4d; /* Dark text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 100px; /* Rounded edges */
-    font-size: 16px; /* Button text size */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s; /* Smooth transition */
-    display: flex; /* To center text */
-    justify-content: center; /* Center text */
-    align-items: left; /* Center text vertically */
-    margin-left: 9px;
+.signup-btn, .back-btn {
+    width: 45%; /* Set each button to 45% width */
+    padding: 14px 28px; /* Maintain existing padding */
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Optional: Enhance Button Appearance */
+.signup-btn {
+    background-color: #002366;
+    color: #f4f4f4;
+}
+
+.signup-btn:hover {
+    background-color: #f4f4f4;
+    color: #002366;
+    border: 1px solid #aaa;
+    transform: translateY(-2px); /* Slight upward movement */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn {
+    background-color: #f4f4f4;
+    color: #002366;
     border: 1px solid #aaa;
 }
 
 .back-btn:hover {
-    background-color: #001a4d; /* Darker color on hover */
+    background-color: #002366;
     color: #f4f4f4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.form-section .signup-btn {
-    background-color: #001a4d;
-    color: #f4f4f4;
+/* Already Account Link */
+.already-account {
+    margin-top: 15px; /* Increased margin */
+    color: #002366;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px; /* Increased font size */
 }
 
-.form-section .signup-btn:hover {
-    background-color: #f4f4f4;
-    color: #001a4d;
-    border: 1px solid #aaa;
+.already-account:hover {
+    text-decoration: underline;
 }
 
+/* Valid and Invalid Input States */
+.user-form input.valid,
+.user-form select.valid {
+    border-color: #2ecc71; /* Green border */
+    background-color: #ecf9f1; /* Light green background */
+}
+
+.user-form input.invalid,
+.user-form select.invalid {
+    border-color: #e74c3c; /* Red border */
+    background-color: #fcebea; /* Light red background */
+}
+
+/* Responsive Design for Ultra-Wide Screens */
+@media (min-width: 1200px) {
+    .login-logo-container {
+        max-width: 1400px; /* Further increase */
+        padding: 50px;
+    }
+
+    .logo-section {
+        padding: 30px;
+    }
+
+    .form-section {
+        padding: 50px;
+    }
+
+    .form-columns {
+        gap: 60px; /* Increased gap */
+    }
+
+    .form-column {
+        width: 45%; /* Adjusted width */
+    }
+}
+
+/* Responsive Design for Tablets and Medium Screens */
+@media (max-width: 992px) {
+    .login-logo-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .logo-section,
+    .form-section {
+        width: 100%;
+    }
+
+    .form-section {
+        padding: 30px;
+        margin-top: 30px;
+    }
+
+    .form-columns {
+        flex-direction: column;
+        gap: 30px; /* Reduced gap */
+    }
+
+    .form-column {
+        width: 100%;
+    }
+
+    /* Adjust Button Container for Smaller Screens */
+    .button-container {
+        flex-direction: row; /* Keep side by side */
+        justify-content: space-between; /* Ensure buttons are aligned */
+        gap: 10px; /* Space between buttons */
+    }
+
+    .signup-btn, .back-btn {
+        width: 48%; /* Slightly reduce width to fit within container */
+    }
+
+    .password-requirements li {
+        font-size: 14px; /* Increased font size */
+    }
+
+    .tagline {
+        font-size: 16px; /* Increased font size */
+        padding: 10px 20px;
+    }
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 576px) {
+    .form-section {
+        padding: 20px;
+    }
+
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 15px; /* Adjust gap for smaller screens */
+    }
+
+    .signup-btn, .back-btn {
+        width: 100%; /* Full width buttons */
+        margin-bottom: 10px;
+        padding: 12px 24px; /* Adjust padding for smaller screens */
+        font-size: 16px; /* Adjust font size for readability */
+    }
+
+    .password-requirements li {
+        font-size: 13px;
+    }
+
+    .tagline {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
