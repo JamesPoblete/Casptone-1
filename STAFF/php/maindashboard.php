@@ -188,7 +188,7 @@ exit();
             <li><a href="maindashboard.php" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
             <li><a href="inventorylist.php"><i class="fas fa-box"></i> Inventory</a></li>
             <li><a href="../html/laundrylist.html"><i class="fas fa-list-alt"></i> Laundries List</a></li>
-            <li><a href="logout.php" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            <li><a href="../html/login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
         </ul>
     </div>
 

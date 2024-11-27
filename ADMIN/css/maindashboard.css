@@ -5,6 +5,26 @@
   box-sizing: border-box;
 }
 
+/* Define the Poppins Regular Font */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/poppins-v21-latin-regular.woff2') format('woff2'),
+       url('../fonts/poppins-v21-latin-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Define the Poppins Bold Font */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/poppins-v21-latin-700.woff2') format('woff2'),
+       url('../fonts/poppins-v21-latin-700.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   display: flex;

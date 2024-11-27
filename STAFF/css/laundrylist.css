@@ -769,11 +769,7 @@ input[type="checkbox"] {
   line-height: 1.6; /* Increased line height for better readability */
 }
 
-.receipt-logo {
-  display: block;
-  margin: 0 auto 15px auto; /* Center the logo and add some margin at the bottom */
-  width: 300px; /* Adjust logo size for better visibility */
-}
+
 
 .receipt-header {
   text-align: center;
@@ -807,20 +803,16 @@ input[type="checkbox"] {
 
 .receipt-total {
   margin-top: 20px;
-  text-align: right;
+  text-align: left;
   border-top: 1px solid #000;
   padding-top: 15px;
 }
 
 .receipt-total h3, .receipt-total p {
   margin: 5px 0;
-  font-size: 18px;
+  font-size: 25px;
 }
 
-.receipt-barcode {
-  text-align: center;
-  margin-top: 20px;
-}
 
 
 
@@ -847,21 +839,69 @@ input[type="checkbox"] {
   background-color: #45a049;
 }
 
+.receipt-header img {
+  display: block;
+  margin: 0 auto;
+  max-width: 650px; /* Adjust width to fit 58mm paper */
+  max-height: 250px; /* Adjust height proportionally */
+  object-fit: contain; /* Ensure no distortion */
+}
+
+/* Print Styling */
 @media print {
-  .sidebar, .main-header, .search-filter-container, .pagination, .modal, .add-laundry-btn, .print-btn {
-      display: none !important;
+  @page {
+      size: 58mm auto; /* Set the page size to 58mm width */
+      margin: 2mm; /* Remove default margins */
   }
+
+  body {
+      margin: 0 !important; /* Remove body margins */
+      padding: 0 !important; /* Remove body padding */
+      width: 58mm; /* Ensure the body matches thermal paper width */
+      font-family: monospace, sans-serif; /* Use a monospace font for better compatibility */
+      font-size: 20px; /* Set an appropriate font size */
+      line-height: 1.4; /* Adjust line height for readability */
+      box-sizing: border-box; /* Ensure padding and borders are accounted for */
+  }
+
+  /* Ensure receipt content fits within the print area */
   .receipt-content {
-      width: 100%;
+      width: 100%; /* Full width of the thermal paper */
       margin: 0;
       padding: 0;
-      border: none;
+      box-sizing: border-box;
+      font-size: 20px; /* Adjust font size if needed */
+      line-height: 1.4; /* Adjust line height */
+      text-align: left; /* Left-align text for better readability */
   }
-  #receiptModal {
-      display: block !important;
+  
+    /* Remove any UI elements that shouldn't be included in the print */
+    .no-print {
+      display: none !important; /* Hide elements with the class 'no-print' */
   }
-  #printReceiptBtn {
-      display: none;
+
+  /* Adjust the receipt layout to avoid clipping */
+  .receipt-content h1, .receipt-content h2, .receipt-content p {
+      margin: 0;
+      padding: 0;
+      font-size: 20px; /* Ensure no oversized headers */
+  }
+
+  /* Remove borders, shadows, and outlines for a clean print */
+  .receipt-content, .receipt-content * {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+  }
+
+  .receipt-total h3, .receipt-total p {
+    margin: 5px 0;
+    font-size: 25px;
+  }
+
+  /* Optionally, reduce the margins between content items */
+  .receipt-content > * {
+      margin-bottom: 4mm; /* Adjust bottom margin to fit content better */
   }
 }
 

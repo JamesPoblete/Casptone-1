@@ -1,44 +1,67 @@
 # preprocessing.py
 
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 import joblib
 import os
+import numpy as np
+import pandas as pd
 
-def create_preprocessor(numerical_features, categorical_features):
+class CyclicEncoder(BaseEstimator, TransformerMixin):
     """
-    Creates a preprocessor with scaling for numerical features and one-hot encoding for categorical features.
-    
+    Adds cyclic features for specified columns in the dataframe.
+    Transforms each cyclical column into two features using sine and cosine transformations.
+    """
+
+    def __init__(self, cyclical_columns_periods):
+        """
+        Initializes the CyclicEncoder.
+
+        Parameters:
+            cyclical_columns_periods (dict): Dictionary mapping column names to their periods.
+                                            e.g., {'Month': 12, 'Quarter': 4}
+        """
+        self.cyclical_columns_periods = cyclical_columns_periods
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        X = X.copy()
+        for col, period in self.cyclical_columns_periods.items():
+            if col not in X.columns:
+                raise ValueError(f"Column '{col}' not found in input DataFrame.")
+            X[f'{col}_sin'] = np.sin(2 * np.pi * X[col] / period)
+            X[f'{col}_cos'] = np.cos(2 * np.pi * X[col] / period)
+            X = X.drop(columns=[col])
+        return X
+
+def create_preprocessor(cyclical_columns_periods):
+    """
+    Creates a preprocessor pipeline that adds cyclic features.
+
     Parameters:
-        numerical_features (list): List of numerical feature names.
-        categorical_features (list): List of categorical feature names.
-        
+        cyclical_columns_periods (dict): Dictionary mapping cyclical column names to their periods.
+
     Returns:
-        ColumnTransformer: A sklearn ColumnTransformer object.
+        Pipeline: A sklearn Pipeline object.
     """
-    numerical_transformer = Pipeline(steps=[
-        ('scaler', StandardScaler())
+    # Define the cyclic encoder
+    cyclic_encoder = CyclicEncoder(cyclical_columns_periods=cyclical_columns_periods)
+
+    # Create the pipeline
+    pipeline = Pipeline(steps=[
+        ('cyclic', cyclic_encoder)
     ])
 
-    categorical_transformer = Pipeline(steps=[
-        ('onehot', OneHotEncoder(handle_unknown='ignore'))
-    ])
-
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ('num', numerical_transformer, numerical_features),
-            ('cat', categorical_transformer, categorical_features)
-        ])
-    
-    return preprocessor
+    return pipeline
 
 def save_preprocessor(preprocessor, filename='preprocessor.joblib'):
     """
     Saves the preprocessor to a joblib file.
-    
+
     Parameters:
-        preprocessor (ColumnTransformer): The preprocessor pipeline to save.
+        preprocessor (Pipeline): The preprocessor pipeline to save.
         filename (str): The filename for the saved preprocessor.
     """
     joblib.dump(preprocessor, filename)
@@ -47,15 +70,26 @@ def save_preprocessor(preprocessor, filename='preprocessor.joblib'):
 def load_preprocessor(filename='preprocessor.joblib'):
     """
     Loads a preprocessor from a joblib file.
-    
+
     Parameters:
         filename (str): The filename of the preprocessor to load.
-        
+
     Returns:
-        ColumnTransformer: The loaded preprocessor pipeline.
+        Pipeline: The loaded preprocessor pipeline.
     """
     if not os.path.exists(filename):
         raise FileNotFoundError(f"Preprocessor file '{filename}' not found.")
     preprocessor = joblib.load(filename)
     print(f"Preprocessor loaded from '{filename}'.")
     return preprocessor
+
+if __name__ == "__main__":
+    # Example usage
+    # Define cyclic columns
+    cyclical_columns_periods = {'Month': 12, 'Quarter': 4}
+
+    # Create preprocessor
+    preprocessor = create_preprocessor(cyclical_columns_periods)
+
+    # Save preprocessor
+    save_preprocessor(preprocessor)

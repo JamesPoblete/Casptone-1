@@ -3,202 +3,199 @@ import numpy as np
 from flask import Flask, request, jsonify
 from sqlalchemy import create_engine, text
 from flask_cors import CORS
+from functools import wraps
 import logging
-from statsmodels.tsa.statespace.sarimax import SARIMAXResults
-import joblib
-import warnings
-from datetime import datetime, timedelta
+import json
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
-warnings.filterwarnings("ignore")  # Suppress warnings
-
-# Flask app setup
 app = Flask(__name__)
-CORS(app)
+CORS(app)  # Enable CORS for all routes
 
 # ================================
 # Configuration
 # ================================
 
-DB_HOST = 'localhost'
-DB_PORT = '3306'
-DB_USER = 'root'
-DB_PASSWORD = ''
-DB_NAME = 'dbcapstone'
+# Database configuration
+DB_HOST = 'localhost'       # Your database host
+DB_PORT = '3306'            # Default MySQL port
+DB_USER = 'root'            # Your database username
+DB_PASSWORD = ''            # Your database password
+DB_NAME = 'dbcapstone'      # Your database name
 
+# API Key for authentication
+API_KEY = 'testkey123'  # Replace with your actual API key
+
+# Create a database connection string
 DATABASE_URI = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+
+# Initialize SQLAlchemy engine
 engine = create_engine(DATABASE_URI)
 
-# Setup logging
+# ================================
+# Logging Configuration
+# ================================
+
 logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s',
-                    handlers=[logging.FileHandler("api.log"), logging.StreamHandler()])
+                    format='%(asctime)s %(levelname)s %(message)s',
+                    handlers=[
+                        logging.FileHandler("api.log"),
+                        logging.StreamHandler()
+                    ])
 
 # ================================
 # Helper Functions
 # ================================
 
-def fetch_sales_data():
+def load_model_metrics():
     """
-    Fetch all historical sales data from the database.
+    Load model evaluation metrics from 'model_metrics.json'.
     """
-    query = "SELECT * FROM laundry"
-    logging.info("Fetching sales data from the database.")
-    df = pd.read_sql(text(query), engine)
-    logging.info(f"Fetched {len(df)} records from the database.")
+    try:
+        with open('model_metrics.json', 'r') as f:
+            metrics = json.load(f)
+        logging.info("Model metrics loaded from 'model_metrics.json'.")
+        return metrics
+    except FileNotFoundError:
+        logging.error("Model metrics file 'model_metrics.json' not found.")
+        return None
+
+# Load metrics at the start of the application
+metrics = load_model_metrics()
+
+def fetch_sales_data(year=None, month=None, day=None):
+    """
+    Fetch historical sales data from the database.
+    """
+    query = "SELECT DATE, TOTAL FROM laundry"
+    conditions = []
+    params = {}
+
+    if year:
+        conditions.append("YEAR(DATE) = :year")
+        params['year'] = year
+    if month:
+        conditions.append("MONTH(DATE) = :month")
+        params['month'] = month
+    if day:
+        conditions.append("DAY(DATE) = :day")
+        params['day'] = day
+
+    if conditions:
+        query += " WHERE " + " AND ".join(conditions)
+
+    logging.info(f"Executing query: {query} with params: {params}")
+    df = pd.read_sql(text(query), engine, params=params)
     return df
 
-def preprocess_data(df):
+def prepare_data(df):
     """
-    Preprocess the sales data for SARIMAX.
+    Prepare data for SARIMAX.
     """
-    logging.info("Starting data preprocessing.")
-    
-    # Convert DATE to datetime
-    try:
-        df['DATE'] = pd.to_datetime(df['DATE'], format='%Y-%m-%d')
-        logging.info("Successfully converted DATE to datetime format.")
-    except Exception as e:
-        logging.error(f"Error converting DATE column to datetime: {e}")
-        raise
-    
-    df = df.sort_values('DATE').set_index('DATE')
-    
-    # Resample to monthly data
-    df_monthly = df.resample('M').sum()
-    
-    # Handle missing values
-    if df_monthly.isnull().sum().sum() > 0:
-        logging.info("Filling missing values with forward-fill method.")
-        df_monthly = df_monthly.ffill()
-    
-    # Generate exogenous variables
-    df_monthly['Month'] = df_monthly.index.month
-    df_monthly['Quarter'] = df_monthly.index.quarter
-    
-    # Lag feature: previous month's sales
-    df_monthly['Prev_Month_Sales'] = df_monthly['TOTAL'].shift(1)
-    df_monthly['Prev_Month_Sales'].fillna(0, inplace=True)
-    
-    # Rolling average (3 months)
-    df_monthly['Rolling_Avg_3'] = df_monthly['TOTAL'].rolling(window=3).mean()
-    df_monthly['Rolling_Avg_3'].fillna(0, inplace=True)
-    
-    logging.info("Data preprocessing completed.")
-    return df_monthly
+    if df.empty:
+        logging.warning("No data available for the given filters.")
+        return None, None, None, None
 
-def generate_future_exog(df_monthly, forecast_date):
+    df['DATE'] = pd.to_datetime(df['DATE'])
+    df.set_index('DATE', inplace=True)
+    monthly_sales = df['TOTAL'].resample('M').sum()
+
+    all_months = pd.date_range(start=monthly_sales.index.min(), end=monthly_sales.index.max(), freq='M')
+    monthly_sales = monthly_sales.reindex(all_months, fill_value=0)
+
+    monthly_sales = monthly_sales.reset_index()
+    monthly_sales.rename(columns={'index': 'DATE', 'TOTAL': 'TOTAL'}, inplace=True)
+
+    monthly_sales.sort_values('DATE', inplace=True)
+    y = monthly_sales['TOTAL'].values
+
+    last_date = monthly_sales['DATE'].max()
+    next_period_date = last_date + pd.DateOffset(months=1)
+    next_period_label = next_period_date.strftime('%B %Y')
+
+    logging.info(f"Prepared data for SARIMAX. Next period to predict: {next_period_label}")
+
+    return y, next_period_label, monthly_sales
+
+def train_model_sarimax(y):
     """
-    Generate exogenous variables for the forecast date.
+    Train a SARIMAX model.
     """
-    logging.info("Generating future exogenous variables.")
-    
-    future_exog = pd.DataFrame(index=[forecast_date])
-    
-    # Month and Quarter
-    future_exog['Month'] = forecast_date.month
-    future_exog['Quarter'] = forecast_date.quarter
-    
-    # Prev_Month_Sales
-    prev_month_date = forecast_date - pd.DateOffset(months=1)
-    if prev_month_date in df_monthly.index:
-        last_month_sales = df_monthly.loc[prev_month_date, 'TOTAL']
-    else:
-        last_month_sales = df_monthly['TOTAL'].mean()
-    future_exog['Prev_Month_Sales'] = last_month_sales
-    
-    # Rolling_Avg_3
-    past_data = df_monthly[df_monthly.index < forecast_date]
-    if len(past_data) >= 3:
-        rolling_avg_3 = past_data['TOTAL'].iloc[-3:].mean()
-    else:
-        rolling_avg_3 = past_data['TOTAL'].mean()
-    future_exog['Rolling_Avg_3'] = rolling_avg_3 if not np.isnan(rolling_avg_3) else df_monthly['TOTAL'].mean()
-    
-    logging.info(f"Future exogenous variables:\n{future_exog}")
-    return future_exog
+    try:
+        model = SARIMAX(y, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
+        model_fit = model.fit(disp=False)
+        logging.info("SARIMAX model trained successfully.")
+        return model_fit
+    except Exception as e:
+        logging.error(f"Error training SARIMAX model: {str(e)}")
+        raise
 
 def save_prediction_to_db(prediction_date, predicted_sales):
-    try:
-        query = text("""
-            REPLACE INTO sales_predictions 
-            (prediction_date, predicted_sales) 
-            VALUES (:prediction_date, :predicted_sales)
-        """)
-        with engine.connect() as connection:
-            connection.execute(query, {
-                'prediction_date': prediction_date, 
-                'predicted_sales': predicted_sales
-            })
-        logging.info(f"Saved prediction for {prediction_date}: ₱ {predicted_sales}")
-    except Exception as e:
-        logging.error(f"Error saving prediction to the database: {e}")
-        raise
+    """
+    Saves the predicted sales to the database.
+    """
+    query = text("REPLACE INTO sales_predictions (prediction_date, predicted_sales) VALUES (:prediction_date, :predicted_sales)")
+    with engine.connect() as connection:
+        connection.execute(query, {'prediction_date': prediction_date, 'predicted_sales': predicted_sales})
+    logging.info(f"Saved prediction for {prediction_date}: ₱ {predicted_sales}")
+
+def require_api_key(f):
+    """
+    Decorator to require API key authentication.
+    """
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        key = request.args.get('api_key')
+        if key and key == API_KEY:
+            return f(*args, **kwargs)
+        else:
+            logging.warning("Unauthorized access attempt.")
+            return jsonify({'error': 'Unauthorized'}), 401
+    return decorated
 
 # ================================
 # API Endpoints
 # ================================
 
 @app.route('/predict', methods=['GET'])
+@require_api_key
 def predict_sales():
+    """
+    API endpoint to predict next month's sales.
+    """
     try:
-        # Load the pre-trained SARIMAX model
-        try:
-            results = joblib.load('sarimax_model.pkl')
-            logging.info("Loaded pre-trained SARIMAX model.")
-        except Exception as e:
-            logging.error(f"Error loading SARIMAX model: {e}")
-            return jsonify({'error': 'Model not found. Please train the model first.'}), 500
+        year = request.args.get('year', default=None, type=int)
+        month = request.args.get('month', default=None, type=int)
+        day = request.args.get('day', default=None, type=int)
 
-        # Fetch and preprocess data
-        df = fetch_sales_data()
-        if df.empty:
-            return jsonify({'error': 'No sales data available'}), 400
+        logging.info(f"Received prediction request with year={year}, month={month}, day={day}")
 
-        df_monthly = preprocess_data(df)
+        df = fetch_sales_data(year, month, day)
+        y, next_period_label, monthly_sales = prepare_data(df)
 
-        # Define exogenous variables
-        exog_columns = ['Month', 'Quarter', 'Prev_Month_Sales', 'Rolling_Avg_3']
+        if y is None:
+            logging.error("Insufficient data for prediction.")
+            return jsonify({'error': 'Insufficient data for prediction.'}), 400
 
-        # Get 'year' and 'month' from query parameters
-        year = request.args.get('year', type=int)
-        month = request.args.get('month', type=int)
-
-        if year and month:
-            # Validate the date
-            try:
-                forecast_date = pd.Timestamp(year=year, month=month, day=1) + pd.offsets.MonthEnd(0)
-                next_period_label = forecast_date.strftime('%B %Y')
-            except Exception as e:
-                logging.error(f"Invalid date provided: {e}")
-                return jsonify({'error': 'Invalid year or month provided.'}), 400
-        else:
-            # Default to next month after the last date in the dataset
-            last_date = df_monthly.index.max()
-            forecast_date = last_date + pd.DateOffset(months=1)
-            next_period_label = forecast_date.strftime('%B %Y')
-
-        # Generate future exogenous variables
-        future_exog = generate_future_exog(df_monthly, forecast_date)
-
-        # Ensure exog_columns are in future_exog
-        future_exog = future_exog[exog_columns]
-
-        # Forecast sales
-        forecast = results.forecast(steps=1, exog=future_exog)
-        predicted_sales = max(forecast.iloc[0], 0)
+        model_fit = train_model_sarimax(y)
+        forecast = model_fit.forecast(steps=1)
+        predicted_sales = max(forecast[0], 0)
         predicted_sales = round(predicted_sales, 2)
-
-        # Save the prediction to the database
-        save_prediction_to_db(forecast_date.strftime('%Y-%m-%d'), predicted_sales)
 
         logging.info(f"Predicted sales for {next_period_label}: ₱ {predicted_sales}")
 
-        response = {
-            'predicted_sales': predicted_sales,
-            'next_period': next_period_label
-        }
+        save_prediction_to_db(monthly_sales['DATE'].max() + pd.DateOffset(months=1), predicted_sales)
 
-        return jsonify(response), 200
+        latest_mae = metrics.get('mae') if metrics else None
+        latest_mse = metrics.get('mse') if metrics else None
+        latest_r2 = metrics.get('r2') if metrics else None
+
+        return jsonify({
+            'predicted_sales': predicted_sales,
+            'next_period': next_period_label,
+            'mae': latest_mae,
+            'mse': latest_mse,
+            'r2': latest_r2
+        }), 200
 
     except Exception as e:
         logging.exception("An error occurred during prediction.")
@@ -206,7 +203,7 @@ def predict_sales():
 
 @app.route('/')
 def home():
-    return "Flask Sales Prediction Service with SARIMAX is running."
+    return "Flask Sales Prediction Service is running."
 
 # ================================
 # Run the Flask App

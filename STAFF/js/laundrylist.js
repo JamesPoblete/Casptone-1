@@ -888,46 +888,67 @@ function updateSalesDisplay() {
     const closeReceiptBtn = document.querySelector(".close-receipt");
     const printReceiptBtn = document.getElementById("printReceiptBtn");
 
-    // ----- Function to Populate Receipt Data -----
-    function populateReceipt(dataArray) {
-        const receiptDiv = document.getElementById('receipt');
-        receiptDiv.innerHTML = ''; // Clear previous receipts
+   // Function to Populate Receipt Data
+function populateReceipt(dataArray) {
+    const receiptDiv = document.getElementById('receipt');
+    receiptDiv.innerHTML = ''; // Clear previous receipts
 
-        dataArray.forEach(data => {
-            const receiptSection = document.createElement('div');
-            receiptSection.classList.add('single-receipt');
+    dataArray.forEach(data => {
+        const receiptSection = document.createElement('div');
+        receiptSection.classList.add('single-receipt');
 
-            // Create the receipt content similar to existing structure
-            const receiptHTML = `
-                <div class="receipt-header">
-                    <img src="../img/ane-laundry-logo.png" alt="AN'E Laundry Logo" class="receipt-logo">
-                    <h2>AN'E Laundry Receipt</h2>
-                    <p class="receipt-address">Address: Banay-Banay, Lipa City</p>
-                    <p class="receipt-phone">Phone: +123 456 7890</p>
-                </div>
-                <p><strong>Order ID:</strong> <span>${data.OrderID}</span></p>
-                <p><strong>Name:</strong> <span>${data.NAME}</span></p>
-                <p><strong>Date:</strong> <span>${new Date(data.DATE).toLocaleDateString()}</span></p>
-                <p><strong>Service:</strong> <span>${data.SERVICE}</span></p>
-                <p><strong>Load:</strong> <span>${data.LAUNDRY_LOAD}</span></p>
+        const receiptHTML = `
+            <div class="receipt-header">
+                <img src="../img/ane-laundry-logo.png" alt="AN'E Laundry Logo" class="receipt-logo">
+                <p>Address: Banay-Banay, Lipa City</p>
+                <p>Phone: 09276145542</p>
+            </div>
+            <div class="receipt-details">
+                <p><strong>Order ID:</strong> ${data.OrderID}</p>
+                <p><strong>Name:</strong> ${data.NAME}</p>
+                <p><strong>Date:</strong> ${new Date(data.DATE).toLocaleDateString()}</p>
+                <p><strong>Service:</strong> ${data.SERVICE}</p>
+                <p><strong>Load:</strong> ${data.LAUNDRY_LOAD}</p>
+            </div>
+            <div class="receipt-additional">
                 <h3>Articles</h3>
-                <ul>
+                <ul class="receipt-articles">
                     ${generateArticlesList(data)}
                 </ul>
-                <p><strong>Detergent:</strong> <span>${data.DETERGENT}</span></p>
-                <p><strong>Fabric Detergent:</strong> <span>${data.FABRIC_DETERGENT}</span></p>
-                <p><strong>Additional Cost:</strong> <span>${data.ADDITIONAL_COST}</span></p>
-                <p><strong>Pick Up Time:</strong> <span>${data.PICKUP_TIME || 'No time set'}</span></p>
-                <p>
-                    <strong style="font-size: 24px;">Total:</strong> ₱ <span>${data.TOTAL}</span>
-                </p>
-                <hr>
-            `;
+                <p><strong>Detergent:</strong> ${data.DETERGENT}</p>
+                <p><strong>Fabric Detergent:</strong> ${data.FABRIC_DETERGENT}</p>
+                <p><strong>Additional Cost:</strong> ₱ ${data.ADDITIONAL_COST}</p>
+                <p><strong>Pick Up Time:</strong> ${data.PICKUP_TIME || 'No time set'}</p>
+            </div>
+            <div class="receipt-total">
+                <p><strong>Total:</strong> ₱ ${data.TOTAL}</p>
+            </div>
+        `;
 
-            receiptSection.innerHTML = receiptHTML;
-            receiptDiv.appendChild(receiptSection);
-        });
-    }
+        receiptSection.innerHTML = receiptHTML;
+        receiptDiv.appendChild(receiptSection);
+    });
+}
+
+// Function to Generate Articles List
+function generateArticlesList(data) {
+    if (!data.ARTICLES) return '<li>No articles listed</li>';
+    return data.ARTICLES.map(article => `<li>${article}</li>`).join('');
+}
+
+// Function to Print Selected Receipts
+function printSelectedReceipts(receiptsData) {
+    populateReceipt(receiptsData);
+    setTimeout(() => {
+        window.print(); // Triggers print dialog
+    }, 500); // Slight delay to ensure receipts are rendered before printing
+}
+
+
+
+// Trigger print when the button is clicked
+printReceiptBtn.addEventListener('click', () => printSelectedReceipts(exampleReceipts));
+
 
     // Helper function to generate articles list
     function generateArticlesList(data) {
